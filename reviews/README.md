@@ -3,8 +3,8 @@
 Every mathematical claim included in the repository was reviewed cold by at least one model from a different model family than its author, and attacked by rival teams using independently written code, brute-force tree tests, and planted errors.
 
 Two non-trivial `GAP` verdicts occurred during the process:
-1. **Degree tail (`degree-tail.md`):** the first GPT-6.2 Sol cold review found a `GAP` in the summation-by-parts equality of part (c) at the endpoint $k = 2$ ($m_0 = n$) plus two overstated prose sentences. The proof was repaired and re-checked `CORRECT` (both the initial report and the re-check are preserved in [`review-degree-tail-gpt.md`](review-degree-tail-gpt.md)).
-2. **Excluded tagged-neighbour route:** Claude Fable 5.2 returned `GAP` on an alternate upper-bound construction (`tag.cpp`) whose strict $< 17/30$ bound remained unverified ([`review-excluded-tagged-fable.md`](review-excluded-tagged-fable.md)). That construction is excluded from all results.
+1. **Degree tail (`degree-tail.md`):** the first GPT-6.2 Sol cold review found a `GAP` in the summation-by-parts equality of part (c) at the endpoint $`k = 2`$ ($`m_0 = n`$) plus two overstated prose sentences. The proof was repaired and re-checked `CORRECT` (both the initial report and the re-check are preserved in [`review-degree-tail-gpt.md`](review-degree-tail-gpt.md)).
+2. **Excluded tagged-neighbour route:** Claude Fable 5.2 returned `GAP` on an alternate upper-bound construction (`tag.cpp`) whose strict $`< 17/30`$ bound remained unverified ([`review-excluded-tagged-fable.md`](review-excluded-tagged-fable.md)). That construction is excluded from all results.
 
 *(The review files below are preserved as written during the cold audits, with only internal branch names, job-runner names, and local filesystem paths redacted where noted at the top of a file, and dead relative markdown links to the original working tree converted to plain code spans. Relative paths mentioned inside those historical transcripts refer to the original working tree; the packaged proofs and checkers live in [`proofs/`](../proofs/README.md) and [`verify/`](../verify/README.md).)*
 
@@ -28,7 +28,7 @@ Two non-trivial `GAP` verdicts occurred during the process:
 | [cross-charging.md](../proofs/cross-charging.md) | Claude Fable 5.2 (Claude) | GPT-6.2 Sol (GPT) | `CORRECT` | [review-cross-charging-gpt.md](review-cross-charging-gpt.md) |
 | [cross-charging.md](../proofs/cross-charging.md) | Claude Fable 5.2 (Claude) | Gemini 4 Neon (Gemini) | `CORRECT` | [review-cross-charging-gemini.md](review-cross-charging-gemini.md) |
 | [degree-tail.md](../proofs/degree-tail.md) | Claude Fable 5.2 (Claude) | GPT-6.2 Sol (GPT) | v1 `GAP` -> repaired -> `CORRECT` | [review-degree-tail-gpt.md](review-degree-tail-gpt.md) |
-| [degree-tail.md](../proofs/degree-tail.md) | Claude Fable 5.2 (Claude) | Gemini 4 Neon (Gemini) | `CORRECT` (noted $k=2$, $\varepsilon<\mu$) | [review-degree-tail-gemini.md](review-degree-tail-gemini.md) |
+| [degree-tail.md](../proofs/degree-tail.md) | Claude Fable 5.2 (Claude) | Gemini 4 Neon (Gemini) | `CORRECT` (noted $`k=2`$, $`\varepsilon<\mu`$) | [review-degree-tail-gemini.md](review-degree-tail-gemini.md) |
 | [polynomial-scale-lower.md](../proofs/polynomial-scale-lower.md) | GPT-6.2 Sol / Carbon (GPT) | Claude Opus 5.5 (Claude) | `CORRECT` | [review-polynomial-scale-lower-claude.md](review-polynomial-scale-lower-claude.md) |
 | Earlier baseline `[0.543, 0.586]` | Baseline | Gemini (Gemini) | `CORRECT` | [review-baseline-gemini.md](review-baseline-gemini.md) |
 | Earlier baseline `[0.543, 0.586]` | Baseline | GLM (GLM) | `CORRECT` | [review-baseline-glm.md](review-baseline-glm.md) |

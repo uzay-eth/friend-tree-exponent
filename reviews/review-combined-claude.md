@@ -91,9 +91,9 @@ This was a fast, focused check of `git diff a8781f2..58dca86 -- FINAL.md OZET-TR
 - `git diff --name-status 3ac8946 58dca86` shows only additions under `attempts/strogatz-final/`: FINAL.md, OZET-TR.md and the two review files.
 - Each pinned lead/base commit (`45bd14f ec15a72 9d18e22 9ad27a2 1cbd617`) differs from `58dca86` only in `.gitignore` (disclosed). **No other leads' files changed.**
 
-- **B1 — resolved.** The changes are in the Exec Summary, §1.3 item 4, §2.1 4(c) and OZET item 3. All of them now say that $\liminf C_n/n^{0.543}>0$ a.s. already follows from Fable's $0.55$ (and from Astra 1–2 + Neon 1). Carbon's distinct content is now described as the loss-free method and the a.s. convergence of $\Phi_n^-/n^{0.543}$ in $(0,\infty]$, with its dependence on both Baseline §3.5 tables stated.
-- **B2 — resolved.** §3 now says that only the centred martingale part $Z_n$ in $M_n=X_m+A_n+Z_n$ is $L^2$-bounded, and that $M_n$ can have unbounded second moments with a limit in $(0,\infty]$. The second-moment bound $(H+3)B_F^2N_j/j$ via $N_j\le Y_j$ matches Carbon eqs. (6), (9)–(12).
-- **B3 — resolved.** OZET item 3 now says Fable's degree-tail limit holds "Astra'nın varlık teoremi ve $(0,1)$ içindeki üs sınırlarıyla birleştirildiğinde" ("when combined with Astra's existence theorem and exponent bounds in $(0,1)$"), in mean and on the log scale, and $N_k(n)$ is defined.
+- **B1 — resolved.** The changes are in the Exec Summary, §1.3 item 4, §2.1 4(c) and OZET item 3. All of them now say that $`\liminf C_n/n^{0.543}>0`$ a.s. already follows from Fable's $`0.55`$ (and from Astra 1–2 + Neon 1). Carbon's distinct content is now described as the loss-free method and the a.s. convergence of $`\Phi_n^-/n^{0.543}`$ in $`(0,\infty]`$, with its dependence on both Baseline §3.5 tables stated.
+- **B2 — resolved.** §3 now says that only the centred martingale part $`Z_n`$ in $`M_n=X_m+A_n+Z_n`$ is $`L^2`$-bounded, and that $`M_n`$ can have unbounded second moments with a limit in $`(0,\infty]`$. The second-moment bound $`(H+3)B_F^2N_j/j`$ via $`N_j\le Y_j`$ matches Carbon eqs. (6), (9)–(12).
+- **B3 — resolved.** OZET item 3 now says Fable's degree-tail limit holds "Astra'nın varlık teoremi ve $`(0,1)`$ içindeki üs sınırlarıyla birleştirildiğinde" ("when combined with Astra's existence theorem and exponent bounds in $`(0,1)`$"), in mean and on the log scale, and $`N_k(n)`$ is defined.
 - **Nits N1–N8:** All eight are addressed:
   - N1: §3 Astra no longer cites Fekete's lemma or independence between plantings.
   - N2: §1.3 now speaks of hypotheses not being satisfied, not an impossibility.
@@ -104,8 +104,8 @@ This was a fast, focused check of `git diff a8781f2..58dca86 -- FINAL.md OZET-TR
   - N7: OZET now says "Üç ... bulgu" ("three findings"), with three items listed.
   - N8: "conjecture" no longer appears in either file; the wording is now "proposed value" / "gündeme getirdiği".
 - **New content from the GPT review (checked for consistency only):**
-  - The §2.2/§8 fixed-$k$ a.s. statement is logically sound *given* the quoted Addario-Berry et al. Theorem 4.8 ($c_k<\liminf N_{k+1}/N_k$ a.s.). That gives $N_k\asymp C_n$ a.s. for fixed $k$, and with Astra Claim 2 and $\log(n/k)/\log n\to1$ it gives the limit $\mu$. I did not re-read the paper to confirm the theorem's exact wording.
-  - The literature endpoints are confirmed: $(\sqrt{13}-3)/6=0.1009252$ and $\sqrt2-1/2=0.9142136$ (Python).
+  - The §2.2/§8 fixed-$`k`$ a.s. statement is logically sound *given* the quoted Addario-Berry et al. Theorem 4.8 ($`c_k<\liminf N_{k+1}/N_k`$ a.s.). That gives $`N_k\asymp C_n`$ a.s. for fixed $`k`$, and with Astra Claim 2 and $`\log(n/k)/\log n\to1`$ it gives the limit $`\mu`$. I did not re-read the paper to confirm the theorem's exact wording.
+  - The literature endpoints are confirmed: $`(\sqrt{13}-3)/6=0.1009252`$ and $`\sqrt2-1/2=0.9142136`$ (Python).
 - **No new overclaim found** in the diff. The theorem statements and numbers in §2.1 are unchanged from what I verified in Part 1.
 
 VERDICT: CONSISTENT
