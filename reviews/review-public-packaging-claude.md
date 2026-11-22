@@ -83,3 +83,19 @@ The follow-up commit fixes all four blocking items without touching any math or 
   - It also has no round-2 entry.
 
 VERDICT: CHANGES_REQUESTED. One blocking item: in `reviews/review-public-packaging-claude.md`, either replace the body with my actual round-1 and round-2 reports verbatim, or add a first line stating that it is the packager's (Gemini 4 Neon's) summary of the Claude Opus 5.5 review, not the reviewer's own text. In either case, fix the three-versus-four item count, remove the "(under the Fable lead)" wording attributed to me, mention the remaining `attempts/strogatz-*` historical paths, and add a Round 2 line ("4 items addressed; one provenance fix requested, then APPROVE"). Once that is done, with no other changes, I'd approve.
+
+---
+
+## Round 3 (commit `974e22c`)
+
+Approved. The last blocking item is fixed and nothing else changed.
+
+- **Diff scope:** `f75d713..HEAD` is one commit, `974e22c`, and touches only `reviews/README.md` and `reviews/review-public-packaging-claude.md`. `verify/`, all 10 proof bodies, README.md and REPORT.md are unchanged since the last round, so my fresh-clone result still stands (exit 0, all 7 suites PASS, 635 s).
+- **Provenance fix:** `review-public-packaging-claude.md` now holds my Round 1 and Round 2 reports word for word. The only edits are the placeholders the top note describes: the list of grep patterns and the noreply address in two bullets. The note is accurate.
+- **Index:** `reviews/README.md` lists the packaging review as "Round 1–2 `CHANGES_REQUESTED` -> all items addressed". That is correct, but the review file has no final APPROVE entry yet. You may want to add this round's verdict (nit).
+- **Internal-string grep:** No matches for [redacted internal session, path, branch, server, and harness pattern list], tokens or the user email. The noreply address now appears in no tracked file, and no `__pycache__` is tracked.
+- **Links:** The only dead relative links left are the four in the verbatim proof bodies (`bounds-transfer.md` → `BOUNDS.md` and `transfer.log`; `upper-bound-banded.md` → `../bounds/TRANSFER.md` and `verified.log`). `proofs/README.md` maps them, and I accept that.
+- **Git hygiene and privacy:** Three commits. Every author and committer is `Can Uzay` with the noreply address, there are no `Co-Authored-By` trailers, and the repo is still `PRIVATE`.
+- **Remaining nit:** The README still says the attacks were run "(working under the Fable lead)", and nothing in the repo shows that. Keep it only if your own run records do.
+
+VERDICT: APPROVE
