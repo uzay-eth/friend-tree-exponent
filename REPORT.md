@@ -1,6 +1,6 @@
 # Strogatz's 17/30 Exponent for the Random Friend Tree: Technical Report
 
-*Status: Preprint-level work, computer-assisted, reviewed only by AI models across competing model families; no human referee has audited the proofs yet. The exact exponent $\mu$ remains open.*
+*Status: Preprint-level work, computer-assisted, not peer reviewed. How the results were produced and tested is described in the README ("Who did what") and in the review record below. The exact exponent $\mu$ remains open.*
 
 ---
 
