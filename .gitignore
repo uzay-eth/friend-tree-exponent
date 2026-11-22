@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pkl
+.venv/
+verify/.venv/
+
+# Compiled binaries and generated certificates
+verify/build/
+build/
+*.bin
+*.out
+a.out
+
+# Temporary files
+*.tmp
+.DS_Store

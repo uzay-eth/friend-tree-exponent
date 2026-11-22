@@ -1,0 +1,53 @@
+> Produced by GPT-6.2 Astra.
+
+# Degree cutoffs depending on both ends of an edge
+
+The target upper exponent is $\lambda=5657/9983$. The exact difference $17/30-\lambda=1/299490$ makes this a test of the proposed fraction. From a clean checkout run
+
+```sh
+bash attempts/strogatz-astra/banded/reproduce.sh
+```
+
+The command compiles the verifier, decompresses the integer input and constructs the weights. It uses GCC 13.3.0 with the undefined-behaviour sanitizer, GNU gzip 1.12 and Bash on Linux. There are no package downloads. The SHA-256 digest of `recipe.txt.gz` is `584bb93c2797138ae3de54cb85c7d8e487bb7d7cc5320c021b5a64ec0cf0f60a`.
+
+This is an upper drift certificate for the original random friend tree. Write $D=L+c$ for the degree of the focal core vertex, where $L$ and $c$ count its leaf and core neighbours. Use the tracked neighbours, one distinguished distance-two witness, saturated core-degree labels, and directed transfers from [the preceding certificate](../bounds/TRANSFER.md). The following changes concern which information is retained, and how terms in the generator are summed.
+
+## States at each degree
+
+A row of the cutoff file specifies an exclusive upper endpoint of a band of central degrees, followed by cutoffs $h_1,h_2,\ldots$ for observing neighbour degrees. Missing entries are 2. The first band begins at $D=2$, and the last ends at $H$. The cutoffs are nonincreasing in $c$ and on passing to the next band. The cutoff for $c=1$ is the same throughout. The core-degree caps are 20 for $c=1$, 7 for $c=2$, and 5 otherwise.
+
+For $d<h_c$, the neighbour label gives the true degree $d$ and its core degree capped as above. At $c=1$, when $d\le14$ and the core degree is 2, 3 or 4, it also describes a distinguished other core neighbour of that vertex: its exact degree $e$ and core degree $j$ for $e<6$, or $e\ge6$. A gain of the near vertex preserves the identity of the distinguished neighbour as long as the new state uses a witness. A conversion of the near vertex makes the fresh core vertex $(2,1)$ the new witness when one is required. On the focal vertex's own birth choose the minimum recorded label from the creator's previous core neighbours when a witness is required. In that case the creator had between one and three core neighbours, and all corresponding cutoffs are at least 6, so this identifies the needed exact type or certifies $e\ge6$. No tie between indistinguishable labels affects the recorded data. The first core in the three-vertex tree has no core neighbours.
+
+All labels are assigned along the growth history. For ties choose the earliest-born neighbour. An isolated centre starts with an empty label list. The rules below therefore define a potential on each realised history, and the conditional drift is taken in the filtration of that history.
+
+A pooled label gives a lower bound $b$ on the neighbour's degree. The marks in a band are $h_c$, powers of two greater than $h_c$ and less than $H$, starting at 4, and $H$. Only the largest pooled mark is kept. Every other pooled mark resets to $h_c$. Thus an observed neighbour of degree $d$ supplies exactly $1/d$ to the focal gain rate, and a pooled one supplies an unknown amount in $[0,1/b]$. When a central conversion raises $c$, or a central gain crosses a band boundary, project known degrees and core degrees down to the new cutoffs. A previous pooled mark projects to the greatest permitted mark at most its old lower bound. For a gain crossing bands at $c=1$, preserve the witness. A conversion also inserts the new $(2,1)$ neighbour. Marks on an already pooled neighbour need no update when its actual degree grows.
+
+The centre gains a leaf at rate $L+\sum_{w}1/d_w$ and converts a leaf at rate $L/D$. A conversion creates one new core vertex. Given an exact neighbour type $(d,k)$, the neighbour's conversion rate is $(d-k)/d$, and its gain rate lies in $[d-k+1/D,d-k+1/D+(k-1)/2]$. At a saturated $k$, the latter lower bound is $1/D$, and conversions preserve the label. For a near neighbour with a witness, replace one of the $k-1$ unknown terms in its gain rate by the known $1/e$ or the interval $[0,1/6]$. An exact witness gains at rate in $[e-j+1/d,e-j+1/d+(j-1)/2]$ and converts at $(e-j)/e$. All rates here are $n$ times the one-step probability. For a fixed centre, a birth moves either its own $(L,c)$, the type of one near neighbour, or the type of the distinguished far neighbour. A leaf promotion changes core degree at its creator and creates a new core vertex. A gain at an already pooled neighbour changes none of its stored marks. The tree has no cycle, so the far witness is distinct from the centre and its near neighbour. These cases exhaust the local transitions. Summing one conditional expectation for the change of each old weight and adding each newborn weight once gives the drift of their sum, including steps which change several old weights.
+
+## Two exact cancellations
+
+Let $g(D,c;d,k)$ be a signed integer in weight units. It can be nonzero only if both ends know the true degree and core degree of the opposite endpoint under the cutoffs for their own central degrees. On a focal gain include $\sum_w g(d_w,k_w;D,c)$ in the change of its weight; on a gain of a tracked near neighbour $w$ subtract $g(D,c;d_w,k_w)$ from the corresponding change of the focal weight. Each added term cancels on summation against its subtraction, with exactly the same gain rate. Values on witness variants of a given pair coincide. All transfer pairs are zero when either endpoint has degree at least $H$.
+
+There is also a nonnegative table $a(D,c)$ of finite support, and a threshold $T$. For each ordered core edge from $w$ to $u$ with $d_w\ge T$, subtract $a(D_u,c_u)/d_w$ from the row for $u$ and add the same quantity to the row for $w$. The rate $1/d_w$ is the rate at which $w$ chooses $u$. This cancellation holds on every realised tree, independently of the local states. Let $U$ be the change on central gain after including the signed transfers. For an exact neighbour the adjusted contribution is $(U-a(D,c)\mathbf1_{d_w\ge T})/d_w$. For a pooled neighbour with mark $b$ it is bounded above by $\max(0,U-a(D,c)\mathbf1_{b\ge T})/b$. When $b<T$ omitting a possible subtraction is safe because $a\ge0$. The central term from leaf neighbours is $LU$. At a sender of degree $D\ge T$, add $(1/D)\sum_{w}a(d_w,k_w)$, using the maximum over all true types consistent with its label for each term. Set $a=0$ outside its tabulated support.
+
+## Boundary at large degree
+
+Beyond $D\ge H$, take $f=A+Bq$, where $q=L/D$ and $A,B$ are nonnegative in the same weight units. The gain and conversion rules give $Gq\le 1-q$. The new core vertex sees a single pooled creator marked $H$. Let $s$ bound the weight of that newborn, and let $a_*$ be the largest arrow table entry. Signed transfers vanish here and the arrow charge at the sender is at most $a_* c/D=a_*(1-q)$. With $a(D,c)=0$ in this region, the adjusted drift including the newborn is bounded by $(B+a_*)(1-q)+sq$. Checking $B+a_*\le\lambda A$ and $s\le\lambda(A+B)$ is sufficient for all these vertices. A finite row which grows into the tail uses the upper rounding of $A+B(L+1)/H$.
+
+## Checking the finite certificate
+
+The recipe consists of integer trial newborn rewards in order of the $c=1$ rows, the signed edge table, and the nonnegative arrow table. The cutoff geometry and weight scale are specified. All other weights can be constructed in decreasing order of $D$, then $c$, then sorted local labels in reverse lexicographic order. In this order every non-newborn successor of a finite row is already known. For a fixed row propose a positive integer weight $z$. Take an upper bound on every signed rate times its change using the appropriate endpoint, round each term up, and verify that their sum is at most $\lfloor\lambda z\rfloor$. The conditional drift is nonincreasing in the trial row weight $z$ before subtracting $\lambda z$. Raising a failed proposal and checking it again therefore preserves the direction of the certificate. The trial reward is used only as a positive-rate upper bound for the newborn. The checker must verify that the actual newborn weights in the completed table are at most the trial rewards. Any floating-point proposal for $z$ can affect only how quickly an integer meeting the checks is found. The integer inequalities and positivity suffice for the result.
+
+More explicitly, a transition term has target $v$ and rational rate interval $[r_-,r_+]$. Its contribution at row weight $z$ is bounded by $\lceil\max\{r_-(v-z),r_+(v-z)\}\rceil$. For the central promotion the target is the post-conversion weight plus the trial reward of the child. For a central gain the target includes the incoming gain transfers, split across the leaf and individual core-neighbour rates. For a gain of an observed neighbour the target includes the opposite signed transfer. The redirection charge at the sender is a separate constant. Summing these integer upper bounds and checking the result against $\lfloor\lambda z\rfloor$ is sufficient. The degree, core degree and ordered labels only increase between projections, which is why this calculation needs no previously guessed weights apart from the newborn rewards.
+
+With $m>0$ a global lower bound on the weights, $mC_n\le\Phi_n$. The two cancellations and the checked inequalities give $\mathbb E[\Phi_{n+1}\mid\mathcal F_n]\le(1+\lambda/n)\Phi_n$. Consequently $\mathbb E C_n\le(\Phi_3/m)\prod_{j=3}^{n-1}(1+\lambda/j)=O(n^\lambda)$.
+
+For the supplied input the root weight is $1539738114735$ and $m=3908512529$ in the same integer units. The full output is in [verified.log](verified.log).
+
+```text
+verified rows 226545617, signed transfers 63309, minimum integer drift slack 3
+scale 1000000000000, minimum newborn reserve 4340525, weight range [3908512529, 1764716280715], centre 1539738114735
+PASS upper 5657/9983
+```
+
+If the exact check at $\lambda$ leaves a common positive reserve $e$ between the trial and actual newborn weights, it also gives an optional strict improvement. Let $M$ bound every weight from above and $S_n=\sum L/D$. With actual newborns the drift is at most $(\lambda\Phi_n-eS_n)/n$. Since $\mathbb E[\Delta C_n\mid\mathcal F_n]=S_n/n$, the shifted potential $\Phi_n+eC_n$ has drift at most $\lambda\Phi_n/n$. The inequality $\Phi_n\le MC_n$ then gives upper exponent $\lambda M/(M+e)$. This uses the reserve at the large-degree boundary as well as in the finite rows.
