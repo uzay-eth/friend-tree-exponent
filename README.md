@@ -29,7 +29,7 @@ bash verify/run_all.sh
 The script creates a local virtual environment at `verify/.venv` from [`verify/requirements.txt`](verify/requirements.txt) (`numpy==2.1.3`, `mpmath==1.3.0`, `scipy==1.14.1`), builds and runs all seven verification suites (including negative controls), and ends with one `PASS` line per result:
 
 ```text
-PASS  motif-bracket (Neon)          113/200 <= E[C_n] <= 1133/2000 (< 17/30 by 1/6000); 17,329,108 GMP checks/side, 6/6 neg controls (21s)
+PASS  motif-bracket (Neon)          E[C_n] product bounds, exponents 113/200 (lower) and 1133/2000 (upper, < 17/30 by 1/6000); 17,329,108 GMP checks/side, 6/6 neg controls (21s)
 PASS  banded-upper (Astra)          E[C_n] <= 1539738114735/3908512529 prod(1+5657/(9983j)) (< 17/30 by 1/299490); 226,545,617 rows (69s)
 PASS  banded-upper-audit (indep.)   independent verifier 5657/9983; 226,545,617 rows, 436 histories, 50 adversarial trees, 14/14 neg controls (158s)
 PASS  transfer-bounds (Astra)       [563/1000, 568/1000] (9,639,742 states) and hub [56/100, 57/100] (89s)

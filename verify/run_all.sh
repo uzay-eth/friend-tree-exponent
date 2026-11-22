@@ -78,7 +78,7 @@ for args in \
 done
 echo "Negative controls: 6/6 rejected (rc=2)"
 T1=$(date +%s)
-record_pass "PASS  motif-bracket (Neon)          113/200 <= E[C_n] <= 1133/2000 (< 17/30 by 1/6000); 17,329,108 GMP checks/side, 6/6 neg controls ($((T1-T0))s)"
+record_pass "PASS  motif-bracket (Neon)          E[C_n] product bounds, exponents 113/200 (lower) and 1133/2000 (upper, < 17/30 by 1/6000); 17,329,108 GMP checks/side, 6/6 neg controls ($((T1-T0))s)"
 
 # ---------------------------------------------------------------------------
 # 2. Banded upper bound 5657/9983 — primary verifier (GPT-6.2 Astra)
