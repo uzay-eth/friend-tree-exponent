@@ -34,4 +34,4 @@ Two non-trivial `GAP` verdicts occurred during the process:
 | Earlier baseline `[0.543, 0.586]` | Baseline | GLM (GLM) | `CORRECT` | [review-baseline-glm.md](review-baseline-glm.md) |
 | Combined technical report ([REPORT.md](../REPORT.md)) | Gemini 4 Neon (Gemini) | Claude Opus 5.5 (Claude) | `CONSISTENT` / `APPROVE` | [review-combined-claude.md](review-combined-claude.md) |
 | Combined technical report ([REPORT.md](../REPORT.md)) | Gemini 4 Neon (Gemini) | GPT-6.2 Sol (GPT) | `CONSISTENT` / `APPROVE` | [review-combined-gpt.md](review-combined-gpt.md) |
-| Public repository packaging ([README.md](../README.md), [REPORT.md](../REPORT.md), [verify/run_all.sh](../verify/run_all.sh)) | Gemini 4 Neon (Gemini) | Claude Opus 5.5 (Claude) | Round 1 `CHANGES_REQUESTED` -> addressed | [review-public-packaging-claude.md](review-public-packaging-claude.md) |
+| Public repository packaging ([README.md](../README.md), [REPORT.md](../REPORT.md), [verify/run_all.sh](../verify/run_all.sh)) | Gemini 4 Neon (Gemini) | Claude Opus 5.5 (Claude) | Round 1–2 `CHANGES_REQUESTED` -> all items addressed | [review-public-packaging-claude.md](review-public-packaging-claude.md) |
