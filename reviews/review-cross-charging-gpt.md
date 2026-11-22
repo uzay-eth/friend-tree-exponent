@@ -4,7 +4,7 @@ The stated bounds on `E[C_n]` follow for every `n >= 3`. The two rational tables
 
 ## 1. Proof audit
 
-Line numbers refer to [xcharge.md](../attempts/strogatz-fable/proofs/xcharge.md). The audit uses the written rates, state space, and inequalities.
+Line numbers refer to `xcharge.md`. The audit uses the written rates, state space, and inequalities.
 
 | Lines | Status | Finding |
 | --- | --- | --- |
@@ -29,13 +29,13 @@ Line numbers refer to [xcharge.md](../attempts/strogatz-fable/proofs/xcharge.md)
 
 ## 2. Independent exact certificate check
 
-[certificate.py](fable-xcharge-gpt/certificate.py) decodes each hexadecimal token by applying a power of 2 to its integer significand. [verify_rows.py](fable-xcharge-gpt/verify_rows.py) independently generates every allowed multiset and every box pair from the degree and core constraints, and checks that this universe is exactly the set of table keys. The c=0 states start at L=2, c=1 at L=1, and other states at L=0 because a core vertex has degree at least 2. There are 93 tail families, each tested at both endpoints. Class indices in the evidence use the text-file ordering. A final field of `None` means coarse and an empty tuple means no core neighbours.
+`certificate.py` decodes each hexadecimal token by applying a power of 2 to its integer significand. `verify_rows.py` independently generates every allowed multiset and every box pair from the degree and core constraints, and checks that this universe is exactly the set of table keys. The c=0 states start at L=2, c=1 at L=1, and other states at L=0 because a core vertex has degree at least 2. There are 93 tail families, each tested at both endpoints. Class indices in the evidence use the text-file ordering. A final field of `None` means coarse and an empty tuple means no core neighbours.
 
 At the claimed exponents each table passed 5,665 box and 186 tail inequalities. The upper table passed its two explicit beyond conditions. For the lower table I also checked the two nonnegative coefficients of its beyond row separately, reusing the minimum kappa already checked by the sign conditions. The smallest upper drift slack was `11258999068417/112589990684262400`. The smallest lower drift slack was exactly zero. The combined sign and drift minimum is zero for each table. Kp was recomputed, and the lower equality conditions were checked exactly in addition to the displayed inequality counts.
 
 Reducing the upper exponent to `579/1000` produced 5,668 failed drift checks. Increasing the lower exponent to `552/1000` produced 5,747. Changing only the upper `f(2,0,{})` to 1 in memory preserved the sign constraints and broke its box inequality.
 
-Command and output from [rows.log](fable-xcharge-gpt/rows.log)
+Command and output from `rows.log`
 
 ```text
 $ taskset -c 0 python3 -B checks/fable-xcharge-gpt/verify_rows.py | tee checks/fable-xcharge-gpt/rows.log
@@ -75,13 +75,13 @@ table control: upper, exponent=29/50
 
 ## 3. Direct drift by ordered moves
 
-[direct_drift.py](fable-xcharge-gpt/direct_drift.py) rebuilds the core, classes, states, and potentials on each successor tree and then enumerates each ordered `(V,W)` with weight `1/(n*degree(V))`. Successor potentials are reused for moves that have the same W. The sums of potential values use exact integers in units of a common dyadic denominator, and all probability and slack operations use fractions. The direct program uses the text parser but imports no row equation or multiplier calculation.
+`direct_drift.py` rebuilds the core, classes, states, and potentials on each successor tree and then enumerates each ordered `(V,W)` with weight `1/(n*degree(V))`. Successor potentials are reused for moves that have the same W. The sums of potential values use exact integers in units of a common dyadic denominator, and all probability and slack operations use fractions. The direct program uses the text parser but imports no row equation or multiplier calculation.
 
 The unlabelled generator adds a leaf to every vertex of each previous tree and deduplicates by the least rooted encoding over all roots. Every tree has a leaf whose removal gives a predecessor. Sorting the rooted child encodings recursively characterizes the rooted isomorphism class, so taking the least encoding over roots gives the claimed unrooted deduplication. The one-vertex tree has no move. At n=2 the upper inequality has zero right-hand side and positive drift, as expected outside the stated n≥3 domain.
 
 In each applicable family the relative slack divides the signed difference by `exponent*Phi(T)`. The numerator is target minus drift in upper mode and drift minus target in lower mode. The exact minimum for every family, with its witness, is in the output. The boundary tests exercise detailed, coarse, and beyond vertices with more than 60 leaves, neighbouring beyond vertices, and conversions that can cross from 12 to 13 core neighbours.
 
-Command and output from [direct.log](fable-xcharge-gpt/direct.log)
+Command and output from `direct.log`
 
 ```text
 $ taskset -c 0 python3 -B -u checks/fable-xcharge-gpt/direct_drift.py | tee checks/fable-xcharge-gpt/direct.log
@@ -123,9 +123,9 @@ For `s = lambda` or `delta`, Gamma recurrence gives
 `prod_(m=3)^(n-1) (1+s/m) = [2/Gamma(3+s)] * Gamma(n+s)/Gamma(n)`.
 Use the upper prefactor `f(x_0)` and lower prefactor `f(x_0)/sup f`, respectively.
 
-[check_constants.py](fable-xcharge-gpt/check_constants.py) encloses the constants using rational arithmetic. For a unit-rate Gamma random variable of shape x, Jensen with `t^s` gives `Gamma(x+s)/Gamma(x) <= x^s`. Applying Jensen at shape `x+s` with power `1-s` gives the complementary bound `x/(x+s)^(1-s) <= Gamma(x+s)/Gamma(x)`. The script uses both at `x=20000`, encloses the required rational powers by integer comparisons, and outward-rounds the recurrence product after each multiplication on a rational grid. This certifies that the lower coefficient exceeds 0.5022 and the upper coefficient is below 3.974.
+`check_constants.py` encloses the constants using rational arithmetic. For a unit-rate Gamma random variable of shape x, Jensen with `t^s` gives `Gamma(x+s)/Gamma(x) <= x^s`. Applying Jensen at shape `x+s` with power `1-s` gives the complementary bound `x/(x+s)^(1-s) <= Gamma(x+s)/Gamma(x)`. The script uses both at `x=20000`, encloses the required rational powers by integer comparisons, and outward-rounds the recurrence product after each multiplication on a rational grid. This certifies that the lower coefficient exceeds 0.5022 and the upper coefficient is below 3.974.
 
-Command and output from [constants.log](fable-xcharge-gpt/constants.log)
+Command and output from `constants.log`
 
 ```text
 $ taskset -c 0 python3 -B checks/fable-xcharge-gpt/check_constants.py | tee checks/fable-xcharge-gpt/constants.log

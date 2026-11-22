@@ -72,7 +72,7 @@ VERDICT: CORRECT
 
 ## 2. Independent Exact Rational Verification & Negative Controls
 
-Script: [verify_certs.py](checks/fable-xcharge-gemini/verify_certs.py) (written solely from `proofs/xcharge.md` and the text format in `xdump.py`; does not import `xcharge.py` or `xverify.py`; parses every C99 hex float directly to an exact `fractions.Fraction` and cross-checks against `Fraction.from_float(float.fromhex(...))`).
+Script: `verify_certs.py` (written solely from `proofs/xcharge.md` and the text format in `xdump.py`; does not import `xcharge.py` or `xverify.py`; parses every C99 hex float directly to an exact `fractions.Fraction` and cross-checks against `Fraction.from_float(float.fromhex(...))`).
 
 ### Summary of results
 - **Completeness & raw sign constraints (no clipping needed):** Both `upper_4_3_60_12.txt` and `lower_4_3_60_12.txt` contain every expected box state (5,116 detailed + 549 coarse = 5,665 entries, unit `starts = 0..60`, all 5 non-TOP classes + TOP, 6 $\kappa$ values, 15 $\nu$ values, plus $G$ and $K_p$ in upper) and satisfy **all** sign constraints with **0 violations even without clipping** (for upper, the recomputed $K_p = \max(0, \max_b \kappa(b))$ matches the file's `Kp` entry identically).
@@ -139,7 +139,7 @@ LOWER at n=3: 0.5022 * Gamma(3.55)/Gamma(3) = 0.882177613532463 <= E[C_3]=1
 
 ## 3. Direct Tree-Level Verification (Bypassing Row Bookkeeping)
 
-Script: [verify_trees.py](checks/fable-xcharge-gemini/verify_trees.py). Computes $\Phi(T) = \sum_{u \text{ core}} f(x_u)$ directly from Section 2's state definition, enumerates all directed moves $(V, W)$ with exact rational weight $n \cdot \Pr(V, W) = 1/\deg(V)$ (verifying $\sum_{V, W} n\Pr(V, W) = n$), and checks $n \mathbb{E}[\Phi(T') - \Phi(T)] \le (29/50)\Phi(T)$ (upper) and $\ge (11/20)\Phi(T)$ (lower) in exact `Fraction` arithmetic. The local-delta evaluator was cross-checked for exact rational equality against a full from-scratch $O(n^2)$ brute-force tree reconstruction on **all 434** unlabelled trees ($3 \le n \le 11$), **15** random trees ($n \le 80$), and **77** extreme trees ($n \le 120$).
+Script: `verify_trees.py`. Computes $\Phi(T) = \sum_{u \text{ core}} f(x_u)$ directly from Section 2's state definition, enumerates all directed moves $(V, W)$ with exact rational weight $n \cdot \Pr(V, W) = 1/\deg(V)$ (verifying $\sum_{V, W} n\Pr(V, W) = n$), and checks $n \mathbb{E}[\Phi(T') - \Phi(T)] \le (29/50)\Phi(T)$ (upper) and $\ge (11/20)\Phi(T)$ (lower) in exact `Fraction` arithmetic. The local-delta evaluator was cross-checked for exact rational equality against a full from-scratch $O(n^2)$ brute-force tree reconstruction on **all 434** unlabelled trees ($3 \le n \le 11$), **15** random trees ($n \le 80$), and **77** extreme trees ($n \le 120$).
 
 ### Summary of smallest relative slacks (0 violations across all 908 trees)
 

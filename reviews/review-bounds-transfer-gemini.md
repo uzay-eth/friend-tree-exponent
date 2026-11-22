@@ -2,7 +2,7 @@ VERDICT: CORRECT
 
 # Cold Audit of `attempts/strogatz-astra/bounds/TRANSFER.md` and `transfer.cpp`
 
-Independent cold audit of [TRANSFER.md](../attempts/strogatz-astra/bounds/TRANSFER.md), [BOUNDS.md](../attempts/strogatz-astra/bounds/BOUNDS.md), [transfer.cpp](../attempts/strogatz-astra/bounds/transfer.cpp), and [reproduce-transfer.sh](../attempts/strogatz-astra/bounds/reproduce-transfer.sh).
+Independent cold audit of `TRANSFER.md`, `BOUNDS.md`, `transfer.cpp`, and `reproduce-transfer.sh`.
 
 **Summary:** The certified bounds for every $n \ge 3$,
 $$\frac{15430450607}{17611596558}\prod_{m=3}^{n-1}\!\left(1+\frac{0.563}{m}\right) \le \mathbb{E}[C_n] \le \frac{15361771189}{640204837}\prod_{m=3}^{n-1}\!\left(1+\frac{0.568}{m}\right),$$

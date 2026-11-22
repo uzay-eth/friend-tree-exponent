@@ -4,7 +4,7 @@ The summation-by-parts equality in part (c), line 129, fails at the admissible e
 
 ## Written proof
 
-I refer to the line numbers in [degree_tail.md](../attempts/strogatz-fable/proofs/degree_tail.md). Only the written proof and the supplied Gamma-ratio bounds are used to judge the mathematical claims.
+I refer to the line numbers in `degree_tail.md`. Only the written proof and the supplied Gamma-ratio bounds are used to judge the mathematical claims.
 
 ### Model and Lemma 1, lines 43–54
 
@@ -73,7 +73,7 @@ Write \(r=m'\) for the block calculations below.
 
 ## Numerical checks
 
-I wrote [referee.py](fable-degree-tail-gpt/referee.py) and [boundary.py](fable-degree-tail-gpt/boundary.py). The Python test commands were pinned to logical CPU 0. Exact enumeration and product checks use rational arithmetic. Monte Carlo intervals are pointwise and serve as checks on the sampled configurations.
+I wrote `referee.py` and `boundary.py`. The Python test commands were pinned to logical CPU 0. Exact enumeration and product checks use rational arithmetic. Monte Carlo intervals are pointwise and serve as checks on the sampled configurations.
 
 1. **Lemma 3.** Enumerate all unlabeled trees by adding a leaf to each vertex of every tree at the previous order, then deduplicating by canonical rooted encodings minimized over all roots. Removing a leaf proves enumeration coverage by induction. The two trees of orders one and two are core-free. Every tree of order at least two can also arise from the process, since each required attachment has positive probability through some neighbor. In all 2,286 trees with a core through order 13 the inequality holds. The smallest ratio is \(3/7\), attained by 14 trees at orders 10–13, with edge lists in the output. None attains \(E=C/4\). The smallest additive slack is \(3/4\), attained by the stars with \(C=1\), since the stronger bound for \(C\ge2\) gives slack at least \(5/4\). Omitting the adjacent-pair eligibility clause caused seven failures.
 2. **Lemma 1.** Generate 224 simulated trees at seven orders up to 300. Enumerate each ordered \((V,W)\) pair with probability \(1/(jD_V(j))\), then evaluate both moments exactly for every vertex. Both inequalities hold on all 14,688 vertex checks. Using \(j+1\) in place of \(j\) as the growth denominator caused 109 failures in each moment.

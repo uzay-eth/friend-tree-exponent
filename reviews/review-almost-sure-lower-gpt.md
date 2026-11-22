@@ -116,7 +116,7 @@ These details require no change to Theorem B or its hypotheses.
 ## 2. Tracked-degree hypotheses
 
 The parameters are $L_{\max}=60$, $c_{\max}=10$, pendant cutoff 2 and degree
-cap 6. The [independent checker](fable-as-lower-gpt/check.py) derives the
+cap 6. The `independent checker` derives the
 eight state coordinates from adjacency lists. It recomputes the post-step
 states by adding an edge to each possible target $W$, then enumerates all
 $2(n-1)$ ordered pairs $(V,W)$ with exact probability $1/(nD_V)$ apiece

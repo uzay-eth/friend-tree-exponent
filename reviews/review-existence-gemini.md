@@ -2,7 +2,7 @@ VERDICT: CORRECT
 
 # Cold Review of `attempts/strogatz-astra/existence.md`
 
-Cold review performed strictly on the statement and proof in [existence.md](../attempts/strogatz-astra/existence.md), without reading any other files in `attempts/strogatz-astra/`, other reviews, or board material.
+Cold review performed strictly on the statement and proof in `existence.md`, without reading any other files in `attempts/strogatz-astra/`, other reviews, or board material.
 
 **Summary:** The proof that $\lim_{n \to \infty} \frac{\log \mathbb{E}[C_n]}{\log n}$ exists is **mathematically sound and complete**. All probability estimates, planting uniformity and disjointness claims, clock couplings, quantifier orders, and de-Poissonization arguments check out rigorously. A few minor expositional notes (none affecting validity) are collected at the end.
 

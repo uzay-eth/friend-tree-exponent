@@ -2,9 +2,9 @@ VERDICT: CORRECT
 
 # Independent Cold Audit of the Multi-Band Upper Certificate (`lambda = 5657/9983 < 17/30`)
 
-Independent audit of commit `f515157` ([BOUND.md](../attempts/strogatz-astra/banded/BOUND.md), [check.cpp](../attempts/strogatz-astra/banded/check.cpp), [geometry.txt](../attempts/strogatz-astra/banded/geometry.txt), `recipe.txt.gz`, and [reproduce.sh](../attempts/strogatz-astra/banded/reproduce.sh)).
+Independent audit of commit `f515157` (`BOUND.md`, `check.cpp`, `geometry.txt`, `recipe.txt.gz`, and `reproduce.sh`).
 
-**Isolation protocol:** Our standalone C++17 verifier ([verify_banded.cpp](strogatz-astra-banded/verify_banded.cpp)) and exact-rational Python audit suite ([test_banded_audit.py](strogatz-astra-banded/test_banded_audit.py)) were designed, implemented, compiled with UBSan, tested on fixtures and mutation negative controls, and run to completion on the full 226,545,617-state production input at `5657/9983` **strictly from the mathematical description in `BOUND.md` (and baseline `TRANSFER.md`), without reading `check.cpp` or any proposal source**. Only after our full independent `PASS` was in hand did we inspect commit `f515157` and compare `check.cpp` and the `BOUND.md` diff line by line against our model.
+**Isolation protocol:** Our standalone C++17 verifier (`verify_banded.cpp`) and exact-rational Python audit suite (`test_banded_audit.py`) were designed, implemented, compiled with UBSan, tested on fixtures and mutation negative controls, and run to completion on the full 226,545,617-state production input at `5657/9983` **strictly from the mathematical description in `BOUND.md` (and baseline `TRANSFER.md`), without reading `check.cpp` or any proposal source**. Only after our full independent `PASS` was in hand did we inspect commit `f515157` and compare `check.cpp` and the `BOUND.md` diff line by line against our model.
 
 **Summary:** The certificate at $\lambda = 5657/9983 = 17/30 - 1/299490 \approx 0.566663328 < 17/30$ is **mathematically sound and independently verified**. For every $n \ge 3$,
 $$\mathbb{E}[C_n] \le \frac{1539738113358}{3908512428} \prod_{j=3}^{n-1}\!\left(1 + \frac{5657}{9983\,j}\right) = O\!\left(n^{5657/9983}\right),$$
@@ -83,13 +83,13 @@ Implemented the full multi-band history-dependent state machine from scratch in 
   - Sliding-window `weights[D%2]` with explicit runtime guard `row.degrees[D%2] == D` prevents reading any uncomputed successor; `W` (`__int128_t`) + `narrow()` + UBSan prevent overflow.
   - Tail inequalities `W(B + amax)*q <= W(p)*A` and `W(s)*q <= W(p)*(A+B)` are checked explicitly in 128-bit arithmetic, and final `gap >= 0` confirms `s_actual <= s_trial` and every actual newborn weight $\le$ its trial reward.
 - **`BOUND.md` diff:** History-dependent filtration & tie-breaking (line 19), event exhaustion (line 23), explicit per-term upper bound (line 39), and the optional strict reserve improvement $\lambda M/(M+e)$ (line 51, verified algebraically via $\Psi_n = \Phi_n + e C_n$ and $\Phi_n \le M C_n$) are all mathematically sound.
-- **Resolved packaging note:** In `f515157`, `BOUND.md` linked to `verified.log` before that transcript was tracked; commit `de98dc7` added [verified.log](../attempts/strogatz-astra/banded/verified.log), closing the broken relative link on a clean checkout.
+- **Resolved packaging note:** In `f515157`, `BOUND.md` linked to `verified.log` before that transcript was tracked; commit `de98dc7` added `verified.log`, closing the broken relative link on a clean checkout.
 
 ---
 
 ## 4. Portable Independent Reproduction
 
-All independent audit files live in [strogatz-astra-banded/](strogatz-astra-banded/) with zero hardcoded server paths:
+All independent audit files live in `strogatz-astra-banded/` with zero hardcoded server paths:
 - `verify_banded.cpp` — standalone C++17 UBSan exact verifier
 - `test_banded_audit.py` — exact-rational tree & mutation negative-control suite
 - `fixtures/bands-smoke.txt`, `fixtures/smoke-recipe.txt` — self-contained smoke calibration fixtures
@@ -101,18 +101,18 @@ All independent audit files live in [strogatz-astra-banded/](strogatz-astra-band
 
 **PACKAGING VERDICT: PASS**
 
-Audited commits `de98dc7` and `f7be3e0` (and the two pending wording additions in the working tree on [RESULT.md](../attempts/strogatz-astra/RESULT.md) and [BOUNDS.md](../attempts/strogatz-astra/bounds/BOUNDS.md)):
+Audited commits `de98dc7` and `f7be3e0` (and the two pending wording additions in the working tree on `RESULT.md` and `BOUNDS.md`):
 
-1. **Report statements, finite-$n$ constants, and limits ([RESULT.md](../attempts/strogatz-astra/RESULT.md)):**
+1. **Report statements, finite-$n$ constants, and limits (`RESULT.md`):**
    - Exact rational arithmetic verified: $17/30 - 5657/9983 = 1/299490$ and $5657/9983 \approx 0.566663327657$.
    - Finite-$n$ upper bound for every $n \ge 3$,
      $$\mathbb{E}[C_n] \le \frac{1539738114735}{3908512529}\prod_{j=3}^{n-1}\!\left(1 + \frac{5657}{9983\,j}\right) = O\!\left(n^{5657/9983}\right),$$
-     and independent prefactor $1539738113358/3908512428 \approx 393.944791457626$, together with the lower bound $(15430450607/17611596558)\prod_{j=3}^{n-1}(1+0.563/j)$ ([transfer.log](../attempts/strogatz-astra/bounds/transfer.log)), the three-vertex obstruction $557549077 > 0$ at $17/30$ for the $0.568$ weights, and the existence / almost-sure growth statements ($\mathbb{E}[C_n] = n^{\mu+o(1)}$ and $C_n = n^{\mu+o(1)}$ a.s. with $563/1000 \le \mu \le 5657/9983 < 17/30$), match every underlying proof and transcript verbatim.
-   - Packaging metadata verified: `recipe.txt.gz` is `426,026` bytes (`416.041 KiB`, ceiling `417 KiB`) with SHA-256 `584bb93c2797138ae3de54cb85c7d8e487bb7d7cc5320c021b5a64ec0cf0f60a`; `de98dc7` added the 10-line explicit per-term bound paragraph and transcript block to [BOUND.md](../attempts/strogatz-astra/banded/BOUND.md), committed [verified.log](../attempts/strogatz-astra/banded/verified.log), and packaged our `checks/strogatz-astra-banded/` suite unmodified.
-   - Pending edits checked: `RESULT.md` cleanly notes the stopped sampled-neighbour alternative (with its provisional numerical bounds excluded) and Carbon's two `HOLDS` attacks (Claude Opus 5.5); [BOUNDS.md](../attempts/strogatz-astra/bounds/BOUNDS.md) cleanly justifies the two $(2,2)$ witness origins (a degree-$2$ core had degree $2$ throughout its core lifetime and converted its leaf while of type $(2,1)$) and conditions on the full growth history $\mathcal{F}_n$; and the one-line `"${CXX:-g++-13}"` pin in [reproduce.sh](../attempts/strogatz-astra/bounds/reproduce.sh) and [reproduce-transfer.sh](../attempts/strogatz-astra/bounds/reproduce-transfer.sh) resolves to the identical `g++-13` executable as `g++` here while remaining overridable via `CXX`.
+     and independent prefactor $1539738113358/3908512428 \approx 393.944791457626$, together with the lower bound $(15430450607/17611596558)\prod_{j=3}^{n-1}(1+0.563/j)$ (`transfer.log`), the three-vertex obstruction $557549077 > 0$ at $17/30$ for the $0.568$ weights, and the existence / almost-sure growth statements ($\mathbb{E}[C_n] = n^{\mu+o(1)}$ and $C_n = n^{\mu+o(1)}$ a.s. with $563/1000 \le \mu \le 5657/9983 < 17/30$), match every underlying proof and transcript verbatim.
+   - Packaging metadata verified: `recipe.txt.gz` is `426,026` bytes (`416.041 KiB`, ceiling `417 KiB`) with SHA-256 `584bb93c2797138ae3de54cb85c7d8e487bb7d7cc5320c021b5a64ec0cf0f60a`; `de98dc7` added the 10-line explicit per-term bound paragraph and transcript block to `BOUND.md`, committed `verified.log`, and packaged our `checks/strogatz-astra-banded/` suite unmodified.
+   - Pending edits checked: `RESULT.md` cleanly notes the stopped sampled-neighbour alternative (with its provisional numerical bounds excluded) and Carbon's two `HOLDS` attacks (Claude Opus 5.5); `BOUNDS.md` cleanly justifies the two $(2,2)$ witness origins (a degree-$2$ core had degree $2$ throughout its core lifetime and converted its leaf while of type $(2,1)$) and conditions on the full growth history $\mathcal{F}_n$; and the one-line `"${CXX:-g++-13}"` pin in `reproduce.sh` and `reproduce-transfer.sh` resolves to the identical `g++-13` executable as `g++` here while remaining overridable via `CXX`.
 2. **Relative links & portability:**
-   - All `16` relative markdown links in [RESULT.md](../attempts/strogatz-astra/RESULT.md) and both relative links in [BOUND.md](../attempts/strogatz-astra/banded/BOUND.md) resolve to git-tracked files at `f7be3e0`.
+   - All `16` relative markdown links in `RESULT.md` and both relative links in `BOUND.md` resolve to git-tracked files at `f7be3e0`.
    - Zero hardcoded absolute filesystem paths or local URI schemes in `RESULT.md`, `attempts/strogatz-astra/banded/`, `checks/strogatz-astra-banded/`, or this review.
 3. **Both reproduction entry points verified live from repository root (and cross-checked against clean-clone logs):**
-   - `bash attempts/strogatz-astra/banded/reproduce.sh` (pinned low-priority single core, GCC 13.3.0 UBSan + gzip 1.12): exited `0`, output byte-for-byte identical to [verified.log](../attempts/strogatz-astra/banded/verified.log), `outputs/band-clean.log`, and `RESULT.md` lines 40–42 (`PASS upper 5657/9983`), with scratch directory cleaned up on exit.
+   - `bash attempts/strogatz-astra/banded/reproduce.sh` (pinned low-priority single core, GCC 13.3.0 UBSan + gzip 1.12): exited `0`, output byte-for-byte identical to `verified.log`, `outputs/band-clean.log`, and `RESULT.md` lines 40–42 (`PASS upper 5657/9983`), with scratch directory cleaned up on exit.
    - `bash checks/strogatz-astra-banded/reproduce_audit.sh` (pinned low-priority single core, GCC 13.3.0 UBSan + Python stdlib + gzip 1.12): exited `0`, passed smoke calibration (`180,354` states at `3/5`), all `436` exhaustive histories + `50` random/adversarial trees + `3` exact-tree negative controls + `11` CLI negative controls, and the full `5657/9983` production check (`226,545,617` states + analytic $D \ge 2400$ tail in `167.87s`), emitting `PASS upper 5657/9983 prefactor 1539738113358/3908512428 (=393.944791457626)` verbatim matching `RESULT.md` line 52 and `outputs/independent-clean.log`.

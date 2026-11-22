@@ -2,7 +2,7 @@ VERDICT: CORRECT
 
 # Cold Review of `attempts/strogatz-astra/sample-exponent.md`
 
-Cold review performed strictly on [sample-exponent.md](../attempts/strogatz-astra/sample-exponent.md) (referencing only [existence.md](../attempts/strogatz-astra/existence.md), already reviewed in [strogatz-astra-existence-gemini.md](strogatz-astra-existence-gemini.md)), without reading any other files, reviews, or board material.
+Cold review performed strictly on `sample-exponent.md` (referencing only `existence.md`, already reviewed in `strogatz-astra-existence-gemini.md`), without reading any other files, reviews, or board material.
 
 **Summary:** The proof that $\frac{\log C_n}{\log n} \to \mu$ almost surely is **mathematically sound and complete**. The four critical potential failure modes—(1) independence under random leaf selection in Stage 3, (2) marked clocks reused across time intervals, (3) disjointness of sites/reserved sets/branches, and (4) whether conditioning biases the reference count—were audited in detail and all hold rigorously. Minor expositional notes (none blocking) are listed at the end.
 

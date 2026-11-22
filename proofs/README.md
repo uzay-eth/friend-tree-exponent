@@ -1,6 +1,11 @@
 # Proofs
 
-Each file below is the proof as it stands at its pinned commit, with a one-line header identifying the model that produced it.
+Each file below is preserved verbatim as it stood at its pinned commit, with only a one-line header prepended to identify the model that produced it.
+
+> **Note on preserved historical paths:** Because the proof bodies are kept unmodified, relative paths, commands, and filenames inside them (such as `../bounds/TRANSFER.md`, `BOUNDS.md`, `verified.log`, `transfer.log`, `baseline.log`, `RESULT.md`, `attempts/...`, or `./reproduce*.sh`) refer to the original working tree rather than this repository's packaged layout. Specifically:
+> - `../bounds/TRANSFER.md` corresponds to [`bounds-transfer.md`](bounds-transfer.md) and `BOUNDS.md` to [`bounds-hub.md`](bounds-hub.md).
+> - All finite checks are run via `bash verify/run_all.sh` (see [`verify/README.md`](../verify/README.md)).
+> - References to "`REPORT.md` §§3.3–3.5" or "the earlier report" inside [`almost-sure-lower.md`](almost-sure-lower.md), [`cross-charging.md`](cross-charging.md), and [`polynomial-scale-lower.md`](polynomial-scale-lower.md) refer to the earlier `[0.543, 0.586]` baseline write-up, not to this repository's top-level [`REPORT.md`](../REPORT.md). That earlier baseline write-up is not packaged here; its exact certificate code is in [`verify/baseline/`](../verify/baseline/) and its two cold reviews are in [`reviews/review-baseline-gemini.md`](../reviews/review-baseline-gemini.md) and [`reviews/review-baseline-glm.md`](../reviews/review-baseline-glm.md).
 
 | Proof | Statement | Produced by | Finite check |
 |---|---|---|---|

@@ -190,10 +190,12 @@ All seven finite verification suites are packaged in [`verify/`](verify/) with p
 
 ### 4.2 Packaging notes
 
-During initial clean-clone testing of the unmerged lead branches, two Python packaging issues were identified and resolved here without changing any proof or certificate:
-1. The baseline scripts (`certs9.py`, `find_upper_lin.py`) and Carbon's `--report-tables` option require `numpy` and `mpmath` (and Fable's `xcharge.py` requires `scipy`). All three are now pinned in [`verify/requirements.txt`](verify/requirements.txt) and installed automatically into `verify/.venv` by [`verify/run_all.sh`](verify/run_all.sh).
+Three packaging notes apply to this self-contained repository (no proof text or certificate was altered):
+1. During initial clean-clone testing of the unmerged lead work, the baseline scripts (`certs9.py`, `find_upper_lin.py`) and Carbon's `--report-tables` option failed without `numpy` and `mpmath` (and Fable's `xcharge.py` requires `scipy`). All three are pinned in [`verify/requirements.txt`](verify/requirements.txt) and installed automatically into `verify/.venv` by [`verify/run_all.sh`](verify/run_all.sh).
 2. Relative path lookups in three helper scripts (`verify/motif-bracket/verify_python_cross.py`, `verify/cross-charging/as_lower_check.py`, and `verify/polynomial-lower/verify_as_lower.py`) were adapted to the `verify/` directory layout so every check runs from a fresh clone with zero manual path setup.
 3. On Astra's banded bound, the primary `check.cpp` (`prefactor = 1539738114735/3908512529 ≈ 393.944782`) and the independent `verify_banded.cpp` (`prefactor = 1539738113358/3908512428 ≈ 393.944791`) differ by $10^{-5}$ in the product prefactor due to conservative integer rounding; both certify the identical exponent `5657/9983`.
+
+*(Note on historical references inside `proofs/`: every file in [`proofs/`](proofs/README.md) is preserved verbatim as at its pinned commit with only a one-line attribution header prepended. In particular, references inside `proofs/polynomial-scale-lower.md`, `proofs/almost-sure-lower.md`, and `proofs/cross-charging.md` to "`REPORT.md` §§3.3–3.5" or "the earlier report" refer to the earlier `[0.543, 0.586]` baseline write-up rather than this repository's top-level `REPORT.md`. That earlier baseline write-up is not packaged separately here; its exact verification scripts live in [`verify/baseline/`](verify/baseline/) and its two cold reviews in [`reviews/review-baseline-gemini.md`](reviews/review-baseline-gemini.md) and [`reviews/review-baseline-glm.md`](reviews/review-baseline-glm.md).)*
 
 ### 4.3 Verification suites executed by `verify/run_all.sh`
 

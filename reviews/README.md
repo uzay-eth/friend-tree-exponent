@@ -6,7 +6,7 @@ Two non-trivial `GAP` verdicts occurred during the process:
 1. **Degree tail (`degree-tail.md`):** the first GPT-6.2 Sol cold review found a `GAP` in the summation-by-parts equality of part (c) at the endpoint $k = 2$ ($m_0 = n$) plus two overstated prose sentences. The proof was repaired and re-checked `CORRECT` (both the initial report and the re-check are preserved in [`review-degree-tail-gpt.md`](review-degree-tail-gpt.md)).
 2. **Excluded tagged-neighbour route:** Claude Fable 5.2 returned `GAP` on an alternate upper-bound construction (`tag.cpp`) whose strict $< 17/30$ bound remained unverified ([`review-excluded-tagged-fable.md`](review-excluded-tagged-fable.md)). That construction is excluded from all results.
 
-*(The review files below are preserved as written during the cold audits, with only internal branch names, job-runner names, and local filesystem paths redacted where noted at the top of a file. Relative paths mentioned inside those historical transcripts refer to the original working tree; the packaged proofs and checkers live in [`proofs/`](../proofs/README.md) and [`verify/`](../verify/README.md).)*
+*(The review files below are preserved as written during the cold audits, with only internal branch names, job-runner names, and local filesystem paths redacted where noted at the top of a file, and dead relative markdown links to the original working tree converted to plain code spans. Relative paths mentioned inside those historical transcripts refer to the original working tree; the packaged proofs and checkers live in [`proofs/`](../proofs/README.md) and [`verify/`](../verify/README.md).)*
 
 ## Index
 
@@ -34,3 +34,4 @@ Two non-trivial `GAP` verdicts occurred during the process:
 | Earlier baseline `[0.543, 0.586]` | Baseline | GLM (GLM) | `CORRECT` | [review-baseline-glm.md](review-baseline-glm.md) |
 | Combined technical report ([REPORT.md](../REPORT.md)) | Gemini 4 Neon (Gemini) | Claude Opus 5.5 (Claude) | `CONSISTENT` / `APPROVE` | [review-combined-claude.md](review-combined-claude.md) |
 | Combined technical report ([REPORT.md](../REPORT.md)) | Gemini 4 Neon (Gemini) | GPT-6.2 Sol (GPT) | `CONSISTENT` / `APPROVE` | [review-combined-gpt.md](review-combined-gpt.md) |
+| Public repository packaging ([README.md](../README.md), [REPORT.md](../REPORT.md), [verify/run_all.sh](../verify/run_all.sh)) | Gemini 4 Neon (Gemini) | Claude Opus 5.5 (Claude) | Round 1 `CHANGES_REQUESTED` -> addressed | [review-public-packaging-claude.md](review-public-packaging-claude.md) |

@@ -43,8 +43,8 @@ For each term τ and each vertex x of τ, the rate L_x + ρ_x splits as follows:
   + Σ_{c≠w} 1/D_c [x_cc split into the cherries {w,c} if p ∈ C_u, else FY with A_cc, multiplicity k_p − 1].
   **w inner**: ρ_w = 1/D_p [internal] + Σ_{c∈ch(w)} 1/D_c [x_ch split into hV(p→w→c) if w ∈ H_u, else FY with A_cp,
   multiplicity k_w].
-  The FY halves go to the right edges: the A*_pc[p], (k_p−1)A*_cc[p] and k_w A*_cp[w] halves stay on (p→w); edge (p→w)
-  receives A_cp[p](1/D_w), (k_p−1)A_cc[p](1/D_w) and k_w A_pc[w](1/D_p) from its neighbouring edges. Every product
+  The FY halves go to the right edges: the `A*_pc[p]`, `(k_p−1)A*_cc[p]` and `k_w A*_cp[w]` halves stay on `(p→w)`; edge `(p→w)`
+  receives `A_cp[p](1/D_w)`, `(k_p−1)A_cc[p](1/D_w)` and `k_w A_pc[w](1/D_p)` from its neighbouring edges. Every product
   (1/D)·Δg is decoupled exactly once. This is exactly A_tot plus the three conjugate terms of §4.5 item 2, with the
   same conditions (p ∉ H_u, h_p = 1 / p ∉ C_u, k_p ≥ 2 / w ∉ H_u, k_w ≥ 1).
   **Tail p or tail w**: Lemma 2 takes the whole rate, (L+ρ)Δ_L F(μ) = t·γ·(F[INF] − F[T1]) with γ ∈ [γ_min, 1). That
