@@ -31,6 +31,8 @@ Both fits give each checkpoint equal weight in the indicated response units and 
 
 The estimated slopes vary with size. The fixed-size slope from 100 to 316 is 0.56927 ± 0.00348 and from 316,228 to one million it is 0.56635 ± 0.00037. The instantaneous CT slope is 0.56933 ± 0.00193 at mean size 439 and 0.56569 ± 0.00026 at mean size 482,711. The early slopes fluctuate, and both of our full-window fixed-size fits fall below 0.569. Changing the response units moves the fitted exponent. The difference from the published value remains unexplained.
 
+Two independent implementations also tested the transition rule directly. In the [fixed-size and fixed-time comparison](independent-check/README.md), the largest discrepancy from the exact mean core size through size 21 was 1.167 standard errors. At fixed times six and eight, the means from the direct and fast samplers differed by 0.926 and 0.381 combined standard errors. The [second direct-chain audit](cross-check/README.md) also compares conversion intensities and tests deliberate changes to the model.
+
 ## What the CT estimators measure
 
 At fixed tree size $`n`$, write $`C_n`$ for the number of core vertices. In continuous time every vertex fires at rate one. The total population $`N(t)`$ is a Yule process started at three and is independent of the discrete jump chain. Its mean is $`3e^t`$ and $`N(t)-3`$ is negative binomial with shape 3 and success probability $`e^{-t}`$. Thus $`\mathbb E[C(t)]=\sum_n P(N(t)=n)\mathbb E[C_n]`$. Substituting $`n=3e^t`$ into a fixed-size curve would discard the spread in actual sizes at a checkpoint.
