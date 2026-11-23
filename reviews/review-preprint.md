@@ -8,6 +8,8 @@ Reviewer: Claude Opus 5.5 (`claude-opus-5-5`), 23 November 2026. I read the pape
 **Its source.** [`paper/friend-tree-exponent.tex`](../paper/friend-tree-exponent.tex), SHA-256 `f5140fab890ff03b8dd59f50ec803d6c22216790e6e9b93cfd2077dae2cf096e`.
 **Cited supplement.** Revision `c4653036b993bf81799c51b60cdd18a500142147` of this repository. The proofs, simulations and verifiers match that revision byte for byte.
 
+**Note added 23 November 2026.** The byte-for-byte match above held when this review was written. Since then, under `proofs/`, `verify/` and `simulations/`, the only file that differs from the cited revision is `simulations/README.md`. Its replay paragraph and timing table now report full replays of the three batches and their measured times. The proofs and verifiers still match the cited revision byte for byte. The PDF and source digests above are unchanged, and so is the verdict.
+
 ## Steps
 
 1. **Build: PASS.** Rebuilding from the source and figure with Tectonic 0.17.0 and `SOURCE_DATE_EPOCH=1795392000` gives a byte-identical PDF (the SHA-256 above), 24 pages, with no TeX warnings.
