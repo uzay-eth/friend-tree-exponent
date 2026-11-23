@@ -11,7 +11,7 @@ vertices.
 
     liminf_{n -> infinity}  log C_n / log n  >=  0.543.
 
-Together with the upper bound of the earlier attempt (`attempts/x-strogatz/REPORT.md`, Corollary in §3.1:
+Together with the upper bound of the earlier attempt ([baseline tables](supporting-results-audit.md#the-two-baseline-tables), followed by the dyadic Markov argument:
 almost surely limsup log C_n / log n <= 0.586) this gives, almost surely, for every eps > 0 and all large n,
 
     n^(0.543 - eps)  <=  C_n  <=  n^(0.586 + eps).
@@ -152,8 +152,7 @@ C_n >= Phi_n/F by (H1), almost surely liminf log C_n/log n >= delta - eps. Let e
 
 ## 3. Proof of Theorem A: the hypotheses hold for the certificate of the earlier attempt
 
-The certificate (earlier report §3.3 "tracked degrees", §3.5; script `attempts/x-strogatz/certs9.py` with
-parameters Lmax = 60, cmax = 10, K0 = 2, Dcap = 6, delta = 543/1000).
+The [lower baseline certificate](../verify/baseline/certs9.py) uses $`L_{\max}=60`$, $`c_{\max}=10`$, $`K_0=2`$, $`D_{\rm cap}=6`$ and $`\delta=543/1000`$.
 
 *State.* From the point of view of a core vertex v, each core neighbour w has a **class**, a function of
 (L_w, c_w) alone:
@@ -171,11 +170,7 @@ f(L, .) = f(60, .) for L > 60 and f = 0 for c > 10.
 *(H1).* f >= 0 and the table is finite; checked in exact arithmetic by `as_lower_check.py` (sup f, fmin
 printed in the log).
 
-*(H2).* This is the content of the earlier attempt (Lemmas 1-3 of its report and the exact verification of
-the table: at every state the minimum of the drift over all admissible values of the uncertain rates is
->= delta f; summing over core vertices gives n E_n[Delta_n] >= delta Phi_n for every tree T_n, n >= 3).
-`as_lower_check.py` re-runs that exact verification (function `verify` of `certs9.py`). The certificate
-was re-verified independently twice (`checks/strogatz-glm.md`, `checks/strogatz-gemini.md`).
+*(H2).* The baseline reduction classifies changes of the focal vertex and of every core neighbour and charges the newborn once to its creator. Its endpoint checks cover both unbounded coordinates. The lower verifier bounds every such row below by $`\delta f`$, so summing over core vertices gives $`n\,\mathbb E_n[\Delta_n]\ge\delta\Phi_n`$ on every tree of size at least three. [Full reduction and tail endpoints](supporting-results-audit.md#the-two-baseline-tables) · [Exact lower verifier](../verify/baseline/certs9.py)
 
 *(H3) with b0 = Dcap = 6.* A step is of type (i) or (ii).
 (i) W_n = w is a core vertex: only (L_w, c_w) changes among all pairs (L, c), by L_w -> L_w + 1. So x_w
@@ -207,12 +202,7 @@ Probability (L_w + rho_w)/n <= D_w/n <= (Dcap - 1)/n for each of the at most cma
 (d) A conversion at a core neighbour w of v. Probability <= 1/n for each of the at most cmax neighbours.
 The sum is at most (Lmax + cmax/2 + 1 + cmax * Dcap)/n. ∎
 
-Reproduce (about 5 minutes, 1 CPU, 4 GB RAM; needs numpy):
-
-    cd attempts/strogatz-fable && python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
-    .venv/bin/python as_lower_check.py
-
-Output: `outputs/as_lower_check.log`.
+From the repository root, `bash verify/run_all.sh` runs the exact baseline and (H1)–(H5) checks in the `almost-sure-lower` suite. [Verification guide](../verify/README.md)
 
 ## 4. Remarks
 

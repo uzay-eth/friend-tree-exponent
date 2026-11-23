@@ -47,7 +47,7 @@ Krapivsky and Redner (J. Stat. Mech. 2017, eq. (1)) report numerically that the 
 n(n+1)^{s-1} < \frac{\Gamma(n+s)}{\Gamma(n)} < n^s.
 ```
 
-By this inequality, Claim 2 gives $`0.44\,m^{0.55} \le a_m \le 3.974\,m^{0.58}`$ for all $`m \ge 3`$. The lower coefficient uses $`0.5022\,(3/4)^{0.45} \approx 0.4412`$. Hence for all $`k \ge 2`$ and $`n \ge 24k`$,
+Applying this inequality to the cross-charging products with the [two prefactors in the finite-size bounds table](../REPORT.md) gives $`0.44\,m^{0.55} \le a_m \le 3.974\,m^{0.58}`$ for all $`m \ge 3`$. The lower coefficient uses $`0.5022\,(3/4)^{0.45} \approx 0.4412`$. Hence for all $`k \ge 2`$ and $`n \ge 24k`$,
 
 ```math
 \frac{0.44}{44160}\left(\frac{n}{12k}\right)^{0.55}
@@ -249,8 +249,27 @@ a_\varepsilon m^{\mu-\varepsilon} \le a_m \le A_\varepsilon m^{\mu+\varepsilon}
 
 for all $`m \ge 3`$ ($`a_m \ge 1`$). Apply (c) with $`\delta = \mu-\varepsilon > 0`$ and $`\lambda = \mu+\varepsilon < 1`$, take logarithms, divide by $`\log(n/k)`$, let $`n/k \to \infty`$, then let $`\varepsilon \to 0`$. ∎
 
+## A consequence for each fixed exact degree
+
+Write $`X_d(t)`$ for the number of vertices of degree exactly $`d`$ at continuous time $`t`$. For each fixed integer $`d\ge2`$, the exact count eventually exceeds a deterministic positive fraction of the core almost surely, its ratio of means to the core also has positive lower limit, and it has logarithmic exponent $`\mu`$ almost surely and in mean. This uses the common core exponent and its strictly positive lower bound. [Continuous-time exponent](almost-sure-exponent.md) · [Motif bracket](bracket-motifs.md)
+
+Use the disjoint sites and their independent preparation flags from Sections 1 and 2 of the sample-path proof. At integer time $`l`$ with $`C(l)\ge1`$, choose $`m\ge C(l)/6`$ sites. Take $`M=2`$ and the star on $`d`$ vertices rooted at its centre, using a rooted edge at $`d=2`$. After $`h=d+1`$ units of preparation, the root has $`d-1`$ internal neighbours and one exterior neighbour. Require the base and the entire branch to be silent for one additional unit. This protects the root's exact degree throughout the unit, irrespective of arrivals elsewhere. Disjoint reserved clocks and the independent future increments give independent flags with a common probability $`q>0`$ depending only on $`d`$ (thin the preparation flags to $`p(2,d)`$ and take $`q=p(2,d)e^{-(d+1)}`$).
+
+On each successful site there is a distinct vertex of degree $`d`$ throughout $`[l+h,l+h+1]`$. The binomial lower-tail bound gives
+
+```math
+\Pr\!\left(\inf_{l+h\le t\le l+h+1}X_d(t)<qC(l)/12\mid\mathcal F_l\right)
+\le e^{-mq/8}\le e^{-q C(l)/48}.
+```
+
+Write $`H=h+1`$. The total promotion rate is $`\sum_u L_u/D_u\le C(t)`$ and promotions increase the core by one. Given $`c=C(l)`$, couple it below a Yule process: at Yule size $`y`$, every promotion gives a birth, and extra births at rate $`y-\sum_u L_u/D_u`$ bring the total to $`y`$. At elapsed time $`H`$ its mean and variance are $`ce^H`$ and $`ce^H(e^H-1)`$. Chebyshev bounds the conditional probability of $`C(l+H)>2ce^H`$ by $`1/c`$.
+
+Eventually $`C(l)\ge e^{\mu l/2}`$ almost surely. Intersect each of the two failures with this inequality at its starting time before summing probabilities. Borel–Cantelli gives $`X_d(t)\ge q C(l)/12\ge q C(t)/(24e^H)`$ throughout every interval $`[l+h,l+H]`$ for all sufficiently large $`l`$. These intervals cover all large times. Evaluation at the size-$`n`$ hitting time proves the eventual pathwise comparison. In particular adjacent fixed exact-degree classes of degrees at least two are comparable, as asked in Section 7, question 2 of Addario-Berry et al. The pair of degrees one and two has different orders, since the leaf count equals $`n-C_n`$.
+
+For the mean, start at size $`m=\lfloor n e^{-h-1/2}\rfloor`$. At each elapsed time $`s=h,H`$, the population is a sum of $`m`$ independent geometric family sizes with total variance $`me^s(e^s-1)`$. The means are asymptotic to $`ne^{-1/2}`$ and $`ne^{1/2}`$ respectively. Chebyshev therefore bounds the probability of hitting $`n`$ outside the protected interval by $`O(1/m)`$. There are at most $`m`$ flags, with mean count at least $`q\mathbb E C_m/6`$ for the successful ones. Deducting at most $`O(1)`$ from the latter for the exceptional event proves $`\mathbb E N_{=d}(n)\ge q\mathbb E C_m/6-O(1)`$. At size $`j`$ the promotion probability is at most $`C_j/j`$. Iterating gives $`\mathbb E C_n\le(n/m)\mathbb E C_m`$, and $`\mathbb E C_m\to\infty`$. This proves a positive lower limit for the ratio of means. Use the common core exponent and $`N_{=d}(n)\le C_n`$ for the two exact-degree exponents. The constants depend on the degree, and the leading asymptotics remain open.
+
 ## Remarks
 
-1. Parts (a) and (b) are statements about means. For each fixed $`k\ge2`$, the almost-sure comparability of successive cumulative counts in Theorem 4.8 of Addario-Berry et al., iterated from the core count, also gives its almost-sure logarithmic exponent. The corresponding uniform result for growing $`k`$ remains open. [Random friend trees, Theorem 4.8](https://arxiv.org/abs/2403.20185) · [Sample-path exponent of the core](almost-sure-exponent.md)
+1. Parts (a) and (b) are statements about means. For each fixed $`k\ge2`$, the almost-sure comparability of successive cumulative counts in Theorem 4.6 of the published paper by Addario-Berry et al. (Theorem 4.8 in the preprint), iterated from the core count, also gives its almost-sure logarithmic exponent. The corresponding uniform result for growing $`k`$ remains open. [Random Friend Trees, Theorem 4.6](https://doi.org/10.1002/rsa.70082) · [Sample-path exponent of the core](almost-sure-exponent.md)
 2. The constant $`1/44160`$ is far from optimal. Only its positivity matters for the exponent.
 3. As a numerical illustration, in one run with $`C = 7.4 \times 10^6`$ at $`n = 1.0 \times 10^{12}`$ ([archived histogram](../simulations/outputs/hist_t27.txt)), the fractions of core vertices with degree at least $`k`$ were $`0.616, 0.338, 0.206, 0.131, 0.114`$ for $`k = 3, 6, 12, 24, 30`$, with local log-slopes of $`-0.64`$ between $`k = 16`$ and $`24`$ and $`-0.62`$ between $`24`$ and $`30`$. These are finite-size slopes from a single tree.

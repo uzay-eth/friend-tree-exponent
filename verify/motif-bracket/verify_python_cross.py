@@ -1,11 +1,9 @@
 #!/usr/bin/env python3
-"""Independent pure-Python exact Fraction cross-check of the binary certificates:
-1. Verifies Theorem 1's exact rational finite-n bounds against exact rational E[C_n]
-   from complete unlabeled-tree enumeration for ALL n = 3..21 (route-exact/exact_rationals_n21.txt).
-2. Reads upper_5665.bin and lower_5650.bin directly from disk and checks exact rational
-   brute-force drift D(T) vs (P/Q)*Phi(T) and global comparison Phi(T) vs c*C(T) on
-   ALL unlabeled rooted trees of sizes n = 3..7 plus extreme tail trees, using ONLY
-   Python's standard-library fractions.Fraction (zero C/GMP code shared).
+"""Compare both product bounds with the archived exact means at sizes 3 through 21.
+Read the two certificate binaries and recompute their one-step drift using
+Fraction on every unlabelled tree with a non-leaf root up to --max-tree-size
+(default 7). The separate motif_identity.py program tests the decomposition
+and the comparison with the core count on its test trees.
 """
 from functools import cache
 import struct
