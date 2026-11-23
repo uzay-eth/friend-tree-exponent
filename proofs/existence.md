@@ -1,60 +1,426 @@
 > Produced by GPT-6.2 Astra.
+>
+> Complete write-up: Claude Opus 5.5 (`claude-opus-5-5`), 2026-11-23. The argument, the constants and the conclusion are Astra's original ones. Every step is written out: the randomness that drives each construction, every coupling and independence claim, the uniformity of the constants in the tree, and the return from continuous time to discrete size. Section 9 lists what changed against the short version. No change alters a constant or the structure of the argument.
 
 # Existence of the mean growth exponent
 
-Start with a single edge. Write $`C_n`$ for the number of non-leaves after the tree reaches size $`n`$. We show that $`\lim_n \log \mathbb E C_n/\log n`$ exists. The comparison below does not identify its numerical value.
+## 0. Model and statement
 
-Give each vertex an independent rate-one Poisson clock. When its clock rings, it chooses a uniform neighbour and a fresh leaf attaches to that neighbour. Write $`F(t)=\mathbb E C(t)`$ for the mean core size from the edge. From a finite tree $`T`$ of size $`k`$ use $`C_T(t)`$ and $`N_T(t)`$ for the core and total population. The latter is a Yule process, since the rate of the next birth at size $`j`$ is $`j`$. In particular
-`E[N_T(t)^2] = k(k+1) exp(2t) - k exp(t)`, as follows by applying the birth generator to $`j`$ and $`j^2`$.
+$`T_2`$ is a single edge. Given $`T_n`$, which has $`n`$ vertices, pick a uniform vertex $`V_n`$ and then a uniform neighbour $`W_n`$ of $`V_n`$, and attach a new leaf to $`W_n`$. This gives $`T_{n+1}`$. Write $`C_n`$ for the number of non-leaves of $`T_n`$, the vertices of degree at least $`2`$. We call them *core* vertices.
 
-## Finding places to start a new branch
+**Theorem 1.** There is a constant $`\mu\in[0,1]`$ such that
 
-The core vertices induce a tree whenever their number $`C`$ is positive. For a core vertex let $`c`$ count its core neighbours and $`L`$ its leaf neighbours. Call a vertex of type B one with $`c=2,L=0`$. Call a core vertex eligible if $`c\le2`$ and $`L\ge1`$, or if it is of type B with a neighbour of type B.
-
-There are at least $`C/4`$ eligible vertices. For $`C=1`$ the centre is eligible. For $`C\ge2`$ let $`I`$ count the B vertices with no B neighbour. They form an independent set, and their $`2I`$ incident core edges are distinct. Thus $`I\le(C-1)/2`$. The vertices of core degree at least three are at most the number of core-degree-one vertices, by summing $`c-2`$ on the core tree. Each of the latter has a leaf and is eligible. Every ineligible vertex is either among the $`I`$ or has core degree at least three. The claimed fraction follows.
-
-Fix integers $`M,k\ge2`$ and consider all rooted unlabelled trees $`(T,v)`$ on $`k`$ vertices. There exist $`h<\infty`$ and $`p>0`$, depending only on $`M,k`$, with the following property. For each eligible vertex $`u`$ at time $`t`$, one can arrange, with conditional probability at least $`p`$, that at $`t+h`$ an edge $`uv`$ separates a branch isomorphic to the prescribed $`(T,v)`$, and $`D_u\ge M`$. The branch starts at a leaf of $`u`$ promoted after $`t`$ and contains no vertices which were core at $`t`$.
-
-Here are explicit finite clock requirements.
-
-1. If $`u`$ has a leaf, keep $`u`$ silent for the first unit of time. Otherwise take a B neighbour $`w`$ of $`u`$, keep $`u`$ and the other neighbour of $`w`$ silent for that unit, and require the first ring of $`w`$ to occur and choose $`u`$. Before that ring $`w`$ has degree two. In either case $`u`$ now has a leaf, and still has at most two core neighbours.
-2. For a second unit keep $`u`$ silent and require a chosen leaf of $`u`$ to ring at least $`M`$ times. That vertex stays a leaf because only $`u`$ can redirect to it. These rings give $`u`$ at least $`M`$ leaves.
-3. In the next unit require exactly one ring of $`u`$. It chooses a leaf with conditional probability at least $`M/(M+2)`$. The chosen leaf becomes $`v`$ with one new leaf on its side of the edge. Keep its two-vertex branch silent for the rest of this unit (probability at least $`e^{-2}`$).
-4. Keep $`u`$ silent for a fixed further interval, and grow the two-vertex branch to the specified rooted tree, with $`v`$ as the specified root. Start with any edge incident to that root in $`T`$, then adjoin the other vertices in parent-before-child order. For each addition prescribe exactly one ring of an internal neighbour of the desired attachment vertex, its choice, and silence of the other internal clocks. The chosen source has degree at most $`k+1`$. Specifying unit subintervals for the prescribed births, and silence of the newborn until its subinterval ends, gives a positive lower bound uniform in the exterior. The empty list of additions handles $`k=2`$.
-
-These requirements use only finitely many unit-rate clocks and finitely many choices with probabilities bounded away from zero. Extra arrivals at $`u`$ from outside the branch can only help stages 1–3. A fresh choice in this construction can be made using any fixed ordering of the vertices. Branches successfully planted at distinct core vertices present at $`t`$ are disjoint, including their subsequent growth on the far side of the cut edge: each is attached at just its own old core vertex and contains no old core vertex. This is a statement about any one realised tree. No independence between different successful plantings is required.
-
-## Comparing a planted branch with a free tree
-
-Consider a successful planting. On the far side of $`uv`$, compare the next $`s`$ units of time with a freestanding copy of $`T`$. The clocks, birth choices and new vertex identities inside the branch can be coupled up to the first discrepancy. At $`v`$ a reference ring chooses an internal neighbour uniformly. Retain this choice with probability $`D_v/(D_v+1)`$, where $`D_v`$ is the current **internal** reference degree. Otherwise choose the exterior neighbour $`u`$. Use independent acceptance marks for the rings at $`v`$. All other internal choices agree.
-
-For rings of $`u`$, put the edge to $`v`$ first in its ordering, using an independent uniform mark. If none of these marks belongs to $`[0,1/M]`$ during the comparison, $`u`$ never chooses $`v`$, since $`D_u\ge M`$ forever. This event has probability $`e^{-s/M}`$ and is independent of the reference history. On this event and on acceptance at every reference ring of $`v`$, the two internal trees agree throughout. Any reference core vertex is then an actual core vertex. Thus a reference history, including its clock sources, contributes its core count with at least the weight
+```math
+\lim_{n\to\infty}\frac{\log \mathbb E[C_n]}{\log n}=\mu .
 ```
-exp(-s/M) product over rings of v of D_v/(D_v+1).
+
+The proof does not identify the value of $`\mu`$. For $`n\ge3`$ we have $`C_n\ge1`$, so the logarithm is defined.
+
+Notation used throughout:
+
+- In a tree, $`D_x`$ is the degree of $`x`$.
+- For a core vertex $`x`$, $`c_x`$ is its number of core neighbours and $`L_x`$ its number of leaf neighbours, so $`D_x=c_x+L_x`$.
+- For an edge $`xy`$ of a tree, the *far side of $`xy`$ beyond $`y`$* is the vertex set of the component containing $`y`$ after the edge $`xy`$ is deleted.
+- Every $`\log`$ is natural, and $`\mathrm{Pois}(\lambda)`$ is a Poisson variable with mean $`\lambda`$.
+
+## 1. Continuous time
+
+### 1.1 Driving randomness and admissible constructions
+
+A *source* is a Poisson process of rate one on $`(0,\infty)`$ in which every point carries a *mark vector* $`(U,A,U')`$ of three independent uniform variables on $`(0,1)`$, independent across points. Equivalently, a source is a Poisson point process on $`(0,\infty)\times(0,1)^3`$ with intensity $`dr\otimes\text{Lebesgue}`$. All constructions below use one countable family of independent sources. For $`r\ge0`$ let $`\mathcal G_r`$ be the $`\sigma`$-field generated by all points of all sources in $`(0,r]`$ together with their marks. Since the sources are independent Poisson point processes, the following holds for every deterministic time $`\tau`$ and, by the strong Markov property of Poisson point processes, for every almost surely finite $`(\mathcal G_r)`$-stopping time $`\tau`$: the restrictions of the sources to $`(\tau,\infty)`$, **shifted by $`-\tau`$**, are independent marked rate-one Poisson processes on $`(0,\infty)`$, independent of $`\mathcal G_\tau`$. In absolute time, the first point of a source after $`\tau`$ is at $`\tau`$ plus a fresh exponential waiting time. Throughout, "the restriction of a source to $`(\tau,\infty)`$" refers to this shifted process: a point at absolute time $`r>\tau`$ becomes a point at time $`r-\tau`$. No further shift is ever applied.
+
+A *construction* of the friend-tree process from an initial labelled tree $`T^{(0)}`$ is a rule with these features.
+
+- At every time each current vertex $`x`$ is *driven by* one source $`\kappa(x)`$. Two current vertices are never driven by the same source. The assignment changes only (i) immediately after a ring has been completely processed, that is, after its choice has been made and its leaf attached, or (ii) at the times of a locally finite list $`0<b_1<b_2<\cdots`$ of deterministic *stage boundaries* fixed in advance. The new assignment is a function of the history in $`\mathcal G`$ up to and including that moment. A newborn is assigned its source immediately after the ring that creates it.
+- A *ring* of $`x`$ is a point of the source that drives $`x`$ *strictly before* the time of the point; an assignment made after a point is processed never decides whether that point is a ring. At a ring at time $`\sigma`$ the rule chooses a neighbour of $`x`$ in the tree just before $`\sigma`$ as a function of the history strictly before $`\sigma`$, of the identity of $`x`$, and of the mark vector of that point. A new leaf is attached to the chosen neighbour.
+- The rule is *admissible* if, conditionally on $`\mathcal G_{\sigma-}`$ and on the event that the next ring is a ring of $`x`$ at time $`\sigma`$, the chosen neighbour is uniform over the $`D_x`$ neighbours of $`x`$.
+
+Points of sources that drive no current vertex have no effect on the tree. Auxiliary processes, such as the reference processes of Section 4, may read any source, including sources that drive actual vertices. They are part of the same $`\sigma`$-fields $`\mathcal G_r`$.
+
+Three elementary devices produce admissible rules.
+
+- **Predictable ranking.** List the $`D`$ neighbours of $`x`$ in an order fixed by the history strictly before $`\sigma`$ and choose the $`\lceil UD\rceil`$-th. Since $`U`$ is uniform and independent of $`\mathcal G_{\sigma-}`$, this choice is uniform. Different rings may use different rankings.
+- **Two-step choice.** If $`x`$ has $`D+1`$ neighbours, one of them named $`e`$ in advance, make a uniform choice $`y`$ among the other $`D`$ by the coordinate $`U`$, keep $`y`$ if $`A\le D/(D+1)`$, and choose $`e`$ otherwise. Each of the $`D`$ others has probability $`\frac{D}{D+1}\cdot\frac1D=\frac1{D+1}`$, and $`e`$ has probability $`\frac1{D+1}`$.
+- **Re-driving.** Immediately after a ring has been processed, or at a stage boundary, the source driving a current vertex may be replaced by an unused source, the choice of replacement being a function of the history up to that moment. All re-driving below is of this kind.
+
+**Lemma 1.1 (all admissible constructions give the same law).** Fix an admissible construction from $`T^{(0)}`$ with $`n_0`$ vertices. Let $`0<\sigma_1<\sigma_2<\cdots`$ be its ring times, $`x_m`$ the source vertex of the $`m`$-th ring, $`y_m`$ its chosen neighbour, and $`T^{(m)}`$ the tree after it. Then:
+
+- the holding times $`\sigma_m-\sigma_{m-1}`$ (with $`\sigma_0=0`$) are independent exponential variables with rates $`n_0+m-1`$, independent of $`(x_m,y_m,T^{(m)})_{m\ge1}`$;
+- $`(x_m,y_m,T^{(m)})_{m\ge1}`$ is the Markov chain in which, from a tree $`T`$ with $`n`$ vertices, $`x`$ is uniform among the $`n`$ vertices, $`y`$ is uniform among the neighbours of $`x`$, and the next tree is $`T`$ with a new leaf at $`y`$;
+- $`\sigma_m\to\infty`$ almost surely.
+
+In particular the joint law of the ring times, sources, chosen neighbours and trees does not depend on the admissible construction. Here and below vertices are labelled by birth order, so the labels of the annotated path are the same in every construction. We call this joint law the *annotated* friend-tree law from $`T^{(0)}`$.
+
+*Proof.* Fix $`m\ge1`$. The time $`\sigma_{m-1}`$ is a stopping time. After the $`(m-1)`$-th ring has been processed, the $`n_{m-1}=n_0+m-1`$ current vertices are driven by distinct sources, chosen as a function of $`\mathcal G_{\sigma_{m-1}}`$. Their restrictions to $`(\sigma_{m-1},\infty)`$ are independent marked rate-one Poisson processes, independent of $`\mathcal G_{\sigma_{m-1}}`$. Up to the next ring, the assignment can change only at the stage boundaries in $`(\sigma_{m-1},\infty)`$, which are finitely many in every bounded interval. Subdivide time at these boundaries. On each piece $`(\max(\sigma_{m-1},b_r),b_{r+1}]`$, given the history at its left end and given that no ring has occurred yet, the current sources restricted to the piece are again independent rate-one Poisson processes independent of that history, by the strong Markov property of the sources. So, given that there is no ring before the left end of a piece, the probability of none in the piece is $`e^{-n_{m-1}\cdot\text{length}}`$, and, given a ring in it, its time has the conditional law of the first point of a rate-$`n_{m-1}`$ process and its vertex is uniform and independent of that time. Multiplying over the pieces, the waiting time $`\sigma_m-\sigma_{m-1}`$ is exponential with rate $`n_{m-1}`$ given $`\mathcal G_{\sigma_{m-1}}`$, and the vertex $`x_m`$ is uniform and independent of the waiting time. By admissibility, the chosen neighbour is then uniform among the neighbours of that vertex. Hence the conditional law of $`(\sigma_m-\sigma_{m-1},x_m,y_m)`$ given $`\mathcal G_{\sigma_{m-1}}`$ is the product of $`\mathrm{Exp}(n_{m-1})`$ with the uniform-vertex, uniform-neighbour law at $`T^{(m-1)}`$. It depends on the past only through $`T^{(m-1)}`$, and its first factor does not depend on the past at all. Induction on $`m`$ gives the joint law of $`(\sigma_j-\sigma_{j-1},x_j,y_j)_{j\le m}`$ for every $`m`$, and with it both claims about the holding times and the chain. Finally $`\sum_m 1/(n_0+m-1)=\infty`$ and the holding times are independent exponentials, so $`\sigma_m\to\infty`$ almost surely. $`\square`$
+
+The *standard construction* assigns a new unused source to each vertex at its birth, never re-drives, and uses a fixed ranking by labels at every ring. It is admissible. Write $`T(t)`$ for the tree at time $`t`$, $`N(t)=|V(T(t))|`$ and $`C(t)`$ for its number of core vertices, and $`\mathcal F_t=\mathcal G_t`$ for the standard construction started from $`T_2`$.
+
+**Lemma 1.2 (continuation after a fixed time).** Let $`t\ge0`$ be deterministic. Run the standard construction on $`[0,t]`$ and, from time $`t`$ on, any admissible construction started from $`T(t)`$ whose rules may depend on $`\mathcal F_t`$. Conditionally on $`\mathcal F_t`$, the annotated process after time $`t`$ has the annotated friend-tree law from $`T(t)`$, shifted by $`t`$. Consequently, for every nonnegative functional $`\Phi`$ of the history up to time $`t`$ and of the annotated path after $`t`$, the conditional expectation $`\mathbb E[\Phi\mid\mathcal F_t]`$ is the same almost surely for every such continuation.
+
+*Proof.* Given $`\mathcal F_t`$, the restrictions of all sources to $`(t,\infty)`$ are independent marked Poisson processes independent of $`\mathcal F_t`$. Apply Lemma 1.1 conditionally on $`\mathcal F_t`$ with initial tree $`T(t)`$. $`\square`$
+
+**Lemma 1.3 (jump chain and holding times).** With $`T(0)=T_2`$, the sequence of distinct trees visited by $`T(t)`$ has the law of $`(T_n)_{n\ge2}`$. It is independent of the jump times, and the holding time at size $`j`$ is exponential with rate $`j`$. Consequently $`C(t)=C_{N(t)}`$, where $`(C_n)`$ is the core count of the discrete chain and $`N(t)`$ is independent of $`(C_n)_{n\ge2}`$.
+
+*Proof.* Lemma 1.1 with $`n_0=2`$; the jump chain moves from $`T`$ to $`T`$ plus a leaf at $`y`$ with probability $`|V(T)|^{-1}\sum_{x\sim y}D_x^{-1}`$, which is the discrete rule. $`\square`$
+
+**Lemma 1.4 (Yule moments).** From a tree with $`k`$ vertices, $`N(t)-k`$ is negative binomial with parameters $`k`$ and $`e^{-t}`$:
+
+```math
+\Pr(N(t)=k+j)=\binom{k+j-1}{j}e^{-kt}(1-e^{-t})^{j},\qquad j\ge0 .
 ```
-The exterior tree may evolve freely subject to the stated mark condition. No independence of the unconditioned sides of the original edge was used.
 
-## A high-degree vertex among the starting vertices
+Hence
 
-Fix $`0<\epsilon<1`$ small. Choose a constant $`A`$ with $`A\log A-A+1>5`$ (for example $`A=8`$). Choose $`b=b(\epsilon)>\epsilon`$ so that $`b\log(b/\epsilon)-b+\epsilon>5`$ and $`b\to0`$ as $`\epsilon\downarrow0`$. For instance $`b=7/\log(1/\epsilon)`$ works for all sufficiently small $`\epsilon`$. Fix $`k\ge 6M/\epsilon`$. All these quantities are fixed before sending $`s`$ to infinity.
-
-For a reference run from any $`k`$-vertex tree, call a history good if each of the $`k`$ original clock sources rings at most $`bs`$ times by $`\epsilon s`$ and at most $`As`$ times by $`s`$, and at least one original vertex has degree at least $`M`$ by $`\epsilon s`$. Its complement has probability $`O_{k,M,\epsilon}(e^{-4s})`$ for large $`s`$. The ring counts follow from the Poisson Chernoff bound $`\Pr(\operatorname{Pois}(as)\ge xs)\le e^{-s(x\log(x/a)-x+a)}`$ for $`x>a`$. For the degree condition, rank one fixed original neighbour first at each original source. Until an original degree reaches $`M`$, every original clock mark in $`[0,1/M]`$ adds one to an original degree. There can then have been at most $`kM`$ such marks if all original degrees stay below $`M`$. The marks up to $`\epsilon s`$ form a Poisson count of mean $`k\epsilon s/M\ge6s`$. Its lower tail at $`kM`$ is at most $`e^{-4s}`$ for large $`s`$. Both orderings in the comparison may be used: at an internal reference ring the choice among internal neighbours uses a separate mark from the acceptance mark for the extra edge.
-
-By Cauchy–Schwarz and the Yule second moment, bad histories contribute $`O_k(e^{-s})`$ to $`\mathbb E C_T(s)`$, uniformly over the finitely many starting trees, with constants allowed to depend on $`k,M,\epsilon`$. Assign each good history to one original vertex $`v`$ that has reached $`M`$ by $`\epsilon s`$ (break ties by a fixed numbering). For histories assigned to $`v`$ the comparison weight is at least $`e^{-\eta s}`$, where
-`eta = b log(2) + (A+1)/M`. Before $`\epsilon s`$ each acceptance costs a factor at worst $`1/2`$. Subsequently $`D_v/(D_v+1)\ge e^{-1/M}`$. Consequently, for each $`T`$ and $`s`$ some original $`v`$ accounts for at least $`(\mathbb E C_T(s)-O(e^{-s}))/k`$ in unweighted good core count. The choice of $`T,v`$ is made from the laws, before planting.
-
-## Iteration and return to discrete size
-
-Stop the tree from an edge when it reaches size $`k`$. If it has not reached $`k`$ by $`s`$, then $`C(s)\le k`$. Otherwise the strong Markov property and monotonicity give
-`F(s) <= k + max_T E[C_T(s)]`,
-where the maximum runs over the finite set of $`k`$-vertex trees. Choose a maximizing $`T`$ and a root $`v`$ as above. Plant that same rooted seed at each eligible old vertex in the preceding first-moment bound, sum over the disjoint branches and average over the tree at $`t`$. For all $`t\ge0`$ and sufficiently large $`s`$,
+```math
+\mathbb E N(t)=k e^{t},\qquad \mathbb E[N(t)^2]=k(k+1)e^{2t}-k e^{t}.
 ```
-F(t+h+s) >= F(t) [p/(4k)] exp(-eta s) [F(s)-k-O(exp(-s))].
+
+From one vertex, $`N(t)`$ is geometric on $`\{1,2,\dots\}`$ with $`\Pr(N(t)\ge m)=(1-e^{-t})^{m-1}`$, and from $`k`$ vertices $`N(t)`$ is a sum of $`k`$ independent such variables.
+
+*Proof.* By Lemma 1.1, $`N`$ is a pure birth process with rate $`j`$ at size $`j`$. Assign every birth to the family of the initial vertex from which its ringing source descends. Each family is a Yule process from one individual, the families are independent, and the geometric law solves the forward equations $`p_j'=(j-1)p_{j-1}-jp_j`$, $`p_1(0)=1`$. The moment formulas follow from the negative binomial mean $`k/q`$ and variance $`k(1-q)/q^2`$ with $`q=e^{-t}`$. $`\square`$
+
+**Elementary dynamics (used everywhere).**
+
+- (D1) Degrees never decrease, and vertices are never removed. So $`C(t)`$ is nondecreasing, and a vertex that is core at some time stays core.
+- (D2) The degree of $`y`$ grows only when a current neighbour of $`y`$ rings and chooses $`y`$.
+- (D3) A leaf whose only neighbour is $`x`$ becomes core only through a ring of $`x`$. New neighbours of $`x`$ are newborn leaves. Hence $`c_x`$ grows only through rings of $`x`$, while $`L_x`$ shrinks only through rings of $`x`$.
+- (D4) Let $`xy`$ be an edge at time $`r`$, and suppose neither $`x`$ nor any vertex on the far side beyond $`y`$ rings in $`(r,r']`$. Then the far side beyond $`y`$ is unchanged on $`[r,r']`$. More generally, at every later time the far side beyond $`y`$ consists of the far side at time $`r`$ together with vertices born later on it; a vertex outside the far side can attach a leaf to the far side only if it is $`x`$ and chooses $`y`$.
+
+(D4) holds because a new leaf is attached to a neighbour of the ringing vertex, and the only edge between the far side and its complement is $`xy`$.
+
+Write $`F(t)=\mathbb E\,C(t)`$ for the process started from $`T_2`$. For a finite tree $`T`$ write $`C_T(t)`$ and $`N_T(t)`$ for the core count and size at time $`t`$ of the process started from $`T`$. Then $`F(t)\le\mathbb E N(t)=2e^t`$.
+
+## 2. Eligible vertices
+
+Let $`C\ge1`$. The core vertices induce a subtree, the *core tree*: deleting all leaves of a tree with at least $`3`$ vertices leaves a tree. Say a core vertex is *of type B* if $`c=2`$ and $`L=0`$. Say a core vertex $`u`$ is *eligible* if either
+
+- (E1) $`c_u\le2`$ and $`L_u\ge1`$, or
+- (E2) $`u`$ is of type B and has a neighbour of type B.
+
+**Lemma 2.1.** A tree with $`C\ge1`$ core vertices has at least $`C/4`$ eligible vertices. For $`C\ge2`$ it has at least $`(C+5)/4`$.
+
+*Proof.* If $`C=1`$, the core vertex is the centre of a star, with $`c=0`$ and $`L\ge2`$, so it is eligible.
+
+Let $`C\ge2`$. Write $`n_1`$ and $`n_{\ge3}`$ for the numbers of vertices of core degree $`1`$ and of core degree at least $`3`$, and $`E`$ for the number of eligible vertices.
+
+- Every core vertex has $`c\ge1`$, because the core tree is connected and has at least two vertices.
+- A core vertex with $`c=1`$ has degree at least $`2`$, so $`L\ge1`$, and it is eligible by (E1). Hence $`n_1\le E`$.
+- The core tree has $`C-1`$ edges, so $`\sum(c-2)=2(C-1)-2C=-2`$ over the core vertices. The left side is at least $`-n_1+n_{\ge3}`$. Hence $`n_{\ge3}\le n_1-2\le E-2`$.
+- A core vertex with $`c=2`$ is eligible unless it is of type B with no neighbour of type B. So an ineligible vertex has $`c\ge3`$, or it is of type B with no type-B neighbour.
+
+Let $`I`$ be the number of vertices of the second kind. No two of them are adjacent, and each has two core edges. So these $`2I`$ edges are distinct, and $`2I\le C-1`$. Therefore $`C\le E+(C-1)/2+(E-2)`$, that is, $`E\ge (C+5)/4`$. $`\square`$
+
+## 3. Planting a prescribed branch
+
+Fix integers $`M\ge2`$ and $`k\ge2`$. Let $`(T,v)`$ be a rooted tree with $`k`$ vertices. Put $`h=k+1`$ and
+
+```math
+p(M,k)=p_1\,p_2\,p_3\,p_4,\qquad
+p_1=\frac{e^{-2}(1-e^{-1})}{2},\quad
+p_2=e^{-1}\Pr(\mathrm{Pois}(1)\ge M),\quad
+p_3=e^{-3}\frac{M}{M+2},\quad
+p_4=\Big(\frac{e^{-(k+1)}}{k}\Big)^{k-2}.
 ```
-The comparison for each vertex is a marginal lower bound on the actual descendant count in its own branch; there is no requirement that every planting succeed.
 
-Here $`F(s)\to\infty`$. Indeed, after the first birth, the total rate of promoting a leaf is $`\sum_u L_u/D_u\ge1`$: for a single core it equals one, and otherwise the core tree has at least two end vertices, each contributing at least $`1/2`$. Now take logarithms. Write $`B_s`$ for the entire multiplier of $`F(t)`$ on the right of this inequality. Iteration over blocks of length $`h+s`$, and monotonicity between block endpoints, give $`\liminf_{t\to\infty}t^{-1}\log F(t)\ge (h+s)^{-1}\log B_s`$ for fixed large $`s`$ (start at any time with $`F(t)>0`$). Taking a sequence of $`s`$ realising the limsup gives
-`liminf log F(t)/t >= limsup log F(t)/t - eta`.
-The exponents are finite by the Yule bound. Take $`M\to\infty`$ and $`\epsilon\downarrow0`$ to obtain the common limit $`\mu`$.
+Then $`p(M,k)>0`$ depends only on $`M`$ and $`k`$.
 
-Finally let $`a_n=\mathbb E C_n`$. The holding time at size $`j`$ is exponential of rate $`j`$, independent of the uniform clock source and its neighbour choice, so $`F(t)=\mathbb E a_{N(t)}`$. From two vertices, $`N(t)`$ is the sum of two independent geometric variables on $`\{1,2,\ldots\}`$ with success probability $`e^{-t}`$. At $`t=\log n`$, $`\Pr(N(t)\ge n)`$ is bounded away from zero, so monotonicity gives $`a_n=O(F(\log n))`$. At $`t=(1-\alpha)\log n`$ for any $`0<\alpha<1`$, $`\mathbb E[N(t);N(t)>n]`$ decays faster than any power of $`n`$ by the geometric tail. Thus $`F((1-\alpha)\log n)\le a_n+o(1)`$. Since $`F((1-\alpha)\log n)\to\infty`$, letting $`\alpha\downarrow0`$ gives $`a_n=n^{\mu+o(1)}`$.
+**Lemma 3.1 (planting).** Let $`t\ge0`$ be deterministic and let $`u`$ be eligible in $`T(t)`$, a choice made from $`\mathcal F_t`$. There is an admissible continuation after $`t`$ (Lemma 1.2), depending on $`u`$ and $`(T,v)`$, and an event $`S_u\in\mathcal G_{t+h}`$ of that continuation, with the following properties.
+
+- (i) $`\Pr(S_u\mid\mathcal F_t)\ge p(M,k)`$, whatever the tree $`T(t)`$ is.
+- (ii) On $`S_u`$, at time $`t+h`$ there is a neighbour $`v^*`$ of $`u`$ such that the far side of $`uv^*`$ beyond $`v^*`$ is isomorphic to $`(T,v)`$, with $`v^*\mapsto v`$.
+- (iii) On $`S_u`$, that far side contains no vertex that was core at time $`t`$.
+- (iv) On $`S_u`$, $`D_u\ge M+1`$ at time $`t+h`$, and hence at every later time.
+
+*Proof.* The continuation is the standard construction with the rankings named below. Every ranking is fixed by the history strictly before the ring, so the continuation is admissible. The event $`S_u`$ is the intersection of four stages. Stages 1–3 last one unit of time each, and stage 4 lasts $`k-2`$ units. Each stage is an event about the points and marks of named sources in its own time interval, and the named sources are fixed by the history at the start of the stage, or at a ring time inside the stage. By the strong Markov property of the sources, the conditional probability of a stage given the history at its start is the probability computed below. Multiplying the stage bounds by the tower property gives (i).
+
+*Stage 1, on $`(t,t+1]`$.*
+
+- If $`u`$ satisfies (E1), require $`u`$ to have no ring in the unit. This has probability $`e^{-1}`$. By (D3), $`u`$ keeps at least one leaf and keeps $`c_u\le2`$.
+- If $`u`$ satisfies only (E2), let $`w`$ be the lowest-labelled type-B neighbour of $`u`$. Its neighbours are exactly $`u`$ and one other vertex $`x`$. At rings of $`w`$, rank $`u`$ first. Require that $`u`$ and $`x`$ do not ring in the unit, that $`w`$ rings in the unit, and that the first ring of $`w`$ has $`U\le1/2`$. Until that first ring $`D_w=2`$ by (D2), because only $`u`$ and $`x`$ could add a neighbour to $`w`$. So the first ring of $`w`$ chooses $`u`$, and the probability is $`e^{-1}\cdot e^{-1}\cdot(1-e^{-1})\cdot\tfrac12=p_1`$. At the end of the unit $`u`$ has a leaf, and $`c_u=2`$ by (D3).
+
+Since $`e^{-1}\ge p_1`$, stage 1 has conditional probability at least $`p_1`$. In both cases, at time $`t+1`$, $`u`$ has a leaf and $`c_u\le2`$.
+
+*Stage 2, on $`(t+1,t+2]`$.* Let $`\ell`$ be the lowest-labelled leaf of $`u`$ at time $`t+1`$. Require $`u`$ to have no ring and $`\ell`$ to ring at least $`M`$ times in the unit. The two vertices have distinct sources, so the probability is $`e^{-1}\Pr(\mathrm{Pois}(1)\ge M)=p_2`$. By (D3), $`\ell`$ stays a leaf, and each of its rings chooses its only neighbour $`u`$. Rings of other vertices can only add leaves at $`u`$. At $`t+2`$ we therefore have $`L_u\ge M+1`$ and $`c_u\le2`$.
+
+*Stage 3, on $`(t+2,t+3]`$.* At rings of $`u`$ rank the leaves of $`u`$ first, by label. Require that $`u`$ rings exactly once in the unit, at a time $`\tau`$, that this ring has $`U\le L_u/D_u`$ (degrees just before $`\tau`$), so that it chooses a leaf $`v^*`$ of $`u`$, and that $`v^*`$ and the new leaf $`v'`$ attached to it do not ring in $`(\tau,t+3]`$.
+
+Just before $`\tau`$, (D3) gives $`L_u\ge M+1`$ and $`c_u\le 2`$, so $`L_u/D_u\ge (M+1)/(M+3)\ge M/(M+2)`$. Condition on the history at $`t+2`$. The first ring of $`u`$ falls at $`t+2+r`$ with density $`e^{-r}`$. Given the history strictly before it, the mark condition has probability $`L_u/D_u\ge M/(M+2)`$. Given the history at $`\tau`$, the absence of further rings of $`u`$, of rings of $`v^*`$ and of rings of the newborn $`v'`$ in $`(\tau,t+3]`$ concerns three distinct sources after the stopping time $`\tau`$, and has probability $`e^{-3(1-r)}`$. So the stage has probability at least
+
+```math
+\int_0^1 e^{-r}\cdot\frac{M}{M+2}\cdot e^{-3(1-r)}\,dr\;\ge\;\frac{M}{M+2}\int_0^1 e^{-r}e^{-(1-r)}e^{-2}\,dr=e^{-3}\frac{M}{M+2}=p_3 .
+```
+
+At $`t+3`$ the far side of $`uv^*`$ beyond $`v^*`$ is the edge $`v^*v'`$, by (D4) applied on $`(\tau,t+3]`$. Also $`L_u\ge M`$, and $`D_u\ge M+1`$ counting the edge to $`v^*`$.
+
+*Stage 4, on $`(t+3,t+h]`$, which is $`k-2`$ unit intervals.* Require $`u`$ to have no ring in the whole stage. By (D4) the far side of $`uv^*`$ then changes only through rings of its own vertices.
+
+Fix a neighbour $`v_2`$ of $`v`$ in $`T`$ and identify $`v^*v'`$ with $`vv_2`$. List the remaining $`k-2`$ vertices of $`T`$ so that each one's neighbour towards $`\{v,v_2\}`$ (its *parent*) comes earlier. In the $`j`$-th unit we add the $`j`$-th listed vertex $`y`$ below its parent $`a`$, which is already present. The partial branch is connected and has at least two vertices, so $`a`$ has a neighbour $`z`$ inside it; take the lowest-labelled one. At rings of $`z`$ rank $`a`$ first. Require the following in that unit:
+
+- $`z`$ rings exactly once, and that ring has $`U\le1/D_z`$, so it chooses $`a`$;
+- every other vertex of the partial branch has no ring;
+- the newborn has no ring from its birth to the end of the unit;
+- $`u`$ has no ring.
+
+During the unit the only neighbours of $`z`$ are branch vertices and possibly $`u`$, all silent, so $`D_z`$ is constant up to its ring. At the start of the $`j`$-th unit the branch has $`j+1\le k-1`$ vertices, so $`D_z\le j+1\le k-1`$, counting the edge to $`u`$ when $`z=v^*`$, and at most $`j\le k-2`$ other branch vertices must stay silent. These conditions concern distinct sources, the newborn's after its birth time. So the probability is at least $`e^{-1}\cdot\frac1k\cdot e^{-(k-2)}\cdot e^{-1}\cdot e^{-1}=e^{-(k+1)}/k`$. When $`k=2`$ the list is empty. Over the $`k-2`$ units this gives $`p_4`$.
+
+After the last unit, the far side of $`uv^*`$ is isomorphic to $`(T,v)`$, which is (ii).
+
+For (iii): $`v^*`$ was a leaf just before $`\tau>t`$, so by (D1) at time $`t`$ it was a leaf or not yet born. Every other vertex of the branch was born at or after $`\tau`$ (the first one at the promoting ring itself), hence strictly after $`t`$.
+
+For (iv): $`D_u\ge M+1`$ after stage 3, and (D1).
+
+Every bound above holds whatever the rest of the tree does. Vertices outside the named ones can only add leaves at $`u`$, which keeps $`c_u\le2`$ and does not decrease $`L_u`$ in stages 1–3, and in stages 3–4 they cannot reach the branch by (D4), because $`u`$ is silent after $`\tau`$. $`\square`$
+
+**Lemma 3.2 (far sides of distinct old vertices are disjoint).** Let $`t\le r`$. Let $`u_1,u_2`$ be core at time $`t`$, and let $`u_1w_1`$ and $`u_2w_2`$ be distinct edges of $`T(r)`$ such that the far sides $`A_1`$ beyond $`w_1`$ and $`A_2`$ beyond $`w_2`$ contain no vertex that was core at time $`t`$. Then $`A_1\cap A_2=\emptyset`$. The same holds at every later time $`r'\ge r`$ for the far sides of the same edges.
+
+*Proof.* If $`u_1=u_2`$ then $`w_1\ne w_2`$ lie in different components of $`T(r)`$ minus $`u_1`$, so the far sides are disjoint. Let $`u_1\ne u_2`$. First, $`w_2\notin A_1`$: otherwise the edge $`u_2w_2`$ joins $`w_2\in A_1`$ to $`u_2\notin A_1`$ (as $`u_2`$ was core at $`t`$), so it is the only edge leaving $`A_1`$, namely $`u_1w_1`$, which forces $`u_2=u_1`$. Now suppose $`x\in A_1\cap A_2`$. The set $`A_2`$ induces a connected subtree containing $`x\in A_1`$ and $`w_2\notin A_1`$, so the path from $`x`$ to $`w_2`$ inside $`A_2`$ uses the only edge leaving $`A_1`$, which is $`u_1w_1`$. Then $`u_1\in A_2`$, a contradiction since $`u_1`$ was core at $`t`$. By (D4) and (D1), at a later time each far side consists of the old far side and vertices born later on it, so it still contains no vertex that was core at $`t`$, and the argument applies again. $`\square`$
+
+## 4. Comparison of a planted branch with a free tree
+
+Fix $`s>0`$. Throughout this section we work in the continuation of Lemma 3.1 for one fixed $`u`$, on the event $`S_u`$, and we extend that continuation after $`t_0=t+h`$. Let $`B`$ be the far side of $`uv^*`$ at $`t_0`$, with the fixed isomorphism to $`(T,v)`$ chosen by a fixed rule from $`\mathcal G_{t_0}`$. Write $`X'_u`$ for the number of vertices of the far side of $`uv^*`$ at time $`t_0+s`$ that are core in the whole tree at that time.
+
+**The reference process.** $`R`$ is a friend-tree process started from $`T`$ and run for time $`s`$. Its drivers are:
+
+- for each vertex $`y\in B`$, the restriction to $`(t_0,\infty)`$ of the source that drives $`y`$ at $`t_0`$ (so a point at absolute time $`r>t_0`$ is a ring of the reference at time $`r-t_0`$), which drives the reference vertex identified with $`y`$;
+- for the $`j`$-th reference newborn, the $`j`$-th source of a family $`(\zeta_j)_{j\ge1}`$ of unused sources reserved for this reference, read after the newborn's birth;
+- at each reference ring, the coordinate $`U`$ of the mark vector of that point, used with a ranking that is a predictable function of the reference history.
+
+$`R`$ is a function of these drivers alone. It is an admissible construction of the friend-tree process from $`T`$, so by Lemma 1.1 it has the annotated friend-tree law from $`T`$. Its drivers are restrictions of sources to $`(t_0,\infty)`$, and so, conditionally on $`\mathcal G_{t_0}`$, $`R`$ is independent of $`\mathcal G_{t_0}`$, of the points and marks of the source of $`u`$ after $`t_0`$, and, given $`R`$, of the coordinates $`A`$ at its points. **The identification of $`B`$ with $`T`$, and with it the choice of drivers, uses the history up to $`t_0`$. After that identification the reference keeps these drivers on the whole interval $`[0,s]`$, and nothing in its evolution depends on the actual process.**
+
+**The actual process on $`(t_0,\infty)`$.** At rings of $`u`$ rank $`v^*`$ first; the order of the other neighbours of $`u`$ is any predictable rule. Let $`\rho`$ be the first time after $`t_0`$ at which one of the following *triggering rings* occurs:
+
+- (T1) a ring of $`u`$ with $`U\le 1/D_u`$;
+- (T2) a ring of $`v^*`$ (equivalently, a reference ring of $`v`$) with $`A>D/(D+1)`$, where $`D`$ is the current degree of $`v`$ in the reference.
+
+The first three rules below give the choices of the base $`u`$ and of the far-side vertices at every ring in $`(t_0,\rho]`$, including the triggering ring at time $`\rho`$. The fourth applies only to rings strictly before $`\rho`$. The fifth gives the choices of exterior vertices. So every ring, including the trigger, has a prescribed choice.
+
+- A ring of a branch vertex $`y\ne v^*`$ is the reference ring of $`y`$, and the actual choice is the reference choice. This is possible because before $`\rho`$ the actual far side and the reference tree coincide, so $`y`$ has the same neighbours in both.
+- A ring of $`v^*`$ makes the reference choice if $`A\le D/(D+1)`$, and chooses $`u`$ otherwise. This is the two-step choice with $`e=u`$, so it is uniform over the $`D+1`$ actual neighbours of $`v^*`$.
+- A ring of $`u`$ chooses by its own $`U`$ with $`v^*`$ ranked first. In particular a triggering ring of type (T1) chooses $`v^*`$, and a triggering ring of type (T2) chooses $`u`$: **the triggering ring follows its prescribed choice.**
+- An actual newborn on the far side created by a ring strictly before $`\rho`$ is the matching reference newborn and is driven by the same source $`\zeta_j`$.
+- Every vertex outside the far side other than $`u`$ is driven by its own source and chooses by its own $`U`$ with a fixed ranking. Its newborns, and the newborns of rings of $`u`$ strictly before $`\rho`$ (which lie outside the far side), get new unused sources outside the reserved family.
+
+**Switch at $`\rho`$.** Immediately after the triggering ring has been processed (its choice made by the rules above), the *actual* process stops reading the reference. From then on every actual choice uses the coordinate $`U'`$ of the ringing point with a fixed ranking, and every actual newborn, including the one created by the triggering ring, is driven by a new unused source outside the reserved family $`(\zeta_j)`$. Actual vertices that already exist keep the sources that drive them. The reference process is not changed in any way.
+
+**Admissibility.** Two current actual vertices are never driven by the same source: before $`\rho`$ the actual newborns on the far side are exactly the reference newborns, and after $`\rho`$ actual newborns get sources outside the reserved family. Every source assignment is made immediately after the ring that creates the newborn and is a function of the history at that moment; nothing is re-driven in this section. At each ring the actual choice is uniform given the history strictly before the ring: by predictable ranking for $`u`$, for exterior vertices and after $`\rho`$; by the predictable reference ranking for $`y\ne v^*`$ before $`\rho`$, since the coordinate $`U`$ of the new point is independent of the past; and by the two-step choice for $`v^*`$ before $`\rho`$. So this is an admissible continuation, and by Lemma 1.2 the conditional law of the actual process given $`\mathcal G_{t_0}`$ is the friend-tree law from $`T(t_0)`$.
+
+**Lemma 4.1.** Let $`E_u`$ be the event that no ring of $`u`$ in $`(t_0,t_0+s]`$ has $`U\le1/M`$, and $`\mathrm{Acc}`$ the event that every reference ring of $`v`$ in $`[0,s]`$ has $`A\le D/(D+1)`$, with $`D`$ the reference degree of $`v`$ just before the ring. On $`S_u`$:
+
+- (a) $`\Pr(E_u\mid\mathcal G_{t_0})=e^{-s/M}`$, and conditionally on $`\mathcal G_{t_0}`$ the event $`E_u`$ is independent of $`(R,\mathrm{Acc})`$;
+- (b) on $`E_u\cap\mathrm{Acc}`$, $`\rho>t_0+s`$, the actual far side of $`uv^*`$ equals the reference tree at every time of $`[t_0,t_0+s]`$ (as identified vertex sets, with the same edges), and $`X'_u\ge C_R(s)`$;
+- (c) consequently
+
+```math
+\mathbb E[X'_u\mid\mathcal G_{t_0}]\;\ge\;e^{-s/M}\,\mathbb E\Big[C_R(s)\prod_{\text{rings of }v\text{ in }R}\frac{D_v}{D_v+1}\Big]\qquad\text{on }S_u ,
+```
+
+where $`D_v`$ is the reference degree of $`v`$ just before each ring.
+
+*Proof.*
+
+(a) The points of the source of $`u`$ in $`(t_0,t_0+s]`$ with $`U\le 1/M`$ form a Poisson process of rate $`1/M`$, so the probability that there are none is $`e^{-s/M}`$. This is a function of a source that is not among the drivers of $`R`$, and the source restrictions after $`t_0`$ are independent of each other and of $`\mathcal G_{t_0}`$. The event $`\mathrm{Acc}`$ is a function of $`R`$ and of the coordinates $`A`$ at the points of the reference driver of $`v`$, which also belong to sources other than that of $`u`$.
+
+(b) By Lemma 3.1(iv), $`D_u\ge M+1`$ throughout, so a ring of type (T1) has $`U\le1/D_u<1/M`$, which $`E_u`$ excludes. $`\mathrm{Acc}`$ excludes (T2). So $`\rho>t_0+s`$. Before $`\rho`$, by (D4) the actual far side changes only through rings of its own vertices and through rings of $`u`$ that choose $`v^*`$; the latter would be of type (T1). Every ring of a far-side vertex is a reference ring with the same effect on the far side: a ring of $`v^*`$ that chooses $`u`$ would be of type (T2). Conversely every reference ring is an actual ring of the identified vertex. So the two trees coincide on $`[t_0,t_0+s]`$. Degrees agree, except that $`v^*`$ has the extra neighbour $`u`$. So every reference core vertex is an actual core vertex, and $`X'_u\ge C_R(s)`$.
+
+(c) Given $`\mathcal G_{t_0}`$ and $`R`$, the coordinates $`A`$ at the points of the driver of $`v`$ are independent uniforms, independent of $`R`$ (mark coordinates are independent of the point positions and of $`U`$). So $`\Pr(\mathrm{Acc}\mid\mathcal G_{t_0},R)=\prod D_v/(D_v+1)`$. By (b), $`X'_u\ge C_R(s)\mathbf 1_{E_u}\mathbf 1_{\mathrm{Acc}}`$. Take conditional expectations and use (a) and the fact that $`R`$ has the friend-tree law from $`T`$ independently of $`\mathcal G_{t_0}`$. $`\square`$
+
+Only the weighted inequality (c) is used below. No comparison between the unweighted planted mean and the free mean is claimed.
+
+## 5. Good histories and the choice of root
+
+Fix $`0<\epsilon<1`$ and $`M\ge2`$. Put $`A_0=8`$, so that $`A_0\log A_0-A_0+1>5`$. Put $`b=7/\log(1/\epsilon)`$. Then:
+
+- $`b>\epsilon`$, because $`\epsilon\log(1/\epsilon)\le 1/e<7`$;
+- $`b\log(b/\epsilon)-b+\epsilon=7+b\log b-b+\epsilon\ge 6`$, because $`b\log b-b\ge-1`$ for every $`b>0`$.
+
+Fix an integer $`k\ge\max(2,6M/\epsilon)`$, and put
+
+```math
+\eta=\eta(M,\epsilon)=b\log2+\frac{A_0+1}{M}=\frac{7\log 2}{\log(1/\epsilon)}+\frac{9}{M}.
+```
+
+Note that $`\eta\to0`$ as $`M\to\infty`$ and $`\epsilon\downarrow0`$.
+
+Consider a free process from a $`k`$-vertex tree $`T`$, whose $`k`$ initial vertices we call *original*. Run it by the standard construction, except that at every original vertex one fixed original neighbour (the lowest-labelled neighbour in $`T`$) is ranked first. This is admissible. Since the annotated law does not depend on the construction (Lemma 1.1), every probability and expectation of a functional of the annotated path below may be computed in this construction. A ring of an original vertex is a point of its source. Call the history on $`[0,s]`$ **good** if:
+
+- (G1) each original vertex rings at most $`bs`$ times in $`[0,\epsilon s]`$;
+- (G2) each original vertex rings at most $`A_0s`$ times in $`[0,s]`$;
+- (G3) some original vertex has degree at least $`M`$ at time $`\epsilon s`$.
+
+These are events of the annotated path.
+
+**Lemma 5.1.** There is $`s_0=s_0(k,M,\epsilon)`$ such that, for every $`k`$-vertex tree $`T`$ and every $`s\ge s_0`$, $`\Pr(\text{not good})\le (2k+1)e^{-4s}`$. Consequently
+
+```math
+\mathbb E[C_T(s);\text{not good}]\le \sqrt{k(k+1)}\,e^{s}\,\sqrt{2k+1}\,e^{-2s},
+```
+
+uniformly over $`T`$.
+
+*Proof.* For $`x>a>0`$ the Chernoff bound gives $`\Pr(\mathrm{Pois}(as)\ge xs)\le e^{-s(x\log(x/a)-x+a)}`$.
+
+- (G1) fails at a given vertex with probability at most $`e^{-6s}`$ (take $`a=\epsilon`$, $`x=b`$).
+- (G2) fails at a given vertex with probability at most $`e^{-s(A_0\log A_0-A_0+1)}\le e^{-5s}`$.
+
+For (G3), suppose all original degrees stay below $`M`$ on $`[0,\epsilon s]`$. While that holds, a ring of an original vertex $`y`$ with $`U\le 1/M`$ has $`UD_y\le D_y/M<1`$, so $`\lceil UD_y\rceil=1`$ and it chooses the fixed original neighbour of $`y`$, adding one to an original degree. The original degrees start with sum at least $`2(k-1)`$ and would stay at most $`k(M-1)`$, so there are fewer than $`kM`$ such rings. The rings of original vertices in $`[0,\epsilon s]`$ with $`U\le1/M`$ form a Poisson count with mean $`\lambda=k\epsilon s/M\ge 6s`$. For $`m<\lambda`$, $`\Pr(\mathrm{Pois}(\lambda)\le m)\le e^{-\lambda}(e\lambda/m)^m`$, and the right side decreases in $`\lambda`$ for $`\lambda>m`$. With $`m=kM`$ and $`6s>kM`$ this is at most $`\exp(-6s+kM(1+\log(6s/(kM))))`$, which is at most $`e^{-4s}`$ once $`kM(1+\log(6s/(kM)))\le 2s`$. That holds for all $`s`$ beyond some $`s_0(k,M,\epsilon)`$. The union bound over $`2k+1`$ failure events gives the first claim.
+
+For the second claim use Cauchy–Schwarz, $`C_T\le N_T`$, and Lemma 1.4: $`\mathbb E[N_T(s)^2]\le k(k+1)e^{2s}`$. $`\square`$
+
+The threshold $`s_0`$ is large: for $`\epsilon=0.01`$, $`M=50`$ and $`k=6M/\epsilon=30{,}000`$, the displayed Chernoff estimate for (G3) is at most $`e^{-4s}`$ only from about $`s\approx2.47\cdot10^6`$ on ([attack report](../reviews/attack-existence-and-sample-claude.md), §1.4). Only its finiteness is used, because all parameters are fixed before $`s\to\infty`$.
+
+**Lemma 5.2 (weight on good histories).** Assign each good history to the lowest-numbered original vertex $`v`$ with degree at least $`M`$ at time $`\epsilon s`$, and let $`G_v`$ be the event of being assigned to $`v`$. On $`G_v`$,
+
+```math
+e^{-s/M}\prod_{\text{rings of }v\text{ in }[0,s]}\frac{D_v}{D_v+1}\;\ge\;e^{-\eta s}.
+```
+
+*Proof.* On $`[0,\epsilon s]`$ there are at most $`bs`$ rings of $`v`$, and each factor is at least $`1/2`$ because $`D_v\ge1`$. On $`(\epsilon s,s]`$ there are at most $`A_0s`$ rings, and $`D_v\ge M`$ by (D1), so each factor is at least $`M/(M+1)\ge e^{-1/M}`$. The product is therefore at least $`2^{-bs}e^{-A_0s/M}`$, and the extra factor contributes $`e^{-s/M}`$. $`\square`$
+
+**Corollary 5.3.** Let $`s\ge s_0`$ and let $`T`$ have $`k`$ vertices. There is an original vertex $`v`$ such that, for the rooted tree $`(T,v)`$,
+
+```math
+Q_{T,v}(s):=e^{-s/M}\,\mathbb E\Big[C_T(s)\prod_{\text{rings of }v}\frac{D_v}{D_v+1}\Big]\;\ge\;e^{-\eta s}\,\frac{\mathbb E C_T(s)-\theta_k(s)}{k},
+\qquad \theta_k(s)=\sqrt{k(k+1)(2k+1)}\,e^{-s}.
+```
+
+*Proof.* The events $`G_v`$ partition the good set, so $`\sum_v\mathbb E[C_T(s);G_v]=\mathbb E C_T(s)-\mathbb E[C_T(s);\text{not good}]\ge\mathbb E C_T(s)-\theta_k(s)`$ by Lemma 5.1. Choose $`v`$ with the largest term and apply Lemma 5.2 on $`G_v`$. $`\square`$
+
+The pair $`(T,v)`$ is chosen from the law alone, before any planting. The constants $`p`$ and $`h`$ of Lemma 3.1 hold for every rooted $`k`$-vertex tree. The ranking used here and the ranking of the reference in Section 4 need not agree, because $`Q_{T,v}(s)`$ is the expectation of a functional of the annotated path of $`R`$, which has the same law under both (Lemma 1.1).
+
+## 6. Almost-supermultiplicativity
+
+**Lemma 6.1.** $`F(s)\le k+\max_T\mathbb E\,C_T(s)`$, where the maximum is over the finitely many $`k`$-vertex trees.
+
+*Proof.* Let $`\tau_k`$ be the time at which the process from $`T_2`$ reaches size $`k`$; it is finite almost surely and is a stopping time.
+
+- On $`\{\tau_k>s\}`$, $`C(s)\le N(s)<k`$.
+- On $`\{\tau_k\le s\}`$, $`C(s)\le C(\tau_k+s)`$ by (D1). By the strong Markov property at $`\tau_k`$ (Lemma 1.1 applied after $`\tau_k`$), $`\mathbb E[C(\tau_k+s)\mid\mathcal F_{\tau_k}]=\mathbb E\,C_{T(\tau_k)}(s)\le\max_T\mathbb E C_T(s)`$. $`\square`$
+
+**Proposition 6.2.** Let $`s\ge s_0`$, let $`T`$ be a maximiser in Lemma 6.1 and $`v`$ the root given by Corollary 5.3. For every $`t\ge0`$,
+
+```math
+F(t+h+s)\;\ge\;F(t)\cdot\frac{p}{4k}\,e^{-\eta s}\big[F(s)-k-\theta_k(s)\big].
+```
+
+*Proof.* If the bracket is negative the inequality is trivial, so assume it is nonnegative. Let $`\mathcal C_t`$ be the set of vertices that are core at time $`t`$. For $`u\in\mathcal C_t`$ define the functional of the path
+
+```math
+X_u=\sum_{w}\#\{\text{core vertices at time }t+h+s\text{ in the far side of }uw\text{ beyond }w\},
+```
+
+where the sum runs over the neighbours $`w`$ of $`u`$ at time $`t+h`$ whose far side beyond $`w`$ at time $`t+h`$ contains no vertex of $`\mathcal C_t`$. By Lemma 3.2 all the far sides that occur in $`\sum_{u\in\mathcal C_t}X_u`$ are pairwise disjoint at time $`t+h+s`$, so, pointwise for every realisation,
+
+```math
+C(t+h+s)\;\ge\;\sum_{u\in\mathcal C_t}X_u\;\ge\;\sum_{u\in\mathcal E_t}X_u ,
+```
+
+where $`\mathcal E_t\subset\mathcal C_t`$ is the set of eligible vertices at time $`t`$. Both $`X_u`$ and $`\mathcal E_t`$ are defined from the tree path alone, in the standard construction.
+
+Fix $`u\in\mathcal E_t`$. By Lemma 1.2, $`\mathbb E[X_u\mid\mathcal F_t]`$ may be computed in any admissible continuation after $`t`$. Use the continuation of Lemma 3.1 for $`u`$ and $`(T,v)`$, extended after $`t+h`$ as in Section 4. On $`S_u`$ the neighbour $`v^*`$ is one of the $`w`$ in the definition of $`X_u`$, by Lemma 3.1(iii), so $`X_u\ge\mathbf 1_{S_u}X'_u`$. Since $`S_u\in\mathcal G_{t+h}`$, Lemma 4.1(c) and Corollary 5.3 give
+
+```math
+\mathbb E[X_u\mid\mathcal F_t]\;\ge\;\mathbb E\big[\mathbf 1_{S_u}\,\mathbb E[X'_u\mid\mathcal G_{t+h}]\,\big|\,\mathcal F_t\big]\;\ge\;Q_{T,v}(s)\Pr(S_u\mid\mathcal F_t)\;\ge\;p\,e^{-\eta s}\,\frac{\mathbb E C_T(s)-\theta_k(s)}{k}.
+```
+
+Different $`u`$ use different continuations; this is harmless, because each conditional expectation concerns a functional of the path, whose conditional law given $`\mathcal F_t`$ is the same in all of them. No relation between the events $`S_u`$ for different $`u`$ is used; they live in different constructions.
+
+Sum over $`u\in\mathcal E_t`$, which is $`\mathcal F_t`$-measurable, and use $`|\mathcal E_t|\ge C(t)/4`$ (Lemma 2.1, trivially true when $`C(t)=0`$) and $`\mathbb E C_T(s)\ge F(s)-k`$ (Lemma 6.1):
+
+```math
+\mathbb E[C(t+h+s)\mid\mathcal F_t]\;\ge\;\frac{C(t)}{4}\cdot\frac{p}{k}\,e^{-\eta s}\big[F(s)-k-\theta_k(s)\big].
+```
+
+Take expectations. $`\square`$
+
+## 7. The continuous-time limit
+
+**Lemma 7.1.** $`F(t)\to\infty`$.
+
+*Proof.* By (D1), $`C`$ grows exactly at *promotions*, the attachments to a current leaf, and each promotion adds one. At a tree the total rate of promotions is $`\lambda(T)=\sum_{x}(\#\text{leaf neighbours of }x)/D_x`$.
+
+- After the first ring, which happens at an exponential time $`\tau_1`$ of rate $`2`$, there is a core vertex.
+- If $`C=1`$, the core vertex is the centre of a star and $`\lambda=L/D=1`$.
+- If $`C\ge2`$, the core tree has at least two vertices of core degree $`1`$. Each has $`L\ge1`$ and $`D=L+1`$, so each contributes at least $`1/2`$.
+
+So $`\lambda(T(r))\ge1`$ for $`r\ge\tau_1`$. The process $`C(t)-\int_0^t\lambda(T(r))\,dr`$ is a martingale, since $`C`$ is a counting process with intensity $`\lambda(T(r))\le N(r)`$ and $`\mathbb E\int_0^t N(r)\,dr<\infty`$. Hence $`F(t)\ge\mathbb E\int_0^t\lambda(T(r))\,dr\ge\mathbb E(t-\tau_1)^+\to\infty`$. $`\square`$
+
+**Proof of the continuous-time limit.** Let $`\overline\lambda=\limsup_{t\to\infty} t^{-1}\log F(t)`$ and $`\underline\lambda=\liminf_{t\to\infty} t^{-1}\log F(t)`$. Since $`1\le F(t)\le 2e^t`$ for large $`t`$, $`0\le\underline\lambda\le\overline\lambda\le1`$. Fix $`M`$ and $`\epsilon`$, and hence $`k`$, $`h`$, $`p`$, $`\eta`$, $`s_0`$.
+
+By Lemma 7.1 there is $`s_1\ge s_0`$ such that, for $`s\ge s_1`$, the bracket in Proposition 6.2 is at least $`F(s)/2>0`$. Fix such an $`s`$, write $`B_s=\frac{p}{4k}e^{-\eta s}[F(s)-k-\theta_k(s)]>0`$ and $`\Lambda=h+s`$. Proposition 6.2 gives $`F(r+\Lambda)\ge B_sF(r)`$ for every $`r\ge0`$, so $`F(1+j\Lambda)\ge B_s^{\,j}F(1)`$ for $`j\ge0`$, with $`F(1)>0`$. For $`t\in[1+j\Lambda,1+(j+1)\Lambda)`$, monotonicity gives
+
+```math
+\frac{\log F(t)}{t}\;\ge\;\frac{j\log B_s+\log F(1)}{t}.
+```
+
+As $`t\to\infty`$, $`j/t\to1/\Lambda`$, so in both cases $`B_s\ge1`$ and $`B_s<1`$ the right side tends to $`\log B_s/\Lambda`$. Hence
+
+```math
+\underline\lambda\;\ge\;\frac{\log B_s}{h+s}\;\ge\;\frac{\log\frac{p}{8k}-\eta s+\log F(s)}{h+s}\qquad(s\ge s_1).
+```
+
+Take $`s=s_i\to\infty`$ with $`s_i^{-1}\log F(s_i)\to\overline\lambda`$. Since $`h`$, $`p`$, $`k`$ are fixed, the right side tends to $`\overline\lambda-\eta`$. So $`\underline\lambda\ge\overline\lambda-\eta(M,\epsilon)`$ for every $`M\ge2`$ and $`0<\epsilon<1`$. Letting $`M\to\infty`$ and $`\epsilon\downarrow0`$ gives
+
+```math
+\mu:=\lim_{t\to\infty}\frac{\log F(t)}{t}\in[0,1].
+```
+
+The order of limits is $`s\to\infty`$ first, then $`(M,\epsilon)`$. $`\square`$
+
+## 8. Return to discrete size (de-Poissonisation)
+
+Let $`a_n=\mathbb E\,C_n`$. This is nondecreasing by (D1), and $`1\le a_n\le n`$ for $`n\ge3`$. By Lemma 1.3, $`F(t)=\mathbb E\,a_{N(t)}`$ with $`N(t)`$ started from $`2`$, where we set $`a_2=0`$. By Lemma 1.4, $`N(t)=G_1+G_2`$, where $`G_1,G_2`$ are independent geometric variables on $`\{1,2,\dots\}`$ with success probability $`q=e^{-t}`$.
+
+*Upper bound.* At $`t=\log n`$, $`q=1/n`$ and $`\Pr(N(t)\ge n)\ge\Pr(G_1\ge n)=(1-1/n)^{n-1}\ge e^{-1}`$. Since $`a`$ is nonnegative and nondecreasing, $`F(\log n)\ge a_n\Pr(N(\log n)\ge n)`$, so $`a_n\le e\,F(\log n)`$ and
+
+```math
+\limsup_{n\to\infty}\frac{\log a_n}{\log n}\le\lim_{n\to\infty}\frac{1+\log F(\log n)}{\log n}=\mu .
+```
+
+*Lower bound.* Fix $`0<\alpha<1`$ and $`t=(1-\alpha)\log n`$, so $`q=n^{-(1-\alpha)}`$ and $`qn=n^{\alpha}`$. Using monotonicity on $`\{N(t)\le n\}`$ and $`a_m\le m`$ on $`\{N(t)>n\}`$,
+
+```math
+F(t)\le a_n+\mathbb E[N(t);N(t)>n]\le a_n+\sqrt{\mathbb E N(t)^2}\,\sqrt{\Pr(N(t)>n)} .
+```
+
+Here $`\mathbb E N(t)^2=6/q^2-2/q\le 6/q^2`$, and
+
+```math
+\Pr(N(t)>n)\le 2\Pr(G_1>n/2)=2(1-q)^{\lfloor n/2\rfloor}\le 2(1-q)^{n/2-1}\le 2e^{q}e^{-qn/2}\le 2e\,e^{-n^{\alpha}/2}.
+```
+
+So the error term is at most $`\sqrt{12e}\,n^{1-\alpha}e^{-n^\alpha/4}\to0`$. Since $`F(t)\to\infty`$, for large $`n`$ we get $`a_n\ge F((1-\alpha)\log n)/2`$, hence
+
+```math
+\liminf_{n\to\infty}\frac{\log a_n}{\log n}\ge(1-\alpha)\lim_{n\to\infty}\frac{\log F((1-\alpha)\log n)}{(1-\alpha)\log n}=(1-\alpha)\mu .
+```
+
+Letting $`\alpha\downarrow0`$ gives $`\liminf\log a_n/\log n\ge\mu`$.
+
+So $`\log\mathbb E C_n/\log n\to\mu`$, which is Theorem 1. $`\blacksquare`$
+
+## 9. Audit record
+
+**Checked against the problem statement.** The model is the one in the [README](../README.md) and [report](../REPORT.md) §1: the start $`T_2`$, the step rule (uniform vertex, uniform neighbour, new leaf at the neighbour), $`n=|V(T_n)|`$, and $`C_n=\#\{\deg\ge2\}`$. Lemma 1.3 shows that the continuous-time chain has exactly this jump chain.
+
+Theorem 1 is about the *core count* $`C_n`$, that is, the cumulative count $`N_2(n)`$. The 2022 thread asks about $`N_k`$, the number of vertices of degree *exactly* $`k`$. Theorem 1 by itself says nothing about the existence of an exponent for each exact-degree count.
+
+**Couplings.** Every construction is an admissible construction in the sense of Section 1.1, and Lemmas 1.1 and 1.2 show that each one has the friend-tree law. Three couplings are used.
+
+- The planting script of Lemma 3.1. Each stage is an event about named sources in its own interval, and only predictable rankings are imposed.
+- The branch–reference coupling of Section 4. **The reference $`R`$ keeps its own drivers on the whole interval $`[0,s]`$:** the sources of the branch vertices after $`t_0`$, the reserved newborn sources $`\zeta_j`$, and the coordinates $`U`$ of their points. It never reads the actual process. **The actual process switches at the first discrepancy $`\rho`$:** the triggering ring first makes its prescribed choice ($`v^*`$ for a ring of $`u`$, $`u`$ for a ring of $`v^*`$), and from then on actual choices use the coordinate $`U'`$ and actual newborns get unreserved sources, while existing vertices keep their sources. The event $`E_u`$ reads only the source of $`u`$, which is not a driver of $`R`$; this is why $`E_u`$ is independent of $`R`$ and of the acceptance coordinates.
+- The ranking of a fixed original neighbour in Lemma 5.1. It is compatible with the comparison because $`Q_{T,v}(s)`$ depends only on the annotated law of $`R`$, and because choice coordinates $`U`$ and acceptance coordinates $`A`$ are separate.
+
+**Uniformity.** $`p`$ and $`h`$ do not depend on the tree at time $`t`$ (Lemma 3.1). $`\theta_k(s)`$ and $`s_0`$ hold uniformly over the finitely many $`k`$-vertex trees (Lemma 5.1). The eligible fraction $`1/4`$ holds for every tree (Lemma 2.1).
+
+**Discarded aside on unweighted means.** An earlier expanded draft added, after Lemma 4.1, a remark that without the weight the planted mean core count falls below the free mean when the root has internal degree at least two. That remark is false in general, and it has been removed. [A recorded counterexample](../reviews/review-existence-counterexample-gpt.md) gives a reachable 21-vertex branch for which the planted minus free mean count is $`(113/5280)s^2+O(s^3)>0`$ for small $`s`$, from an exact second-derivative difference $`+113/2640`$. The exact checker [`verify/tree-drift/existence_counterexample.py`](../verify/tree-drift/existence_counterexample.py) reproduces it in rational arithmetic. The remark was never used. The proof uses only the weighted lower bound of Lemma 4.1(c), and the example is consistent with it.
+
+**Differences from the short version.** No change alters a constant or the structure of the argument.
+
+- (1) The source degree in stage 4 is at most $`k-1`$; the short version said $`k+1`$. This is harmless.
+- (2) "For large $`s`$" in the degree condition is made explicit as $`s\ge s_0(k,M,\epsilon)`$, which is very large.
+- (3) The weight statement is written as the conditional inequality Lemma 4.1(c), which is what is used, and the bad-history error is written as the explicit $`\theta_k(s)`$.
+- (4) The short version says the branch and the reference are "coupled up to the first discrepancy". Section 4 makes explicit that the reference keeps its drivers throughout and that only the actual process switches, after the triggering ring has made its prescribed choice. The independence of $`E_u`$ from the reference relies on this.
+- (5) Section 1.1 fixes the driving randomness (sources with three mark coordinates), and Lemma 1.1 is proved directly from the ring-by-ring kernel, with no appeal to martingale-problem uniqueness.
+- (6) In Proposition 6.2 the lower bound is summed over path functionals $`X_u`$ defined from the tree alone, and each $`\mathbb E[X_u\mid\mathcal F_t]`$ is evaluated in the continuation adapted to $`u`$ (Lemma 1.2). The short version sums indicators of planting events at all eligible vertices at once. Those events use rankings that can conflict at a shared vertex, for example two type-B vertices with the same type-B neighbour $`w`$, so they do not all live in one construction. The path-functional form gives the same inequality with the same constants.
+
+**Real gaps found.** None.

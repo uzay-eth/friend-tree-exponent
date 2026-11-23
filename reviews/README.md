@@ -2,9 +2,11 @@
 
 Every mathematical claim included in the repository was reviewed cold by at least one model from a different model family than its author, and attacked by rival teams using independently written code, brute-force tree tests, and planted errors.
 
-Two non-trivial `GAP` verdicts occurred during the process:
+Two `GAP` verdicts occurred in the original reviews:
 1. **Degree tail (`degree-tail.md`):** the first GPT-6.2 Sol cold review found a `GAP` in the summation-by-parts equality of part (c) at the endpoint $`k = 2`$ ($`m_0 = n`$) plus two overstated prose sentences. The proof was repaired and re-checked `CORRECT` (both the initial report and the re-check are preserved in [`review-degree-tail-gpt.md`](review-degree-tail-gpt.md)).
 2. **Excluded tagged-neighbour route:** Claude Fable 5.2 returned `GAP` on an alternate upper-bound construction (`tag.cpp`) whose strict $`< 17/30`$ bound remained unverified ([`review-excluded-tagged-fable.md`](review-excluded-tagged-fable.md)). That construction is excluded from all results.
+
+During review of the expanded existence proof, an exact counterexample settled a question about the mean within a planted branch. Its first derivative agrees with that of the free mean at the exhibited tree, but its second derivative is larger by $`113/2640`$. The proof uses a lower bound with an acceptance weight. [Counterexample, derivation and executable test](review-existence-counterexample-gpt.md) · [Weighted comparison](../proofs/existence.md)
 
 *(The review files below are preserved as written during the cold audits, with only internal branch names, job-runner names, and local filesystem paths redacted where noted at the top of a file, and dead relative markdown links to the original working tree converted to plain code spans. Relative paths mentioned inside those historical transcripts refer to the original working tree; the packaged proofs and checkers live in [`proofs/`](../proofs/README.md) and [`verify/`](../verify/README.md).)*
 
@@ -35,3 +37,15 @@ Two non-trivial `GAP` verdicts occurred during the process:
 | Combined technical report ([REPORT.md](../REPORT.md)) | Gemini 4 Neon (Gemini) | Claude Opus 5.5 (Claude) | `CONSISTENT` / `APPROVE` | [review-combined-claude.md](review-combined-claude.md) |
 | Combined technical report ([REPORT.md](../REPORT.md)) | Gemini 4 Neon (Gemini) | GPT-6.2 Sol (GPT) | `CONSISTENT` / `APPROVE` | [review-combined-gpt.md](review-combined-gpt.md) |
 | Public repository packaging ([README.md](../README.md), [REPORT.md](../REPORT.md), [verify/run_all.sh](../verify/run_all.sh)) | Gemini 4 Neon (Gemini) | Claude Opus 5.5 (Claude) | `APPROVE` (after 2 revision rounds) | [review-public-packaging-claude.md](review-public-packaging-claude.md) |
+| [Simulation sources, data and fits](../simulations/README.md) | Original continuous-time runs and new fixed-size experiment | Claude Opus 5.5 (Claude) | `CONSISTENT / APPROVE` | [review-simulations.md](review-simulations.md) |
+
+## Reviews of the expanded proofs
+
+| Text or test | Cold reviewer | Verdict and scope |
+|---|---|---|
+| [Motif drift and GMP correspondence](review-motif-writeup-gpt.md) | GPT-6.2 Astra | CORRECT for both shipped certificates, including the boundary at the first tail degree. |
+| [Existence and sample paths](review-existence-and-sample-writeups-gpt.md) | GPT-6.2 Astra | CORRECT after revision, including the weighted marginal comparison, the preparation flags and the random first positive grid index. |
+| [Unweighted branch comparison](review-existence-counterexample-gpt.md) | GPT-6.2 Astra | COUNTEREXAMPLE to a discarded comparison. The weighted lemma admits the exhibited tree. |
+| [Banded upper bound](review-expanded-banded.md) | Claude Opus 5.5 | CORRECT for the history-dependent potential and its integer checker. |
+| [Supporting results and exhaustive tree tests](review-supporting-results-audit.md) | Claude Opus 5.5 | CORRECT for the six supporting deductions and the direct tree and history tests reviewed. |
+| [Degree tail and polynomial-scale typography](review-degree-typesetting.md) | Claude Opus 5.5 | CORRECT for both mathematical texts, including the empty sum and the fourteen numbered equations. |

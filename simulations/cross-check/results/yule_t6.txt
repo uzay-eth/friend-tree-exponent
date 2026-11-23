@@ -1,0 +1,2 @@
+# yule seed=20261123506 runs=400000 T=6 model=0 theory_meanN=1210.29
+T 6 N_mean 1210.695348 N_sd 698.57759 N_se 1.10455 C_mean 38.34484 C_sd 24.12055814 C_se 0.038138 S_mean 21.78494255 S_sd 13.41797399 S_se 0.0212157
