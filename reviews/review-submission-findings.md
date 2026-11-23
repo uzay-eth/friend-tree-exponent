@@ -88,7 +88,7 @@ The four independent reports concern the manuscript at `526f350`. R1 is Claude O
 
 ### C4. Supplement pin and long-term archiving
 
-**Citation · fixed.** Raised by R3, R4. The cited original commit exists and supplies the data used in the paper. The revised link identifies the immutable commit containing the updated proofs and checker documentation. A permanent journal or DOI deposit would help long-term preservation; no deposit was made in this round. That publication decision can be made with the eventual venue.
+**Citation · fixed.** Raised by R3, R4. The cited original commit exists and supplies the data used in the paper. The confirming reader caught a revision pin that predated the offline build notes. The corrected immutable target includes the updated proofs, the archived arrays, all four reports and those notes. A permanent journal or DOI deposit would help long-term preservation; no deposit was made in this round. That publication decision can be made with the eventual venue.
 
 ### E5. Original §§3, 4, 6, notation and navigation
 
