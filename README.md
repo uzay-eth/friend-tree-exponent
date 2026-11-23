@@ -1,10 +1,10 @@
 # The random friend tree exponent is not 17/30
 
-Let $`C_n`$ count the non-leaves in the tree on $`n`$ vertices. The same exponent $`\mu`$ governs $`\mathbb{E}[C_n] = n^{\mu + o(1)}`$ and $`\log C_n / \log n \to \mu`$ almost surely. Its bounds are
-
 ```math
 \frac{113}{200} = 0.5650 \;\le\; \mu \;\le\; \frac{1133}{2000} = 0.5665 \;<\; \frac{17}{30} = 0.5666\overline{6}.
 ```
+
+Here $`C_n`$ counts the non-leaves in the tree on $`n`$ vertices. The same exponent $`\mu`$ governs $`\mathbb{E}[C_n] = n^{\mu + o(1)}`$ and $`\log C_n / \log n \to \mu`$ almost surely.
 
 **Can Uzay**
 
