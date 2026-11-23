@@ -1,6 +1,6 @@
 # Growth of the non-leaf population in the random friend tree
 
-**Can Uzay**
+**Can Uzay** · [Read the paper (PDF)](paper/friend-tree-exponent.pdf) · [LaTeX source and build command](paper/README.md)
 
 Start from a single edge $`T_2`$; at each step pick a uniform vertex $`V_n`$, pick a uniform neighbour $`W_n`$ of $`V_n`$, and attach a new leaf to $`W_n`$. Let $`C_n`$ be the number of non-leaves (vertices of degree at least $`2`$) in $`T_n`$. Addario-Berry et al. call this model the random friend tree. [Random friend trees](https://arxiv.org/abs/2403.20185)
 
