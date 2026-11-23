@@ -16,12 +16,12 @@ Reduce the literature review to a short paragraph after the result. Identify the
 
 2. **One continuous-time proof of the common exponent, about four to five pages.** Keep the clock embedding and the independence of population waiting times from the jump chain. Use the disjoint-site count of at least $`C/6`$ at the outset and state a single conditional block lemma. For fixed error parameters and a sufficiently long comparison time $`s`$, the block endpoint dominates a sum of independent copies of a contribution $`Y_s`$ from the selected sites, with
 
-   ```math
-   \mathbb E Y_s \ge c\,e^{-\eta s}\bigl(F(s)-k-O(e^{-s})\bigr),
-   \qquad F(s)=\mathbb E C(s).
-   ```
+```math
+\mathbb E Y_s \ge c\,e^{-\eta s}\bigl(F(s)-k-O(e^{-s})\bigr),
+\qquad F(s)=\mathbb E C(s).
+```
 
-   Here $`F`$ is the mean from a single edge, $`k`$ is the fixed seed size, $`c>0`$ is independent of $`s`$, and $`\eta`$ can be made arbitrarily small. Prove the lemma in three steps. Pack the sites and plant a fixed seed with positive probability. Couple each planted branch to a free reference across its cut edge. Restrict to good reference histories and select a root that carries a positive share of the good expected core count. Keep the conditional product of the root-choice acceptance factors inside the reference expectation. Spell out how fresh clocks and thinning give independent site inputs even though the branches share an exterior. A small diagram of the cut edge could replace some of the description.
+Here $`F`$ is the mean from a single edge, $`k`$ is the fixed seed size, $`c>0`$ is independent of $`s`$, and $`\eta`$ can be made arbitrarily small. Prove the lemma in three steps. Pack the sites and plant a fixed seed with positive probability. Couple each planted branch to a free reference across its cut edge. Restrict to good reference histories and select a root that carries a positive share of the good expected core count. Keep the conditional product of the root-choice acceptance factors inside the reference expectation. Spell out how fresh clocks and thinning give independent site inputs even though the branches share an exterior. A small diagram of the cut edge could replace some of the description.
 
    Take expectations of the block lemma to obtain the mean iteration, which can replace the separate $`C/4`$ count and marginal-site argument. For the pathwise lower bound, use the same lemma with conditional Chebyshev. Each $`Y_s`$ is bounded by its reference population and has finite second moment for fixed $`s`$, so the truncation and its constants can be dropped. Keep the proof that the core tends to infinity and the martingale argument that controls the fraction of unsuccessful blocks. Finish with Markov and Borel–Cantelli for the pathwise upper bound. Keep both transfers to fixed size in one subsection. The mean uses independence and Yule tails, and the pathwise limit uses the asymptotics of the hitting times. State the order of limits in the proof. Fix the seed and preparation parameters before taking $`s`$ large, then send the loss $`\eta`$ to zero.
 

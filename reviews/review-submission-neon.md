@@ -1,6 +1,5 @@
 # Independent Referee Report
 
-
 The editing of this report for publication shortened two third-party quotations. The mathematical assessments are the referee’s.
 **R3 · Gemini 4 Neon · xhigh reasoning.** Independent cold report on §§2–4, 6–8, production note and bibliography at `526f350`.
 
@@ -18,24 +17,30 @@ Let $`(T_n)_{n\ge 2}`$ be the random friend tree (one-step random-walk attachmen
 The manuscript establishes three main results:
 
 1. **Existence of a common deterministic growth exponent (Theorem 1.1, §2).** There exists a deterministic constant $`\mu \in [0, 1]`$ such that
-   ```math
-   \lim_{n\to\infty}\frac{\log \mathbb{E}[C_n]}{\log n} = \mu
-   \qquad\text{and}\qquad
-   \lim_{n\to\infty}\frac{\log C_n}{\log n} = \mu \quad \text{almost surely.}
-   ```
-   This proof is purely analytic (no computer assistance) and embeds the process in continuous time with rate-$`1`$ Poisson clocks per vertex, proving almost-supermultiplicativity of $`F(t) = \mathbb{E}[C(t)]`$ by planting arbitrary finite seeds at eligible core vertices, de-Poissonising to $`\mathbb{E}[C_n]`$, and running conditionally independent site trials over disjoint reserved clock sets to lift the rate to almost-sure convergence.
+
+```math
+\lim_{n\to\infty}\frac{\log \mathbb{E}[C_n]}{\log n} = \mu
+\qquad\text{and}\qquad
+\lim_{n\to\infty}\frac{\log C_n}{\log n} = \mu \quad \text{almost surely.}
+```
+
+This proof is purely analytic (no computer assistance) and embeds the process in continuous time with rate-$`1`$ Poisson clocks per vertex, proving almost-supermultiplicativity of $`F(t) = \mathbb{E}[C(t)]`$ by planting arbitrary finite seeds at eligible core vertices, de-Poissonising to $`\mathbb{E}[C_n]`$, and running conditionally independent site trials over disjoint reserved clock sets to lift the rate to almost-sure convergence.
 2. **Sharp finite-$`n`$ two-sided product bracket via motif potentials (Theorem 1.2, first display, §3).** For every integer $`n \ge 3`$,
-   ```math
-   \frac{7{,}304{,}352{,}308}{8{,}763{,}936{,}965}\,P_{113/200}(n)
-   \;\le\; \mathbb{E}[C_n] \;\le\;
-   \frac{14{,}606{,}753{,}031}{2{,}989{,}767{,}809}\,P_{1133/2000}(n).
-   ```
-   Combined with Theorem 1.1, this yields $`113/200 = 0.5650 \le \mu \le 1133/2000 = 0.5665`$, separating $`\mu`$ from $`17/30`$ by at least $`1/6000`$. Independently of Theorem 1.1, dyadic Markov and Borel–Cantelli yield $`\limsup_{n\to\infty} (\log C_n)/\log n \le 1133/2000`$ almost surely, and the upper product bounds $`\mathbb{E}[N_{=k}(n)]`$ for every $`k \ge 2`$.
+
+```math
+\frac{7{,}304{,}352{,}308}{8{,}763{,}936{,}965}\,P_{113/200}(n)
+\;\le\; \mathbb{E}[C_n] \;\le\;
+\frac{14{,}606{,}753{,}031}{2{,}989{,}767{,}809}\,P_{1133/2000}(n).
+```
+
+Combined with Theorem 1.1, this yields $`113/200 = 0.5650 \le \mu \le 1133/2000 = 0.5665`$, separating $`\mu`$ from $`17/30`$ by at least $`1/6000`$. Independently of Theorem 1.1, dyadic Markov and Borel–Cantelli yield $`\limsup_{n\to\infty} (\log C_n)/\log n \le 1133/2000`$ almost surely, and the upper product bounds $`\mathbb{E}[N_{=k}(n)]`$ for every $`k \ge 2`$.
 3. **Independent finite-$`n`$ upper bound below $`17/30`$ via banded history-dependent potentials (Theorem 1.2, second display, §4).** For every integer $`n \ge 3`$,
-   ```math
-   \mathbb{E}[C_n] \;\le\; \frac{1{,}539{,}738{,}114{,}735}{3{,}908{,}512{,}529}\,P_{5657/9983}(n),
-   ```
-   where $`5657/9983 = 17/30 - 1/299490 < 17/30`$. This provides an independent confirmation of $`\limsup_{n\to\infty} (\log \mathbb{E}[C_n])/\log n < 17/30`$ and $`\limsup_{n\to\infty} (\log C_n)/\log n \le 5657/9983`$ almost surely.
+
+```math
+\mathbb{E}[C_n] \;\le\; \frac{1{,}539{,}738{,}114{,}735}{3{,}908{,}512{,}529}\,P_{5657/9983}(n),
+```
+
+where $`5657/9983 = 17/30 - 1/299490 < 17/30`$. This provides an independent confirmation of $`\limsup_{n\to\infty} (\log \mathbb{E}[C_n])/\log n < 17/30`$ and $`\limsup_{n\to\infty} (\log C_n)/\log n \le 5657/9983`$ almost surely.
 
 In addition, §6 summarizes supplementary results (an almost-sure lower transfer theorem yielding $`\liminf (\log C_n)/\log n \ge 543/1000`$ and $`11/20`$ via cross-charging, a polynomial-scale lower bound $`\liminf C_n/n^{543/1000} > 0`$ a.s., and the uniform cumulative mean degree-tail limit $`\lim_{n/k\to\infty} \log \mathbb{E}[N_{\ge k}(n)] / \log(n/k) = \mu`$ over $`k\ge 2`$, plus fixed-$`k`$ a.s. convergence $`\log N_{\ge k}(n)/\log n \to \mu`$ via Addario-Berry et al., Theorem 4.8), and §7 presents discrete and continuous-time numerical measurements (explicitly kept separate from all proofs).
 
@@ -104,10 +109,12 @@ Each logical step is anchored to line numbers and equation labels in `paper/frie
 #### Section 2.2: Comparison across one cut edge (lines 101–119)
 11. **Lines 102–111 and Eq. (1) (`eq:cut`, coupling across one cut edge):**
     - *Claim:* Coupling the planted branch on $`(t+h, t+h+s]`$ with a free copy of $`T`$ via two-step root acceptance $`d/(d+1)`$ and exterior silence of marks $`\le 1/M`$ at $`u`$ preserves the actual tree law and yields Eq. (1): conditional on $`\mathcal{F}_{t+h}`$ on the event of successful preparation,
-      ```math
-      \mathbb{E}[X \mid \mathcal{F}_{t+h}] \;\ge\; e^{-s/M}\,\mathbb{E}\!\left[C_T(s)\prod_j \frac{d_j}{d_j+1}\right].
-      ```
-    - *Check:* The probability computation is exact: given the full free reference history $`R`$, acceptance marks at root rings are independent $`\mathrm{Unif}[0,1]`$ (joint acceptance probability $`\prod_j d_j/(d_j+1)`$), independent of the rate-$`1/M`$ Poisson process of marks $`\le 1/M`$ at $`u`$ (silence probability $`e^{-s/M}`$). On agreement, $`D_u \ge M`$ prevents inward redirection and every reference core vertex is an actual core vertex on the far side of $`uv`$. However, the sentence "At a discrepancy continue the actual tree with its ordinary transition kernel and the reference with its own randomness" (lines 102–103) omits the brief precision that the triggering discrepant ring itself must execute its prescribed transition (redirecting to $`u`$ on a failed root acceptance, or attaching to $`v`$ on an inward mark at $`u`$) and that switching to uncoupled transitions and fresh newborn sources happens *immediately after* that triggering ring is processed (leaving the reference process untouched).
+
+```math
+\mathbb{E}[X \mid \mathcal{F}_{t+h}] \;\ge\; e^{-s/M}\,\mathbb{E}\!\left[C_T(s)\prod_j \frac{d_j}{d_j+1}\right].
+```
+
+- *Check:* The probability computation is exact: given the full free reference history $`R`$, acceptance marks at root rings are independent $`\mathrm{Unif}[0,1]`$ (joint acceptance probability $`\prod_j d_j/(d_j+1)`$), independent of the rate-$`1/M`$ Poisson process of marks $`\le 1/M`$ at $`u`$ (silence probability $`e^{-s/M}`$). On agreement, $`D_u \ge M`$ prevents inward redirection and every reference core vertex is an actual core vertex on the far side of $`uv`$. However, the sentence "At a discrepancy continue the actual tree with its ordinary transition kernel and the reference with its own randomness" (lines 102–103) omits the brief precision that the triggering discrepant ring itself must execute its prescribed transition (redirecting to $`u`$ on a failed root acceptance, or attaching to $`v`$ on an inward mark at $`u`$) and that switching to uncoupled transitions and fresh newborn sources happens *immediately after* that triggering ring is processed (leaving the reference process untouched).
     - *Verdict:* **holds with a repair (supply proof)** — *Repair:* Let $`\rho`$ be the first time after $`t+h`$ of either (T1) a ring of $`u`$ with mark $`U \le 1/D_u`$ (ranking $`v`$ first) or (T2) a ring of $`v`$ with acceptance mark $`A > d/(d+1)`$. Process every ring in $`(t+h, \rho]`$—including the ring at $`\rho`$—by the coupled rules (so at $`\rho`$, (T1) attaches a leaf to $`v`$ and (T2) attaches a leaf to $`u`$, preserving the exact uniform conditional transition law at stopping time $`\rho`$). Immediately after processing $`\rho`$, assign every subsequent actual newborn (including the one born at $`\rho`$) an unused source outside the reference's reserved family and evaluate subsequent actual choices using an independent mark coordinate, while the reference continues on its own drivers. By strong Markov at $`\rho`$, this yields an admissible construction with the exact friend-tree law, and on agreement $`\rho > t+h+s`$.
 12. **Lines 113–116 (Good reference histories and exceptional contribution):**
     - *Claim:* For $`A=8`$, $`0<\epsilon<1`$, $`b = 7/\log(1/\epsilon)`$, $`k \ge 6M/\epsilon`$, we have $`b > \epsilon`$, $`b\log(b/\epsilon)-b+\epsilon \ge 6`$, $`A\log A - A + 1 > 5`$; the exceptional probability is $`O_k(e^{-4s})`$ for $`s \ge s_0(k,M,\epsilon)`$ uniformly over $`k`$-vertex seeds $`T`$, and its contribution to $`\mathbb{E}C_T(s)`$ is $`O_k(e^{-s})`$.
@@ -125,10 +132,12 @@ Each logical step is anchored to line numbers and equation labels in `paper/frie
     - *Verdict:* **holds**.
 15. **Lines 121–125 (Path functional $`X_u`$ and almost-supermultiplicative recursion):**
     - *Claim:* Defining $`X_u`$ from the actual tree path alone as the core count at $`t+h+s`$ on all far sides of edges $`uw`$ at $`t+h`$ containing no time-$`t`$ cores gives $`\sum_u X_u \le C(t+h+s)`$, and summing single-site continuations over eligible $`u`$ yields
-      ```math
-      F(t+h+s) \ge F(t)\,\frac{p}{4k}\,e^{-\eta s}\big(F(s) - k - O_k(e^{-s})\big).
-      ```
-    - *Check:* Distinct outward edges from $`\mathcal{C}_t`$ with no $`\mathcal{C}_t`$-vertex on the far side have pairwise disjoint far sides (Step 10), and each such edge has a unique endpoint in $`\mathcal{C}_t`$, so $`\sum_{u\in\mathcal{C}_t} X_u \le C(t+h+s)`$ pointwise. Because $`X_u`$ depends only on the tree path, $`\mathbb{E}[X_u \mid \mathcal{F}_t]`$ is identical across admissible continuations; evaluating it in the single-site continuation for $`u`$ with Lemma 2.2 and Eq. (1), summing over the $`\ge C(t)/4`$ eligible vertices (Lemma 2.1), and taking expectations gives the displayed bound (trivially valid at $`t=0`$ since $`F(0)=0`$).
+
+```math
+F(t+h+s) \ge F(t)\,\frac{p}{4k}\,e^{-\eta s}\big(F(s) - k - O_k(e^{-s})\big).
+```
+
+- *Check:* Distinct outward edges from $`\mathcal{C}_t`$ with no $`\mathcal{C}_t`$-vertex on the far side have pairwise disjoint far sides (Step 10), and each such edge has a unique endpoint in $`\mathcal{C}_t`$, so $`\sum_{u\in\mathcal{C}_t} X_u \le C(t+h+s)`$ pointwise. Because $`X_u`$ depends only on the tree path, $`\mathbb{E}[X_u \mid \mathcal{F}_t]`$ is identical across admissible continuations; evaluating it in the single-site continuation for $`u`$ with Lemma 2.2 and Eq. (1), summing over the $`\ge C(t)/4`$ eligible vertices (Lemma 2.1), and taking expectations gives the displayed bound (trivially valid at $`t=0`$ since $`F(0)=0`$).
     - *Verdict:* **holds**.
 16. **Line 126 (Divergence $`F(t)\to\infty`$ and existence of $`\mu = \lim_{t\to\infty} t^{-1}\log F(t)`$):**
     - *Claim:* After the first birth, promotion intensity $`\sum_u L_u/D_u \ge 1`$, giving $`F(t)\to\infty`$; iterating $`F(t+h+s) \ge B_s F(t)`$ from $`t=1`$ gives $`\underline\mu \ge \overline\mu - \eta`$, and sending $`M\to\infty, \epsilon\downarrow 0`$ yields $`\mu \in [0,1]`$.
@@ -194,10 +203,12 @@ Each logical step is anchored to line numbers and equation labels in `paper/frie
    - *Verdict:* **holds**.
 5. **Lines 297–367 and Lemma 3.1 (`lem:decompose`, Eq. (3)–(6), edge/path/cherry redistribution):**
    - *Claim:* On each edge $`e=(p\to w)`$, splitting every gain credit $`i_z \Delta_x g(e)`$ ($`x\in\{p,w\}`$ inner, $`z\ne y`$ another core neighbour of $`x`$) by the table on lines 303–309 and booking newborn cherries $`b_p h_C(p^b,w,\nu)`$ and newborn paths $`b_w h_V(p,w^b,\nu)`$ on $`e`$ yields Eq. (6):
-     ```math
-     \mathcal{L}\Phi = \sum_u V_u + \sum_e E_e + \sum_{p\to u\to w:\, s_u\in H} P_{puw} + \sum_{u:\, s_u\in J}\sum_{\{w_1,w_2\}\subset B(u)} B_{u12}.
-     ```
-   - *Check (exhaustive orientation-by-orientation bookkeeping):*
+
+```math
+\mathcal{L}\Phi = \sum_u V_u + \sum_e E_e + \sum_{p\to u\to w:\, s_u\in H} P_{puw} + \sum_{u:\, s_u\in J}\sum_{\{w_1,w_2\}\subset B(u)} B_{u12}.
+```
+
+- *Check (exhaustive orientation-by-orientation bookkeeping):*
      - *Tail endpoint $`x\in\{p,w\}`$:* Keeps full rate $`\sigma_x = r_x`$, transfers nothing, contributes $`0`$ to $`n_1,n_2,n_3`$ and $`R_e`$.
      - *Inner $`p`$, neighbour $`w`$:* Kept in $`\sigma_p`$.
      - *Inner $`p`$, parent $`z=p_p`$ ($`h_p=1`$):* If $`s_p\in H`$ (note $`s_p\in H \implies h_p=1`$), $`x_{\mathrm{par}}(s_p)d_p`$ is kept in $`\sigma_p d_p`$ and $`(i_{p_p}-x_{\mathrm{par}}(s_p))\Delta_p g(p,w)`$ goes to the unique path $`p_p\to p\to w`$ (first source term of Eq. (4), `eq:motif-path`). If $`s_p\in\mathcal{I}\setminus H`$ ($`n_1=1`$), $`i_{p_p}d_p - A_{pc}^p(i_{p_p})`$ stays in $`R_e`$ (row 1, line 342) and $`A_{pc}^p(i_{p_p})`$ moves to parent edge $`e'=(p_p\to p)`$; conversely $`e'=(p'\to w')`$ receives $`A_{pc}^{w'}(i_{p'})`$ once from each of its $`k_{w'}`$ child edges, matching $`n_3' A_{pc}^{w'}(i_{p'})`$ in $`I_{e'}`$ (line 335).
@@ -370,10 +381,12 @@ All computations below were performed independently without modifying the assign
    - Exponent margins below $`17/30`$: $`17/30 - 1133/2000 = 1/6000`$; $`17/30 - 5657/9983 = 1/299490`$.
    - Reduced prefactors: $`\gcd(14608704616, 17527873930) = 2`$ giving $`7304352308/8763936965`$; $`\gcd(14606753031, 2989767809) = 1`$; $`\gcd(1539738114735, 3908512529) = 1`$.
    - §4 tail margins (`paper/friend-tree-exponent.tex`, lines 959–961): with $`s=10^{12}`$, $`a_*=398437500000`$, $`A=1380739398522`$, $`B=383976882193`$,
-     ```math
-     5657 A - 9983(B + a_*) = 6235, \qquad 5657(A + B) - 9983 s = 4755,
-     ```
-     matching the paper verbatim.
+
+```math
+5657 A - 9983(B + a_*) = 6235, \qquad 5657(A + B) - 9983 s = 4755,
+```
+
+matching the paper verbatim.
 2. **Independent exact enumeration of $`\mathbb{E}[C_n]`$ for $`n = 3, \dots, 9`$** (pure Python `fractions.Fraction` over canonical unlabeled trees starting from $`T_2`$), compared against `verify/motif-bracket/exact_rationals_n21.txt` (all five columns—unlabeled tree count, $`\mathbb{E}[C_n]`$, $`\mathbb{E}[S_n]`$, $`\mathbb{E}[S_n]/\mathbb{E}[C_n]`$, $`\mathrm{Var}(C_n)`$—match identically) and all three Theorem 1.2 product bounds (verified for all $`n = 3, \dots, 21`$):
 
 | $`n`$ | Trees | Exact $`\mathbb{E}[C_n]`$ | Decimal | Matches `exact_rationals_n21.txt` | Motif LB | Motif UB | Banded UB |
@@ -433,10 +446,12 @@ Using `verify/tree-drift/read_weights.cpp` (compiled with UBSan) to extract veri
 
 - Extracted small-state weights: $`z_{(2,0)} = 1{,}539{,}738{,}114{,}735`$, $`z_{(3,0)} = 1{,}637{,}065{,}521{,}366`$, $`z_{(2,1;(2,1))} = 1{,}108{,}795{,}790{,}246`$, $`z_{(2,1;(2,2;2,1))} = 1{,}120{,}441{,}477{,}455`$.
 - Exact hand-verified $`T_3`$ drift:
-  ```math
-  \mathcal{L}\Phi(T_3) = 2 z_{(3,0)} + 2 z_{(2,1;(2,1))} - 3 z_{(2,0)} = 872{,}508{,}279{,}019,
-  ```
-  with $`9983\,\mathcal{L}\Phi(T_3) = 8{,}710{,}250{,}149{,}446{,}677 < 8{,}710{,}298{,}515{,}055{,}895 = 5657\,\Phi(T_3)`$, ratio $`0.566660181 < 5657/9983 \approx 0.566663328`$.
+
+```math
+\mathcal{L}\Phi(T_3) = 2 z_{(3,0)} + 2 z_{(2,1;(2,1))} - 3 z_{(2,0)} = 872{,}508{,}279{,}019,
+```
+
+with $`9983\,\mathcal{L}\Phi(T_3) = 8{,}710{,}250{,}149{,}446{,}677 < 8{,}710{,}298{,}515{,}055{,}895 = 5657\,\Phi(T_3)`$, ratio $`0.566660181 < 5657/9983 \approx 0.566663328`$.
 - At $`n=4`$: $`K_{1,3}`$ (`path=(0,)`): $`\Phi = 1{,}637{,}065{,}521{,}366`$, $`\mathcal{L}\Phi = 927{,}660{,}174{,}901`$, ratio $`0.566660383`$; $`P_4`$ (`path=(1,)` and `(2,)`): $`\Phi = 2{,}217{,}591{,}580{,}492`$, $`\mathcal{L}\Phi = 1{,}256{,}622{,}945{,}165`$, ratio $`0.566661127`$.
 - Across all $`12`$ histories at $`n=5`$ and $`60`$ histories at $`n=6`$: `0` failures, maximum ratio $`\mathcal{L}\Phi/\Phi = 0.566661576`$ ($`n=5`$) and $`0.566661369`$ ($`n=6`$), both strictly below $`5657/9983`$.
 
