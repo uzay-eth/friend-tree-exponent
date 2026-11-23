@@ -3,7 +3,7 @@
  * Builds deterministic quantized exact-rational Analytic 1/D-Tail 3-Vertex + Cherry
  * drift certificates (f + g + h_V + h_C) for:
  *   - mode 1 (UPPER): proves E[C_n] <= A_up * prod_{j=3}^{n-1} (1 + (P/Q)/j)
- *     Default: P/Q = 1133/2000 = 0.5665 < 17/30 = 0.566666... (REFUTES Strogatz 17/30!)
+ *     Default: P/Q = 1133/2000 = 0.5665 < 17/30 = 0.566666...
  *   - mode 2 (LOWER): proves E[C_n] >= A_lo * prod_{j=3}^{n-1} (1 + (P/Q)/j)
  *     Default: P/Q = 113/200 = 0.5650
  *

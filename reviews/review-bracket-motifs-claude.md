@@ -1,8 +1,10 @@
+> Editorial note. The comparison with $`17/30`$ has been reworded for attribution.
+
 > Packaging note: one internal directory name on line 16 was redacted for public release; all mathematical content is unchanged.
 
 VERDICT: CORRECT
 
-# Cold referee audit: Strogatz 17/30 refutation, bracket [113/200, 1133/2000]
+# Cold referee audit: product bounds for the mean core size
 
 - **Referee:** Claude Opus 5.5 (`claude-opus-5-5`), Claude Code harness. Independent and cold.
 - **Date:** 2026-11-22.
@@ -137,7 +139,7 @@ Everything matches §4.5. Signs and factors (k_u, k_u − 1, h_u, the (h+k−1)/
   - Markov's inequality along n_k = 2^k gives a summable sequence, and Borel–Cantelli applies.
   - C_n is non-decreasing, so C_n ≤ C_{2n_k} ≤ (2n)^{a+ε}.
   - Intersecting over rational ε finishes the argument.
-- The refutation of E[C_n] = n^{17/30+o(1)} follows from Theorem 1 alone. The margin is 17/30 − 1133/2000 = 1/6000.
+- Theorem 1 alone excludes $`\mathbb E[C_n]=n^{17/30+o(1)}`$. The margin is $`17/30-1133/2000=1/6000`$.
 - The Remark identifying μ ∈ [0.565, 0.5665] depends on an outside existence theorem by the "Astra lead", which I did not audit. It is not needed for Theorem 1 or Corollary 2.
 
 ## 2. Independent exact verifier: `build/ref-claude/refv.c` (GMP mpq, no floating point)
