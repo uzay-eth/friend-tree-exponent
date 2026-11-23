@@ -1,6 +1,6 @@
 > Produced by Gemini 4 Neon.
 
-# Rigorous Refutation of Strogatz's 17/30 Exponent Conjecture and Sharp Bracket `[0.5650, 0.5665]`
+# Product bounds for the mean number of non-leaves
 
 ## 1. Model and Main Theorem
 
@@ -9,9 +9,9 @@ Consider the **random friend tree** (Krapivsky–Redner isotropic redirection mo
 - Given $`T_n`$, pick a vertex $`V_n \in V(T_n)`$ uniformly at random, pick a neighbour $`W_n`$ of $`V_n`$ uniformly at random, and attach a new leaf $`n+1`$ to $`W_n`$ to form $`T_{n+1}`$.
 - Let $`C_n := \#\{v \in V(T_n) : \deg_{T_n}(v) \ge 2\}`$ be the number of non-leaves (**core** vertices) of $`T_n`$.
 
-Steven Strogatz (2022-09-20) highlighted the open problem of proving whether $`\mathbb{E}[C_n] = n^{\mu + o(1)}`$ with $`\mu = 17/30 = 0.5666\overline{6}`$. We rigorously **disprove** $`\mu = 17/30`$ and establish the sharpest known finite-$`n`$ bounds on $`\mathbb{E}[C_n]`$.
+Krapivsky and Redner measured a growth exponent near $`0.566`$. Strogatz later asked whether $`17/30`$ could be its exact value. The following bounds on $`\mathbb{E}[C_n]`$ place the upper exponent below that fraction. [Krapivsky and Redner, §5.1](https://arxiv.org/pdf/1706.01514#page=12) · [Strogatz’s post](https://x.com/stevenstrogatz/status/1572287647715934210)
 
-### Theorem 1 (Exact Finite-$`n`$ Bounds and Refutation of $`17/30`$)
+### Theorem 1 (Finite-size bounds for the mean core size)
 For every integer $`n \ge 3`$,
 ```math
 \frac{7{,}304{,}352{,}308}{8{,}763{,}936{,}965} \prod_{j=3}^{n-1}\left(1 + \frac{113}{200\, j}\right) \;\le\; \mathbb{E}[C_n] \;\le\; \frac{14{,}606{,}753{,}031}{2{,}989{,}767{,}809} \prod_{j=3}^{n-1}\left(1 + \frac{1133}{2000\, j}\right).
@@ -20,7 +20,7 @@ Consequently,
 ```math
 0.5650 \;=\; \frac{113}{200} \;\le\; \liminf_{n\to\infty}\frac{\log \mathbb{E}[C_n]}{\log n} \;\le\; \limsup_{n\to\infty}\frac{\log \mathbb{E}[C_n]}{\log n} \;\le\; \frac{1133}{2000} \;=\; 0.5665 \;<\; \frac{17}{30} = 0.5666\overline{6}.
 ```
-In particular, the conjectured exponent $`17/30`$ is strictly false (exceeding the upper bound by an exact margin of $`\frac{17}{30} - \frac{1133}{2000} = \frac{1}{6000}`$).
+The upper exponent differs from $`17/30`$ by exactly $`17/30-1133/2000=1/6000`$.
 
 ### Corollary 2 (Almost-Sure Upper Bound Strictly Below $`17/30`$)
 Almost surely,

@@ -1,4 +1,4 @@
-# Strogatz's 17/30 Exponent for the Random Friend Tree: Technical Report
+# Growth of the non-leaf population in the random friend tree
 
 *Status: Preprint-level work, computer-assisted, not peer reviewed. How the results were produced and tested is described in the README ("Who did what") and in the review record below. The exact exponent $`\mu`$ remains open.*
 
@@ -6,7 +6,9 @@
 
 ## Executive Summary
 
-In the random friend tree $`(T_n)_{n \ge 2}`$ (Krapivsky–Redner isotropic/complete redirection with $`r=1`$, starting from one edge $`T_2`$), let $`C_n`$ be the number of non-leaves (vertices of degree at least $`2`$). Astra proves that a single growth exponent $`\mu := \lim_{n \to \infty} \frac{\log \mathbb{E}[C_n]}{\log n}`$ exists and that $`\frac{\log C_n}{\log n} \to \mu`$ almost surely ([`proofs/existence.md`](proofs/existence.md), [`proofs/almost-sure-exponent.md`](proofs/almost-sure-exponent.md)). Combining Astra's existence theorem with Neon's motif bracket ([`proofs/bracket-motifs.md`](proofs/bracket-motifs.md)) pins $`\frac{113}{200} = 0.5650 \le \mu \le \frac{1133}{2000} = 0.5665`$, refuting Steven Strogatz's 2022 proposed value $`\frac{17}{30} = 0.5666\overline{6}`$ by a certified minimum gap of $`\frac{1}{6000} \approx 1.67 \times 10^{-4}`$.
+In the random friend tree $`(T_n)_{n \ge 2}`$ (Krapivsky–Redner isotropic/complete redirection with $`r=1`$, starting from one edge $`T_2`$), let $`C_n`$ be the number of non-leaves (vertices of degree at least $`2`$). Astra proves that a single growth exponent $`\mu := \lim_{n \to \infty} \frac{\log \mathbb{E}[C_n]}{\log n}`$ exists and that $`\frac{\log C_n}{\log n} \to \mu`$ almost surely ([`proofs/existence.md`](proofs/existence.md), [`proofs/almost-sure-exponent.md`](proofs/almost-sure-exponent.md)). The existence theorem and [motif bounds](proofs/bracket-motifs.md) give $`113/200\le\mu\le1133/2000`$. The upper endpoint lies $`1/6000`$ below $`17/30`$, the fraction mentioned in [Strogatz’s 2022 post](https://x.com/stevenstrogatz/status/1572287647715934210).
+
+Krapivsky and Redner and the 2022 thread use $`N_k`$ for the number of vertices of degree **exactly** $`k`$. Here $`N_k(n)`$ counts vertices of degree **at least** $`k`$, so $`N_2(n)=C_n`$. The exact-degree count is $`N_k(n)-N_{k+1}(n)\le C_n`$ for every $`k\ge2`$. Thus both finite-size mean upper bounds below apply to the expectation of each exact-degree count. The cumulative lower bounds give no matching lower bound for that difference, and its proposed pointwise scaling remains open.
 
 Two independently derived upper exponents fall strictly below $`\frac{17}{30}`$ for all $`n \ge 3`$: Neon's finite-$`n`$ bracket
 ```math
@@ -99,7 +101,7 @@ Four technical points govern how statements from different proofs can (and canno
 
 Let $`(T_n)_{n \ge 2}`$ be the random friend tree, $`C_n = \#\{v \in V(T_n) : \deg_{T_n}(v) \ge 2\}`$, and $`N_k(n) = \#\{v \in V(T_n) : \deg_{T_n}(v) \ge k\}`$ for $`k \ge 2`$. Every part below states its exact proof dependency.
 
-1. **Finite-$`n`$ mean bounds (refuting $`17/30`$ for $`\mathbb{E}[C_n]`$).**
+1. **Finite-$`n`$ mean bounds for the core size.**
    * *(a) Tightest two-sided exponent bracket — depends solely on Neon Theorem 1 ([`proofs/bracket-motifs.md`](proofs/bracket-motifs.md)):* For every integer $`n \ge 3`$,
      ```math
      \frac{7304352308}{8763936965}\prod_{j=3}^{n-1}\!\left(1 + \frac{113}{200j}\right)
@@ -111,7 +113,7 @@ Let $`(T_n)_{n \ge 2}`$ be the random friend tree, $`C_n = \#\{v \in V(T_n) : \d
      \limsup_{n \to \infty}\frac{\log \mathbb{E}[C_n]}{\log n} \;\le\; \frac{1133}{2000} \;=\; \frac{17}{30} - \frac{1}{6000} \;<\; \frac{17}{30},
      \qquad\text{hence }\; \mathbb{E}[C_n] \neq n^{17/30 + o(1)}.
      ```
-   * *(b) Independent second refutation of $`17/30`$ — depends solely on Astra's banded upper bound ([`proofs/upper-bound-banded.md`](proofs/upper-bound-banded.md)):* For every integer $`n \ge 3`$,
+   * *(b) Independent upper bound below $`17/30`$ — depends solely on Astra's banded upper bound ([`proofs/upper-bound-banded.md`](proofs/upper-bound-banded.md)):* For every integer $`n \ge 3`$,
      ```math
      \mathbb{E}[C_n] \;\le\; \frac{1539738114735}{3908512529}\prod_{j=3}^{n-1}\!\left(1 + \frac{5657}{9983j}\right),
      \qquad \frac{5657}{9983} = \frac{17}{30} - \frac{1}{299490} < \frac{17}{30}.
@@ -199,7 +201,7 @@ Three packaging notes apply to this self-contained repository (no proof text or 
 2. Relative path lookups in three helper scripts (`verify/motif-bracket/verify_python_cross.py`, `verify/cross-charging/as_lower_check.py`, and `verify/polynomial-lower/verify_as_lower.py`) were adapted to the `verify/` directory layout so every check runs from a fresh clone with zero manual path setup.
 3. On Astra's banded bound, the primary `check.cpp` (`prefactor = 1539738114735/3908512529 ≈ 393.944782`) and the independent `verify_banded.cpp` (`prefactor = 1539738113358/3908512428 ≈ 393.944791`) differ by $`10^{-5}`$ in the product prefactor due to conservative integer rounding; both certify the identical exponent `5657/9983`.
 
-*(Note on historical references inside `proofs/`: every file in [`proofs/`](proofs/README.md) is preserved verbatim as at its pinned commit with only a one-line attribution header prepended. In particular, references inside `proofs/polynomial-scale-lower.md`, `proofs/almost-sure-lower.md`, and `proofs/cross-charging.md` to "`REPORT.md` §§3.3–3.5" or "the earlier report" refer to the earlier `[0.543, 0.586]` baseline write-up rather than this repository's top-level `REPORT.md`. That earlier baseline write-up is not packaged separately here; its exact verification scripts live in [`verify/baseline/`](verify/baseline/) and its two cold reviews in [`reviews/review-baseline-gemini.md`](reviews/review-baseline-gemini.md) and [`reviews/review-baseline-glm.md`](reviews/review-baseline-glm.md).)*
+*(Note on historical references inside `proofs/`: references inside `proofs/polynomial-scale-lower.md`, `proofs/almost-sure-lower.md`, and `proofs/cross-charging.md` to "`REPORT.md` §§3.3–3.5" or "the earlier report" refer to the earlier `[0.543, 0.586]` baseline write-up rather than this repository's top-level `REPORT.md`. That earlier baseline write-up is not packaged separately here; its exact verification scripts live in [`verify/baseline/`](verify/baseline/) and its two cold reviews in [`reviews/review-baseline-gemini.md`](reviews/review-baseline-gemini.md) and [`reviews/review-baseline-glm.md`](reviews/review-baseline-glm.md).)*
 
 ### 4.3 Verification suites executed by `verify/run_all.sh`
 
@@ -243,7 +245,7 @@ Two non-trivial `GAP` verdicts occurred during review:
   *(the arXiv abstract displays $`n^{9/10}`$ as an upper ceiling, whereas the written proof of Proposition 6.22 yields $`1 - \gamma/2 = \sqrt{2}-1/2 \approx 0.914214`$)*. Their Theorem 4.8 also proves $`c_k < \liminf_{n\to\infty} N_{k+1}(n)/N_k(n)`$ a.s. (with $`N_{k+1}(n)/N_k(n) \le 1`$ by nesting) for every fixed $`k \ge 2`$. Existence and exact value of $`\mu`$ were left open.
 * **Hartle, Krapivsky, Redner & Zhang (2026)** (*Anomalous scaling in redirection networks*, [arXiv:2604.01540](https://arxiv.org/abs/2604.01540), *Phys. Rev. E* 114, 034314) cite the earlier $`\mu \approx 0.566`$ estimate, report $`\mu \approx 0.569`$ from their own finite-size isotropic-redirection fit over $`N = 10^2\text{--}10^6`$ (Fig. 6), and solve two *modified* local redirection models (DAN and PAN) analytically, noting that isotropic redirection itself still lacks a closed recurrence or exact exponent.
 
-**Dated literature check (2026-11-22):** live arXiv API queries across `math.PR`, `math.CO`, `cond-mat.stat-mech`, and `physics.soc-ph` and web searches found no published paper or preprint refuting $`\mu = 17/30`$, proving existence of $`\mu`$, or determining the exact value of $`\mu`$.
+**Dated literature check (2026-11-22):** live arXiv API queries across `math.PR`, `math.CO`, `cond-mat.stat-mech`, and `physics.soc-ph` and web searches found no published paper or preprint excluding $`\mu = 17/30`$, proving existence of $`\mu`$, or determining the exact value of $`\mu`$.
 
 ---
 

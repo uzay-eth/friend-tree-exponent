@@ -1,3 +1,5 @@
+> Editorial note. The comparison with $`17/30`$ has been reworded for attribution.
+
 VERDICT: CORRECT
 
 # Cold referee report
@@ -67,7 +69,7 @@ For L > L_F the f representative has degree at least D₀ and the same κ and h.
 
 ### Theorem 1 and Corollary 2
 
-The conditional drift relation gives the one-step inequality with factor 1+λ/n. Applying total expectation and inducting from the single-core T₃ gives the claimed products. The pointwise inequalities divide by positive constants. In particular the positive lower initial value propagates through the expectation inequality. The exact product has order n^λ by the gamma-ratio asymptotic, or by summing log(1+λ/j) = λ/j + O(j⁻²). This proves the two liminf and limsup inequalities and the strict refutation of 17/30 for the expectation exponent.
+The conditional drift relation gives the one-step inequality with factor 1+λ/n. Applying total expectation and inducting from the single-core T₃ gives the claimed products. The pointwise inequalities divide by positive constants. In particular the positive lower initial value propagates through the expectation inequality. The exact product has order n^λ by the gamma-ratio asymptotic, or by summing log(1+λ/j) = λ/j + O(j⁻²). This proves the two liminf and limsup inequalities and the upper bound below $`17/30`$ for the expectation exponent.
 
 For n_k = 2^k, Markov bounds the probability of C_{n_k} > n_k^(1133/2000+ε) by O(2^(−kε)). The first Borel–Cantelli lemma applies to the summable series. Core counts are nondecreasing, so the same eventual bound between dyadic times holds with the constant 2^(1133/2000+ε). A countable intersection over rational ε decreasing to zero gives Corollary 2. The theorem permits distinct liminf and limsup. The external convergence results mentioned in the proof's remark were outside the audit.
 
