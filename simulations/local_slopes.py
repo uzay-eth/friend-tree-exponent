@@ -77,7 +77,7 @@ def plot(rows, filename):
     full = fig.add_subplot(grid[0, :])
     small = fig.add_subplot(grid[1, 0])
     late = fig.add_subplot(grid[1, 1])
-    fig.suptitle("Growth of the mean nonleaf core at fixed time", fontsize=17)
+    fig.suptitle("Growth of the mean core size at fixed time", fontsize=17)
 
     for ax, selected in [(full, rows), (small, rows[3:13]), (late, rows[20:])]:
         ax.set_xscale("log")
