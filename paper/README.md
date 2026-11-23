@@ -21,3 +21,26 @@ done
 ```
 
 The same Tectonic command also works with the two files side by side. The bibliography is embedded in the source. The [submission sheet](submission-sheet.md) gives the title, author, plain abstract and other metadata.
+
+## Replaying the headline certificates offline
+
+From the repository root, these commands regenerate the two motif arrays and verify them and the independent degree-band construction. They require GCC with OpenMP, G++ with C++17 and undefined-behaviour sanitizer support, GMP development headers and gzip. The full seven-suite run also installs pinned Python packages.
+
+```bash
+set -e
+out=$(mktemp -d)
+gcc -O3 -Wall -Wextra -fopenmp verify/motif-bracket/cert_build.c -lm -o "$out/build"
+gcc -O3 -fopenmp -fsanitize=undefined -fno-sanitize-recover=all \
+  verify/motif-bracket/cert_verify_gmp.c -lgmp -o "$out/verify"
+"$out/build" 1 1133 2000 "$out/upper.bin"
+"$out/build" 2 113 200 "$out/lower.bin"
+sha256sum "$out/upper.bin" "$out/lower.bin"
+"$out/verify" "$out/upper.bin"
+"$out/verify" "$out/lower.bin"
+gzip -dc verify/banded-upper/recipe.txt.gz > "$out/recipe.txt"
+g++ -std=c++17 -O2 -fsanitize=undefined -fno-sanitize-recover=all \
+  verify/banded-upper/check.cpp -o "$out/banded"
+"$out/banded" verify/banded-upper/geometry.txt "$out/recipe.txt" 5657 9983
+```
+
+Appendices A and B give the reference digests, header requirements, integer bounds and expected counts. The seven-suite command also runs the separately written degree-band verifier.

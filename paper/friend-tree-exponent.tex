@@ -8,6 +8,8 @@
 \hypersetup{pdftitle={The non-leaf growth exponent of the random friend tree},
             pdfauthor={Can Uzay},pdfsubject={Probability on random trees}}
 \newtheorem{theorem}{Theorem}[section]
+\newtheorem*{couplingfact}{Coupling principle}
+\newtheorem*{marginalfact}{Marginal site bound}
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{proposition}[theorem]{Proposition}
 \newcommand{\E}{\mathbb E}
@@ -20,7 +22,7 @@
 \begin{document}
 \maketitle
 \begin{abstract}
-In the random friend tree, each new vertex chooses an existing vertex uniformly and attaches to a uniformly chosen neighbor of that vertex. Let $C_n$ be the number of non-leaves at size $n$. We prove that $\log \mathbb{E}[C_n]/\log n$ and $\log C_n/\log n$ converge to the same deterministic exponent $\mu$, the latter almost surely. The proof plants finite seeds in a continuous-time embedding and controls the interaction across the edge joining each seed to the rest of the tree. Exact rational drift certificates give finite-size product bounds and imply $113/200 \le \mu \le 1133/2000 < 17/30$. An independent certificate based on degree bands gives the upper bound $5657/9983$, also strictly below $17/30$.
+In the random friend tree, each new vertex chooses an existing vertex uniformly and attaches to a uniformly chosen neighbour of that vertex. Let $C_n$ be the number of non-leaves at size $n$. We prove that $\log \mathbb{E}[C_n]/\log n$ and $\log C_n/\log n$ converge to the same deterministic exponent $\mu$, the latter almost surely. The proof plants finite seeds in a continuous-time embedding and controls the interaction across the edge joining each seed to the rest of the tree. Computer-assisted proofs with exact rational drift certificates give finite-size product bounds and imply $113/200 \le \mu \le 1133/2000 < 17/30$. An independent certificate based on degree bands gives the upper bound $5657/9983$, also strictly below $17/30$.
 \end{abstract}
 
 \section{Model and results}
@@ -45,9 +47,9 @@ A separate upper certificate gives
 \E C_n\le\frac{1539738114735}{3908512529}P_{5657/9983}(n).
 \]
 \end{theorem}
-Since $\log P_a(n)=a\log n+O(1)$ by summing $\log(1+a/j)=a/j+O(j^{-2})$, the first pair gives $0.5650\le\mu\le0.5665$. The upper endpoints of the two constructions lie $1/6000$ and $1/299490$, respectively, below $17/30$. For $k\ge2$, $N_{=k}(n)=N_{\ge k}(n)-N_{\ge k+1}(n)\le C_n$, so both product upper bounds apply to its mean. For each fixed degree $k\ge2$, a positive fraction of the core eventually has that degree almost surely (Proposition~\ref{prop:exact-degree}).
+Since $\log P_a(n)=a\log n+O(1)$ by summing $\log(1+a/j)=a/j+O(j^{-2})$, the first pair and Theorem~\ref{th:exist} give $0.5650\le\mu\le0.5665$. The upper endpoints of the two constructions lie $1/6000$ and $1/299490$, respectively, below $17/30$. For $k\ge2$, $N_{=k}(n)=N_{\ge k}(n)-N_{\ge k+1}(n)\le C_n$, so both product upper bounds apply to its mean. The prefactors come from the verified weights and have not been optimized. For each fixed degree $k\ge2$, a positive fraction of the core eventually has that degree almost surely (Proposition~\ref{prop:exact-degree}).
 
-This growth rule is a one-step random-walk attachment rule in the family studied by Saramäki and Kaski and by Evans and Saramäki \cite{SK,ES}. The same transition appears in single-link mediation-driven attachment \cite{HIH} and in the $p=0,q=1$ friend-of-a-friend model, started there from a triangle \cite{LSS}. Cannings and Jordan proved that leaves occupy an asymptotic fraction one almost surely for walks of length one \cite[Theorem~2.1]{CJ}. Krapivsky and Redner called the rule isotropic redirection and reported $0.566$ for the growth exponent of the nucleus (the non-leaves), with fitted slopes between $0.5652$ and $0.5673$, and proposed a scaling law for individual degree counts \cite[Eq.~(1) and Sec.~5.1]{KR}. After speaking with Redner, Strogatz wrote: ``It's an open problem to prove that 17/30 is really the exponent'' \cite{Strogatz}. For the relation to other forms of redirection see the survey \cite{KRsurvey}. In the scaling law of \cite{KR}, $N_k$ counts vertices of degree exactly $k$.
+This growth rule is a one-step random-walk attachment rule in the family studied by Saramäki and Kaski and by Evans and Saramäki \cite{SK,ES}. The same transition appears in single-link mediation-driven attachment \cite{HIH} and in the $p=0,q=1$ friend-of-a-friend model, started there from a triangle \cite{LSS}. Cannings and Jordan proved that leaves occupy an asymptotic fraction one almost surely for walks of length one \cite[Theorem~2.1]{CJ}. Krapivsky and Redner called the rule isotropic redirection and reported $0.566$ for the growth exponent of the nucleus (the non-leaves), with fitted slopes between $0.5652$ and $0.5673$, and proposed a scaling law for individual degree counts \cite[Eq.~(1) and Sec.~5.1]{KR}. After speaking with Redner, Strogatz wrote: ``It's an open problem to prove that 17/30 is really the exponent'' \cite{Strogatz}. Enhanced redirection has related numerical degree laws \cite{GKR}. Earlier redirection to a target's ancestor was studied in \cite{KRancestor}; see also the survey \cite{KRsurvey}. In the scaling law of \cite{KR}, $N_k$ counts vertices of degree exactly $k$.
 
 Addario-Berry et al.\ studied the process under the name random friend tree \cite{AB}. Their Propositions 6.20 and 6.22 give almost-sure lower and upper logarithmic bounds $(\sqrt{13}-3)/6$ and $\sqrt 2-1/2$, approximately $0.1009$ and $0.9142$. The upper number here comes from their Proposition~6.22; their abstract states $9/10$. They also proved comparability of the cumulative counts at successive fixed degrees. Hartle et al.\ studied modifications of the redirection rule that admit recurrences for leaf degrees. For the original process they report a numerical fit of $0.569$ \cite[Fig.~6]{HKRZ}.
 
@@ -63,13 +65,14 @@ potentials used in Theorem~\ref{th:bracket}.
 \section{Growth from finite seeds}\label{sec:exist}
 Give each vertex a rate-one Poisson clock. At a ring the source chooses a uniform neighbour and a new leaf attaches there. Each newborn starts an independent clock. Conditional on the tree at size $j$, the next waiting time is exponential of rate $j$, independent of the choice of source and of its neighbour. The jump chain is therefore the prescribed discrete chain, independent of the sequence of waiting times. The sum of the waiting times diverges almost surely: their means have divergent sum and their centred partial sums converge in $L^2$ and almost surely by the summability of $j^{-2}$.
 
-We will use the following way of constructing a coupling. After a ring, or
-at a deterministic time, conditional on the history revealed up to that
-time the remaining waits are independent exponentials of mean one.
-They can therefore be sampled afresh. To check a construction it suffices
-at each ring to give the correct conditional law of the holding time,
-source and neighbour. Induction gives the law at every finite jump index,
-and non-explosion then gives the law on every bounded time interval.
+\begin{couplingfact}
+A construction with the prescribed conditional law of each waiting time, source
+and neighbour given the revealed past has the law of the friend-tree process.
+At a processed ring or deterministic time, remaining clocks may be sampled afresh.
+\end{couplingfact}
+\begin{proof}
+The independent exponential clocks have independent, mean-one residual waits at such times by the strong Markov property. A fresh uniform mark gives the stated choice of neighbour. Induction on the jump index gives the law through each finite number of births, and non-explosion gives the law on bounded time intervals.
+\end{proof}
 A neighbour ordering chosen from the past may be used with a fresh
 uniform mark. To choose among $d+1$ neighbours one may also make a
 uniform choice among the first $d$, accepting it with independent probability
@@ -91,9 +94,9 @@ First keep $u$ silent for one unit. If $u$ has a leaf, tag one; it stays a leaf.
 
 For one further unit keep $u$ silent and require at least $M$ rings of its tagged leaf. The conditional probability of this stage is $e^{-1}\Prob(\mathrm{Pois}(1)\ge M)$. These rings give $u$ at least $M+1$ leaves, counting the tagged one, and still $c_u\le2$. Only a ring of $u$ could promote its leaf.
 
-During the third unit require exactly one ring of $u$. With leaves ordered first, a mark below $M/(M+2)$ forces a promotion at $u$. Call the promoted vertex $v$ and require silence of $v$ and its new leaf until the end of the unit. This last conditional probability is at least $e^{-2}$. Additional leaf arrivals at $u$ cannot spoil these requirements.
+During the third unit require exactly one ring of $u$. Until that ring $u$ has at least $M+1$ leaves and at most two core neighbours. Hence $L_u/D_u\ge(M+1)/(M+3)>M/(M+2)$, so with leaves ordered first a mark below $M/(M+2)$ forces a promotion at $u$. Call the promoted vertex $v$ and require silence of $v$ and its new leaf until the end of the unit. This last conditional probability is at least $e^{-2}$. Additional leaf arrivals at $u$ cannot spoil these requirements.
 
-Next silence $u$ for $k-2$ units. Beginning with a prescribed edge incident to $v$ in $T$, adjoin the remaining vertices in parent-before-child order. In each unit give an internal neighbour of the desired recipient exactly one ring and require silence of the other current branch vertices and of the newborn after the ring. The ringing source has at most $k+1$ neighbours including the exterior edge, so its choice has probability at least $1/(k+1)$. There are at most $k-1$ current branch vertices, together with $u$ and the newborn. Including the silence of $u$, these requirements have conditional probability at least $e^{-(k+1)}/(k+1)$ per unit. Thus we may take
+Next silence $u$ for $k-2$ units. Beginning with a prescribed edge incident to $v$ in $T$, adjoin the remaining vertices in parent-before-child order. In each unit give an internal neighbour of the desired recipient exactly one ring and require silence of the other current branch vertices and of the newborn after the ring. With at most $k-1$ branch vertices before this birth, the ringing source has degree at most $k-1$ including the exterior edge. The weaker bound $1/(k+1)$ suffices for its choice probability. There are at most $k-1$ current branch vertices, together with $u$ and the newborn. Including the silence of $u$, these requirements have conditional probability at least $e^{-(k+1)}/(k+1)$ per unit. Thus we may take
 \[
 p=\frac{e^{-2}(1-e^{-1})}{2}\,e^{-1}\Prob(\mathrm{Pois}(1)\ge M)
    \, e^{-3}\frac{M}{M+2}
@@ -132,13 +135,19 @@ Assign each good history to the first numbered original vertex whose degree is a
 \subsection{Iteration and the mean exponent}
 Stop a process from the edge at its first visit to size $k$. Before that visit there are at most $k$ core vertices. After it, the strong Markov property and monotonicity in elapsed time give $F(s)\le k+\max_{|T|=k}\E C_T(s)$. Fix a maximizing seed and a maximizing root as just described, before the preparations.
 
-For each old core vertex $u$, define $X_u$ using the actual tree path alone. At time $t+h$, take every edge $uw$ whose component on the $w$ side contains no vertex that was core at $t$. Count all vertices on those sides that are core at time $t+h+s$. Components used for different edges are disjoint: they are the outward components attached to the connected subtree of old cores, and later leaf additions cannot join them. Hence $\sum_u X_u\le C(t+h+s)$ on each path.
-
-For a particular eligible $u$ we may evaluate $\E[X_u\mid\mathcal F_t]$ using the preparation and coupling for that site. On success its planted branch is one of the components counted by $X_u$. Success is determined at $t+h$, so the weighted lower bound \eqref{eq:cut} applies conditionally there. The marginal continuation preserves the tree law for each $u$. We may therefore sum the resulting bounds for these path functionals even when the clock requirements at two sites are incompatible. For all sufficiently large $s$ and every $t\ge0$, Lemma~\ref{lem:eligible} gives
+\begin{marginalfact}
+For all sufficiently large $s$ and every $t\ge0$, the following bound holds:
 \[
 F(t+h+s)\ge F(t)\frac{p}{4k}e^{-\eta s}
                     \big(F(s)-k-O_k(e^{-s})\big).
 \]
+\end{marginalfact}
+\begin{proof}
+For each old core vertex $u$, define $X_u$ using the actual tree path alone. At time $t+h$, take every edge $uw$ whose component on the $w$ side contains no vertex that was core at $t$. Count all vertices on those sides that are core at time $t+h+s$. Components used for different edges are disjoint: they are the outward components attached to the connected subtree of old cores, and later leaf additions cannot join them. Hence $\sum_u X_u\le C(t+h+s)$ on each path.
+
+For a particular eligible $u$ we may evaluate $\E[X_u\mid\mathcal F_t]$ using the preparation and coupling for that site. On success its planted branch is one of the components counted by $X_u$. Success is determined at $t+h$, so the weighted lower bound \eqref{eq:cut} applies conditionally there. The marginal continuation preserves the tree law for each $u$. We may therefore sum the resulting bounds for these path functionals even when the clock requirements at two sites are incompatible. Lemma~\ref{lem:eligible} supplies at least $C(t)/4$ eligible sites, and taking expectations proves the bound.
+\end{proof}
+
 After the first birth the promotion rate $\sum_u L_u/D_u$ is at least one: a single core contributes one, and otherwise the two ends of the core each contribute at least one half. Writing $\tau$ for the first birth time and integrating the intensity gives $F(t)\ge\E[(t-\tau)^+]\to\infty$; the intensity is bounded on $[0,t]$ by $N(t)$, which is integrable.
 
 For fixed large $s$ the last parenthesis is at least $F(s)/2$, so the multiplier $B_s$ of $F(t)$ is positive. Iterate at $t=1+j(h+s)$ and interpolate by monotonicity to obtain $\liminf t^{-1}\log F(t)\ge\log B_s/(h+s)$. Take $s$ along a sequence attaining the upper limit. The two limiting rates differ by at most $\eta$. Sending $M\to\infty$ and $\epsilon\downarrow0$ gives a common limit $\mu\in[0,1]$, with the upper bound from $F(t)\le2e^t$. The block length $s$ tends to infinity for fixed $M,\epsilon,k$ before the loss $\eta$ is sent to zero.
@@ -318,16 +327,16 @@ Applying the same dyadic argument as in Section~\ref{sec:motif} to this product 
 
 \section{Computer-assisted verification}\label{sec:checks}
 
-Appendix~\ref{app:motif} reduces the drift for every rooted tree to four families of inequalities. For each direction the GMP checker verifies $17{,}329{,}108$ inequalities, computes the comparison with $C_n$ and evaluates the three-vertex seed. The finite vertex reduction assumes $D_0\le K_F+1$, which holds here since $24\le151$. This header condition is checked by inspection. The remaining header conditions and machine-integer ranges for these coefficients are documented in \path{proofs/bracket-motifs-code-map.md}. Appendix~\ref{app:band} reduces the independent upper bound to $226{,}545{,}617$ finite rows, two inequalities for unbounded degrees and a comparison for every newborn label. Both the primary and independent banded checkers use signed integer arithmetic with undefined-behaviour checks enabled. The two sets of admissible weights differ; the stated prefactor uses the primary construction.
+Appendix~\ref{app:motif} reduces the drift for every rooted tree to four families of inequalities. One implementation exhaustively checks the motif rows. For each direction the GMP checker verifies $17{,}329{,}108$ inequalities, computes the comparison with $C_n$ and evaluates the three-vertex seed. The finite vertex reduction assumes $D_0\le K_F+1$, which holds here since $24\le151$. This header condition is checked by inspection. The remaining header conditions and machine-integer ranges for these coefficients are documented in \path{proofs/bracket-motifs-code-map.md}. Appendix~\ref{app:band} reduces the independent upper bound to $226{,}545{,}617$ finite rows, two inequalities for unbounded degrees and a comparison for every newborn label. Both the primary and independent banded checkers use signed integer arithmetic with undefined-behaviour checks enabled. The two sets of admissible weights differ; the stated prefactor uses the primary construction.
 
-There is also a direct test of the drift. Given a fixed tree, attach a leaf in turn at each target $w$, recompute the full potential and weight its change by $\sum_{v\sim w}1/(nD_v)$. For the motif potential the test covers both signs on all $32{,}972$ rooted tree shapes of sizes three through fourteen with a non-leaf root. The product bounds are also compared with archived exact means at sizes three through twenty-one. For the banded potential the labels depend on the growth history. The test follows all ordered sequences of attachment targets from $T_3$ through size nine, including the intermediate histories ($23{,}116$ in total). On selected trees the separate \path{motif_identity.py} checks the generator decomposition term by term, its local inequalities and its comparison with the core size. These tests exercise the implementation on particular trees; the reductions and exhaustive row inequalities prove the bounds at arbitrary sizes.
+There is also a direct test of the drift. Given a fixed tree, attach a leaf in turn at each target $w$, recompute the full potential and weight its change by $\sum_{v\sim w}1/(nD_v)$. For the motif potential the test covers both signs on all $32{,}972$ rooted tree shapes of sizes three through fourteen with a non-leaf root. The product bounds are also compared with archived exact means at sizes three through twenty-one. For the banded potential the labels depend on the growth history. The test follows all ordered sequences of attachment targets from $T_3$ through size nine, including the intermediate histories ($23{,}116$ in total). On selected trees the separate \path{motif_identity.py} checks the generator decomposition term by term, its local inequalities and its comparison with the core size. The exhaustive small-size tests stop below the first tail state or band crossing. The Opus referee also tested the motif potential on 135 trees per direction, up to size 3,500, and the banded potential on 16 histories up to size 220 crossing degrees 16, 32, 80 and 200. These tests exercise the implementation on particular trees; the reductions and exhaustive row inequalities prove the bounds at arbitrary sizes.
 
 The following commands run the seven certificate suites and the direct tests, respectively, from the root of the versioned supplement~\cite{supplement}.
 \begin{verbatim}
 bash verify/run_all.sh
 bash verify/tree-drift/run.sh
 \end{verbatim}
-The first command also exercises negative controls, including six perturbations of the motif inputs and fourteen checks of invalid inputs or failed comparisons in the independent banded suite. It uses GMP, C and C++ with OpenMP and the undefined-behaviour sanitizer, gzip, and Python~3 with virtual environments and pip. The supplement supplies the pinned dependencies and per-suite instructions.
+The first command also exercises negative controls, including six perturbations of the motif inputs and fourteen checks of invalid inputs or failed comparisons in the independent banded suite. It uses GMP, C and C++ with OpenMP and the undefined-behaviour sanitizer, gzip, and Python~3 with virtual environments and pip. The Python setup installs pinned packages. The build notes give offline commands for the two headline certificates using C, C++, GMP and gzip.
 
 \section{Degree counts and related bounds}\label{sec:related}
 
@@ -337,7 +346,7 @@ in the supplement~\cite{supplement}. The symbols for degree counts below follow
 Section~1 throughout: $N_{\ge k}$ here is denoted $N_k$ in the cumulative degree-tail proof.
 
 \paragraph{Earlier lower certificates.}
-For bounded local weights the supplement gives sufficient conditions under which a lower drift inequality at exponent $\delta$ implies $\liminf_n\log C_n/\log n\ge\delta$ almost surely by Theorem~B of the supplementary lower-drift proof. Applications give $\delta=543/1000$ and, by transferring terms between adjacent vertices, $\delta=11/20$ by the cross-charging argument. The earlier two-sided tables at $543/1000$ and $293/500$ also yield $\liminf_n C_n/n^{543/1000}>0$ and almost-sure convergence of the lower potential divided by $n^{543/1000}$ in $(0,\infty]$ by the polynomial-scale argument in the supplement. These arguments are independent of the common-exponent theorem.
+For bounded local weights the supplement gives sufficient conditions under which a lower drift inequality at exponent $\delta$ implies $\liminf_n\log C_n/\log n\ge\delta$ almost surely by Theorem~B of the supplementary lower-drift proof. The per-vertex reduction, including its two unbounded cases, is given in the baseline section of \path{proofs/supporting-results-audit.md}. Applications give $\delta=543/1000$ and, by transferring terms between adjacent vertices, $\delta=11/20$ by the cross-charging argument. The earlier two-sided tables at $543/1000$ and $293/500$ also yield $\liminf_n C_n/n^{543/1000}>0$ and almost-sure convergence of the lower potential divided by $n^{543/1000}$ in $(0,\infty]$ by the polynomial-scale argument in the supplement. These arguments are independent of the common-exponent theorem.
 
 \paragraph{The cumulative degree tail.} The upper estimate below sums the contributions of vertices by the time of their promotion. The lower estimate counts eligible old core vertices that can acquire enough leaf neighbours to reach degree $k$.
 Write $a_m=\E C_m$. For $k\ge2$ the additional bounds are
@@ -374,8 +383,8 @@ clocks for one further unit. Every neighbour of the planted root is then silent,
 so the root has degree $d$ throughout $[l+h,l+h+1]$. These sufficient events use
 disjoint site inputs and are conditionally independent given $\mathcal F_l$, with common probability $q=p(2,d)e^{-(d+1)}>0$. They give distinct roots.
 
-For $m\ge C(l)/6$ sites, the probability of fewer than $mq/2$ successes is at most
-$e^{-mq/8}$ by the binomial lower-tail bound. Write $X_d(t)$ for the exact-degree count
+For $r\ge C(l)/6$ sites, the probability of fewer than $rq/2$ successes is at most
+$e^{-rq/8}$ by the binomial lower-tail bound. Write $X_d(t)$ for the exact-degree count
 in continuous time. The conditional probability of
 $\inf_{l+h\le t\le l+h+1}X_d(t)<qC(l)/12$ is thus at most $e^{-qC(l)/48}$.
 By Theorems~\ref{th:exist} and~\ref{th:bracket} and the continuous-time limit in
@@ -446,8 +455,7 @@ is $0.56927\pm0.00348$ and between the last two it is
 $0.56635\pm0.00037$. The observed slopes depend on size and the fitting
 criterion. Our fixed-size fits give central values below $0.569$.
 The published caption gives the size range, number of runs and type of fit;
-it leaves the weighting unspecified. The difference between the published
-$0.566$ and $0.569$ estimates remains unexplained. Theorem~\ref{th:bracket}
+it leaves the weighting unspecified. On the same fixed-size sample, weighting by inverse sample-mean variances gives $0.56758\pm0.00047$. The weighting thus matters when comparing the central values; the published sampling error is unavailable. Even the exact small-size slope $n(a_{n+1}-a_n)/a_n$ is about $0.5833$ at $n=20$. Theorem~\ref{th:bracket}
 constrains the limiting exponent and allows larger slopes on a finite range.
 
 \paragraph{Local slope at fixed time.}
@@ -468,7 +476,7 @@ how often this approximation was used. The second implementation also maps a uni
 \caption{Core growth at integer times $1$ through $31$. The horizontal
 coordinate is the sampled mean population. Bars give one delete-one-trajectory
 jackknife standard error. Through $t=28$ there are $912$ trajectories; $91$
-continue to $t=31$. The lower panels enlarge the published size range and
+continue to $t=31$. The lower panels enlarge the region around the published size range and
 the late checkpoints, respectively. The dashed line marks the single
 fixed-size fit of Hartle et al.\ over its fitted range.}
 \label{fig:slopes}
@@ -810,6 +818,12 @@ $t$ with the post-bud child count. All five cases include both choices
 of $h$ and use only states of degree at least two.
 
 \paragraph{Edge inequalities.}
+For example, let an inner parent gain while its child has degree $48$. The
+child has $t=24/48=1/2$. Its credit times the parent jump is
+$(d_0+d_1)/96$, with $d_0,d_1$ the two parent jumps in
+\eqref{eq:motif-quadratic}. For the upper bound the average of the two
+corner charges is $\max(d_0,d_1)/48$, which bounds that term even when the
+jumps have opposite signs. For the lower bound use the minimum.
 For all $(a,b)\in\mathcal P\times\mathcal W$, use
 \eqref{eq:motif-edge} to form the following corner expression.
 Budding preserves the degree of an inner index. A gain from $D_0-1$ lands
@@ -938,7 +952,7 @@ There are rational tables giving potentials $\Phi_+,\Phi_-$ with
 The accompanying program \texttt{cert\_build.c} produces the integer
 arrays of weights and auxiliary data for each direction. Its triples
 of input integers (direction, numerator, denominator) are $(1,1133,2000)$
-and $(2,113,200)$. Floating-point compiler choices in this search can affect the proposed integers. The exact comparisons and constants here concern the two arrays identified below. The reference build uses GCC 13.3.0 with \texttt{-O3 -Wall -Wextra -fopenmp} and links the math library. A rebuild with a different digest requires a fresh exact check of the signs and printed constants. These SHA-256 digests identify the two verified binaries (concatenate the two lines for each direction).
+and $(2,113,200)$. Floating-point compiler choices in this search can affect the proposed integers. The exact comparisons and constants here concern the two arrays identified below. The supplement archives lossless copies in \path{verify/motif-bracket/reference/}; decompression gives the exact inputs to the GMP checker. The reference build uses GCC 13.3.0 with \texttt{-O3 -Wall -Wextra -fopenmp} and links the math library. A rebuild with a different digest requires a fresh exact check of the signs and printed constants. These SHA-256 digests identify the two verified binaries (concatenate the two lines for each direction).
 \begin{center}\small
 \begin{tabular}{l@{\quad}l}
 Upper & \texttt{3a4aef888a5b567a8ada05f9546f98c9}\\
@@ -1083,7 +1097,7 @@ degree below six supplies its true pair, even at degree five and cap five,
 and every other entry certifies degree at least six. This selects a core
 neighbour distinct from the promoted vertex. A tail creator always gives
 the sole mark $H$. These updates preserve all assertions by induction.
-They depend on the actual history, so conditional expectations below use
+For example, promote a leaf of the initial centre and then let the centre gain a leaf. After promotion both core vertices have $(D,c)=(2,1)$ and record the other as their only core neighbour. The gain changes the centre to $(3,1)$ and updates its recorded degree at the other vertex to three. The labels depend on the actual history, so conditional expectations below use
 $\mathcal F_n$ throughout.
 \end{proof}
 
@@ -1316,7 +1330,7 @@ gives the constants stated in the lemma.
 \raggedright
 \bibitem{SK} J.~Saramäki and K.~Kaski, Scale-free networks generated by random
 walkers, \emph{Physica A} \textbf{341} (2004), 80--86.
-\href{https://arxiv.org/abs/cond-mat/0404088}{arXiv:cond-mat/0404088}.
+\href{https://doi.org/10.1016/j.physa.2004.04.110}{doi:10.1016/j.physa.2004.04.110}. \href{https://arxiv.org/abs/cond-mat/0404088}{arXiv:cond-mat/0404088}.
 \bibitem{ES} T.~S.~Evans and J.~P.~Saramäki, Scale-free networks from self-organization, \emph{Physical Review E} \textbf{72} (2005), 026138. \href{https://doi.org/10.1103/PhysRevE.72.026138}{doi:10.1103/PhysRevE.72.026138}.
 \bibitem{HIH} M.~K.~Hassan, L.~Islam and S.~A.~Haque, Degree distribution, rank-size distribution, and leadership persistence in mediation-driven attachment networks, \emph{Physica A} \textbf{469} (2017), 23--30. \href{https://doi.org/10.1016/j.physa.2016.11.001}{doi:10.1016/j.physa.2016.11.001}.
 \bibitem{LSS} W.~Levens, A.~Szorkovszky and D.~J.~T.~Sumpter,
@@ -1327,7 +1341,9 @@ Friend of a friend models of network growth, \emph{Royal Society Open Science}
 paper 77, 1--5. \href{https://doi.org/10.1214/ECP.v18-2518}{doi:10.1214/ECP.v18-2518}.
 \bibitem{KR} P.~L.~Krapivsky and S.~Redner, Emergent network modularity,
 \emph{Journal of Statistical Mechanics: Theory and Experiment} (2017),
-073405. \href{https://arxiv.org/abs/1706.01514}{arXiv:1706.01514}.
+073405. \href{https://doi.org/10.1088/1742-5468/aa7a3f}{doi:10.1088/1742-5468/aa7a3f}. \href{https://arxiv.org/abs/1706.01514}{arXiv:1706.01514}.
+\bibitem{GKR} A.~Gabel, P.~L.~Krapivsky and S.~Redner, Highly dispersed networks by enhanced redirection, \emph{Physical Review E} \textbf{88} (2013), 050802. \href{https://doi.org/10.1103/PhysRevE.88.050802}{doi:10.1103/PhysRevE.88.050802}.
+\bibitem{KRancestor} P.~L.~Krapivsky and S.~Redner, Organization of growing random networks, \emph{Physical Review E} \textbf{63} (2001), 066123. \href{https://doi.org/10.1103/PhysRevE.63.066123}{doi:10.1103/PhysRevE.63.066123}.
 \bibitem{KRsurvey} P.~L.~Krapivsky and S.~Redner, The magic of networks grown by redirection, \emph{Indian Journal of Physics} \textbf{98} (2024), 3777--3787. \href{https://doi.org/10.1007/s12648-023-02874-x}{doi:10.1007/s12648-023-02874-x}.
 \bibitem{Strogatz} S.~Strogatz, post on the exponent in isotropic
 redirection, 20 September 2022.
@@ -1338,9 +1354,9 @@ C.~Kerriou and G.~Lugosi, Random friend trees, \emph{Random Structures \& Algori
 \bibitem{HKRZ} H.~Hartle, P.~L.~Krapivsky, S.~Redner and Y.~Zhang,
 Anomalous scaling in redirection networks, \emph{Physical Review E}
 \textbf{114} (2026), 034314.
-\href{https://arxiv.org/abs/2604.01540}{arXiv:2604.01540}.
+\href{https://doi.org/10.1103/9lmp-pydp}{doi:10.1103/9lmp-pydp}. \href{https://arxiv.org/abs/2604.01540}{arXiv:2604.01540}.
 \bibitem{supplement} C.~Uzay, \emph{Growth of the non-leaf population in the
 random friend tree}, supplementary proofs, certificate verifiers and
-simulation data. \href{https://github.com/uzay-eth/friend-tree-exponent/tree/b1a9fd37bb9ca0eda6c352702328b5ea06fcfdf1}{Supplementary material, revision \texttt{b1a9fd37bb9c}}.
+simulation data. \href{https://github.com/uzay-eth/friend-tree-exponent/tree/bb536bc6b4ff7a6e085ce817c65fb85f54a9f1d4}{Supplementary material, revision \texttt{bb536bc6b4ff}}.
 \end{thebibliography}
 \end{document}
