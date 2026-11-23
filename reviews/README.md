@@ -53,3 +53,21 @@ During review of the expanded existence proof, an exact counterexample settled a
 ## Paper
 
 Claude Opus 5.5 checked the 24-page preprint against the proofs, certificate inputs, numerical data and cited literature, and rebuilt the PDF from source. [Cold review and verdict](review-preprint.md)
+
+## Pre-submission referee round
+
+The four referees read the version at `526f350` independently. Their assignments overlap. The first three each checked all three headline arguments, including the full motif drift lemma. The fourth also read the main proofs in support of the introduction and the verification section.
+
+| Referee | Assigned close reading (original sections) | Report |
+| --- | --- | --- |
+| R1 · Claude Opus 5.5, max | §§1–5 | [Opus referee report](review-submission-opus.md) |
+| R2 · GPT-6.2 Astra, ultra | §§1–5 | [Astra referee report](review-submission-astra.md) |
+| R3 · Gemini 4 Neon, xhigh | §§2–4, 6–8, production and references | [Neon referee report](review-submission-neon.md) |
+| R4 · Claude Fable 5.2, max | Abstract, §§1, 5–8, production and references, with §§2–4 and the supporting proofs | [Fable referee report](review-submission-fable.md) |
+
+The README attributes the existence and degree-band proofs to GPT, the motif proof to Gemini, and several complementary bounds to Claude. The assignments therefore give the existence and degree-band arguments cold checks from Claude and Gemini, and the motif argument cold checks from Claude and GPT. All four reports also check the bibliography.
+
+- [Independent editorial assessment](review-submission-editor-gpt.md)
+- [Findings and rulings on the revision](review-submission-findings.md)
+- [Fresh cross-family confirmation of the revised manuscript](review-submission-confirmation-claude.md)
+- [Revised manuscript and source bundle](../paper/README.md)
