@@ -65,3 +65,15 @@ PASS upper 5657/9983
 PASS banded: 23116 attachment histories through n=9, 304 distinct weight queries, failures=0
 exit status 0
 ```
+
+## Addendum: recheck of the final text
+
+I reread the final [`proofs/supporting-results-audit.md`](../proofs/supporting-results-audit.md) against the version reviewed above. Only these passages changed:
+
+1. Change 1 is made. The transcript no longer names local `build/` files. It calls the runner's temporary files `xc_upper.pkl` and `xc_lower.pkl`, which matches `$TMP/xc_upper.pkl` and `$TMP/xc_lower.pkl` in [`verify/run_all.sh`](../verify/run_all.sh). The auxiliary calculations are now described as separate scripts that the deductions do not rely on. That is accurate, because each deduction is given in the text.
+2. Change 2 is made. The first person is gone.
+3. Change 3 is made. The upper-table item now reads $`P = \max(3, \min(D_{\mathrm{creator}}, 20))`$, exactly as in `certs6.py`.
+
+The baseline-tables section and all other sections are unchanged, so my findings in §§1–3 still hold. All relative links resolve. The file has no equation tag, no operator-name macro and no internal paths. The tree-drift files I reviewed are unchanged. Two new scripts, `existence_counterexample.py` and `motif_identity.py`, have since been added to `verify/tree-drift/`; this review does not cover them.
+
+**VERDICT: CORRECT** for the audit. **VERDICT: CORRECT** for the tree-drift tests I reviewed. No required changes remain.

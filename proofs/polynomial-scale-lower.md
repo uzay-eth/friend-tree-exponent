@@ -18,7 +18,7 @@ Here is the precise meaning of a local drift certificate in the proof. If $`x_{u
 
 ```math
 n\,\mathbb E\!\left[f(x_{u,n+1})-f(x_{u,n})
-       +\mathbf 1_{\{W_n\text{ is a leaf of }u\}} f(x_{y,n+1})\ \middle|\ \mathcal F_n\right]. \tag{1}
+       +\mathbf 1_{\{W_n\text{ is a leaf of }u\}} f(x_{y,n+1})\ \middle|\ \mathcal F_n\right]. \qquad (1)
 ```
 
 The last term is zero in the absence of a promotion at $`u`$. The lower certificate bounds (1) below by $`\delta f_-(x_{u,n})`$, and the upper bounds it above by $`\lambda f_+(x_{u,n})`$. In the report, (1) is evaluated by listing events that change the state of $`u`$ and crediting the entire newborn contribution to its creator. Robust bounds on the event rates give (1) at the actual rates. We use the original creator labels and root throughout. In a parent-distinguished radius-$`1`$ variant, the child counts only track children below a finite degree cap and the parent's $`(L_p,c_p,D_p)`$ descriptor is permanently `P_top` above its own cap. Any coarsening of such a radius-$`1`$ state is allowed provided the table stays bounded and satisfies the degree-$`H`$ saturation condition above. Initial positivity and (1) are the hypotheses supplied by a certificate.
@@ -35,7 +35,7 @@ L_u+\rho_u,\qquad L_u/D_u,\qquad
 A leaf gain changes $`(L_u,c_u)`$ to $`(L_u+1,c_u)`$. A promotion changes it to $`(L_u-1,c_u+1)`$ at unchanged degree and adds one core vertex with $`(L,c)=(1,1)`$. Degrees never decrease. The probability of any promotion is $`S_n/n`$, where $`S_n=\sum_{u\in K_n}L_u/D_u\le C_n`$. The credit of a single vertex need not be bounded by one. The bound used here is
 
 ```math
-\sum_{u\in K_n}\rho_u=\sum_{v\in K_n}c_v/D_v\le C_n. \tag{2}
+\sum_{u\in K_n}\rho_u=\sum_{v\in K_n}c_v/D_v\le C_n. \qquad (2)
 ```
 
 For the `certs9.py` lower table a leaf gain at $`u`$ can change its own entry and the entries at some of its old core neighbours. A class-$`\ell`$ pendant has only one such neighbour. Class B has two. A tracked “other” of degree $`d<D_{\rm cap}`$ has at most $`D_{\rm cap}-1`$ such neighbours. An “other” in `top` changes none of its neighbours' entries. An “other” stays “other” under gains and promotions, since its degree never falls and a promotion increases its core-neighbour count. A promotion at $`u`$ changes $`u`$'s entry, introduces one new entry, and can change the entry of at most one old core neighbour, namely when $`u`$ was a pendant. It could not have been class B, and a tracked “other” retains its degree. The absolute change of each summand lies in $`[0,F]`$, including the introduction of a summand. Thus the lower jump is bounded by $`B=F\max(3,D_{\rm cap})`$.
@@ -47,7 +47,7 @@ If a core receiver $`u`$ has $`L_u\ge L_{\max}`$, its own leaf coordinate is alr
 \mathbb P(W_n\in K_n,\ L_{W_n}<L_{\max}\mid\mathcal F_n)
 &\le (L_{\max}+1) C_n/n,\\
 \mathbb E[(\Phi_{n+1}^- -\Phi_n^-)^2\mid\mathcal F_n]
-&\le B^2(L_{\max}+2)C_n/n, \tag{3}
+&\le B^2(L_{\max}+2)C_n/n, \qquad (3)
 \end{split}
 ```
 
@@ -62,7 +62,7 @@ Suppose $`v`$ is promoted at a vertex $`p`$ whose degree is at least $`H`$ at th
 ```math
 \mathbb E[X_{n+1}\mid\mathcal F_n]\ge(1+\delta/n)X_n,\qquad
 \mathbb E[Y_{n+1}\mid\mathcal F_n]\le(1+\lambda/n)Y_n,\qquad
-0\le X_n\le F N_n,\quad N_n\le Y_n\le U N_n. \tag{4}
+0\le X_n\le F N_n,\quad N_n\le Y_n\le U N_n. \qquad (4)
 ```
 
 These are full-tree states, so $`v`$ retains its parent descriptor, and $`1/D_p`$ still contributes to $`v`$'s true receiver rate. Formula (4) allows that rate to depend on the exterior history. The boundary degree is used to control jumps: an exterior receiver changes no state inside the branch. The only exterior vertex that can be seen by an inside vertex is $`p`$, and only $`v`$ sees it. Inside $`v`$'s state this neighbour is permanently `top` or `P_top` where tracked. If the table uses a remembered creator, $`p`$ was already “other” when $`v`$ was born, so its label is permanently at the cap (or the static no-claim value when that convention applies). Exterior changes do not change the membership or the $`L,c`$ of any inside core vertex. These arguments also cover an exterior receiver that is a leaf of $`p`$.
@@ -71,7 +71,7 @@ For a restricted jump, the probability of an inside promotion is at most $`N_n/n
 
 ```math
 \sum_{u\in I_n}\rho_u
-=\sum_{z\in I_n}\frac{|\{u\in I_n:u\sim z\}|}{D_z}+\frac1{D_p}\le N_n+1\le 2N_n. \tag{5}
+=\sum_{z\in I_n}\frac{|\{u\in I_n:u\sim z\}|}{D_z}+\frac1{D_p}\le N_n+1\le 2N_n. \qquad (5)
 ```
 
 The boundary term is omitted in the whole-tree case, and $`N_n\ge1`$ in either case. Using the same jump sizes as above, (5) bounds the second moments of the increments simultaneously:
@@ -79,7 +79,7 @@ The boundary term is omitted in the whole-tree case, and $`N_n\ge1`$ in either c
 ```math
 \mathbb E[(\Delta X_n)^2\mid\mathcal F_n]\le K_- N_n/n,\qquad
 \mathbb E[(\Delta Y_n)^2\mid\mathcal F_n]\le K_+ N_n/n,\quad
-K_-=(H+3)B_F^2,\quad K_+=(H+3)B_U^2. \tag{6}
+K_-=(H+3)B_F^2,\quad K_+=(H+3)B_U^2. \qquad (6)
 ```
 
 ## 3. The normalized martingale and a uniform survival probability
@@ -87,7 +87,7 @@ K_-=(H+3)B_F^2,\quad K_+=(H+3)B_U^2. \tag{6}
 Put $`P_a(m,n)=\prod_{j=m}^{n-1}(1+a/j)`$, with $`P_a(m,m)=1`$. Uniformly in $`n\ge m\ge3`$ and for fixed $`a>0`$,
 
 ```math
-e^{-a^2}(n/m)^a\le P_a(m,n)\le e^a(n/m)^a. \tag{7}
+e^{-a^2}(n/m)^a\le P_a(m,n)\le e^a(n/m)^a. \qquad (7)
 ```
 
 Indeed $`x-x^2/2\le\log(1+x)\le x`$ for $`x\ge0`$ by integration. Comparing the harmonic sum with the integral gives $`0\le\sum_{j=m}^{n-1}1/j-\log(n/m)\le1/m`$ for $`n>m`$. Also $`\sum_{j=m}^\infty j^{-2}\le1/(m-1)`$. For fixed $`m`$, $`P_a(m,n)/n^a`$ has a positive finite limit: the absolute discrepancies between $`\log(1+a/j)`$ and $`a\log(1+1/j)`$ are bounded by $`(a^2+a)/(2j^2)`$, and $`\sum_{j=m}^{n-1}\log(1+1/j)=\log(n/m)`$.
@@ -95,14 +95,14 @@ Indeed $`x-x^2/2\le\log(1+x)\le x`$ for $`x\ge0`$ by integration. Comparing the 
 Condition on the history at a starting size $`m`$. This may be an almost surely finite stopping size on the histories of interest, with the branch already specified. The following calculations can be done at each fixed $`m`$ and each history atom through that size, so they also apply conditionally at such a stopping size. From (4), iteration gives
 
 ```math
-\mathbb E[N_j\mid\mathcal F_m]\le Y_m P_\lambda(m,j)\le U N_m P_\lambda(m,j). \tag{8}
+\mathbb E[N_j\mid\mathcal F_m]\le Y_m P_\lambda(m,j)\le U N_m P_\lambda(m,j). \qquad (8)
 ```
 
 The normalized lower sum $`M_n^{(m)}=X_n/P_\delta(m,n)`$ satisfies
 
 ```math
 M_n^{(m)}=X_m+A_n+Z_n,\qquad
-Z_{j+1}-Z_j=\frac{X_{j+1}-\mathbb E[X_{j+1}\mid\mathcal F_j]}{P_\delta(m,j+1)}. \tag{9}
+Z_{j+1}-Z_j=\frac{X_{j+1}-\mathbb E[X_{j+1}\mid\mathcal F_j]}{P_\delta(m,j+1)}. \qquad (9)
 ```
 
 Here $`A_m=Z_m=0`$, and each increment of $`A`$ is the nonnegative conditional mean increment of $`M^{(m)}`$. The numerator in (9) is also the centred increment of $`X`$. Its conditional variance is at most the uncentred conditional second moment in (6). Let $`q=2\delta-\lambda>0`$. By (6)–(8), the sum of martingale increment second moments, conditional on the starting history, is at most
@@ -111,7 +111,7 @@ Here $`A_m=Z_m=0`$, and each increment of $`A`$ is the nonnegative conditional m
 \begin{split}
 K_- U N_m \sum_{j=m}^\infty\frac{P_\lambda(m,j)}{jP_\delta(m,j+1)^2}
 &\le K_- U e^{\lambda+2\delta^2} N_m \sum_{j=m}^\infty \frac{(j/m)^{-q}}j\\
-&\le D_- N_m,\qquad D_-=K_- U e^{\lambda+2\delta^2}(1+1/q). \tag{10}
+&\le D_- N_m,\qquad D_-=K_- U e^{\lambda+2\delta^2}(1+1/q). \qquad (10)
 \end{split}
 ```
 
@@ -123,7 +123,7 @@ For the whole tree this gives $`\mathbb E[M_n^{(3)}]\ge a_0`$. For a second-mome
 
 ```math
 \mathbb E[(M_n^{(3)})^2]\le F^2\big(P_\lambda(3,n)/P_\delta(3,n)\big)^2\,\sup_j\mathbb E[(Y_j/P_\lambda(3,j))^2]
-=O(n^{2(\lambda-\delta)}). \tag{11}
+=O(n^{2(\lambda-\delta)}). \qquad (11)
 ```
 
 The square-summability in (10) controls the martingale part. The lower predictable part can grow, and (11) gives a uniform bound when $`\delta=\lambda`$. In general the normalized lower sum can have unbounded second moments. For example, the report's lower table also certifies $`\delta=0.542`$. With that normalization its mean is bounded below by a positive constant times $`n^{0.001}`$, by the same table's $`0.543`$ drift and (7). Jensen's inequality then gives a divergent lower bound for its second moment.
@@ -138,7 +138,7 @@ a=\mathbb E[J\mid\mathcal F_m]\le a/2+
 On $`\{J>a/2\}`$, (9) gives a positive normalized limit, and (7) gives $`\liminf X_n/n^\delta>0`$. Thus as long as $`X_m\ge a_*>0`$ and $`N_m\le k_*<\infty`$, the conditional probability of this last event is at least
 
 ```math
-p_* = \frac{a_*^2}{4(a_*^2+D_-k_*)}>0. \tag{12}
+p_* = \frac{a_*^2}{4(a_*^2+D_-k_*)}>0. \qquad (12)
 ```
 
 The whole-tree calculation started at arbitrary $`m`$ instead gives the bound $`X_m^2/[4(X_m^2+D_-C_m)]`$. Initial positivity and bounded summands alone do not keep this bound uniformly positive at late times. A branch of bounded starting size supplies the needed uniform restart.
@@ -164,7 +164,7 @@ The same waiting argument verifies sibling spawning. If a vertex of degree at le
 After the promotion, when the branch has $`k\ge2`$ vertices, any particular receiver inside has an inside neighbour of degree at most $`k`$. Its conditional rate is at least $`1/k`$. The total rate of receivers inside is at most $`k+1`$, because only the $`k`$ inside vertices and the single exterior parent can be the uniform first vertex $`V_n`$ for such a receiver. The inside tree and its size stay fixed until the next inside receiver. The waiting rule shows that its identity matches any prescribed target with conditional probability at least $`1/[k(k+1)]`$. Multiplying for the one extra leaf and the finite replay gives conditional probability at least
 
 ```math
-p_{\mathrm{pattern}}=\prod_{k=2}^{k_*-1}\frac1{k(k+1)}>0 \tag{13}
+p_{\mathrm{pattern}}=\prod_{k=2}^{k_*-1}\frac1{k(k+1)}>0 \qquad (13)
 ```
 
 of reproducing the pattern at a finite stopping size. All bounds are uniform over the exterior history, including changes in $`D_p`$.
@@ -174,7 +174,7 @@ of reproducing the pattern at a finite stopping size. All bounds are uniform ove
 Let $`E=\{\liminf_n\Phi_n^-/n^\delta>0\}`$. For every deterministic $`m`$, the procedure in §4 can be started at $`m`$. Condition successively at the qualifying promotion and the end of the replay, then apply (12). Throughout the resulting branch $`X_n\le\Phi_n^-`$ by nonnegativity. We obtain, almost surely for every $`m\ge3`$,
 
 ```math
-\mathbb P(E\mid\mathcal F_m)\ge 2^{-H}p_{\mathrm{pattern}}p_*>0. \tag{14}
+\mathbb P(E\mid\mathcal F_m)\ge 2^{-H}p_{\mathrm{pattern}}p_*>0. \qquad (14)
 ```
 
 Here is a direct justification that (14) implies $`\mathbb P(E)=1`$. Put $`p_0=2^{-H}p_{\mathrm{pattern}}p_*`$. For every event $`A`$ in the algebra $`\bigcup_m\mathcal F_m`$, (14) gives $`\mathbb P(E\cap A)\ge p_0\mathbb P(A)`$. Every event in $`\sigma(\bigcup_m\mathcal F_m)`$ is approximable by this algebra in probability of symmetric difference. Indeed the class of approximable events contains the algebra, is closed under complements, and is closed under countable unions by first approximating a union by a finite subunion in probability and then approximating those finitely many events. Since $`E^c`$ lies in the generated sigma-field, approximation gives $`0\ge p_0\mathbb P(E^c)`$.

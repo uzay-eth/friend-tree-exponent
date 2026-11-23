@@ -31,3 +31,9 @@ Each run returned the following totals and exited successfully.
   [6/6] Exact brute-force trees: 37 tested, fails: 0 (PASS)
 === SUMMARY: 17329108 exact GMP inequality checks, 0 failures => VERIFIED OK ===
 ```
+
+## Independent recheck of the released tree test
+
+I ran `python3 verify/tree-drift/motif_identity.py` with the upper and lower files identified by the hashes above. For Identity (I), `brute_drift` sums the inverse source degrees at each receiver and recomputes the full potential after attaching a leaf there. `decomposition` separately sums the four local expressions, including the newborn edge, path and cherries. For (5.0), each expression is compared with its own weighted term in the direction of the certificate. The term values also sum to the original potential. [Released test](../verify/tree-drift/motif_identity.py)
+
+The command exited 0. Seeds 2–5 each ran 43 tree cases per certificate, including the same three fixed trees in each seed. Both certificates together gave 4,460 local checks on those cases and 1,838 on the five boundary trees. Every group reported `identity_fail=0 local_fail=0 compare_fail=0`. An independent count from the parent arrays gave 266 sample edges with only the parent in the tail, 64 with only the child in the tail, and 46 with both endpoints in the tail, matching the revised inventory. [Proof, §8](../proofs/bracket-motifs.md)

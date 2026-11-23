@@ -38,3 +38,14 @@ During review of the expanded existence proof, an exact counterexample settled a
 | Combined technical report ([REPORT.md](../REPORT.md)) | Gemini 4 Neon (Gemini) | GPT-6.2 Sol (GPT) | `CONSISTENT` / `APPROVE` | [review-combined-gpt.md](review-combined-gpt.md) |
 | Public repository packaging ([README.md](../README.md), [REPORT.md](../REPORT.md), [verify/run_all.sh](../verify/run_all.sh)) | Gemini 4 Neon (Gemini) | Claude Opus 5.5 (Claude) | `APPROVE` (after 2 revision rounds) | [review-public-packaging-claude.md](review-public-packaging-claude.md) |
 | [Simulation sources, data and fits](../simulations/README.md) | Original continuous-time runs and new fixed-size experiment | Claude Opus 5.5 (Claude) | `CONSISTENT / APPROVE` | [review-simulations.md](review-simulations.md) |
+
+## Reviews of the expanded proofs
+
+| Text or test | Cold reviewer | Verdict and scope |
+|---|---|---|
+| [Motif drift and GMP correspondence](review-motif-writeup-gpt.md) | GPT-6.2 Astra | CORRECT for both shipped certificates, including the boundary at the first tail degree. |
+| [Existence and sample paths](review-existence-and-sample-writeups-gpt.md) | GPT-6.2 Astra | CORRECT after revision, including the weighted marginal comparison, the preparation flags and the random first positive grid index. |
+| [Unweighted branch comparison](review-existence-counterexample-gpt.md) | GPT-6.2 Astra | COUNTEREXAMPLE to a discarded comparison. The weighted lemma admits the exhibited tree. |
+| [Banded upper bound](review-expanded-banded.md) | Claude Opus 5.5 | CORRECT for the history-dependent potential and its integer checker. |
+| [Supporting results and exhaustive tree tests](review-supporting-results-audit.md) | Claude Opus 5.5 | CORRECT for the six supporting deductions and the direct tree and history tests reviewed. |
+| [Degree tail and polynomial-scale typography](review-degree-typesetting.md) | Claude Opus 5.5 | CORRECT for both mathematical texts, including the empty sum and the fourteen numbered equations. |

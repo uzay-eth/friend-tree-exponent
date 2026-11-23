@@ -2,7 +2,11 @@
 
 ## Existence of the mean exponent
 
-VERDICT: CORRECT. The weighted branch comparison gives the continuous-time mean exponent and the Yule size bounds transfer it to discrete trees.
+VERDICT: CORRECT on final re-read. Proposition 6.2 resolves competing planting rankings, and the Yule size bounds transfer the resulting mean exponent to discrete trees.
+
+Two eligible sites can ask the same type-B neighbour to rank different vertices first. Fix the tree path and its core set at time $`t`$. For each old core $`u`$, Proposition 6.2 selects every edge $`uw`$ at $`t+h`$ whose far side contains no old core. The variable $`X_u`$ counts the cores in those far sides at $`t+h+s`$. Lemma 3.2 makes the selected far sides disjoint, including different cuts at the same base, so $`\sum_u X_u\le C(t+h+s)`$ on that one path. For each eligible $`u`$, Lemma 1.2 preserves $`\mathbb E[X_u\mid\mathcal F_t]`$ in a continuation with the ranking needed at $`u`$. Its successful planting contributes one of the summands in $`X_u`$, giving that site's weighted lower bound. The eligible set is known at $`t`$, so conditional linearity sums these marginal bounds. The two sites never have to agree on a ranking or succeed together. [Mean-exponent proof, Proposition 6.2](../proofs/existence.md)
+
+I also checked that source times after a finite stopping time are measured from that time exactly once, the child born at promotion is included in its far side, and the base and exterior have prescribed choices through the triggering ring. The proof reviewed has SHA-256 `4bfc572ac55eeca12659d85927cec1472e176d3b73fd41c9faeeed5f46006b2c`.
 
 1. **Model and time change.** The revised construction determines the ring from the source active strictly before its point. It reassigns sources only after a processed ring or at locally finite deterministic boundaries. Conditional survival probabilities multiply across those boundaries. The first ring at size $`j`$ has an exponential waiting time of rate $`j`$. Its source is uniform and independent of the wait. Conditioning on the source and time leaves the mark uniform. This gives exactly the discrete attachment law. Since the sizes are deterministic along the jump index, the holding times are independent of the embedded chain. Their centred sum converges by square-summability of their variances, and their means have divergent sum, so there is no explosion.
 2. **Eligible sites and planting.** When there are at least two cores, the core-tree degree sum bounds the number of branching vertices by the number of endpoints minus two. Isolated bare degree-two sites use two distinct edges apiece, so at least a quarter of the cores are eligible. The sole core of a star qualifies separately. In the planting script, silencing the two neighbours of the designated bare vertex fixes its degree up to its first ring. Silencing the planting site protects its tagged leaf. In the final units each requested receiver has an internal neighbour of bounded degree, and exterior births cannot enter the branch during the site's silence. The lower probability bound depends only on $`k,M`$, including when $`k=2`$. Distinct successful cuts point away from all old core vertices, so their far sides remain disjoint.
@@ -13,7 +17,9 @@ VERDICT: CORRECT. The weighted branch comparison gives the continuous-time mean 
 
 ## Equality of the sample and mean exponents
 
-VERDICT: CORRECT after revision. The preparation flags now have the stated exact probability, and the block iteration starts at an almost surely finite index where the core count is positive.
+VERDICT: CORRECT on final re-read. The preparation flags have their stated joint law, and the block iteration starts at an almost surely finite index with a positive core count.
+
+The final window rules use relative time $`r-h`$. A trigger ends new reference-clock assignments at its own site. Earlier newborns keep their assigned clocks. Across units, a site can reuse a source because its successive flags read disjoint increments. Within a unit, conditioning on the designated ring time gives the silence probability used in thinning. These rules preserve the independent block contributions of Lemma 2.4. The last countable intersection uses integer $`M`$, rational $`\epsilon`$ and integer block growth times $`s`$. The proof reviewed has SHA-256 `cb8e49bb083ba6ddb9094e796d5773cbb7acabfc04722f3fceb086088eb8b7d7`. [Sample-exponent proof](../proofs/almost-sure-exponent.md)
 
 ### Two corrections checked in the revised proof
 

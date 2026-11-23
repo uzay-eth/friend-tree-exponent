@@ -63,3 +63,16 @@ exit status 0, real 85.37 s
 ```
 
 The recipe header has `scale 1000000000000` and `threshold 8`, and 18 `arrow` records.
+
+## Addendum: recheck of the final text
+
+I reread the final [`proofs/upper-bound-banded.md`](../proofs/upper-bound-banded.md) against the version reviewed above, and against [`check.cpp`](../verify/banded-upper/check.cpp). The checker is byte-identical to the one I ran. The proof differs from the reviewed version only in these edits:
+
+1. Change 1 is made. The table now gives `Recipe` 32–69, the newborn reward at `solve` 296–299 and `up` 28–31, and these match the source.
+2. Change 2 is made. A new passage explains why a currently exact, unsaturated label gives the current endpoint type: degrees and core degrees never decrease, and cutoffs and caps never increase. The argument is correct.
+3. Change 3 is made. The text states $`T = 8`$ and 18 arrow entries, which matches the recipe header and its `arrow` records.
+4. Change 4 is made. A new sentence says the normal build uses neither test hook and that the history test defines them. This matches lines 352–354 and 379–385 of `check.cpp` and [`read_weights.cpp`](../verify/tree-drift/read_weights.cpp).
+
+All relative links resolve. The file has no equation tag, no operator-name macro and no internal paths.
+
+**VERDICT: CORRECT.** No required changes remain.
