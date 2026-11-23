@@ -20,7 +20,7 @@
 \begin{document}
 \maketitle
 \begin{abstract}
-In the random friend tree a new vertex chooses a uniform vertex and attaches to a uniform neighbour of that vertex. Let $C_n$ count the non-leaves at size $n$. We prove that $\E C_n=n^{\mu+o(1)}$ and that $C_n=n^{\mu+o(1)}$ almost surely, for the same deterministic $\mu$. The proof compares branches grown in continuous time with independent copies of a finite seed. Local drift inequalities verified in rational arithmetic give $113/200\le\mu\le1133/2000$ for the common exponent. A second potential gives the independent upper bound $5657/9983$. We give finite-size product bounds, specify the finite inequalities used in their proofs and compare fixed-size and continuous-time simulations.
+In the random friend tree a new vertex chooses a uniform vertex and attaches to a uniform neighbour of that vertex. Let $C_n$ count the non-leaves at size $n$. We prove that $\E C_n=n^{\mu+o(1)}$ and that $C_n=n^{\mu+o(1)}$ almost surely, for the same deterministic $\mu$. The proof compares branches grown in continuous time with independent copies of a finite seed. Local drift inequalities verified in exact arithmetic give $113/200\le\mu\le1133/2000$ for the common exponent. A second potential gives the independent upper bound $5657/9983$. We give finite-size product bounds, specify the finite inequalities used in their proofs and compare fixed-size and continuous-time simulations.
 \end{abstract}
 
 \section{Model and results}
@@ -1150,6 +1150,10 @@ See Lemmas~2 and~3 and Sections~6--7 of \path{proofs/cross-charging.md}.
 \paragraph{Growth on the polynomial scale.}
 The lower and upper local tables with exponents
 $\delta=543/1000$ and $\lambda=293/500$ can be used together.
+The lower table is constructed by \path{verify/baseline/certs9.py}.
+The upper table is defined in \path{verify/baseline/certs6.py} and constructed
+by \path{verify/baseline/find_upper_lin.py}. The state definitions and event
+rates are given in \path{proofs/supporting-results-audit.md}.
 Above their degree cutoffs, a branch attached to a sufficiently large parent
 has local weights independent of further changes to the parent's descriptor.
 The inequality $\lambda<2\delta$ controls the second moment of a martingale
@@ -1241,7 +1245,7 @@ large Poisson intensities the two implementations use rounded Gaussian
 draws (thresholds $10^9$ and $10^{14}$); the archived outputs do not count
 how often this approximation was used.
 
-\begin{figure}[htbp]\centering
+\begin{figure}[!t]\centering
 \includegraphics[width=\linewidth]{local_slopes.png}
 \caption{Core growth at integer times $1$ through $31$. The horizontal
 coordinate is the sampled mean population. Bars give one delete-one-trajectory
@@ -1287,7 +1291,14 @@ polynomial-scale lower proof using the earlier lower and upper tables.
 A separate Gemini 4 Neon session matched the models, initial conditions,
 observables and quantifiers before combining the results and reran the
 finite checks. Claude Opus 5.5 and GPT-6.2 Sol reviewed the combined
-statements. Cross-family reviews, independently implemented checks,
+statements. The archived continuous-time simulations came from the Fable and
+Neon attempts. GPT-6.2 Astra recovered the seeds of the pooled trajectories,
+analysed the fixed-size fitting window and drafted the manuscript and its
+LaTeX source. Claude Opus 5.5 expanded the motif, existence and sample-path
+proofs. GPT models packaged the direct drift tests on rooted trees and
+attachment histories. Claude Opus 5.5 and GPT-6.2 Sol tested the simulations
+against independent discrete implementations.
+Cross-family reviews, independently implemented checks,
 direct tree tests and deliberate certificate perturbations were used to
 test the arguments. An endpoint gap in the degree-tail argument was
 corrected; an alternative upper-bound argument that failed review was
