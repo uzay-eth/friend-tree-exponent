@@ -4,11 +4,11 @@ The four independent reports concern the manuscript at `526f350`. R1 is Claude O
 
 ### U1. Original §2, simultaneous preparations and independent contributions
 
-**Unjustified step · fixed.** Raised by R1, R2, editor. A selected leaf can depend on exterior rings. Allocating one clock per starting site alone does not establish independent success. In the independent-contributions lemma each stage has an explicit sufficient event on reserved clocks, uniform marks and thinning coins. The identity of a leaf is decided before attaching its fresh clock. The proof now treats failed sites and conditions only on the history revealed so far. The expanded sample-path proof supplies the same construction.
+**Unjustified step · fixed.** Raised by R1, R2, R3, editor. A selected leaf can depend on exterior rings. Allocating one clock per starting site alone does not establish independent success. In the independent-contributions lemma each stage has an explicit sufficient event on reserved clocks, uniform marks and thinning coins. The identity of a leaf is decided before attaching its fresh clock. The proof now treats failed sites and conditions only on the history revealed so far. The expanded sample-path proof supplies the same construction.
 
 ### U2. Original §2, cut-edge comparison and iteration
 
-**Unjustified step · fixed.** Raised by R1, R2. The lower bound needs the root-acceptance product inside the free-tree expectation. The revision defines the free history and records which marks remain independent. It performs the actual birth at the first discrepancy, then switches drivers. The marginal summands are actual path observables on disjoint cut sides and may be evaluated by separate couplings.
+**Unjustified step · fixed.** Raised by R1, R2, R3. The lower bound needs the root-acceptance product inside the free-tree expectation. The revision defines the free history and records which marks remain independent. It performs the actual birth at the first discrepancy, then switches drivers. The marginal summands are actual path observables on disjoint cut sides and may be evaluated by separate couplings.
 
 ### U3. Original §2, moment and time limits
 
@@ -16,7 +16,7 @@ The four independent reports concern the manuscript at `526f350`. R1 is Claude O
 
 ### S1. Original §3, motif potential at endpoints
 
-**Wrong or imprecise statement · fixed.** Raised by R2, editor. The old endpoint measure was never defined. Appendix A uses the previously defined endpoint measure at each end of a path and each child of a cherry. The checker uses precisely these interpolations.
+**Wrong or imprecise statement · fixed.** Raised by R2, R3, editor. The old endpoint measure was never defined. Appendix A uses the previously defined endpoint measure at each end of a path and each child of a cherry. The checker uses precisely these interpolations.
 
 ### S2. Original §§3, 5, motif certificate identity
 
@@ -32,7 +32,7 @@ The four independent reports concern the manuscript at `526f350`. R1 is Claude O
 
 ### C1. Original §§1, 6, 8, Addario-Berry and coauthors
 
-**Citation · fixed.** Raised by R2, R4. The 2024 preprint is genuine. The cumulative comparison is Theorem 4.8 there and Theorem 4.6 in the published article. Cite both locators and the journal record, and attribute the normalization and degree questions to §7. The quoted upper exponent 0.9142 is what Proposition 6.22 yields; the source abstract states 0.9. The revision identifies both places without inferring an unprinted improvement.
+**Citation · fixed.** Raised by R1, R2, R3, R4. The 2024 preprint is genuine. The cumulative comparison is Theorem 4.8 there and Theorem 4.6 in the published article. Cite both locators and the journal record, and attribute the normalization and degree questions to §7. The quoted upper exponent 0.9142 is what Proposition 6.22 yields; the source abstract states 0.9. The revision identifies both places without inferring an unprinted improvement.
 
 ### C2. Original §1, exact degrees and the historical conjecture
 
@@ -40,7 +40,7 @@ The four independent reports concern the manuscript at `526f350`. R1 is Claude O
 
 ### C3. Original §§1, 7, neighbouring growth models and numerical fits
 
-**Citation · fixed.** Raised by R2, R4. Identify the one-step random-walk literature, the mediation-driven rule and the friend-of-a-friend specialization, noting the triangle seed in the last paper. Add a precise Cannings–Jordan locator. Separate the finite-size slope of Hartle and coauthors from the asymptotic exponent. Primary papers and edition-specific details appear in the reports.
+**Citation · fixed.** Raised by R2, R3, R4. Identify the one-step random-walk literature, the mediation-driven rule and the friend-of-a-friend specialization, noting the triangle seed in the last paper. Add a precise Cannings–Jordan locator. Separate the finite-size slope of Hartle and coauthors from the asymptotic exponent. Primary papers and edition-specific details appear in the reports. The redirection survey covers the related model family. The models with different redirection rules and the general branching-process references suggested by R3 provide background; the article uses no theorem from them.
 
 ### E1. Title, abstract and opening
 
@@ -58,15 +58,31 @@ The four independent reports concern the manuscript at `526f350`. R1 is Claude O
 
 **Exposition · fixed.** Raised by Editor, R4. Shorten the account of earlier certificates, retain the empirical figure, protocol and limitations in the submission, and reduce the production note to a single paragraph naming the human and model contributions. The different size and time horizons and their sampling uncertainties remain explicit.
 
+### S5. Original §§3, 5, motif header and integer arithmetic
+
+**Wrong or imprecise statement · fixed.** Raised by R3. An overflow vertex must be a tail vertex. Section 5 explicitly checks the header inequality 24 ≤ 151 and points to the per-header and intermediate-range audit. The independently instrumented C replays also passed. This resolves the shipped proof; a request to validate arbitrary future binary inputs would change the scope of the verifier and is outside the mathematical claim.
+
+### S6. Original §7, numerical arithmetic
+
+**Wrong or imprecise statement · fixed.** Raised by R3. The independent simulator selects an index by truncating a 64-bit product. For m indices each individual probability differs from 1/m by less than 2 to the power −64; the revised methods disclose this alongside the rounded Gaussian draws. These are numerical measurements. The certificate proofs do not use them.
+
+### C4. Supplement pin and long-term archiving
+
+**Citation · fixed.** Raised by R3, R4. The cited original commit exists and supplies the data used in the paper. The revised link identifies the immutable commit containing the updated proofs and checker documentation. A permanent journal or DOI deposit would help long-term preservation; no deposit was made in this round. That publication decision can be made with the eventual venue.
+
+### E5. Original §§3, 4, 6, notation and navigation
+
+**Exposition · fixed.** Raised by R3. In the degree-band section, identify H and T as local cutoffs and describe the two-event expression as the scaled drift. In the degree discussion, identify the supplement’s cumulative-count notation. Main-text references now lead directly to the decomposition and the certificate lemmas, with the complete reductions in the appendices.
+
 ## Disposition
 
 | Severity | Fixed | Open | Requires owner ruling |
 | --- | ---: | ---: | ---: |
 | Error in a proof | 0 | 0 | 0 |
 | Unjustified step | 3 | 0 | 0 |
-| Wrong or imprecise statement | 4 | 0 | 0 |
-| Citation | 3 | 0 | 0 |
-| Exposition | 4 | 0 | 0 |
-| **Total** | **14** | **0** | **0** |
+| Wrong or imprecise statement | 6 | 0 | 0 |
+| Citation | 4 | 0 | 0 |
+| Exposition | 5 | 0 | 0 |
+| **Total** | **18** | **0** | **0** |
 
 No false step was identified in the existence proof, the two-sided motif bound or the independent degree-band upper bound. Outstanding research questions in §8 concern sharper theorems. This is a model review. A human probability referee has yet to read the arguments.
