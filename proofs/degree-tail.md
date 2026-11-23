@@ -249,6 +249,21 @@ a_\varepsilon m^{\mu-\varepsilon} \le a_m \le A_\varepsilon m^{\mu+\varepsilon}
 
 for all $`m \ge 3`$ ($`a_m \ge 1`$). Apply (c) with $`\delta = \mu-\varepsilon > 0`$ and $`\lambda = \mu+\varepsilon < 1`$, take logarithms, divide by $`\log(n/k)`$, let $`n/k \to \infty`$, then let $`\varepsilon \to 0`$. ∎
 
+## A consequence for each fixed exact degree
+
+Write $`X_d(t)`$ for the number of vertices of degree exactly $`d`$ at continuous time $`t`$. For each fixed integer $`d\ge2`$, the exact count has logarithmic exponent $`\mu`$ almost surely and in mean. This uses the common core exponent and its strictly positive lower bound. [Continuous-time exponent](almost-sure-exponent.md) · [Motif bracket](bracket-motifs.md)
+
+Use the disjoint sites and their independent preparation flags from Sections 1 and 2 of the sample-path proof. At integer time $`l`$ with $`C(l)\ge1`$, choose $`m\ge C(l)/6`$ sites. Take $`M=2`$ and the star on $`d`$ vertices rooted at its centre, using a rooted edge at $`d=2`$. After $`h=d+1`$ units of preparation, the root has $`d-1`$ internal neighbours and one exterior neighbour. Require the base and the entire branch to be silent for one additional unit. This protects the root's exact degree throughout the unit, irrespective of arrivals elsewhere. Disjoint reserved clocks and the independent future increments give independent flags with a common probability $`q>0`$ depending only on $`d`$ (thin the preparation flags to $`p(2,d)`$ and take $`q=p(2,d)e^{-(d+1)}`$).
+
+On each successful site there is a distinct vertex of degree $`d`$ throughout $`[l+h,l+h+1]`$. The binomial lower-tail bound gives
+
+```math
+\Pr\!\left(\inf_{l+h\le t\le l+h+1}X_d(t)<qC(l)/12\mid\mathcal F_l\right)
+\le e^{-mq/8}\le e^{-q C(l)/48}.
+```
+
+Eventually $`C(l)\ge e^{\mu l/2}`$ almost surely. Intersect each failure event with this inequality at its starting time; the unconditional probabilities are summable. By Borel–Cantelli the displayed lower count holds for all sufficiently large integer $`l`$ almost surely. These intervals cover the positive time axis from $`h`$ onwards and $`t/l\to1`$ there. Together with $`X_d(t)\le C(t)`$ this yields $`\log X_d(t)/t\to\mu`$ almost surely. At the size-$`n`$ hitting time $`\tau_n\sim\log n`$ this gives the discrete almost-sure result. In particular $`\Pr(X_d(\tau_n)\ge n^{\mu-\varepsilon})\to1`$ for every $`0<\varepsilon<\mu`$. Multiply this probability by the threshold for the mean lower bound and use $`\mathbb E X_d(\tau_n)\le\mathbb E C_n`$ for the mean upper bound. The proof does not identify an amplitude or give uniform estimates in $`d`$.
+
 ## Remarks
 
 1. Parts (a) and (b) are statements about means. For each fixed $`k\ge2`$, the almost-sure comparability of successive cumulative counts in Theorem 4.6 of the published paper by Addario-Berry et al. (Theorem 4.8 in the preprint), iterated from the core count, also gives its almost-sure logarithmic exponent. The corresponding uniform result for growing $`k`$ remains open. [Random Friend Trees, Theorem 4.6](https://doi.org/10.1002/rsa.70082) · [Sample-path exponent of the core](almost-sure-exponent.md)
