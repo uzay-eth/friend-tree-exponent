@@ -41,3 +41,15 @@ bash verify/tree-drift/run.sh
 The motif test constructs each non-isomorphic rooted tree of sizes three through 14 with a core root. It attaches a leaf at every possible target, re-evaluates the potential on the resulting tree and sums the exact rational increments with the target's attachment probability. The two certificate directions are tested on 32,972 trees.
 
 For the banded potential a rooted shape does not determine the labels. Starting from the three-vertex path, the test branches over every attachment target at every step through size nine, evaluating the true one-step drift at each of the 23,116 histories. The independent history implementation tracks the labels. A read-only observer retrieves the resulting weights from the production verifier. All finite rows must still pass that verifier before it returns the weights. Neither test uses the certified drift decomposition to calculate the true drift. The two optional arguments select the maximum motif size and maximum banded history size, respectively.
+
+### Checking the motif identity term by term
+
+The [independent identity test](tree-drift/motif_identity.py) compares the exact drift against the sum of the four kinds of local terms. It also checks the inequality for each term and the comparison with the core size. Its four seeds give 172 sampled or constructed trees per certificate. Five further trees exercise the two vertex overflow states and the seam of the finite leaf and child ranges.
+
+```bash
+mkdir -p build/tree-example
+gcc -O3 -fopenmp verify/motif-bracket/cert_build.c -lm -o build/tree-example/build-cert
+build/tree-example/build-cert 1 1133 2000 build/tree-example/upper.bin
+build/tree-example/build-cert 2 113 200 build/tree-example/lower.bin
+python3 verify/tree-drift/motif_identity.py build/tree-example/upper.bin build/tree-example/lower.bin
+```

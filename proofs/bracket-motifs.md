@@ -235,7 +235,7 @@ Ch(u; \{w_1, w_2\}) := (\iota_{w_1} - x_{cc}[s_u])\,\Delta^L_u g(u \to w_2) + (\
 
 Nothing is counted twice or left out. $`\square`$
 
-**Check against the certificate (independent of the verifier).** An audit script was written from this section alone; it does not import repository code and is not part of the release. It computes $`(\mathcal{L}\Phi)(T)`$ by brute force over all $`n`$ attachment targets, computes all local expressions exactly, and compares. Identity (I) held exactly on every tree tested (§8).
+**Check against the certificate (independent of the verifier).** The [identity test](../verify/tree-drift/motif_identity.py) implements this section independently of the production checker. It computes $`(\mathcal{L}\Phi)(T)`$ by brute force over all $`n`$ attachment targets, computes all local expressions exactly, and compares. Identity (I) held exactly on every tree tested (§8).
 
 ---
 

@@ -8,7 +8,7 @@ Throughout, a rate is $`n`$ times a conditional one-step probability, a core ver
 
 The hypotheses used by the almost-sure lower bounds can be read directly from the two baseline tables. Fix a core vertex $`u`$. A pendant of class $`i`$ has $`i`$ leaves and a single core neighbour, $`u`$. Record classes $`1\le i\le K_0`$ with multiplicities $`m_i`$. A neighbour of class B has no leaves and two core neighbours. Write $`b`$ for the number of such neighbours. Every remaining core neighbour has degree at least three and stays outside these classes. Indeed, gains increase degree, conversions increase core degree, and both quantities are nondecreasing. Write $`o=c-b-\sum_i m_i`$ for their number and $`B_0=b/2+\sum_i m_i/(i+1)`$ for the known credit.
 
-- **Upper table.** Here $`K_0=1`$. If the creator belongs to the remaining class at the focal vertex's birth, record $`P=\min(D_{\rm creator},20)`$ at that time. Otherwise use $`P=3`$, including at the initial centre. The credit from the remaining class lies between zero and $`o/3`$. If $`P>3`$, improve its upper endpoint to $`(o-1)/3+1/P`$ by degree monotonicity. [State definitions and verifier](../verify/baseline/certs6.py) · [Upper table construction and check](../verify/baseline/find_upper_lin.py)
+- **Upper table.** Here $`K_0=1`$. If the creator belongs to the remaining class at the focal vertex's birth, record $`P=\max(3,\min(D_{\rm creator},20))`$ at that time. Otherwise use $`P=3`$, including at the initial centre. The credit from the remaining class lies between zero and $`o/3`$. If $`P>3`$, improve its upper endpoint to $`(o-1)/3+1/P`$ by degree monotonicity. [State definitions and verifier](../verify/baseline/certs6.py) · [Upper table construction and check](../verify/baseline/find_upper_lin.py)
 - **Lower table.** Here $`K_0=2`$. Of the remaining neighbours, record the numbers $`n_d`$ of exact degree $`d=3,4,5`$. Their exact credit is $`\sum_d n_d/d`$. The other $`o-\sum_d n_d`$ neighbours have degree at least six, so each contributes between zero and one sixth. [State definitions and verifier](../verify/baseline/certs9.py)
 
 In either table $`u`$ gains a leaf at rate $`L+\rho`$, where $`\rho`$ is its total credit. It converts a leaf at rate $`L/D`$, changing $`(L,c)`$ to $`(L-1,c+1)`$ and adding a class-one pendant. The newborn sees its creator's updated state. Its creator has the same degree as before conversion. A pendant of class $`i`$ gains a leaf at rate $`i+1/D`$ and converts at rate $`i/(i+1)`$. The gain raises its pendant class by one until it leaves the recorded range. A conversion gives class B for $`i=1`$ and the remaining class otherwise. A class-B neighbour gains at rate $`1/D+1/D_x`$, where $`x`$ is its other core neighbour, and then has degree three in the remaining class. In the lower table, a remaining neighbour of recorded degree $`d`$ moves to the next degree on a gain, whose rate lies between zero and $`d`$. Conversion there preserves its recorded degree. These exhaust the changes visible at $`u`$. The total potential changes by the sum of these old-state increments and one new weight for each conversion. Each new weight is charged to the unique creator.
@@ -75,7 +75,7 @@ Both tables freeze the leaf count at 60. With more than ten core neighbours they
 
 ## Fresh verification
 
-The following are outputs from this audit on the packaged sources. The compiler flags for both C++ programs were `-std=c++17 -O2 -Wall -Wextra -fsanitize=undefined -fno-sanitize-recover=all`. The arguments are those in the transfer, baseline and cross-charging sections of the [release runner](../verify/run_all.sh).
+The following are outputs from this audit on the packaged sources. The compiler flags for both C++ programs were `-std=c++17 -O2 -Wall -Wextra -fsanitize=undefined -fno-sanitize-recover=all`. The [release runner](../verify/run_all.sh) builds the inputs and runs the transfer, baseline and cross-charging sections. Its temporary upper and lower pickle files are denoted by `xc_upper.pkl` and `xc_lower.pkl` in this transcript.
 
 ```text
 hub lower 56 100 128 12 64 18 8 6 5 4 4 3 3 3
@@ -88,9 +88,9 @@ transfer upper 568 1000 208 20 128 26 10 6 5 4 4 3 3 3
 PASS upper 568/1000 product prefactor 15361771189/640204837
 python xcharge.py test 200 11
 drift identity holds exactly on 200 random trees (random f, kappa, nu)
-python xverify.py build/support-audit/x/upper.pkl 29/50
+python xverify.py xc_upper.pkl 29/50
   PASS: all 5853 exact inequalities hold at lambda = 29/50 = 0.580000; smallest slack 1.000e-04 at ('box', 0, 2, (5, 5))
-python xverify.py build/support-audit/x/lower.pkl 11/20
+python xverify.py xc_lower.pkl 11/20
   PASS: all 5851 exact inequalities hold at delta = 11/20 = 0.550000; smallest slack 0.000e+00 at ('box', 0, 2, (5, 5))
 python as_lower_check.py
 ALL HYPOTHESES OF THE ALMOST-SURE LOWER BOUND HOLD for delta = 543/1000 = 0.543; total 138s
@@ -98,4 +98,4 @@ python find_upper_lin.py 60 10 1 20 0.58 0.59 0 293/500
 UPPER(K=1,Pmax=20) certificate OK: lambda=293/500 (=0.5860) Lmax=60 cmax=10 sup f=4.8045 f(T3 centre)=3.9546 G=4.9854; 319086 checks
 ```
 
-The hub runs checked 3,550,712 and 5,960,583 finite states. The transfer runs each checked 9,639,742. The stronger cross-charging inputs $`579/1000`$ and $`552/1000`$ each failed on the root row. I also independently enumerated the 6,445 eligible endpoint pairs, checked the exact $`T_3`$ obstruction, and compared the activation factors for $`3\le m\le100`$ using rational arithmetic. The six numerical theorems and their stated analytic deductions are **closed**. The repaired old degree-tail equality is recorded above.
+The hub runs checked 3,550,712 and 5,960,583 finite states. The transfer runs each checked 9,639,742. The stronger cross-charging inputs $`579/1000`$ and $`552/1000`$ each failed on the root row. The audit also counted the 6,445 eligible endpoint pairs, checked the exact $`T_3`$ obstruction, and compared the activation factors for $`3\le m\le100`$ using rational arithmetic. Those auxiliary calculations used separate scripts. The deductions above give the arguments without relying on those scripts. The six numerical theorems and their stated analytic deductions are **closed**. The repaired old degree-tail equality is recorded above.

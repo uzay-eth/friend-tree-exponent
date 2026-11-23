@@ -214,4 +214,4 @@ These corrections were made while checking the draft against the checker. None o
 7. §5.2, cherries: "leaf end" changed to "child end"; these vertices are core children.
 8. §6: the extremum runs over the candidate endpoints $`E(u)`$, which include $`\mathrm{INF}`$ even when its weight is $`0`$ at $`D = D_0`$. The draft wrote $`\mathrm{supp}\,\mu_u`$, which omits $`\mathrm{INF}`$ there. The checker uses both endpoints (`V` 998–1002). The new bound is never sharper and is still valid.
 9. §8: the constructed checker tree has $`L = L_F + 2`$ leaves at the root, not $`L_F + 1`$ (`V` 1069–1076).
-10. §4.3 and §8: the audit script that checks Identity (I) on trees is not part of the release. The text now says so and no longer uses the first person.
+10. §4.3 and §8: the [identity test](../verify/tree-drift/motif_identity.py) is available with the direct tree tests.
