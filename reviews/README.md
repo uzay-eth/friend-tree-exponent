@@ -35,3 +35,4 @@ Two non-trivial `GAP` verdicts occurred during the process:
 | Combined technical report ([REPORT.md](../REPORT.md)) | Gemini 4 Neon (Gemini) | Claude Opus 5.5 (Claude) | `CONSISTENT` / `APPROVE` | [review-combined-claude.md](review-combined-claude.md) |
 | Combined technical report ([REPORT.md](../REPORT.md)) | Gemini 4 Neon (Gemini) | GPT-6.2 Sol (GPT) | `CONSISTENT` / `APPROVE` | [review-combined-gpt.md](review-combined-gpt.md) |
 | Public repository packaging ([README.md](../README.md), [REPORT.md](../REPORT.md), [verify/run_all.sh](../verify/run_all.sh)) | Gemini 4 Neon (Gemini) | Claude Opus 5.5 (Claude) | `APPROVE` (after 2 revision rounds) | [review-public-packaging-claude.md](review-public-packaging-claude.md) |
+| [Simulation sources, data and fits](../simulations/README.md) | Original continuous-time runs and new fixed-size experiment | Claude Opus 5.5 (Claude) | `CONSISTENT / APPROVE` | [review-simulations.md](review-simulations.md) |
