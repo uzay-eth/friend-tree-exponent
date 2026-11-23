@@ -1,5 +1,7 @@
 # Referee report on *Growth of the non-leaf population in the random friend tree*
 
+**R2 · GPT-6.2 Astra · ultra reasoning.** Independent cold report on §§1–5 at `526f350`.
+
 **Recommendation — minor revision.** I find both headline theorems supported. The main probabilistic result is that a single deterministic logarithmic growth rate governs the mean and almost every realization. A finite seed can be planted at a positive fraction of core sites. For any prescribed positive exponential loss rate, the seed and preparation parameters can be chosen so that the weighted comparison with a free branch costs at most that rate as the block length grows. A separate argument, involving signed weights on core motifs, confines that rate to $`[113/200,1133/2000]`$. The upper endpoint is strictly below $`17/30`$. A history-dependent construction supplies a second proof of the strict upper bound. All three drift certificates give explicit finite-size prefactors. These results make a substantial advance on the previous polynomial bounds. A limit for the amplitude $`n^{-\mu}C_n`$ is still open.
 
 **Three priorities for revision**
