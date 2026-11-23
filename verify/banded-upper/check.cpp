@@ -349,6 +349,9 @@ struct Checker {
                 }
                 require(residual>=0 && z>0 && z<=32*recipe.scale,"invalid row inequality");
                 s.weights[D%2]=z; s.degrees[D%2]=D;
+#ifdef FRIEND_TREE_OBSERVE_ROW
+                FRIEND_TREE_OBSERVE_ROW(D, c, i, z);
+#endif
                 minimum=std::min(minimum,z); maximum=std::max(maximum,z);
                 slack_min=std::min(slack_min,narrow(residual)); ++rows;
             }
@@ -373,8 +376,10 @@ struct Checker {
                  <<"PASS upper "<<p<<"/"<<q<<std::endl;
     }
 };
+#ifndef FRIEND_TREE_NO_MAIN
 int main(int argc,char** argv) {
     if(argc!=5) { std::cerr<<"usage: check geometry recipe numerator denominator\n"; return 2; }
     try { Checker(argv[1],argv[2],std::stoll(argv[3]),std::stoll(argv[4])).run(); }
     catch(const std::exception& e) { std::cerr<<"FAIL "<<e.what()<<"\n"; return 1; }
 }
+#endif
