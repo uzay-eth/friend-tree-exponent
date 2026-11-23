@@ -367,6 +367,8 @@ The certificates are produced by `verify/motif-bracket/cert_build.c` and checked
 
 Run on 2026-11-23 (GCC 13.3.0, GMP 6.3.0, x86_64 Linux):
 
+The lossless reference copies can be decompressed with `xz -dc` and passed directly to the GMP verifier. [Upper reference array](../verify/motif-bracket/reference/upper.bin.xz) · [Lower reference array](../verify/motif-bracket/reference/lower.bin.xz)
+
 | Item | UPPER `upper_5665.bin` | LOWER `lower_5650.bin` |
 |---|---|---|
 | sha256 of rebuilt file | `3a4aef888a5b567a8ada05f9546f98c979d361da9f9b33ba6e794eb91fb30abe` | `9e966fba9aee6eae3da659b693d3bb9c481c1cea66635b5218d0887f182a60d9` |

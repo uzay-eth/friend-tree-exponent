@@ -47,7 +47,7 @@ Krapivsky and Redner (J. Stat. Mech. 2017, eq. (1)) report numerically that the 
 n(n+1)^{s-1} < \frac{\Gamma(n+s)}{\Gamma(n)} < n^s.
 ```
 
-By this inequality, Claim 2 gives $`0.44\,m^{0.55} \le a_m \le 3.974\,m^{0.58}`$ for all $`m \ge 3`$. The lower coefficient uses $`0.5022\,(3/4)^{0.45} \approx 0.4412`$. Hence for all $`k \ge 2`$ and $`n \ge 24k`$,
+Applying this inequality to the cross-charging products with the [two prefactors in the finite-size bounds table](../REPORT.md) gives $`0.44\,m^{0.55} \le a_m \le 3.974\,m^{0.58}`$ for all $`m \ge 3`$. The lower coefficient uses $`0.5022\,(3/4)^{0.45} \approx 0.4412`$. Hence for all $`k \ge 2`$ and $`n \ge 24k`$,
 
 ```math
 \frac{0.44}{44160}\left(\frac{n}{12k}\right)^{0.55}
