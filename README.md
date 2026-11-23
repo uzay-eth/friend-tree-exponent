@@ -1,16 +1,16 @@
-# Growth of the non-leaf population in the random friend tree
+# The random friend tree exponent is not 17/30
 
-**Can Uzay**
-
-Start from a single edge $`T_2`$; at each step pick a uniform vertex $`V_n`$, pick a uniform neighbour $`W_n`$ of $`V_n`$, and attach a new leaf to $`W_n`$. Let $`C_n`$ be the number of non-leaves (vertices of degree at least $`2`$) in $`T_n`$. Addario-Berry et al. call this model the random friend tree. [Random friend trees](https://arxiv.org/abs/2403.20185)
-
-In Krapivsky and Redner’s paper and in Strogatz’s thread, $`N_k`$ denotes the number of vertices of degree **exactly** $`k`$. Here $`N_k(n)`$ counts vertices of degree **at least** $`k`$, so $`N_2(n)=C_n`$. The exact-degree count is $`N_k(n)-N_{k+1}(n)\le C_n`$ for every $`k\ge2`$. Thus both finite-size mean upper bounds below apply to the expectation of each exact-degree count. The cumulative lower bounds give no matching lower bound for that difference, and its proposed pointwise scaling remains open. [Krapivsky and Redner, §5.1](https://arxiv.org/pdf/1706.01514#page=12) · [Strogatz’s thread](https://x.com/stevenstrogatz/status/1572287647715934210)
-
-A single growth exponent $`\mu`$ exists, with $`\mathbb{E}[C_n] = n^{\mu + o(1)}`$ and $`\log C_n / \log n \to \mu`$ almost surely, and
+Let $`C_n`$ count the non-leaves in the tree on $`n`$ vertices. The same exponent $`\mu`$ governs $`\mathbb{E}[C_n] = n^{\mu + o(1)}`$ and $`\log C_n / \log n \to \mu`$ almost surely. Its bounds are
 
 ```math
 \frac{113}{200} = 0.5650 \;\le\; \mu \;\le\; \frac{1133}{2000} = 0.5665 \;<\; \frac{17}{30} = 0.5666\overline{6}.
 ```
+
+**Can Uzay**
+
+Start from a single edge $`T_2`$; at each step pick a uniform vertex $`V_n`$, pick a uniform neighbour $`W_n`$ of $`V_n`$, and attach a new leaf to $`W_n`$. Addario-Berry et al. call this model the random friend tree. [Random friend trees](https://arxiv.org/abs/2403.20185)
+
+In Krapivsky and Redner’s paper and in Strogatz’s thread, $`N_k`$ denotes the number of vertices of degree **exactly** $`k`$. Here $`N_k(n)`$ counts vertices of degree **at least** $`k`$, so $`N_2(n)=C_n`$. The exact-degree count is $`N_k(n)-N_{k+1}(n)\le C_n`$ for every $`k\ge2`$. Thus both finite-size mean upper bounds below apply to the expectation of each exact-degree count. The cumulative lower bounds give no matching lower bound for that difference, and its proposed pointwise scaling remains open. [Krapivsky and Redner, §5.1](https://arxiv.org/pdf/1706.01514#page=12) · [Strogatz’s thread](https://x.com/stevenstrogatz/status/1572287647715934210)
 
 The certified gap below $`17/30`$ is at least $`1/6000`$. For every $`n \ge 3`$,
 
@@ -49,7 +49,7 @@ PASS  polynomial-lower (Carbon/Sol) liminf C_n/n^(543/1000) > 0 a.s.; 319,086 up
 ALL 7 VERIFICATION SUITES PASSED (594s)
 ```
 
-The author’s assistant independently ran all seven suites on an 8-vCPU AMD EPYC 7543P VM and reported that they passed in 1,342 s (22 min 22 s). They took 594 s standalone and 629 s alongside another verification on an AMD Ryzen 7 5800X (8 cores / 16 threads, 62 GiB RAM), Ubuntu Linux (`6.8.0-149-generic`), GCC/G++ `13.3.0`, `libgmp-dev 2:6.3.0`, Python `3.12.3`, GNU `gzip 1.12`. See [`verify/README.md`](verify/README.md) for per-suite details.
+All seven suites passed in 594 s (9 min 54 s) on an AMD Ryzen 7 5800X and in 1,342 s (22 min 22 s) from a fresh clone on a separate 8-vCPU AMD EPYC 7543P VM. The Ryzen system had 8 cores, 16 threads and 62 GiB RAM and ran Ubuntu Linux (`6.8.0-149-generic`), GCC/G++ `13.3.0`, GMP `2:6.3.0`, Python `3.12.3` and GNU gzip `1.12`. See [per-suite details](verify/README.md).
 
 ## Who did what
 
