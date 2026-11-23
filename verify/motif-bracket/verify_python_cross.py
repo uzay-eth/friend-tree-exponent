@@ -7,6 +7,7 @@
    ALL unlabeled rooted trees of sizes n = 3..7 plus extreme tail trees, using ONLY
    Python's standard-library fractions.Fraction (zero C/GMP code shared).
 """
+from functools import cache
 import struct
 import sys
 from fractions import Fraction
@@ -118,6 +119,7 @@ class PyCert:
         t = Fraction(self.D0, D)
         return [(self.INF_ID, 1 - t), (self.t1_idx(k, h), t)]
 
+    @cache
     def eval_g(self, Lp, kp, hp, Lw, kw):
         Dp, Dw = Lp + kp + hp, Lw + kw + 1
         if Dp >= self.D0 and Dw >= self.D0:
@@ -128,6 +130,7 @@ class PyCert:
                 tot += wa * wb * Fraction(self.g[a * self.NG + b], self.S)
         return tot
 
+    @cache
     def eval_hV(self, Lp, kp, hp, Lu, ku, hu, Lw, kw):
         if hu != 1 or (Lu, ku) not in self.hu_to_act:
             return Fraction(0)
@@ -142,6 +145,7 @@ class PyCert:
                 tot += wa * wb * Fraction(self.hV[off], self.S)
         return tot
 
+    @cache
     def eval_hC(self, Lu, ku, hu, L1, k1, L2, k2):
         if (Lu, ku, hu) not in self.cu_to_act:
             return Fraction(0)
@@ -261,7 +265,11 @@ def main():
     parser.add_argument("--upper", default=str(here / "build/upper_5665.bin"))
     parser.add_argument("--lower", default=str(here / "build/lower_5650.bin"))
     parser.add_argument("--exact", default=str(here / "exact_rationals_n21.txt"))
+    parser.add_argument("--max-tree-size", type=int, default=7,
+                        help="test every nonisomorphic tree with a core root up to this size")
     args = parser.parse_args()
+    if args.max_tree_size < 7:
+        parser.error("--max-tree-size must be at least 7")
     up = PyCert(args.upper)
     lo = PyCert(args.lower)
 
@@ -290,11 +298,11 @@ def main():
     print(f"[PY-EXACT 1] Theorem 1 exact rational bounds bracket exact E[C_n] for ALL {n_checked} sizes n=3..21: PASS")
 
     # 2. Check ALL non-isomorphic rooted trees on n = 3..7 with deg(root) >= 2!
-    trees = gen_all_rooted_trees_up_to(7)
+    trees = gen_all_rooted_trees_up_to(args.max_tree_size)
     for n, par in trees:
         assert up.check_tree(par), f"UPPER failed on rooted tree n={n} par={par}"
         assert lo.check_tree(par), f"LOWER failed on rooted tree n={n} par={par}"
-    print(f"[PY-EXACT 2] Pure-Python Fraction brute-force drift passed on ALL {len(trees)} non-isomorphic rooted trees (n=3..7) for BOTH UPPER & LOWER: PASS")
+    print(f"[PY-EXACT 2] Pure-Python Fraction brute-force drift passed on ALL {len(trees)} non-isomorphic rooted trees with core root (n=3..{args.max_tree_size}), failures=0 for BOTH UPPER & LOWER: PASS")
 
 
 if __name__ == "__main__":
