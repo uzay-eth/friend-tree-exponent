@@ -24,7 +24,7 @@ The generators implement the stated growth rule. Every packaged number I recompu
 | Fixed-size generator vs direct chain | 9,600 fresh seeds of `fixed_size.cpp` vs 12,000 direct trajectories at the nine published sizes | max $`\lvert z\rvert`$ 0.72 |
 | Negative controls | attach to $`V`$; degree-biased neighbour; deterministic size $`3e^t`$ | rejected with $`\lvert z\rvert`$ from 39 to 7,445 |
 
-The cross-check README gives the commands, seeds, timings and raw aggregate outputs for every row from the exact enumeration down.
+The cross-check README gives the commands, seeds, timings and raw aggregate outputs for every row from the exact enumeration down. Preliminary time-limited fast-generator batches were excluded. Their mean population showed a shortfall that remains unexplained. Their seeds and outputs were not retained, so no numbers from them are reported. Fresh batches with declared run counts replaced them.
 
 ## Code reading
 
@@ -42,7 +42,7 @@ The fast-vs-direct comparison tests both statements without assuming either. The
 
 ## Notes
 
-1. **The archived fixed-size sample sits about one standard error low.** At all nine sizes the 2,400 archived trajectories lie below the 12,000 direct trajectories, with $`z`$ between $`-1.62`$ and $`-0.81`$. The same trajectories contribute to every size, so this is one fluctuation. Rerunning the unchanged generator on 9,600 fresh seeds gives $`\lvert z\rvert\le0.72`$. A common relative offset leaves log–log slopes unchanged, so the fitted exponents are unaffected. No change is needed. The archived means are simply about 1.2% below the population means.
+1. **The archived fixed-size sample sits about one standard error below the direct estimates.** At all nine sizes the means of the 2,400 archived trajectories lie below those of the 12,000 direct trajectories, with $`z`$ between $`-1.62`$ and $`-0.81`$. Both sets of means are Monte Carlo estimates of the population means. Because the same trajectories contribute to every size, the nine differences are strongly correlated. They are not an exactly constant relative offset, so the fitted exponents can also move. Rerunning the unchanged generator on 9,600 fresh seeds, disjoint from the archived ones, gives $`\lvert z\rvert\le0.72`$ against the direct means. Over the same nine sizes, `fit_window.py --data` gives fits of $`0.5657133\pm0.0001192`$ for the nonlinear fit to mean core and $`0.5672321\pm0.0002312`$ for the linear fit to log mean core. The archived fits are $`0.5660272\pm0.0002417`$ and $`0.5675481\pm0.0004706`$. The fresh minus archived differences, $`-0.0003139`$ and $`-0.0003160`$, are $`-1.16`$ and $`-0.60`$ combined standard errors. The published fits therefore agree with the fresh sample within sampling error, and no change is needed.
 
 2. **The replay table mixes measured and projected times.** The "Projected full batch" column and the sentence beginning "Allow roughly four hours" extrapolate from partial replays of 9 to 51 trajectories. Tree sizes vary strongly between trajectories, so these figures are estimates rather than measurements. I suggest keeping the measured partial times and trajectory counts, and stating that full regeneration was not timed. The packager has said these projections will be replaced by measured full-batch replay results. That replacement was not available when this review was written, so I have not checked it.
 
