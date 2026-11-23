@@ -49,3 +49,7 @@ During review of the expanded existence proof, an exact counterexample settled a
 | [Banded upper bound](review-expanded-banded.md) | Claude Opus 5.5 | CORRECT for the history-dependent potential and its integer checker. |
 | [Supporting results and exhaustive tree tests](review-supporting-results-audit.md) | Claude Opus 5.5 | CORRECT for the six supporting deductions and the direct tree and history tests reviewed. |
 | [Degree tail and polynomial-scale typography](review-degree-typesetting.md) | Claude Opus 5.5 | CORRECT for both mathematical texts, including the empty sum and the fourteen numbered equations. |
+
+## Paper
+
+Claude Opus 5.5 checked the 24-page preprint against the proofs, certificate inputs, numerical data and cited literature, and rebuilt the PDF from source. [Cold review and verdict](review-preprint.md)
