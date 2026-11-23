@@ -65,15 +65,15 @@ The three compressed batches, histogram, original summary, C++ simulator, naive 
 | [Batch C](outputs/ct_t31_seedC.txt.gz) | 20261122003 | 91 | 31 | 1 |
 | [Histogram](outputs/hist_t27.txt) | 4242 | 1 | 27 | 1 |
 
-The original headers omit the seeds. We recovered them by matching initial checkpoints and replaying with GCC 13.3. In three concurrent timed replays, every completed trajectory below matched the decompressed archive byte for byte. A separate replay also matched the complete histogram. The archived data contain all 912 trajectories. Historical production times and launch logs are unavailable.
+The archived headers omit the seeds. We recovered them by matching initial checkpoints, then replayed each entire batch with GCC 13.3 on an AMD Ryzen 7 5800X. All 25,809 checkpoint rows and the three headers matched the decompressed archive byte for byte. A separate replay matched the complete histogram. Historical production times and launch logs are unavailable.
 
-| Batch | Complete trajectories checked in the timed prefix | Measured wall time |
-|---|---:|---:|
-| A | 51 of 527 | 513.58 s |
-| B | 47 of 294 | 513.59 s |
-| C | 9 of 91 | 513.89 s |
+| Batch | Complete trajectories replayed | Checkpoint rows | Measured wall time |
+|---|---:|---:|---:|
+| A | 527 | 14,756 | 3567.67 s |
+| B | 294 | 8,232 | 2098.20 s |
+| C | 91 | 2,821 | 3504.97 s |
 
-These times include work on the next unfinished trajectory. All checkpoints of the completed trajectories matched.
+Each batch used one thread. The three timed replays ran concurrently. The times above measure the generator itself and exclude compilation, decompression and comparison.
 
 The fast generator stores one record per core vertex, holding its leaf count and the last time that count was updated. Between core firings, each leaf independently creates more leaves at its core neighbour at rate one. When the simulator next needs that count, it draws the accumulated births in a single Yule increment. The stored core grows much more slowly than the total population. This saves both the storage for individual leaves and the work of processing their firings. For a Poisson intensity above $`10^9`$, its C++ implementation uses a rounded Gaussian draw. The separate C implementation has a similar branch above $`10^{14}`$. The files omit branch-use counters, so their impact on the slopes cannot be quantified from these outputs. [Original C++ generator](sim/friend_ct.cpp) · [Separate C generator](route-exact/sim_lazy_exact.c)
 
