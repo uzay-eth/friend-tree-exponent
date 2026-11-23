@@ -198,7 +198,7 @@ The first three rules below give the choices at every ring in $`(t_0,\rho]`$, in
 - A ring of $`v^*`$ makes the reference choice if $`A\le D/(D+1)`$, and chooses $`u`$ otherwise. This is the two-step choice with $`e=u`$, so it is uniform over the $`D+1`$ actual neighbours of $`v^*`$.
 - A ring of $`u`$ chooses by its own $`U`$ with $`v^*`$ ranked first. In particular a triggering ring of type (T1) chooses $`v^*`$, and a triggering ring of type (T2) chooses $`u`$: **the triggering ring follows its prescribed choice.**
 - An actual newborn on the far side created by a ring strictly before $`\rho`$ is the matching reference newborn and is driven by the same source $`\zeta_j`$.
-- Every vertex outside the far side other than $`u`$ is driven by its own source and chooses by its own $`U`$ with a fixed ranking. Its newborns get new unused sources outside the reserved family.
+- Every vertex outside the far side other than $`u`$ is driven by its own source and chooses by its own $`U`$ with a fixed ranking. Its newborns, and the newborns of rings of $`u`$ strictly before $`\rho`$ (which lie outside the far side), get new unused sources outside the reserved family.
 
 **Switch at $`\rho`$.** Immediately after the triggering ring has been processed (its choice made by the rules above), the *actual* process stops reading the reference. From then on every actual choice uses the coordinate $`U'`$ of the ringing point with a fixed ranking, and every actual newborn, including the one created by the triggering ring, is driven by a new unused source outside the reserved family $`(\zeta_j)`$. Actual vertices that already exist keep the sources that drive them. The reference process is not changed in any way.
 
