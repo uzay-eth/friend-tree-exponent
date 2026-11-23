@@ -4,7 +4,7 @@
 
 Start from a single edge $`T_2`$; at each step pick a uniform vertex $`V_n`$, pick a uniform neighbour $`W_n`$ of $`V_n`$, and attach a new leaf to $`W_n`$. Let $`C_n`$ be the number of non-leaves (vertices of degree at least $`2`$) in $`T_n`$.
 
-Krapivsky and Redner and the 2022 thread use $`N_k`$ for the number of vertices of degree **exactly** $`k`$. Here $`N_k(n)`$ counts vertices of degree **at least** $`k`$, so $`N_2(n)=C_n`$. The exact-degree count is $`N_k(n)-N_{k+1}(n)\le C_n`$ for every $`k\ge2`$. Thus both finite-size mean upper bounds below apply to the expectation of each exact-degree count. The cumulative lower bounds give no matching lower bound for that difference, and its proposed pointwise scaling remains open.
+In the 2017 paper and the 2022 thread, $`N_k`$ denotes the number of vertices of degree **exactly** $`k`$. Here $`N_k(n)`$ counts vertices of degree **at least** $`k`$, so $`N_2(n)=C_n`$. The exact-degree count is $`N_k(n)-N_{k+1}(n)\le C_n`$ for every $`k\ge2`$. Thus both finite-size mean upper bounds below apply to the expectation of each exact-degree count. The cumulative lower bounds give no matching lower bound for that difference, and its proposed pointwise scaling remains open.
 
 A single growth exponent $`\mu`$ exists, with $`\mathbb{E}[C_n] = n^{\mu + o(1)}`$ and $`\log C_n / \log n \to \mu`$ almost surely, and
 
