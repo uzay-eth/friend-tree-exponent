@@ -45,7 +45,7 @@ A separate upper certificate gives
 \E C_n\le\frac{1539738114735}{3908512529}P_{5657/9983}(n).
 \]
 \end{theorem}
-Since $\log P_a(n)=a\log n+O(1)$ by summing $\log(1+a/j)=a/j+O(j^{-2})$, the first pair gives $0.5650\le\mu\le0.5665$. The upper endpoints of the two constructions lie $1/6000$ and $1/299490$, respectively, below $17/30$. For $k\ge2$, $N_{=k}(n)=N_{\ge k}(n)-N_{\ge k+1}(n)\le C_n$, so both product upper bounds apply to its mean. For each fixed exact degree, a positive fraction of the core eventually has that degree almost surely (Proposition~\ref{prop:exact-degree}).
+Since $\log P_a(n)=a\log n+O(1)$ by summing $\log(1+a/j)=a/j+O(j^{-2})$, the first pair gives $0.5650\le\mu\le0.5665$. The upper endpoints of the two constructions lie $1/6000$ and $1/299490$, respectively, below $17/30$. For $k\ge2$, $N_{=k}(n)=N_{\ge k}(n)-N_{\ge k+1}(n)\le C_n$, so both product upper bounds apply to its mean. For each fixed degree $k\ge2$, a positive fraction of the core eventually has that degree almost surely (Proposition~\ref{prop:exact-degree}).
 
 This growth rule is a one-step random-walk attachment rule in the family studied by Saramäki and Kaski and by Evans and Saramäki \cite{SK,ES}. The same transition appears in single-link mediation-driven attachment \cite{HIH} and in the $p=0,q=1$ friend-of-a-friend model, started there from a triangle \cite{LSS}. Cannings and Jordan proved that leaves occupy an asymptotic fraction one almost surely for walks of length one \cite[Theorem~2.1]{CJ}. Krapivsky and Redner called the rule isotropic redirection and reported $0.566$ for the growth exponent of the nucleus (the non-leaves), with fitted slopes between $0.5652$ and $0.5673$, and proposed a scaling law for individual degree counts \cite[Eq.~(1) and Sec.~5.1]{KR}. After speaking with Redner, Strogatz wrote: ``It's an open problem to prove that 17/30 is really the exponent'' \cite{Strogatz}. For the relation to other forms of redirection see the survey \cite{KRsurvey}. In the scaling law of \cite{KR}, $N_k$ counts vertices of degree exactly $k$.
 
@@ -366,14 +366,13 @@ For each fixed integer $d\ge2$ there exists $b_d>0$ such that eventually $N_{=d}
 \]
 \end{proposition}
 \begin{proof}
-Use the disjoint sites of Lemma~\ref{lem:block} at each integer time $l$ with $C(l)\ge1$.
-Plant a star with $d-1$ leaves, rooted at its centre (for $d=2$, use either end of an edge).
+Use the disjoint sites and preparation flags from the proof of Lemma~\ref{lem:block} at each integer time $l$ with $C(l)\ge1$.
+The preparation uses only $M,k\ge2$; the larger seed requirement in Section~\ref{sec:exist} is used in the later comparison with a free tree. Plant a star with $d-1$ leaves, rooted at its centre (for $d=2$, use either end of an edge).
 The cut edge adds one neighbour, giving the planted root actual degree $d$.
 Fix $M=2$ and $h=d+1$. After preparation require silence of the base and all $d$ branch
 clocks for one further unit. Every neighbour of the planted root is then silent,
 so the root has degree $d$ throughout $[l+h,l+h+1]$. These sufficient events use
-disjoint site inputs, with common probability $q=p(2,d)e^{-(d+1)}>0$ conditional on the
-starting tree. They give distinct roots.
+disjoint site inputs and are conditionally independent given $\mathcal F_l$, with common probability $q=p(2,d)e^{-(d+1)}>0$. They give distinct roots.
 
 For $m\ge C(l)/6$ sites, the probability of fewer than $mq/2$ successes is at most
 $e^{-mq/8}$ by the binomial lower-tail bound. Write $X_d(t)$ for the exact-degree count
@@ -405,8 +404,7 @@ $\E C_n\le(n/m)\E C_m$. Since $\E C_m\to\infty$, the claimed mean comparison
 follows. Apply Theorem~\ref{th:exist} and the upper bound $N_{=d}(n)\le C_n$
 to obtain both logarithmic limits.
 \end{proof}
-This proves the comparability of adjacent fixed exact-degree counts asked about in \cite[Sec.~7, Question~2]{AB}. The cost $q$ depends on $d$. This argument gives neither a leading constant for
-fixed $d$ nor uniformity in growing $d$.
+This proves the comparability of adjacent fixed exact-degree counts for degrees at least two asked about in \cite[Sec.~7, Question~2]{AB}. The endpoint $d=1$ is different: there are $n-C_n$ leaves. The cost $q$ depends on $d$; the leading constants and general growing-degree asymptotics remain open.
 
 \section{Numerical measurements}\label{sec:sim}
 
@@ -1343,6 +1341,6 @@ Anomalous scaling in redirection networks, \emph{Physical Review E}
 \href{https://arxiv.org/abs/2604.01540}{arXiv:2604.01540}.
 \bibitem{supplement} C.~Uzay, \emph{Growth of the non-leaf population in the
 random friend tree}, supplementary proofs, certificate verifiers and
-simulation data. \href{https://github.com/uzay-eth/friend-tree-exponent/tree/e9ed846284a6f180bb32ec01b6528afc99261b47}{Supplementary material, revision \texttt{e9ed846284a6}}.
+simulation data. \href{https://github.com/uzay-eth/friend-tree-exponent/tree/b1a9fd37bb9ca0eda6c352702328b5ea06fcfdf1}{Supplementary material, revision \texttt{b1a9fd37bb9c}}.
 \end{thebibliography}
 \end{document}

@@ -66,6 +66,10 @@ The four independent reports concern the manuscript at `526f350`. R1 is Claude O
 
 **Wrong or imprecise statement · fixed.** Raised by R3. The independent simulator selects an index by truncating a 64-bit product. For m indices each individual probability differs from 1/m by less than 2 to the power −64; the revised methods disclose this alongside the rounded Gaussian draws. These are numerical measurements. The certificate proofs do not use them.
 
+### S7. Revision §6, lower endpoint in the sentence about Question 2
+
+**Wrong or imprecise statement · fixed.** Raised by Independent degree reader. Reported immediately to the owner during revision. The proposition always specified degrees at least two. Reading its following citation as covering degrees one and two is false: the leaf count equals n minus the core while the count of degree two is at most the sublinear core. Both paper and supplement now explicitly exclude this pair. The protected-star proof and all headline results stand.
+
 ### C4. Supplement pin and long-term archiving
 
 **Citation · fixed.** Raised by R3, R4. The cited original commit exists and supplies the data used in the paper. The revised link identifies the immutable commit containing the updated proofs and checker documentation. A permanent journal or DOI deposit would help long-term preservation; no deposit was made in this round. That publication decision can be made with the eventual venue.
@@ -80,9 +84,9 @@ The four independent reports concern the manuscript at `526f350`. R1 is Claude O
 | --- | ---: | ---: | ---: |
 | Error in a proof | 0 | 0 | 0 |
 | Unjustified step | 3 | 0 | 0 |
-| Wrong or imprecise statement | 6 | 0 | 0 |
+| Wrong or imprecise statement | 7 | 0 | 0 |
 | Citation | 4 | 0 | 0 |
 | Exposition | 5 | 0 | 0 |
-| **Total** | **18** | **0** | **0** |
+| **Total** | **19** | **0** | **0** |
 
 No false step was identified in the existence proof, the two-sided motif bound or the independent degree-band upper bound. Outstanding research questions in §8 concern sharper theorems. This is a model review. A human probability referee has yet to read the arguments.
