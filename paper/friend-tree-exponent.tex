@@ -47,7 +47,7 @@ A separate upper certificate gives
 \end{theorem}
 Since $\log P_a(n)=a\log n+O(1)$ by summing $\log(1+a/j)=a/j+O(j^{-2})$, the first pair gives $0.5650\le\mu\le0.5665$. The upper endpoints of the two constructions lie $1/6000$ and $1/299490$, respectively, below $17/30$. For $k\ge2$, $N_{=k}(n)=N_{\ge k}(n)-N_{\ge k+1}(n)\le C_n$, so both product upper bounds apply to its mean. For each fixed exact degree, a positive fraction of the core eventually has that degree almost surely (Proposition~\ref{prop:exact-degree}).
 
-This growth rule is a one-step random-walk attachment rule in the family studied by Saramäki and Kaski and by Evans and Saramäki \cite{SK,ES}. The same transition appears in single-link mediation-driven attachment \cite{HIH} and in the $p=0,q=1$ friend-of-a-friend model, started there from a triangle \cite{LSS}. Cannings and Jordan proved that leaves occupy an asymptotic fraction one almost surely for walks of length one \cite[Theorem~2.1]{CJ}. Krapivsky and Redner called the rule isotropic redirection and reported $0.566$ for the growth exponent of the nucleus (the non-leaves), with fitted slopes between $0.5652$ and $0.5673$, and proposed a scaling law for individual degree counts \cite[Eq.~(1) and Sec.~5.1]{KR}. After speaking with Redner, Strogatz wrote: ``It's an open problem to prove that 17/30 is really the exponent'' \cite{Strogatz}. In the scaling law of \cite{KR}, $N_k$ counts vertices of degree exactly $k$.
+This growth rule is a one-step random-walk attachment rule in the family studied by Saramäki and Kaski and by Evans and Saramäki \cite{SK,ES}. The same transition appears in single-link mediation-driven attachment \cite{HIH} and in the $p=0,q=1$ friend-of-a-friend model, started there from a triangle \cite{LSS}. Cannings and Jordan proved that leaves occupy an asymptotic fraction one almost surely for walks of length one \cite[Theorem~2.1]{CJ}. Krapivsky and Redner called the rule isotropic redirection and reported $0.566$ for the growth exponent of the nucleus (the non-leaves), with fitted slopes between $0.5652$ and $0.5673$, and proposed a scaling law for individual degree counts \cite[Eq.~(1) and Sec.~5.1]{KR}. After speaking with Redner, Strogatz wrote: ``It's an open problem to prove that 17/30 is really the exponent'' \cite{Strogatz}. For the relation to other forms of redirection see the survey \cite{KRsurvey}. In the scaling law of \cite{KR}, $N_k$ counts vertices of degree exactly $k$.
 
 Addario-Berry et al.\ studied the process under the name random friend tree \cite{AB}. Their Propositions 6.20 and 6.22 give almost-sure lower and upper logarithmic bounds $(\sqrt{13}-3)/6$ and $\sqrt 2-1/2$, approximately $0.1009$ and $0.9142$. The upper number here comes from their Proposition~6.22; their abstract states $9/10$. They also proved comparability of the cumulative counts at successive fixed degrees. Hartle et al.\ studied modifications of the redirection rule that admit recurrences for leaf degrees. For the original process they report a numerical fit of $0.569$ \cite[Fig.~6]{HKRZ}.
 
@@ -160,7 +160,7 @@ Select disjoint clock sets. With $C\ge2$, let $A_0$ count sites with $c\le2,L\ge
 
 At a site with a leaf reserve its clock and that of the tagged leaf; at a triple reserve its three clocks, assigning $(u,w,z)$ in path order. All sets are disjoint. Use the four stages above: signals from outside may add leaves but cannot decrease $L_u$ while $u$ is silent. The first two stages can be decided from independent site-specific clocks, including new clocks for tagged leaves at triples.
 
-In the third stage take the source ring and its mark below the fixed threshold from the site's own random inputs. Which leaf is selected may depend on the surroundings. At selection time its future clock can be sampled afresh from the site's independent randomness, as can that of the newborn. Given the ring time within the unit, $\tau\in[0,1]$, the two-clock silence probability is $e^{-2(1-\tau)}$; thin it by an independent coin of probability $e^{-2\tau}$.
+In the third stage take the source ring and its mark below the fixed threshold from the site's own random inputs. Which leaf is selected may depend on the surroundings. A leaf of $u$ has no other neighbour, so it belongs to no other site's reserved vertices. Even when it is the original tagged leaf, the second stage has finished using that clock. At selection time its future clock can be sampled afresh from the site's independent randomness, as can that of the newborn. Given the ring time within the unit, $\tau\in[0,1]$, the two-clock silence probability is $e^{-2(1-\tau)}$; thin it by an independent coin of probability $e^{-2\tau}$.
 
 For the final stage use fresh independent branch clocks and choices under the silent exterior parent. To obtain a common flag, proceed as follows. At a leaf site thin stage-one silence by a coin of probability $e^{-1}(1-e^{-1})/2$, giving the same probability as at a triple. In each final-stage unit with $j$ branch vertices, rank the required recipient first and test the source mark against $1/(k+1)$. Require exactly one ring of that source and silence of the other $j-1$ branch clocks and of $u$. For a newborn at time $\tau$ within the unit, require silence up to the end and an independent coin of probability $e^{-\tau}$. The newborn test then has probability $e^{-1}$ for every birth time. The probability of this unit's flag is $e^{-(j+2)}/(k+1)$; thin by $e^{-(k-1-j)}$ to obtain $e^{-(k+1)}/(k+1)$, since $2\le j\le k-1$. All coins and scripted clocks can be drawn from the given site's own randomness. This realizes the displayed preparation probability $p$ at every site, even when outside rings affect the identity of the promoted leaf. Equivalently, the post-selection clocks can be assigned beforehand by site and revealed only at selection, preserving the exponential waiting times. Flags are evaluated from the reserved inputs. The actual process uses each prescribed ranking and fresh driver only when its stage is reached, and processes a failed test with the ordinary transition law before continuing.
 
@@ -276,7 +276,7 @@ $\limsup_{n\to\infty}\log C_n/\log n\le\alpha$ almost surely.
 
 \section{An independent upper bound from degree bands}\label{sec:banded}
 
-We prove the separate upper bound in Theorem~\ref{th:bracket}. Put
+The notation in Appendix~\ref{app:band} is local to this construction: $H$ is the degree cutoff and $T$ is the threshold for the second transfer. We prove the separate upper bound in Theorem~\ref{th:bracket}. Put
 \[
  \lambda=\frac{5657}{9983}=\frac{17}{30}-\frac{1}{299490}.
 \]
@@ -318,7 +318,7 @@ Applying the same dyadic argument as in Section~\ref{sec:motif} to this product 
 
 \section{Computer-assisted verification}\label{sec:checks}
 
-Appendix~\ref{app:motif} reduces the drift for every rooted tree to four families of inequalities. For each direction the GMP checker verifies $17{,}329{,}108$ inequalities, computes the comparison with $C_n$ and evaluates the three-vertex seed. Some intermediate expressions use machine integers; their ranges for the shipped coefficients are documented in \path{proofs/bracket-motifs-code-map.md}. Appendix~\ref{app:band} reduces the independent upper bound to $226{,}545{,}617$ finite rows, two inequalities for unbounded degrees and a comparison for every newborn label. Both the primary and independent banded checkers use signed integer arithmetic with undefined-behaviour checks enabled. The two sets of admissible weights differ; the stated prefactor uses the primary construction.
+Appendix~\ref{app:motif} reduces the drift for every rooted tree to four families of inequalities. For each direction the GMP checker verifies $17{,}329{,}108$ inequalities, computes the comparison with $C_n$ and evaluates the three-vertex seed. The finite vertex reduction assumes $D_0\le K_F+1$, which holds here since $24\le151$. This header condition is checked by inspection. The remaining header conditions and machine-integer ranges for these coefficients are documented in \path{proofs/bracket-motifs-code-map.md}. Appendix~\ref{app:band} reduces the independent upper bound to $226{,}545{,}617$ finite rows, two inequalities for unbounded degrees and a comparison for every newborn label. Both the primary and independent banded checkers use signed integer arithmetic with undefined-behaviour checks enabled. The two sets of admissible weights differ; the stated prefactor uses the primary construction.
 
 There is also a direct test of the drift. Given a fixed tree, attach a leaf in turn at each target $w$, recompute the full potential and weight its change by $\sum_{v\sim w}1/(nD_v)$. For the motif potential the test covers both signs on all $32{,}972$ rooted tree shapes of sizes three through fourteen with a non-leaf root. The product bounds are also compared with archived exact means at sizes three through twenty-one. For the banded potential the labels depend on the growth history. The test follows all ordered sequences of attachment targets from $T_3$ through size nine, including the intermediate histories ($23{,}116$ in total). On selected trees the separate \path{motif_identity.py} checks the generator decomposition term by term, its local inequalities and its comparison with the core size. These tests exercise the implementation on particular trees; the reductions and exhaustive row inequalities prove the bounds at arbitrary sizes.
 
@@ -334,7 +334,7 @@ The first command also exercises negative controls, including six perturbations 
 The two constructions above prove the headline bounds without using the
 following results. We record the statements and identify their full proofs
 in the supplement~\cite{supplement}. The symbols for degree counts below follow
-Section~1 throughout.
+Section~1 throughout: $N_{\ge k}$ here is denoted $N_k$ in the cumulative degree-tail proof.
 
 \paragraph{Earlier lower certificates.}
 For bounded local weights the supplement gives sufficient conditions under which a lower drift inequality at exponent $\delta$ implies $\liminf_n\log C_n/\log n\ge\delta$ almost surely by Theorem~B of the supplementary lower-drift proof. Applications give $\delta=543/1000$ and, by transferring terms between adjacent vertices, $\delta=11/20$ by the cross-charging argument. The earlier two-sided tables at $543/1000$ and $293/500$ also yield $\liminf_n C_n/n^{543/1000}>0$ and almost-sure convergence of the lower potential divided by $n^{543/1000}$ in $(0,\infty]$ by the polynomial-scale argument in the supplement. These arguments are independent of the common-exponent theorem.
@@ -463,7 +463,7 @@ leaf there at rate one. The continuous-time simulator draws these Yule
 increments in batches and stores the core and its leaf counts. For very
 large Poisson intensities the two implementations use rounded Gaussian
 draws (thresholds $10^9$ and $10^{14}$); the archived outputs do not count
-how often this approximation was used.
+how often this approximation was used. The second implementation also maps a uniform 64-bit word to one of $m$ indices by multiplication and truncation. Each index probability differs from $1/m$ by less than $2^{-64}$.
 
 \begin{figure}[!t]\centering
 \includegraphics[width=\linewidth]{local_slopes.png}
@@ -500,7 +500,7 @@ asymptotic for the cumulative degree counts would need enough control
 of adjacent counts to determine their difference.
 
 \section*{How this work was produced}
-Can Uzay selected the problem, coordinated independent attempts and set the criteria for proofs and exact arithmetic. Generative AI systems in the GPT, Gemini and Claude families developed the mathematical arguments, certificates and simulation programs, drafted and revised the manuscript, and reviewed the proofs in separate sessions. Exact arithmetic checks the finite inequalities. Independent implementations, direct calculations on small trees and deliberate perturbations also tested the constructions. The supplement records the model contributions and review reports. No human referee has yet read the proofs.
+Can Uzay selected the problem, coordinated independent attempts and set the criteria for proofs and exact arithmetic. Generative AI systems in the GPT, Gemini and Claude families developed the mathematical arguments, certificates and simulation programs, drafted and revised the manuscript, and reviewed the proofs in separate sessions. Exact arithmetic checks the finite inequalities. Independent implementations, direct calculations on small trees and deliberate perturbations also tested the constructions. The supplement records the model contributions and review reports. The sole listed author is responsible for the manuscript. No human referee has yet read the proofs.
 
 \appendix
 \section{The motif drift inequalities}\label{app:motif}
@@ -1219,7 +1219,7 @@ sufficient inequality for a finite row is therefore
 \paragraph{Degrees at least $H$.}
 Put $q=L/D$ and use the weight $A+Bq$ with $A>0$, $B\ge0$.
 A gain increases $q$ by $(1-q)/(D+1)$ and a conversion decreases it
-by $1/D$. Thus the rate times the mean increment of $q$, summed over the
+by $1/D$. Thus the scaled drift of $q$, summed over the
 two events, is
 \[
  r_u\frac{1-q}{D+1}-\frac{q}{D}\le 1-q,
@@ -1330,6 +1330,7 @@ paper 77, 1--5. \href{https://doi.org/10.1214/ECP.v18-2518}{doi:10.1214/ECP.v18-
 \bibitem{KR} P.~L.~Krapivsky and S.~Redner, Emergent network modularity,
 \emph{Journal of Statistical Mechanics: Theory and Experiment} (2017),
 073405. \href{https://arxiv.org/abs/1706.01514}{arXiv:1706.01514}.
+\bibitem{KRsurvey} P.~L.~Krapivsky and S.~Redner, The magic of networks grown by redirection, \emph{Indian Journal of Physics} \textbf{98} (2024), 3777--3787. \href{https://doi.org/10.1007/s12648-023-02874-x}{doi:10.1007/s12648-023-02874-x}.
 \bibitem{Strogatz} S.~Strogatz, post on the exponent in isotropic
 redirection, 20 September 2022.
 \url{https://x.com/stevenstrogatz/status/1572287647715934210}.

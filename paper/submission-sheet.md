@@ -21,7 +21,7 @@ In the random friend tree, each new vertex chooses an existing vertex uniformly 
 **Comments**
 
 ```text
-26 pages, 1 figure. Proofs, exact certificate verifiers and simulation data: https://github.com/uzay-eth/friend-tree-exponent
+27 pages, 1 figure. Proofs, exact certificate verifiers and simulation data: https://github.com/uzay-eth/friend-tree-exponent
 ```
 
 **Licence recommendation.** Choose Creative Commons Attribution 4.0 International (CC BY 4.0) to match the repository’s licence for its text and proofs. It permits commercial reuse and adaptations with attribution, and the grant for this version is irrevocable, so check compatibility with the intended journal. [Repository licence](../LICENSE) · [arXiv licences](https://info.arxiv.org/help/license/index.html)
