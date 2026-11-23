@@ -22,7 +22,7 @@ An independent upper-bound construction also separates $`\mu`$ from $`17/30`$, g
 
 Krapivsky and Redner estimated $`\mu\approx0.566`$ for isotropic redirection. After speaking with Redner, Steven Strogatz asked in 2022 whether the exact exponent could be $`17/30`$. [Krapivsky and Redner, §5.1](https://arxiv.org/pdf/1706.01514#page=12) · [Strogatz’s post](https://x.com/stevenstrogatz/status/1572287647715934210)
 
-Hartle, Krapivsky, Redner and Zhang obtained $`0.569`$ by nonlinear least squares on mean core sizes from $`N=10^2`$ to $`10^6`$. Their fitted slope exceeds the asymptotic upper bound $`0.5665`$, which constrains the limiting logarithmic growth rate. [Hartle et al., Fig. 6](https://arxiv.org/html/2604.01540v1#S3.F6)
+Hartle, Krapivsky, Redner and Zhang obtained $`0.569`$ by nonlinear least squares on mean core sizes from $`N=10^2`$ to $`10^6`$. Their finite-size fit lies above the asymptotic upper bound $`0.5665`$. Our unweighted fit to 2,400 new trees over the same fixed-size range gives $`0.56603\pm0.00024`$. At much larger sizes, a continuous-time simulation gives a pooled slope of $`0.5657230\pm0.0000032`$. Both uncertainties are Monte Carlo standard errors. The difference between the published estimate and our fits remains unexplained. The proofs use no simulation estimates. [Simulation data, fits and figure](simulations/README.md) · [Hartle et al., Fig. 6](https://arxiv.org/html/2604.01540v1#S3.F6)
 
 The [technical report](REPORT.md), [proofs](proofs/README.md) and [review reports](reviews/README.md) give the arguments and checks.
 

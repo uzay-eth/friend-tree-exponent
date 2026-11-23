@@ -1,0 +1,2 @@
+# fixedN seed=20261123706 runs=400000 T=6 model=0 theory_meanN=1210.29
+T 6 N_mean 1210 N_sd 0 N_se 0 C_mean 39.9145975 C_sd 20.1567083 C_se 0.0318706 S_mean 22.67486239 S_sd 11.12568299 S_se 0.0175912

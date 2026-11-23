@@ -1,0 +1,5 @@
+   t   CT runs   CT mean n        3e^t     CT E[C]       +-  direct E[C]       +-     zC     CT E[S]  direct E[S]     zS  direct-file
+   4   1000000      163.78      163.79    12.25959  0.00763     12.76049  0.00451 -56.56     7.02040      7.30653 -61.20  results/neg_fixedN_t4.txt [fixedN, 2000000 runs]
+   6   1000000      1210.2      1210.3    38.35563  0.02409     39.91460  0.03187 -39.02    21.79025     22.67486 -40.00  results/neg_fixedN_t6.txt [fixedN, 400000 runs]
+   4   1000000      163.78      163.79    12.25959  0.00763      5.22147  0.00176 899.35     7.02040      4.00159 712.54  results/neg_yule_t4_model2.txt [yule, 2000000 runs]
+max |z| over friend-tree (model 0) Yule-matched comparisons: none in this set
