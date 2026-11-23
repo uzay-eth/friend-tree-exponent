@@ -1,0 +1,7 @@
+Archived report, transcribed at the reported precision
+Continuous-time core simulation, 48 runs at time 27
+Theoretical mean population: 1.6e12
+Total core vertices: 2.56e8
+Effective exponent: 0.565724
+Sampling standard error: 0.000018
+Reported 95% sampling interval: [0.565690, 0.565758]

@@ -1,0 +1,6 @@
+Fixed N: 2400 trajectories, 9 fixed sizes from 100 to 1000000
+Unweighted nonlinear least squares on mean C: 0.5660272 +- 0.0002417
+Unweighted least squares on log(mean C): 0.5675481 +- 0.0004706
+Fixed time: 912 trajectories, t=4..12, x=3 exp(t)
+Unweighted nonlinear least squares on mean C: 0.5655751 +- 0.0004760
+Unweighted least squares on log(mean C): 0.5676083 +- 0.0008194
