@@ -2,9 +2,9 @@
 
 **Can Uzay**
 
-Start from a single edge $`T_2`$; at each step pick a uniform vertex $`V_n`$, pick a uniform neighbour $`W_n`$ of $`V_n`$, and attach a new leaf to $`W_n`$. Let $`C_n`$ be the number of non-leaves (vertices of degree at least $`2`$) in $`T_n`$.
+Start from a single edge $`T_2`$; at each step pick a uniform vertex $`V_n`$, pick a uniform neighbour $`W_n`$ of $`V_n`$, and attach a new leaf to $`W_n`$. Let $`C_n`$ be the number of non-leaves (vertices of degree at least $`2`$) in $`T_n`$. Addario-Berry et al. call this model the random friend tree. [The random friend tree](https://arxiv.org/abs/2403.20185)
 
-In the 2017 paper and the 2022 thread, $`N_k`$ denotes the number of vertices of degree **exactly** $`k`$. Here $`N_k(n)`$ counts vertices of degree **at least** $`k`$, so $`N_2(n)=C_n`$. The exact-degree count is $`N_k(n)-N_{k+1}(n)\le C_n`$ for every $`k\ge2`$. Thus both finite-size mean upper bounds below apply to the expectation of each exact-degree count. The cumulative lower bounds give no matching lower bound for that difference, and its proposed pointwise scaling remains open.
+In Krapivsky and Redner’s paper and in Strogatz’s thread, $`N_k`$ denotes the number of vertices of degree **exactly** $`k`$. Here $`N_k(n)`$ counts vertices of degree **at least** $`k`$, so $`N_2(n)=C_n`$. The exact-degree count is $`N_k(n)-N_{k+1}(n)\le C_n`$ for every $`k\ge2`$. Thus both finite-size mean upper bounds below apply to the expectation of each exact-degree count. The cumulative lower bounds give no matching lower bound for that difference, and its proposed pointwise scaling remains open. [Krapivsky and Redner, §5.1](https://arxiv.org/pdf/1706.01514#page=12) · [Strogatz’s thread](https://x.com/stevenstrogatz/status/1572287647715934210)
 
 A single growth exponent $`\mu`$ exists, with $`\mathbb{E}[C_n] = n^{\mu + o(1)}`$ and $`\log C_n / \log n \to \mu`$ almost surely, and
 
@@ -49,7 +49,7 @@ PASS  polynomial-lower (Carbon/Sol) liminf C_n/n^(543/1000) > 0 a.s.; 319,086 up
 ALL 7 VERIFICATION SUITES PASSED (594s)
 ```
 
-All seven suites passed in 1,342 s (22 min 22 s) on an 8-vCPU AMD EPYC 7543P VM. They took 594 s standalone and 629 s alongside another verification on an AMD Ryzen 7 5800X (8 cores / 16 threads, 62 GiB RAM), Ubuntu Linux (`6.8.0-149-generic`), GCC/G++ `13.3.0`, `libgmp-dev 2:6.3.0`, Python `3.12.3`, GNU `gzip 1.12`. See [`verify/README.md`](verify/README.md) for per-suite details.
+The author’s assistant independently ran all seven suites on an 8-vCPU AMD EPYC 7543P VM and reported that they passed in 1,342 s (22 min 22 s). They took 594 s standalone and 629 s alongside another verification on an AMD Ryzen 7 5800X (8 cores / 16 threads, 62 GiB RAM), Ubuntu Linux (`6.8.0-149-generic`), GCC/G++ `13.3.0`, `libgmp-dev 2:6.3.0`, Python `3.12.3`, GNU `gzip 1.12`. See [`verify/README.md`](verify/README.md) for per-suite details.
 
 ## Who did what
 

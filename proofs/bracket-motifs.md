@@ -1,4 +1,4 @@
-> Produced by Gemini 4 Neon.
+> Produced by Gemini 4 Neon. The title and introduction have been edited to distinguish the numerical estimate from the exact-value question.
 
 # Product bounds for the mean number of non-leaves
 
