@@ -1,0 +1,26 @@
+## 1. Gut reaction in one minute
+
+The number is gratifying: it rounds to the old estimate of 0.566, but it is not 17/30. Those are different statements, and the old fits were never precise enough to distinguish them. I would keep reading for the degree law. The same exponent controls the growth of the nucleus and the tail of its degree distribution; the size of the nucleus retains a random multiplier, but its normalized degree proportions do not. That is a more interesting result than another decimal place. The density is a surprise, not something I would infer from a histogram.
+
+## 2. What I would do next
+
+I would check the nucleus argument before running more simulations. The starting point is familiar: in rate-one clocks the promotion intensity is the sum of the leaf fractions over the nucleus. That is the content behind the old rate equation, but it is not a closed equation for the nucleus size. I would follow how the paper gets a law for the environment of a typical nucleus vertex without assuming that the degree and leaf-count fractions have already settled. Then I would ask a probabilist to check the renewal-to-almost-sure step independently of the model reviews. For a physics follow-up, I would plot effective slopes of the mean nucleus size over the windows used for 0.566 and 0.569, with the certified interval marked. That would probe finite-size drift; it would not explain the published fits without their data, or improve the certificate.
+
+## 3. Overclaims, confusion, or misattribution
+
+**Actual overclaims or wrong attribution:** None I could substantiate on this reading. The 2017 paper’s §5.1 gives average counts and the normalized nucleus tail; Addario-Berry et al.’s §7(2) supplies the almost-sure fixed-degree formulation. The manuscript’s detailed degree-ratio paragraph gets that distinction right. The Strogatz post raises the exact fraction; the packet does not assign it to Krapivsky and Redner. The 0.569 is indeed the fit for the original isotropic rule in Hartle et al.’s Fig. 6, not an exact result for it or an exponent of either modified model. Long is credited for the earlier characterization, effective two-sided approximation, and constant-factor mean bounds, not folded into the novelty claim for the marked kernel.
+
+**Wording that can confuse, without changing the truth of the result:**
+
+- Abstract: “This proves the fixed-degree formulation of Krapivsky and Redner’s scaling prediction in Section 7(2) of Addario-Berry et al.” On a quick read, “in Section 7(2)” can attach to the original prediction, or suggest that the original paper stated an almost-sure ratio theorem. The body separates the ratio of means from the ratio in one realization. Carry that distinction into the abstract.
+- Degree-ratio paragraph: “This does not show a joint pointwise asymptotic with $k=k(n)$.” Correct for Theorems 4–5, but “This” has to mean those theorems, not the whole packet. The linked supplementary hub-spectrum argument states a cumulative law over intermediate degrees and even an exact-degree estimate in a restricted growing range. Neither is a full pointwise law across the intermediate range. The distinction is cumulative versus exact and, for exact counts, restricted versus full range—not simply fixed versus moving degree.
+
+## 4. First theorem I would check, and whether the paper lets me
+
+**Theorem 5, with Theorem 4 for the single-tree statement.** I would check the identification of the spatial law’s degree marginal with $c_k/c_2$, then the age mixture and the crossing flux. A degree that grows on the $e^t$ scale, seen at an exponential age of rate $\mu$, makes the cumulative $k^{-\mu}$ tail plausible. It does not give the point probabilities by subtraction of equivalent tails. The separate flux through degree $k$, and the exponential bound on the number of core neighbours, are the steps I would check first. Yes, the paper lets me trace these through the appendices: the mean expansion and the existence and moment bound for the spatial eigenmeasure are the inputs; the conditional spectral-radius identity in Theorem 6 is not. Tracing that chain is not the same as having checked the full renewal proof.
+
+I also tried the two quick routes for the number. `python3 -B paper/checks/check_literals.py --enclosure` returned `PASS: Gold2 receipt matches Theorem 2 and the abstract.` That checks stored arithmetic against the manuscript, not the underlying inequalities. The proof map’s GMP replay of the smaller upper witness returned `=== SUMMARY: 17329108 exact GMP inequality checks, 0 failures => VERIFIED OK ===`. This is the short route to $1133/2000=17/30-1/6000$ via the drift-to-mean argument; it neither proves existence of the exponent nor replays Gold2. I did not run the full five-vertex rebuild or verification.
+
+## 5. One edit
+
+Replace the abstract sentence about the degree prediction with: “This proves the almost-sure, fixed-degree formulation posed by Addario-Berry et al. (§7(2)) of Krapivsky and Redner’s prediction for the nucleus-normalized degree law. The size limit is taken first; the result does not assert a pointwise scaling law throughout the growing-degree range.”

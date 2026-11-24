@@ -1,0 +1,64 @@
+# Cold read — simulated perspective of Sid Redner (round 2)
+
+*Editorial simulation, not a statement by the actual person. Inputs read: the PDF (38 pp., dated 24 November 2026), the packet README, and the repository at revision `68714067f4a3039b5ef739b2f229fe3a40e7c2b8`. To check attributions I also read the cited sources: Krapivsky–Redner 2017 (arXiv:1706.01514) §5.1, Hartle–Krapivsky–Redner–Zhang (arXiv:2604.01540v1) §§1–3 and Fig. 6, and Addario-Berry et al. (arXiv:2403.20185v1) §7.*
+
+## 1. Gut reaction in one minute
+
+So the number is real. Back in 2017 we said 0.566 and "accurate to within 0.001". This paper proves µ lies in [0.5657135, 0.5657370]. That fits inside our slope range of 0.5652–0.5673 and rounds to our value. It puts 17/30 = 0.566667 outside by about 3×10⁻⁵. The 0.569 from our 2026 nonlinear fit (Fig. 6) is high by about 0.003. The paper says so politely, as a finite-window effect. That's fair. It is what I'd expect from a correction exponent that isn't much smaller than µ.
+
+The part I care about most is the degree law. Theorem 5 gives N_k/N → p_k almost surely at fixed k, and p_k ∼ µA k^{-(1+µ)}. That is our Eq. (33), done properly, with an honest note that the joint scaling form N_k ∼ N^µ/k^{1+µ} with k = k(n) is not proved. I'm pleased, and a little humbled by how much machinery it took.
+
+What makes me uneasy: no human has refereed this. The five-vertex certificate has one implementation of the full row scan, written by one model family and replayed, not rewritten, by two others. The paper says all this plainly. That honesty helps, but it doesn't replace a referee.
+
+## 2. What I would do next
+
+1. **Run the cheap checks myself.** I did, on a fresh clone of this revision:
+   - `python3 -B paper/checks/check_literals.py --enclosure` printed the exact pair, the decimals `[0.565713486333, 0.565736986679]`, and `PASS: Gold2 receipt matches Theorem 2 and the abstract.` (0.05 s). As the README says, this only redoes the last arithmetic step. It does not check the inequalities.
+   - The "shorter route" replay in `docs/proof-map.md` (gcc + GMP on `verify/motif-bracket/reference/upper.bin.xz`) printed `=== SUMMARY: 17329108 exact GMP inequality checks, 0 failures => VERIFIED OK ===` in about 1.6 s. That certifies µ ≤ 1133/2000 = 17/30 − 1/6000, so it already answers Strogatz's question.
+   - Not run: the `gold2` build and replay (~17 + 2 min, 20 GiB RAM).
+2. **Simulate against the interval.** I'd rerun our isotropic-redirection simulations to N ≈ 10⁸. I'd fit local slopes with a correction term N^{σ−µ}, using Lemma B.2's σ < µ as the form. Then I'd check that the local slopes approach the band [0.56571, 0.56574] from above. If they approach from below, either the fits or the theorem has a problem.
+3. **Hand Theorem 2's row scan to someone outside the model families involved,** for a second, independently written implementation. That is the gap that matters.
+4. **Ask a probabilist colleague to read Theorem 4 and Theorem 5.** Those carry the degree-law claim. They take the a.s. limit and then the tail, and I can't fully audit them myself.
+
+## 3. Sentences that overclaim, confuse or misattribute
+
+**Misattribution: none found.** I checked every claim about our work against the source:
+- "Their fitted slopes ranged from 0.5652 to 0.5673, and they reported 0.566 [3, Sec. 5.1]": matches KR 2017 §5.1 word for word.
+- "Krapivsky and Redner [3, Sec. 5.1, Eqs. (32)–(33)] predict sublinear growth of the mean degree counts and a power-law tail for their normalized counts N_k/N … not the full tree size": correct. Eq. (33) is c_k = N_k/N with N the nucleus.
+- "Addario-Berry et al. … credit that prediction and formulate its almost-sure fixed-degree counterpart": correct. Their §7(2) says "Krapivsky and Redner conjecture that for each k, X^k_n/X^{≥2}_n has an almost sure limit that is Θ(k^{-(1+µ)})". The a.s. wording is theirs, and the paper says so.
+- "obtained a finite-size fit of 0.569 for their count under the same rule [6, Fig. 6]": correct. Fig. 6 uses ⟨C⟩, nonlinear least squares, N = 10² to 10⁶, and IR gives 0.569.
+- "After hearing about this work from Redner, Strogatz asked in 2022 whether the exponent could be 17/30 [4]": this rests on the cited post, which I could not load. Neither the packet nor the papers I read can confirm or refute it. Someone should check the post's exact wording before publication. I'm not flagging it as wrong.
+
+**Overclaims (mild, both in how a result is presented):**
+
+1. "Those Farey neighbours imply that any rational in the interval has reduced denominator at least 426." (§5, Tier B, "Arithmetic and numerical evidence"). The interval 99/175 < µ < 142/251 needs four "physical reward floors". The previous sentence says "Claude checked the reduction and arithmetic, not the floors," and Tier C says the floors had "Only the author family audited". The Theorem 2 interval actually *contains* 99/175. So the reviewed result only gives a denominator bound below 176, not 426. Stating 426 flatly under a Tier B heading reads as more settled than it is. It should be conditional ("if the four floors hold, …") or moved to Tier C.
+2. "Exact certificates put that exponent between 0.565713486333 and 0.565736986679" (§1, bullet 2), with "certified interval" in the abstract. The arithmetic is exact. "Certified", though, here means one authored verifier, replayed by others and not independently reimplemented (see "How this work was done": "neither independently implemented its full row scan"). The abstract only says "computer-assisted". I'd add "by a single machine-checked verifier, not independently reimplemented" near the first use. That's a matter of disclosure where readers look first, not an error.
+
+**Confusing (clarity, not errors):**
+
+3. "Hartle, Krapivsky, Redner and Zhang later called the non-leaves the core" (§1), together with the title of Theorem 5, "Fixed-degree means and the nucleus degree law". This is accurate but incomplete, and it will trip up anyone who reads [6]. In [6] we did not just rename. We *redefined* "nucleus" as the rank > 1 (protected) nodes, a strict subset of the core ([6], Fig. 2: "The rank > 1 nodes form the nucleus, and combined with rank-1 nodes they form the core"). [6] even studies the ratio N/C of nucleus to core. A reader of [6] will take "nucleus degree law" as a statement about protected nodes, which it isn't.
+4. "This proves the fixed-degree formulation of Krapivsky and Redner's scaling prediction in Section 7(2) of Addario-Berry et al." (abstract). The grammar places our prediction *in* their Section 7(2). Better: "the almost-sure fixed-degree formulation, posed in Section 7(2) of Addario-Berry et al., of Krapivsky and Redner's degree-law prediction."
+5. "The finite-size prefactors and an independent degree-band upper bound 5657/9983 appear in Theorem 1.2 of Uzay's November 2026 first version." (§2, after Theorem 1). This first version is not in the bibliography, so a reader can't follow it. Also, 5657/9983 = 17/30 − 1/299490, so it misses 17/30 by a hair, and no source is given.
+6. "GPT independently reduced the raw runs behind two estimates near 0.56572366." (§5, Tier B). Whose runs? The next section says Claude led the finite-window measurements, and §1 cites Sabba's 0.5657237, which is the same number to the digits shown. A reader can't tell whether this is the author's simulation, Sabba's, or both. Name the source and give N_max and the number of realizations. A physicist will want those before anything else.
+7. "Theorem 3 uses a different compact operator." and "His subsequent work proved EC_n ≍ n^µ [8]" (§1). References [7]–[10] are dated repository revisions from 23–24 November 2026, and [8] is titled "Transcendence targets…". A reader can't easily see which document proved what, or when. The README gives revision-pinned links. The PDF bibliography should give them too, at least short hashes with URLs.
+
+## 4. Which theorem I would check first, and whether the paper lets me
+
+**Theorem 2**, because it is the headline number and directly tests our estimate. The paper half-lets me:
+- **Yes for the last step:** the README check recomputes the endpoints from the stored integers in a fraction of a second, and it passed.
+- **Yes for the weaker result that already settles 17/30:** the round-one upper replay is one copy-pasted block and passed in under two seconds. That is the right thing to put in front of a physicist.
+- **Only with real hardware for the full enclosure:** 767,588,844 rows per side need a 17-minute build and a 2-minute replay with 20 GiB RAM and 12 GiB scratch disk. The steps are documented, but I did not run them. Even then, I would be rerunning *their* verifier. The paper says outright that no independent implementation of the full row scan exists. The two pages of §2 explain the accounting (singleton/edge transfers, the r(v) substitution, the d/D_v interpolation at the cutoff). They don't let me rebuild a single row by hand. One worked row with real numbers would.
+
+Second choice is **Theorem 5**, our degree law. The tail proof (birth-age mixture, flux identity, the ϵ-sandwich) is short and readable. But it depends on Lemma B.2 and Lemma B.3 in the appendix, which I would have to take on trust or hand to a probabilist.
+
+## 5. One edit
+
+Fix the terminology clash with [6]. In §1 replace
+
+> "Hartle, Krapivsky, Redner and Zhang later called the non-leaves the core and obtained a finite-size fit of 0.569 for their count under the same rule [6, Fig. 6]."
+
+with
+
+> "Hartle, Krapivsky, Redner and Zhang later called the non-leaves the core, reserving 'nucleus' for the rank > 1 (protected) vertices, and obtained a finite-size fit of 0.569 for the mean core size under the same rule [6, Fig. 6]. We follow [3]: in Theorem 5, 'nucleus' means all non-leaves."
+
+That costs one line. It avoids a misreading by exactly the readers most likely to pick the paper up, our group and anyone who cites [6].

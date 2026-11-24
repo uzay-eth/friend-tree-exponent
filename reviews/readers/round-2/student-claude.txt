@@ -1,0 +1,96 @@
+# Cold read, round 2: first-year probability graduate student (simulated)
+
+This is an editorial simulation of a cold reader who arrives from a tweet. It is not a statement by any real person.
+Inputs read: the README and the PDF supplied for this round (byte-identical to `README.md` and `paper/friend-tree-exponent.pdf` at the revision), the repository at `68714067f4a3039b5ef739b2f229fe3a40e7c2b8`, the proof map's "shorter route" section, `paper/checks/check_literals.py`, and arXiv:2403.20185v1 §7, which the paper cites for the questions it answers.
+
+## Result as I understand it
+
+In the random friend tree, the number of non-leaves C_n grows like n^µ, both in mean and almost surely. µ lies in the exact interval [35083855339718511/62017003637500000, 127993535256830043/226242120050000000] ≈ [0.5657135, 0.5657370]. So µ ≠ 17/30 = 0.56667, which answers Strogatz's question. A three-vertex certificate already gives µ ≤ 1133/2000 = 17/30 − 1/6000. The paper also claims:
+
+- C_n/n^µ → X almost surely, where X is positive, nonconstant and has a density.
+- Fixed-degree proportions converge almost surely, with p_k ∼ µA k^{−1−µ}.
+- The limiting degree shares Z_v sum to 1.
+- P(Z_v > 0) and every moment E Z_v^p strictly decrease from label 2 onward.
+
+The quantitative enclosure depends on computer checks. AI models wrote the proofs and code, and no human has refereed them. The README and the paper both say this plainly.
+
+## The quick check I ran
+
+I ran it in a private temporary clone with Python 3.12.3:
+
+```
+$ git clone https://github.com/uzay-eth/friend-tree-exponent repo && cd repo
+$ git checkout 68714067f4a3039b5ef739b2f229fe3a40e7c2b8
+$ python3 -B paper/checks/check_literals.py --enclosure
+Exact enclosure: [35083855339718511/62017003637500000, 127993535256830043/226242120050000000]
+Outward decimal enclosure: [0.565713486333, 0.565736986679]
+PASS: Gold2 receipt matches Theorem 2 and the abstract.
+exit status 0
+```
+
+The README says "Download or clone", so I also tested a plain download. I unpacked a `git archive` of the same revision into a folder with no `.git` and ran the same command. It printed the same three lines with exit status 0. The `--enclosure` mode really works offline.
+
+I also checked the table arithmetic in the Theorem 2 proof by hand, with `fractions` in Python:
+- 7071421/12500000 − 19217/99227205820 = a−
+- 28286843/50000000 + 20062/158369484035 = a+
+
+Both equalities are exact (True). The proof map advertises a smaller replay that already excludes 17/30, so I ran that too, using GCC with OpenMP and GMP:
+
+```
+$ gcc -O3 -fopenmp verify/motif-bracket/cert_verify_gmp.c -lgmp -o $out/verify
+$ xz -dc verify/motif-bracket/reference/upper.bin.xz > $out/upper.bin
+$ OMP_NUM_THREADS=2 $out/verify $out/upper.bin
+  [6/6] Exact brute-force trees: 37 tested, fails: 0 (PASS)
+=== SUMMARY: 17329108 exact GMP inequality checks, 0 failures => VERIFIED OK ===
+exit status 0   (about 1.6 s wall, about 160 MB RSS)
+```
+
+I did not run the gold2 build and replay (17 min, 10–20 GiB RAM, 12 GiB disk).
+
+## 1. Gut reaction (one minute)
+
+The headline is clear and well hedged. It answers the 17/30 tweet with a clean "no", and the margin is real: about 1/6000 from the three-vertex bound alone, and about 10^−3 from the five-vertex bound. The quick check is honest about its limits ("It does not rerun the local inequalities"). It ran first time from a clone and from a plain download. I like that the smaller 17/30 replay takes under two seconds.
+
+Then the paper gets very dense. Theorems 4 through 13 are compressed into one-paragraph proofs that I could not follow line by line as a first-year student. My worry is trust, not falsity. Every proof was written by models and reviewed by models, so the long tail of theorems (density, birth order, forest obstruction) carries less weight for me than the headline. The disclosure is good. The volume of claims still makes me trust each one less.
+
+## 2. What I would do next
+
+1. Read the analytic reduction for the 17/30 bound, `proofs/bracket-motifs.md`, linked from the proof map. I would check that the 17,329,108 inequalities are really the right ones, meaning that the one-step drift inequality plus comparability gives µ ≤ 1133/2000. This is the shortest path from the tweet to a result I can personally believe.
+2. Read Appendix A, the existence of µ, since every enclosure refers to it.
+3. Only then look at the Gold2 proof (`round2/proofs/neon2/quintet-cert/PROOF.md`) and perhaps rent a 20 GiB machine for the replay.
+4. Simulate the tree quickly myself, to n of about 10^7, and see whether log C_n / log n lands near 0.5657. This is a sanity check only.
+
+## 3. Sentences that overclaim, confuse or misattribute
+
+**Actual overclaims or misattributions: none found.**
+
+Things I checked:
+- I compared the claim that the paper "answers Questions 1, 2, 4 and the first part of Question 3" with arXiv:2403.20185v1 §7.
+  - Q1 asks whether the gap between the bounds closes and whether n^−µ C_n → X with non-trivial support. Theorems 1 and 4 give both.
+  - Q2 asks three things: consecutive degree counts of the same order, the limsup ratio tending to 0, and the Krapivsky–Redner Θ(k^−(1+µ)) limit. All three are covered, and the paper is careful to say this is fixed-k, not joint in (k, n).
+  - Q3, first part, asks "Is P{Z_u>0} decreasing in u?" Theorem 10 gives h1 = h2 > h3 > ….
+  - Q4 asks whether ΣZ_i = 1. Theorem 9 gives it.
+  - The paper explicitly says it does not answer stochastic domination (Q3, second part) or Q5.
+- "Every value in this interval rounds to Krapivsky and Redner's estimate of 0.566": true.
+- Long's priority for the generation-sum characterization, the terminating approximation, the 0.5664485422 upper bound and ECn ≍ n^µ is credited in both the README and the paper.
+
+Confusions and clarity issues (suggestions, not errors):
+
+1. "The finite-size prefactors and an independent degree-band upper bound 5657/9983 appear in Theorem 1.2 of Uzay's November 2026 first version." This cites a document that is not in the reference list, so I cannot find it. Also, 5657/9983 ≈ 0.5666633 sits only about 3·10^−6 below 17/30. Without comment, it reads like a near-miss, and I wondered why it is there at all.
+2. "For a historical replay, rebuild the lower and upper witnesses for the gold2 preset…" Calling the replay that backs the headline Theorem 2 "historical" made me think it had been superseded. The README's "Historical receipt digest" comment in the checker made it worse.
+3. "The two exact fractions there exclude 142/251 and contain 99/175." Without context these fractions look arbitrary. I guessed they are earlier candidate values or other people's guesses, but the text does not say. The arithmetic is right: 142/251 ≈ 0.5657371 > a+ and 99/175 ≈ 0.5657143 > a−.
+4. "Mohamed Sabba separately reported the interval [0.565615, 0.565809] and the estimate 0.5657237 [10]". Reference [10] is a "Dated attribution record", which is the author's own record and not a document by Sabba. I cannot independently verify what Sabba reported or where. I am not saying it is wrong, only that a reader cannot check it.
+5. References [7]–[9] (Long) give only commit hashes in the PDF ("revision 090bbbe"), with no URL or repository name. The README has the links, but the PDF on its own does not.
+6. "Certified interval" in the abstract. For me, "certified" suggests formally verified. The paper says later that the arithmetic checkers are not formally verified and that no human refereed the proofs. That caveat should come closer to the claim, for example "computer-certified (unrefereed)". This is a clarity point, because the disclosure does exist.
+7. The README heading "Check it yourself", followed by a PASS line, might make a hurried reader think they have checked the theorem. The next paragraph corrects this, so it is a minor issue.
+8. Theorem 9 opens "On the event Σ C_n/n² < ∞, almost surely …" and only afterwards says that event has probability one. Leading with a conditional statement and then removing the condition is confusing. Stating it unconditionally, with the summability as a proof step, would read better.
+
+## 4. Which theorem I would check first, and whether the paper lets me
+
+I would check **Theorem 1's upper bound µ ≤ 1133/2000**, because it alone answers the tweet. The paper itself does not let me check it. In the PDF it gets three sentences: "The integer verifier checks vertex, edge and triple weight rows and bounds the unbounded degree tail." The weights and the row inequalities are not written down, so I cannot reconstruct the drift inequality from the PDF. The repository does let me: the proof map gives a one-command replay that ran in about 1.6 s with 0 failures, plus a link to the analytic argument.
+
+For Theorem 2, the proof sketch is honest about its structure: potentials, rows, envelopes, a Bernstein tail and the combiner. But it is too compressed to audit, and the full replay needs hardware a student does not have. The quick check only confirms that the stored integers combine to the printed fractions. It says this itself.
+
+## 5. One edit
+
+At the end of the "What the machine checks" paragraph of Theorem 2, add one sentence stating what a reader can and cannot confirm without the big machine. For example: "A reader can replay the three-vertex upper witness, which already gives µ < 17/30, in seconds (see the proof map); confirming the five-vertex interval itself requires the 20 GiB replay." Also drop "historical" from "For a historical replay".

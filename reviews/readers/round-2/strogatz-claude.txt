@@ -1,0 +1,72 @@
+# Cold read: a Strogatz-perspective simulation (Claude)
+
+This is an editorial simulation written from the perspective of Steven Strogatz. It is not a statement by the actual person. It covers the PDF, the README and the repository at revision `68714067f4a3039b5ef739b2f229fe3a40e7c2b8`, plus the sources those point to.
+
+## 1. Gut reaction (one minute)
+
+The first page works. "Pick a vertex, pick a neighbour, attach a leaf" is the kind of rule I love, and the six bullets tell me what was proved before I hit any notation. The headline answers the question I posted about: the exponent is about 0.56572, not 17/30. It also does right by Sid and Paul. Their 0.566 is said to round correctly, their range of fitted slopes (0.5652 to 0.5673) is quoted exactly, and their nucleus degree law is singled out as the prediction being proved.
+
+Then the paper turns into a wall. Sections 3 and 4 are proofs compressed until only specialists can follow them, and I couldn't check most of them by reading. The paper is candid about how it was made: AI-written proofs, reviews by other model families, no human referee. But that candour sits on page 18. The abstract says "certified" and "proves" with no qualifier.
+
+## 2. What I would do next
+
+1. Read the post the paper cites as [4]. Its text, verbatim: "My pal Sid Redner just told me something amazing. He and his colleague Paul Krapivsky studied an unbelievably simple model of network growth, and they discovered a weird exponent of 0.566 in it. It's an open problem to prove that 17/30 is really the exponent. Here's the model:" (20 Sep 2022, matching the date in [4]). I'd fix how the paper describes it (part 3, item 1).
+2. Check what the paper says against Krapivsky–Redner 2017 §5.1. It matches: "ranges between 0.5652 and 0.5673", "µ ≈ 0.566", and Eqs. (32)–(33), with (33) a normalized degree law over the nucleus. KR also wrote "Our quoted exponent value of µ = 0.566 therefore seems accurate to within 0.001". The new interval confirms that claim, and the paper never says so.
+3. Run the two cheap checks the packet offers, from the root of the revision:
+   - `python3 -B paper/checks/check_literals.py --enclosure` ended with `Outward decimal enclosure: [0.565713486333, 0.565736986679]` and `PASS: Gold2 receipt matches Theorem 2 and the abstract.` This only recomputes the endpoints from stored integers.
+   - I also ran the proof map's three-vertex upper replay (`gcc -O3 -fopenmp verify/motif-bracket/cert_verify_gmp.c -lgmp`, then the verifier on `reference/upper.bin`). It ended with `=== SUMMARY: 17329108 exact GMP inequality checks, 0 failures => VERIFIED OK ===`. That is the certificate that already puts µ ≤ 1133/2000 < 17/30.
+4. Ask a human probabilist to read the reduction from local rows to all trees (proofs/bracket-motifs.md) and Appendix A on existence. Those two pieces carry the 17/30 answer, and no human has refereed them.
+
+## 3. Sentences that overclaim, confuse or misattribute
+
+**Misattribution (should be fixed)**
+
+1. Paper §1: "After hearing about this work from Redner, Strogatz asked in 2022 whether the exponent could be 17/30 [4]." The README says the same: "asked whether the exponent was exactly 17/30".
+   - The post asks nothing. It states, as part of what Redner had just told me, that "It's an open problem to prove that 17/30 is really the exponent."
+   - Calling it my question makes 17/30 read as my guess. The post itself credits the 0.566 to Redner and Krapivsky and doesn't say who first suggested 17/30.
+   - Fair wording would say the post relayed a conversation with Redner and stated proving 17/30 as an open problem, without assigning the 17/30 guess to anyone.
+   - Small related point: the title of [4], "post on the exponent in isotropic redirection", uses a term that isn't in the post.
+
+**Confusing (clarity, not wrong)**
+
+2. Abstract: "This proves the fixed-degree formulation of Krapivsky and Redner's scaling prediction in Section 7(2) of Addario-Berry et al." On a fast read the prediction seems to live in Addario-Berry et al. Better: the prediction is KR's (2017, Eq. (33)), and the almost-sure fixed-degree formulation is the one Addario-Berry et al. pose in §7(2). Also, KR's (33) is a k ≫ 1 law for N_k/N, while the result is a limit in n first, then in k. Page 7 says this carefully; the abstract doesn't.
+3. Abstract: "This answers Questions 1, 2, 4 and the first part of Question 3 of Section 7." Question 1 asks "whether the gap between the upper and lower bound can be closed". The paper closes it in the sense that the growth exponent exists and is shared by the mean and almost every path. It doesn't find µ exactly. Say which sense is meant. Otherwise a reader takes "answers Question 1" to mean the value is known.
+4. Abstract: "the number Cn of non-leaves has a growth exponent in the certified interval". The certificate was written by one model family and replayed on the same verifier by two others ("neither independently implemented its full row scan", p. 18). No human has refereed it. That isn't an overclaim, since "certified" by an exact verifier is accurate. But the review status belongs next to the word, not only on page 18.
+5. §2: "The finite-size prefactors and an independent degree-band upper bound 5657/9983 appear in Theorem 1.2 of Uzay's November 2026 first version." The bibliography has no entry for that version, so a reader can't follow it. Cite it with a revision or drop it.
+6. References [8] and [9] are both titled "Transcendence targets for the friend-tree exponent…". Yet [8] is cited for "constant-factor mean bounds" ("His subsequent work proved ECn ≍ nµ [8]"). A reader expects a transcendence paper here and will be confused. Reference [7] is cited for "first characterized the exponent". Its own README says µ's existence and the starting bracket 0.5650 ≤ µ ≤ 0.5665 are taken from this author's repository. Saying so would make the credit chain both fair and clear.
+7. Reference [10] (Sabba) is a "Dated attribution record" kept in the author's own repository, not a public source by Sabba. That's fine as acknowledgement, but say so, so no one mistakes it for a citable result.
+8. Tier C: "An independent-size fit experiment shows how the published finite-window estimate 0.569 could arise [6, Fig. 6]". This is hedged and fair. One clarification would help: Hartle et al.'s caption calls 0.569 an "accurate" estimate, and it lies outside the certified interval. One clause stating that would read as respectful rather than oblique.
+
+**Overclaims:** apart from item 1, none found. Each number I checked matches its source:
+- The interval rounds to 0.566.
+- 17/30 lies inside KR's slope range.
+- 1133/2000 = 17/30 − 1/6000.
+- 5657/9983 ≈ 0.5666633 < 17/30.
+- Both exact endpoints satisfy a− ≤ 99/175 ≤ a+ < 142/251.
+- Hartle et al. do equate "core" with non-leaves for isotropic redirection.
+- The four §7 questions match the arXiv v1 wording in substance.
+
+## 4. Which theorem I would check first, and whether the paper lets me
+
+**Theorem 1, the upper bound µ ≤ 1133/2000 < 17/30.** That is the part that answers my post, and it is the smallest certificate.
+
+From the PDF alone, no. The paper gives a paragraph of strategy: two potentials, vertex/edge/triple rows, an unbounded degree tail. It gives no weights, no row list, and no derivation of the drift reduction. Theorem 2's proof is fuller but still points to the machine for everything that matters.
+
+From the packet, partly yes:
+- The proof map names the reduction (proofs/bracket-motifs.md) and gives a one-paragraph replay of the shipped upper witness. I ran it and got 0 failures in 17,329,108 exact checks.
+- That shows the authored verifier accepts the authored witness. It doesn't show that the verifier's rows cover every tree. That claim lives in the reduction, which has had only model review.
+- Existence of µ (Appendix A) is needed for "µ ≤" to mean anything. It's analytic and I couldn't check it in one sitting.
+
+So I can confirm the arithmetic in minutes but not the logic. The paper should say in one sentence where the human-checkable part ends.
+
+## 5. One edit
+
+Replace the sentence in §1 (and its README twin):
+
+> After hearing about this work from Redner, Strogatz asked in 2022 whether the exponent could be 17/30 [4].
+
+with:
+
+> In a 2022 post relaying a conversation with Redner, Strogatz wrote that "it's an open problem to prove that 17/30 is really the exponent" [4].
+
+This quotes the source instead of paraphrasing it. It keeps Redner in the chain of credit and doesn't assign the 17/30 guess to anyone the post doesn't name.

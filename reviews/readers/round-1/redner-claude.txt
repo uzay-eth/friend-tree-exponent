@@ -1,0 +1,69 @@
+# Cold read: Sid Redner perspective (simulated)
+
+*Editorial simulation. It is written from the viewpoint of a physicist who coauthored the isotropic-redirection model, the 0.566 estimate and the nucleus degree law. It is not a statement by the actual person.*
+
+Inputs: the PDF (35 pp., dated 24 November 2026), the README, and the public repository at `a097208`. I also reread our own 2017 paper (arXiv:1706.01514), the Hartle–Krapivsky–Redner–Zhang paper (arXiv:2604.01540) and Addario-Berry et al. §7 (arXiv:2403.20185v1), to check how they are quoted. I ran no verifier. I did run a small simulation of my own (part 2).
+
+---
+
+## 1. Gut reaction (one minute)
+
+Good. The number lands where we said it would. In 2017 we wrote "µ ≈ 0.566 … accurate to within 0.001", with regression slopes between 0.5652 and 0.5673. The certified interval [0.5657135, 0.5657370] sits inside that window, and 17/30 = 0.56667 is ruled out by about 1×10⁻³. If the certificate holds, the Strogatz question is closed. That is a nice outcome for a parameter-free model.
+
+The degree result matters more to me. p_k ∼ µA k^{-(1+µ)} is exactly our Eq. (1) exponent, and here it comes with an almost-sure ratio limit. So the nucleus degree law is a theorem, at least for fixed k followed by k → ∞.
+
+What slows me down: this is 35 dense pages written for probabilists. A physicist gets no picture of *why* the exponent is 0.5657. There is no number for A, no table of p_k, and no plot. The paper also says plainly that no human has refereed it and that AI models wrote the proofs. I respect the honesty, but I would not cite the interval as settled until a probabilist I trust has read Theorem 2 and the tail argument.
+
+## 2. What I would do next
+
+1. **Simulate, which is what I always do first.** I wrote a 30-line simulator and ran 2000 trees to n = 2²⁰ (about 4.6 minutes on one core). The mean core size was ⟨C⟩ = 1831.3. The local slopes log₂(⟨C(2ˡ)⟩/⟨C(2ˡ⁻¹)⟩) for l = 17…20 were 0.5651, 0.5658, 0.5659, 0.5659. That agrees with the interval to within my noise, roughly ±0.001 at this sample size. The slopes jump around a lot at small l, and that fits a random amplitude X with a heavy spread (Theorem 4). At n = 2²⁰ the empirical p_k were 0.3835, 0.1452, 0.0802 and 0.0522 for k = 2…5. But k^{1+µ}p_k was still drifting downward at k = 32 (1.135 at k = 2, 0.571 at k = 8, 0.465 at k = 32). The tail amplitude µA is therefore not visible at 10⁶ nodes. I would like the paper to say what A is, even roughly.
+2. **Ask about the 0.569.** Our 2026 fit (Hartle et al., Fig. 6) gave 0.569 from ⟨𝒞⟩ over N = 10²…10⁶ with 2400 realizations. The paper says an "independent-size fit experiment shows how the published 0.569 could arise". I would want to see that experiment, because it bears on how far our finite-size fits can be trusted for the DAN and PAN models too.
+3. **Look for the physical mechanism.** The five-vertex drift certificate is a bound, not an explanation. I would look in the marked-fringe kernel (Theorem 3) for a rate equation I could solve approximately, something like a one-loop version that gives 0.57 by hand.
+4. **Find a probabilist** to read Theorems 2 and 5 before I quote them in a talk.
+
+## 3. Sentences that overclaim, confuse or misattribute
+
+**Misattribution / terminology**
+
+- PDF §1: "Their simulations gave 0.566 for growth of the nucleus, their name for the core [2]."
+  This is correct for [2], where the nucleus is "the set of nodes of degree greater than one". But [5], which the paper cites in the next sentence, redefines the terms. There, "core" means nonleaves and "nucleus" means the nodes "more than a unit distance from the periphery". A reader who moves between [2] and [5] will be confused. The paper should say that [5] renamed the set and that the nucleus in [5] is a smaller set.
+- PDF §3, degree-ratio paragraph: "Krapivsky and Redner's prediction [2] in this notation is X^k_n / X^{≥2}_n → p_k almost surely for each fixed k ≥ 2, p_k = Θ(k^{-(1+µ)})."
+  We never said "almost surely", and we never wrote Θ. Eq. (1) of [2] is a statement about averages from simulation: ⟨N_k⟩ ∼ N^µ / k^{1+µ} for k ≫ 1. The a.s. ratio form with Θ is Addario-Berry et al.'s formalization in their §7(2). Attribute it that way: "Addario-Berry et al. [4, §7(2)] formalize the prediction of [2, Eq. (1)] as …".
+- Abstract: "… converges almost surely to a deterministic limit of order k^{-(1+µ)} as k grows, as Krapivsky and Redner conjectured."
+  The same point applies more mildly. We conjectured the exponent of the mean degree distribution, not the almost-sure limit. "As Krapivsky and Redner predicted from simulations" is accurate.
+- PDF §1: "In 2022 Strogatz brought their question to a wider audience and asked whether the exponent could be 17/30 [3]."
+  "Their question" suggests that we asked whether µ is rational or equal to 17/30. We did not. We gave a numerical value. Suggest "brought their estimate to a wider audience".
+- PDF §2 after Theorem 1: "The finite-size prefactors and an independent degree-band upper bound 5657/9983 appear in the original paper, Theorem 1.2."
+  "The original paper" is ambiguous. Next to citations of [2] and [4], a reader will take it to mean Addario-Berry et al. Theorem 1.2. If it means the author's earlier report, say so and cite it.
+
+**Overclaims**
+
+- Abstract: "agrees with Krapivsky and Redner's estimate of 0.566 to the reported precision."
+  This is true, and generous to us. It is worth adding that our stated uncertainty was ±0.001, because 17/30 lay inside our band too. The theorem is what rules it out, not our numerics.
+- PDF §6: "The fixed-degree law and intermediate cumulative law do not settle the pointwise growing-degree law of Krapivsky–Redner [2] throughout the intermediate range."
+  This is honest and correct, but it partly contradicts the README ("answering the Krapivsky–Redner conjecture"). Eq. (1) of [2] was meant as a scaling form at large N for k ≫ 1. The paper proves fixed k with N → ∞, then k → ∞. The README and abstract should state which order of limits they mean.
+- README title: "The random friend tree exponent is not 17/30". The PDF title is "The non-leaf growth exponent of the random friend tree". The README headline is punchier than the paper, which is fine. But "is not 17/30" rests on a machine certificate that the paper itself says no human has refereed.
+
+**Confusing for a cold reader**
+
+- PDF §5: "Given the original Gold2 certificate and four physical reward floors, the stationary drift reduction yields 99/175 < µ < 142/251."
+  "Gold2", "reward floors" and "stationary drift reduction" are never defined in the paper. Also, 142/251 = 0.5657371 is *weaker* than the Theorem 2 upper bound (0.5657370), and 99/175 = 0.5657143 is *stronger* than the Theorem 2 lower bound (0.5657135). The reader has to work out alone that this Tier B lower bound improves on Theorem 2 and the upper bound does not.
+- PDF §5: "The original Gold2 interval contains 99/175; reproducing its bytes does not check the new prices." This is internal project language ("bytes", "prices", "Tier C", "receipt") that means nothing to an outside reader.
+- PDF §2: "Theorem 1 … 113/200 ≤ µ ≤ 1133/2000 < 17/30." Then README item 1: "originally bounded by 0.5650≤µ≤0.5665". Fine, but the paper never explains why a three-vertex certificate already beats 17/30 while the five-vertex one is needed for six digits. One sentence would help.
+- README link "Proof and checker map (docs/proof-map.md)": `docs/` does not exist in the public repository at `a097208`. A cold reader following the README gets a dead link. The public README is also still the older "Round 2" text, not the README provided here.
+
+## 4. Which theorem I would check first, and whether the paper lets me
+
+**Theorem 5 (the nucleus degree law)**, because it is our conjecture. Theorem 2 I can only check by trusting machines.
+
+*Can I check Theorem 5 from the paper?* Partly. The argument is short (pp. 5–6) and has a physical shape I recognize. Track a newborn promoted vertex observed at an exponential age of rate µ. Its degree grows like a Yule process, D(t) ≈ W e^t. That gives π(D ≥ k) ≈ E[W^µ] k^{-µ}, and a flux identity gives the point probabilities. This is essentially the "age plus linear growth" argument a physicist would make, and I find it convincing at the heuristic level. What I cannot check unaided are the inputs: Lemma B.2 (uniform mean remainder with σ < µ) and Lemma B.3 (existence of the eigenmeasure π with an exponential moment of core degree). Those are in the appendices and need a probabilist. The paper also gives no numerical A, so I cannot compare the theorem with my own p_k data quantitatively.
+
+*Theorem 2:* I can check the last step. Using the printed table, I recomputed λ₋ − e₋/m₋ and λ₊ + e₊/m₊ in exact rationals. They equal the two displayed fractions exactly, and a₊ < 17/30 holds. Everything before that step (767,588,844 rows per side, 20 GiB RAM, 17 + 2 minutes) needs the replay. The quick `run_all.sh` only "tests finite fixtures, not the full enclosure", so a reader with a laptop cannot check the enclosure itself. I did not run either.
+
+## 5. One edit
+
+Rewrite the degree-ratio paragraph in §3 so that it attributes correctly and gives a physicist something to compare against:
+
+> *Krapivsky and Redner [2, Eq. (1)] observed in simulations that the mean number of nodes of degree k scales as N^µ k^{-(1+µ)} for k ≫ 1. Addario-Berry et al. [4, §7(2)] formalized this as the conjecture that X^k_n/X^{≥2}_n has an almost-sure limit p_k = Θ(k^{-(1+µ)}). Theorems 4 and 5 prove this formal version, with the sharper asymptotic p_k ∼ µA k^{-1-µ}. They take fixed k first and then k → ∞. The joint scaling at growing k remains open (Section 6).*
+
+If there is room for one more line, add simulated values of p_2…p_5 (about 0.38, 0.15, 0.08, 0.05) and an estimate of A.

@@ -1,0 +1,18 @@
+For the edge-start random friend tree, the number of non-leaves has the same deterministic growth exponent μ in expectation and almost surely, with 0.565713486333 ≤ μ ≤ 0.565736986679 < 17/30, and C_n/n^μ converges almost surely to a finite, strictly positive random multiplier with a density.
+
+Remaining genuine overclaims or misattributions: none found in this focused reread. The headline doesn’t claim priority for excluding 17/30, and both the README and the paper explicitly credit Long’s earlier upper bound below it. The degree result takes n to infinity at fixed degree before taking the degree large; the birth-order result doesn’t claim stochastic order at every threshold.
+
+Previous flags: resolved. Section 3 now treats the founding-edge attachment separately and defines the one-leaf, one-core-neighbour promotion from size three onward. The abstract now says the almost-sure version was “recorded by Addario-Berry et al. in Section 7(2),” and the README explicitly separates that formulation from Krapivsky and Redner’s prediction for the normalized mean counts. The birth-order bullet now identifies what Theorems 10, 11 and 12 each establish. The short route to the tweet’s question is now at the top of “Check it yourself.”
+
+Optional clarity only: “The interval rounds to Krapivsky and Redner’s estimate of 0.566” could read “Every value in the interval rounds to 0.566, Krapivsky and Redner’s estimate.” The current wording is not an overclaim.
+
+Quick check: I ran this from the root of a private temporary checkout at e795005c19c733db59aae99fff3284d3cbfa6c25, with Python 3.12.3. The supplied README and PDF matched the checkout byte for byte.
+
+Command: python3 -B paper/checks/check_literals.py --enclosure
+Output:
+Exact enclosure: [35083855339718511/62017003637500000, 127993535256830043/226242120050000000]
+Outward decimal enclosure: [0.565713486333, 0.565736986679]
+PASS: Gold2 receipt matches Theorem 2 and the abstract.
+Exit status: 0.
+
+This checks the receipt and endpoint arithmetic against the manuscript, not the drift inequalities or their reduction from trees to rows.

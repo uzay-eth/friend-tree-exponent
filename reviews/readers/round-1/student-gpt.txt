@@ -1,0 +1,63 @@
+## 1. Gut reaction in one minute
+
+I clicked for “not 17/30.” I can picture the rule immediately: pick a vertex, walk one edge, and put the new leaf there. The result is that the number of non-leaves, $C_n$, has the same deterministic log-growth exponent $\mu$ in expectation and almost surely. The paper gives the outward-rounded enclosure $0.565713486333\le\mu\le0.565736986679$, strictly below $17/30=0.5666\ldots$; it does not find the exact value. The part that makes me want to read on is that $C_n/n^\mu$ converges to a finite, strictly positive random variable with a density. The exponent is shared across trees, but the multiplicative factor isn’t. I also missed on first pass that Theorem 1 already kills $17/30$; Theorem 2 makes the interval narrower.
+
+## 2. What I would do next
+
+I’d run the quick check, then trace the upper bound from one-step drift to the exponent. The GitHub landing README and its linked PDF are not the same files as the supplied README and PDF at the revision I fetched. The supplied README points to `docs/proof-map.md`, which is absent there; the PDF's pinned links to the reduction and replay do resolve. The advertised command is present and runnable. I used a fresh private checkout at commit `a0972085ad72ad5685ae7b424988648d1965e73c`, with a writable executable scratch directory. From the checkout root I ran:
+
+```sh
+bash round2/verify/run_all.sh
+```
+
+Exit status: **0**. Output (verbatim excerpts):
+
+```text
+Python 3.12.3
+=== astra: 16 results in 47s ===
+=== astra-late: 5 results in 39s ===
+=== neon: 3 results in 47s ===
+=== neon2: 12 results in 190s ===
+=== fable: 6 results in 76s ===
+PASS  neon2-quintet-tiny: tiny builder, exact checker and controls; neither gold receipt replayed
+ALL 42 SELECTED RESULTS PASSED (399s)
+```
+
+That `neon2-quintet-tiny` line answers the question I had as a reader: the quick command exercises a small case of the certificate machinery, not the production witness for the quoted interval. The all-caps success line isn’t a verdict on all the theorems.
+
+## 3. Sentences that tripped me up
+
+**Supplied README**
+
+- “The limits of $\log\mathbb E[C_n]/\log n$ and, almost surely, $\log C_n/\log n$ equal the same deterministic $\mu$, originally bounded by $0.5650\le\mu\le0.5665$.” — “Originally” leaves me guessing whose bounds these were. The paragraph on prior work mentions Addario-Berry et al.'s bounds; these particular numbers are this project's first enclosure, not theirs. And this first enclosure already excludes $17/30$.
+- “A compact kernel characterizes $\mu$, a spatial operator has a probability eigenmeasure and, under the stated comparisons, has spectral growth rate $\mu$, finite rational drift tests approach $\mu$ from both sides, and $C_n/n^\mu$ converges almost surely to a finite, strictly positive random variable with a density.” — I had to read Theorem 6 to work out which part is conditional. The eigenmeasure is constructed without those comparisons (Lemma B.3); the spectral-radius identification uses them (Lemma B.4). Also, it’s the **log** of the time-one spectral radius that is $\mu$; the radius is $e^\mu$.
+- “For fixed $k\ge2$ the mean number of vertices of degree at least $k$ is asymptotic to $c_k n^\mu$, and the fraction of non-leaves of degree exactly $k$ converges almost surely to $p_k=(c_k-c_{k+1})/c_2$ with $p_k\sim a k^{-1-\mu}$ for some $a>0$, answering the Krapivsky–Redner conjecture recorded in [*Random friend trees*, §7(2)](https://arxiv.org/html/2403.20185v1#S7).” — The qualifier “recorded in §7(2)” matters. I can see the exact attribution in that source. The result is a size limit at fixed $k$, then a tail for the limiting probabilities; it isn’t a uniform law for degrees growing with $n$. The original 2017 §5.1 gives scaling for the normalized degree distribution, not the almost-sure formulation in those words. I would distinguish the original prediction from the later formulation.
+- “The limiting degrees divided by $n$ sum to one almost surely and give the limit of the conditional attachment-label law in total variation, while separate proofs give strict order after the tied founders for hub probabilities and all positive moments, with an independent exact hub-probability certificate through label 8.” — At finite $n$ the normalized degrees sum to $2-2/n$. This takes the fixed-label limit **before** summing. The founders tie in law, not necessarily on the same tree. The order is of probabilities and moments, not realized shares.
+- “Assuming the count and log-volume limits, the young-tree reference fails in total variation for both rooted shapes and volumes for sublinear cutoffs $N\to\infty$ with $\liminf\log N/\log n>\mu/(1+\mu)$.” — The assumptions are stated, so this isn’t an unconditional claim. But “the young-tree reference” doesn’t tell me what is sampled. The theorem counts each surviving component containing an original non-leaf once and compares to a particular inert-parent process at a uniform age. It’s not about picking a surviving vertex uniformly or ruling out every young-tree model.
+- “The [full rebuild and strict replay](https://github.com/uzay-eth/friend-tree-exponent/blob/a0972085ad72ad5685ae7b424988648d1965e73c/round2/verify/gold/README.md) took about 17 minutes to build the two snapshots, then 2 minutes to check them on the recorded Ryzen 7 5800X.” — Those are the **Gold2 pair** timings; the linked rebuild command with no preset builds both Gold1 and Gold2 (four files), and the linked page's displayed strict replay command is for Gold1. I’d otherwise follow the default command thinking the time and disk estimates were for that command.
+
+**Supplied PDF**
+
+- “The limiting degrees divided by n sum to one almost surely.” (Abstract.) — Same order-of-limits trap as the README. I momentarily thought this contradicted the tree degree sum.
+- “For each fixed degree k ≥ 2, the fraction of non-leaves of degree k converges almost surely to a deterministic limit of order k⁻⁽¹⁺µ⁾ as k grows, as Krapivsky and Redner conjectured.” (Abstract.) — Same attribution distinction: §7(2) gives that almost-sure formulation of the prediction. The PDF does make the order of limits explicit in §3, so I don’t read this as a growing-degree theorem after getting there.
+- “His equation retains the full birth environment.” (§1.) — At first I read “full” as referring to the original unrestricted tree. Long’s linked description defines the discounted generation sums in the **inert-parent newborn process**. Say what is kept in that process, relative to the permanent mark in Theorem 3. I found no reason in these sources to dispute the priority credit itself.
+- “The finite-size prefactors and an independent degree-band upper bound 5657/9983 appear in the original paper, Theorem 1.2.” (§2.) — “The original paper” could mean the original physics paper, the paper titled *Random friend trees*, or an earlier version of this very paper. The link goes to this project's earlier source; name it as such.
+- “When a new core vertex appears, removing it from any new configuration identifies the old configuration to which its contribution belongs.” (§2.) — That’s clear for connected motifs of size at least two, but the newborn singleton is one of the terms too; deletion gives the empty set, not its accounting row. The linked reduction charges the singleton to the promoter. The PDF skips that exception and the support restriction on which larger motifs are counted.
+- “In particular $\mathbb E C_n\asymp n^\mu$.” (Theorem 3.) — Correct as a result of the paper, but “in particular” sounds like compactness and a unique radius crossing alone give constant-factor growth. The proof points forward to Theorem 5 for this, via the stronger mean asymptotics (Lemma B.2).
+- “There is a Borel probability $\pi$ with $\pi Q_t=e^{\mu t}\pi$ for all $t\ge0$.” (Theorem 6.) — Fine in isolation. Under the theorem's heading and after “Assume the finite-exterior planting and one-edge hypotheses of Lemma B.4,” I read it as conditional. The proof separates eigenmeasure existence from the conditional spectral comparison; the statement should too.
+- “For the edge seed one can use the external growth input $\mathbb E C_n=O(n^\beta)$ for some $\beta<1$, from Theorem 1 (only the sublinear mean bound is used); Tonelli then gives summability almost surely.” (Theorem 9 proof.) — “External” is confusing when Theorem 1 is in this paper. The parenthesis makes the useful point: this argument doesn’t need the precise exponent or its enclosure.
+- “The fixed-degree law and intermediate cumulative law do not settle the pointwise growing-degree law of Krapivsky–Redner [2] throughout the intermediate range.” (§6.) — “Intermediate cumulative law” has no theorem pointer or range here. I can tell what’s open in general, but not what cumulative estimate I’m supposed to take as proved or which range it covers.
+
+No other sentence jumped out as overclaiming on this read. In particular, §4 explicitly leaves stochastic order open, and Theorem 13 says the count and log-volume laws are inputs, not things the TV obstruction proves. I checked the attribution of §7(2) and the finite-size $0.569$ fit against the linked sources; I did not do a priority search or referee the proofs.
+
+## 4. Which theorem I’d check first, and can I?
+
+**Theorem 2**, because that’s where the digits in the headline come from. As a sanity check I can derive $n\mathbb E[C_{n+1}-C_n\mid T_n]=\sum_v L_v/D_v$, summed over non-leaves: choosing one and then choosing one of its leaves is exactly how the core grows. That is not a fixed multiple of $C_n$ on every tree, which makes the weighted potentials less mysterious. Starting at size three, the generator is $n$ times the conditional one-step drift, so the corrected drift inequalities multiply the mean potentials by factors $1+a_\pm/n$. Their products are constant-factor multiples of $n^{a_\pm}$, and comparability to $C_n$ transfers those bounds. Theorem 1 then turns a bound on the mean exponent into a bound on the almost-sure exponent too. I checked the table arithmetic with Python’s `Fraction`: the two fractions agree exactly, the decimal endpoints round outward, and $17/30-a_+=630998314509871/678726360150000000>0$.
+
+The PDF lets me check that implication, not the input inequalities. I had to click **full reduction** to see how the external-neighbour terms get transferred between motifs and when the finite rows cover an arbitrary physical tree. The proof link and Gold2 replay instructions give me a route to check the rest. In particular I’d compare one transferred row and one cutoff-seam row with the code before trusting the big row count. Replaying the code tests the witnesses under that reduction; it does not check that the reduction is mathematically valid. I did not audit the row reduction or do the strict replay.
+
+## 5. One edit
+
+Replace the first paragraph of **Check it yourself** with this, and keep the dependency and command blocks immediately after it:
+
+> **Quick fixture check (~6–7 minutes on the recorded run).** This command runs selected finite tests. A pass does not replay the five-vertex enclosure in Theorem 2. For that interval, use the [Gold2 rebuild and strict replay](https://github.com/uzay-eth/friend-tree-exponent/blob/a0972085ad72ad5685ae7b424988648d1965e73c/round2/verify/gold/README.md): pass `gold2` to the builder, then run `gold2-check` on the rebuilt pair. Theorem 1 already excludes 17/30; Gold2 certifies the tighter interval.

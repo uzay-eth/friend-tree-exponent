@@ -6,10 +6,10 @@
 
 **Affiliation** — University of Nevada, Reno
 
-**Abstract** — Paste the contents of the box as a single paragraph. It has 743 ASCII characters, including spaces and TeX. [arXiv metadata instructions](https://info.arxiv.org/help/prep.html#abstract-required)
+**Abstract** — Paste the contents of the box as a single paragraph. It has 1301 ASCII characters, including spaces and TeX. [arXiv metadata instructions](https://info.arxiv.org/help/prep.html#abstract-required)
 
 ```text
-In the random friend tree, each new vertex chooses an existing vertex uniformly and attaches to a uniformly chosen neighbour of that vertex. Let $C_n$ be the number of non-leaves at size $n$. We prove that $\log \mathbb{E}[C_n]/\log n$ and $\log C_n/\log n$ converge to the same deterministic exponent $\mu$, the latter almost surely. The proof plants finite seeds in a continuous-time embedding and controls the interaction across the edge joining each seed to the rest of the tree. Computer-assisted proofs with exact rational drift certificates give finite-size product bounds and imply $113/200 \le \mu \le 1133/2000 < 17/30$. An independent certificate based on degree bands gives the upper bound $5657/9983$, also strictly below $17/30$.
+In the random friend tree the number $C_n$ of non-leaves has a growth exponent in the interval $0.565713486333\le\mu\le0.565736986679$. The interval rounds to Krapivsky and Redner's estimate of $0.566$ and excludes $17/30$. The finite drift inequalities for this enclosure were replayed with one exhaustive verifier. From one edge, $C_n/n^\mu$ converges almost surely to a finite, strictly positive random variable with a density. For each fixed $k\ge2$, the fraction of non-leaves of degree $k$ converges almost surely to a deterministic $p_k$. As $k\to\infty$, $p_k\sim a k^{-(1+\mu)}$ for some $a>0$. This proves the almost-sure form of Krapivsky and Redner's degree prediction recorded by Addario-Berry et al. in Section 7(2). For each birth label $v$, let $Z_v$ be the limit of its degree divided by tree size. Almost surely $\sum_v Z_v=1$. The two founders' limiting shares agree in law. From label two onward, both the probability of a positive share and every positive moment of the share decrease strictly with birth order. These results answer Questions 1, 2, 4 and the first part of Question 3 in that section. The growth and fixed-degree limits use a computer-checked lower bound on $\mu$. The birth-order comparisons also use exact finite checks. No human referee has reviewed the proofs.
 ```
 
 | Field | Entry | Reason |
@@ -21,15 +21,13 @@ In the random friend tree, each new vertex chooses an existing vertex uniformly 
 **Comments**
 
 ```text
-27 pages, 1 figure. Proofs, exact certificate verifiers and simulation data: https://github.com/uzay-eth/friend-tree-exponent
+40 pages. Proofs, exact certificate verifiers and simulation data: https://github.com/uzay-eth/friend-tree-exponent
 ```
 
 **Licence recommendation.** Choose Creative Commons Attribution 4.0 International (CC BY 4.0) to match the repository’s licence for its text and proofs. It permits commercial reuse and adaptations with attribution, and the grant for this version is irrevocable, so check compatibility with the intended journal. [Repository licence](../LICENSE) · [arXiv licences](https://info.arxiv.org/help/license/index.html)
 
-## Authorship and endorsement
+## AI-use statement
 
-arXiv’s policy says “generative AI language tools should not be listed as an author; instead authors should refer to (1).” Item 1 requires disclosure of significant tool use, and item 2 requires signatories to “take full responsibility for all its contents”. Keep the disclosure covering proof development, checks, writing and model review. Can should submit only when he can take responsibility for the arguments and citations. [arXiv moderation policy, generative AI](https://info.arxiv.org/help/moderation/index.html#policy-for-authors-use-of-generative-ai-language-tools)
+Can Uzay directed the work and is the sole listed author. AI models developed the mathematical proofs, wrote and ran the numerical checkers, drafted text, and reviewed claims across model families. No human referee has reviewed the proofs. The paper’s “How this work was done” section and the [contribution record](../round2/who-did-what.md) give the scope of these checks.
 
-“arXiv requires that users be endorsed before submitting their first paper to arXiv or a new category.” For a first math.PR submission, automatic endorsement can come from a qualifying institutional account email **and** claimed authorship on an accepted arXiv Mathematics paper. The January policy update says “If you are a new submitter who does not meet BOTH of the requirements, you must follow the second path and seek personal endorsement.” With no prior arXiv Mathematics paper, the author needs personal endorsement from an eligible endorser. The submission system supplies the request link. This concerns account eligibility and leaves the public manuscript contact as supplied. [arXiv endorsement](https://info.arxiv.org/help/endorsement.html) · [Mathematics policy](https://blog.arxiv.org/2025/12/10/updated-endorsement-policy-for-arxiv-mathematics/) · [January 2026 update](https://blog.arxiv.org/2026/01/21/attention-authors-updated-endorsement-policy/)
-
-**Source upload** — [Two-file source archive](friend-tree-exponent-arxiv.tar.gz). Select the pdfLaTeX engine. The bibliography is embedded in the source.
+**Source upload** — [Single-file source archive](friend-tree-exponent-arxiv.tar.gz). Select the pdfLaTeX engine. The bibliography is embedded in the source.

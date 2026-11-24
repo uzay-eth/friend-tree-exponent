@@ -1,0 +1,39 @@
+Closure reread. Simulated perspective of Sid Redner (editorial simulation, not a statement by the actual person).
+Packet: the revised PDF and README, plus the repository at e795005c19c733db59aae99fff3284d3cbfa6c25. The packet PDF and README are byte-identical to the files at that revision (checked with cmp).
+
+RESULT IN ONE SENTENCE
+In the random friend tree, the number of non-leaves grows like n^mu almost surely and in mean, with 0.565713486333 <= mu <= 0.565736986679. That excludes 17/30, rounds to our 0.566, and comes with an almost-sure fixed-degree law p_k ~ a k^-(1+mu).
+
+QUICK CHECK, RUN AT THIS EXACT REVISION
+Fresh clone, HEAD = e795005c19c733db59aae99fff3284d3cbfa6c25, Python 3.12.3:
+  $ python3 -B paper/checks/check_literals.py --enclosure
+  Exact enclosure: [35083855339718511/62017003637500000, 127993535256830043/226242120050000000]
+  Outward decimal enclosure: [0.565713486333, 0.565736986679]
+  PASS: Gold2 receipt matches Theorem 2 and the abstract.
+  exit=0
+As the README now states up front, this checks the printed numbers, not the drift inequalities. I did not rerun the gold2 build or replay.
+
+REMAINING GENUINE OVERCLAIM OR MISATTRIBUTION
+None.
+I checked the attribution sentences against their sources:
+- "In a 2022 post relaying Redner's account, Strogatz wrote, 'It's an open problem to prove that 17/30 is really the exponent' [4]." I fetched the post's text. It says: "My pal Sid Redner just told me something amazing. ... they discovered a weird exponent of 0.566 in it. It's an open problem to prove that 17/30 is really the exponent." The quote is exact and the framing is accurate. This is better than round two's "Strogatz asked whether", which put the 17/30 idea in his mouth rather than in the conversation he relayed.
+- "Addario-Berry et al. [5, Sec. 7, Question 2] attribute to Krapivsky and Redner the prediction that each fixed-degree ratio among non-leaves has an almost-sure limit and that these limits have order k^-(1+mu)." This matches their Section 7(2) wording.
+- "Krapivsky and Redner [3, Sec. 5.1, Eqs. (32)-(33)] predict sublinear growth of the mean degree counts and a power-law tail for their normalized counts N_k/N". This matches our 2017 paper.
+- README: "separately refined Uzay's round-one witness to certify mu<=0.5664485422". Long's own README at 090bbbe describes a "constant-per-core correction to the upstream potential" from the Uzay repository. So this is accurate.
+- "The published finite-window fit 0.569 [6, Fig. 6] lies outside the certified interval." This is true, and it is stated as fact, not blame.
+
+PREVIOUS FLAGS
+1. Denominator >= 426 stated flatly under Tier B. RESOLVED. Tier B now says Claude checked the reduction "taking the original Gold2 certificate and all four physical reward floors as premises. The Tier B finding is this implication, not the exclusion of a rational value". The claim itself moved to Tier C with "The original Gold2 interval contains 99/175. Only the author family audited ... the four extra physical reward floors".
+2. "Certified" without the single-verifier caveat up front. RESOLVED. The abstract says "The finite drift inequalities for this enclosure were replayed with one exhaustive verifier", "use a computer-checked lower bound on mu", and "No human referee has reviewed the proofs."
+3. Nucleus versus core terminology clash with [6]. RESOLVED. The intro says "In their terminology the non-leaves form the nucleus" and "Hartle, Krapivsky, Redner and Zhang later used the word nucleus for a smaller set. They called all non-leaves the core". Theorem 5 is retitled "the non-leaf degree law". The README says "called the nucleus in the 2017 paper".
+4. Abstract grammar placing our prediction inside their Section 7(2). RESOLVED. It now reads "the almost-sure form of Krapivsky and Redner's degree prediction recorded by Addario-Berry et al. in Section 7(2)".
+5. 5657/9983 cited to an uncited "first version". RESOLVED. It is now "Theorem 1.2 of the earlier paper [9]", and [9] is in the bibliography.
+6. Unclear whose runs gave the estimates near 0.56572366. RESOLVED. The text now says "The Claude-led simulations in this project, separate from Sabba's estimate", gives the realization counts (19,000 for time window [16,24], 2,840 for [24,28]), and notes "fixed-time simulations with random final sizes".
+7. Long and Sabba references hard to trace. MOSTLY RESOLVED. [7] and [8] now carry dates and revisions. The intro adds "Our source for these figures is the project attribution record" for Sabba. The README adds "which does not link a primary result". That is honest, though Sabba still has no primary source; see clarity edit (b).
+8. Strogatz attribution, which I could not verify last round. RESOLVED. It is now a verbatim quote, checked against the post.
+
+OPTIONAL CLARITY EDITS (NOT OVERCLAIMS)
+(a) README Prior work, Long bullet: it links "His 24 November draft" to revision 5bd25a7 for the constant-factor mean bounds. The paper's [8] cites revision 7904917, also dated 24 November. Use the same revision in both, or say why they differ.
+(b) Sabba: if a primary record from Sabba exists, link it. Otherwise the current wording is as honest as it can be.
+(c) The paper's intro credits Long's bound 0.5664485422 without saying it refines the round-one witness. The README does say this. Adding "refining the round-one witness" would make the PDF match the README and help readers see how the two works depend on each other.
+(d) In the intro, "The first certificate in Theorem 1 places the exponent below it" could add "(by 1/6000)". That gap is stated later, and it is what a physicist will want to see first.

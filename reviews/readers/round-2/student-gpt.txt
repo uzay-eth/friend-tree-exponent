@@ -1,0 +1,55 @@
+## 1. Gut reaction in one minute
+
+I came for the fraction in the tweet. The answer is **no**: start from one edge, pick a vertex uniformly, and attach a new leaf to one of its uniformly chosen neighbours. If \(C_n\) counts non-leaves, then \(\log \mathbb E C_n/\log n\) and \(\log C_n/\log n\) (almost surely) tend to the same deterministic \(\mu\), with \(0.565713486333\le\mu\le0.565736986679<17/30\). That still rounds to Krapivsky and Redner’s \(0.566\). The result I didn’t expect is that \(C_n/n^\mu\) tends almost surely to a finite, strictly positive *random* limit with a density. Same exponent, different multipliers. I’d keep reading.
+
+## 2. What I’d do next
+
+I ran the README command from the root of a private temporary checkout at `68714067f4a3039b5ef739b2f229fe3a40e7c2b8`. The supplied README and PDF matched the checkout byte for byte. With Python 3.12.3:
+
+```sh
+python3 -B paper/checks/check_literals.py --enclosure
+```
+
+```text
+Exact enclosure: [35083855339718511/62017003637500000, 127993535256830043/226242120050000000]
+Outward decimal enclosure: [0.565713486333, 0.565736986679]
+PASS: Gold2 receipt matches Theorem 2 and the abstract.
+```
+
+**Exit status: 0.** I’d call this a receipt check, not a proof replay. It checks the receipt’s digest, does exact endpoint arithmetic and directed rounding, and compares the numbers with the LaTeX. It doesn’t check that the drift inequalities hold on all trees.
+
+Since the tweet only asks about \(17/30\), I also ran the proof map’s shorter replay from the same checkout:
+
+```bash
+(
+  set -e
+  out=$(mktemp -d)
+  trap 'rm -rf "$out"' EXIT
+  gcc -O3 -fopenmp verify/motif-bracket/cert_verify_gmp.c -lgmp -o "$out/verify"
+  xz -dc verify/motif-bracket/reference/upper.bin.xz > "$out/upper.bin"
+  OMP_NUM_THREADS=2 "$out/verify" "$out/upper.bin"
+)
+```
+
+Last line: `=== SUMMARY: 17329108 exact GMP inequality checks, 0 failures => VERIFIED OK ===`. **Exit status: 0.** That replays the shipped three-vertex *upper* witness for \(1133/2000=17/30-1/6000\). I didn’t run the full five-vertex Gold2 rebuild or scan.
+
+## 3. Sentences I’d flag
+
+**Actual headline overclaims or wrong attribution: none found.** The cited tweet asks about \(17/30\); Krapivsky and Redner’s §5.1 gives the numerical estimate and nucleus scaling; Addario-Berry et al. §7(2) supplies the almost-sure fixed-degree formulation. The packet credits Long’s earlier characterization, effective approximation and constant-factor mean bounds. Long’s cited upper bound is itself below \(17/30\); I don’t read this revision as claiming priority for ruling out the fraction. The packet distinguishes fixed-degree limits from joint exact-degree scaling, moment order from stochastic order, and a replay by another model from an independent full verifier.
+
+**One local scope error, not a theorem overclaim:**
+
+- PDF §3: “A promotion turns a leaf into a core vertex with one leaf and one core neighbour.” This describes promotions *after* the first birth. On the first move from the founding edge the newly non-leaf vertex has two leaf neighbours. I can recover the intended convention from the reset at \(T_3\), but the sentence reads as a definition for the edge-start process.
+
+**Clarity only:**
+
+- PDF abstract: “This proves the fixed-degree formulation of Krapivsky and Redner’s scaling prediction in Section 7(2) of Addario-Berry et al.” On first pass I attached “in Section 7(2)” to the prediction rather than the formulation. The later degree-ratio discussion gets the attribution right.
+- README: “**Birth order (Theorems 10–12).** The founders tie in law; from label 2 onward, the chance of a positive share and every positive moment strictly decrease with birth label.” True as a summary, but the range obscures which theorem does what: 10 proves the hub-probability order, 11 the moment order, and 12 is a separate hub-probability check only through label 8.
+
+## 4. Which theorem I’d check first, and can I?
+
+**Theorem 1, upper bound first.** It answers the tweet on its own. The paper and proof map let me separate the analytic existence argument in Appendix A from the certified upper drift inequality. I can see why counting non-leaves alone isn’t enough: only a core vertex choosing a leaf can add a core, so the current leaf-neighbour fractions set the drift. I can follow the linked three-vertex reduction from a score comparable to \(C_n\), through the conditional drift bound, to iterating \(1+(1133/2000)/n\). The replay checks the arithmetic premise in the supplied implementation; I’d still have to check the correspondence between its rows and that analytic reduction. Neither checker supplies the existence proof.
+
+## 5. One edit
+
+Move the short route into the README’s check section, ahead of the hardware figures: **“Here for the tweet? Replay the three-vertex upper bound: \(\mu\le1133/2000=17/30-1/6000\). The Python command below checks the numbers for the sharper interval, not its drift inequalities.”** Link the first sentence to the proof-map command. That gives me the actual check I came for without making me think I need 20 GiB of RAM to get started.

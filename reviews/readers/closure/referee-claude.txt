@@ -1,0 +1,37 @@
+Closure reread - simulated probabilist referee (editorial simulation, not a statement by any real person)
+
+Packet: revised PDF and README, plus the repository at e795005c19c733db59aae99fff3284d3cbfa6c25. The packet PDF and README are byte-identical to the copies at that revision. Following a source the README points to, I also read Long's repository at revision 090bbbe.
+
+One-sentence result: the paper certifies 0.565713486333 <= mu <= 0.565736986679, which excludes 17/30. It also proves the following:
+- C_n/n^mu converges almost surely to a positive random variable with a density.
+- The fixed-degree core fractions converge almost surely to p_k ~ a k^(-1-mu).
+- The hub shares sum to one.
+- Hub probabilities and positive moments decrease strictly with birth label from label 2 on.
+The growth and degree results rest on a computer-checked lower bound on mu.
+
+Quick check, run from a clean checkout of e795005 (python3 -B paper/checks/check_literals.py --enclosure). Last two lines of output:
+  Outward decimal enclosure: [0.565713486333, 0.565736986679]
+  PASS: Gold2 receipt matches Theorem 2 and the abstract.
+I did not rerun the row verifier or the motif verifier.
+
+REMAINING GENUINE OVERCLAIM OR MISATTRIBUTION: none found.
+
+STATUS OF ROUND-TWO FLAGS
+1. Computer dependence was hidden behind "the enclosure". RESOLVED. The abstract now says: "The growth and fixed-degree limits use a computer-checked lower bound on mu. The birth-order comparisons also use exact finite checks." The proof of Theorem 3 names "mu >= 113/200 > 51/100, supplied by the computer-checked three-vertex lower witness". The proof map's new "Where computation enters" section lists Theorems 3-5, 7 and 8 and the use of 2mu > 1 in Theorem 4. It also says Theorem 9 needs neither drift certificate.
+2. The untiered joint hub-spectrum claim in the open problems. RESOLVED. It is now labelled Tier B, "not reproduced here", with its review scope ("The Claude-family check covered finite statistics, not the asymptotic proof"). It is restricted to cumulative counts, and the open problems section now says the exact-degree joint limit "remains open".
+3. "[5] ... formulate its almost-sure fixed-degree counterpart". RESOLVED. The paper now says: "Addario-Berry et al. [5, Sec. 7, Question 2] attribute to Krapivsky and Redner the prediction that each fixed-degree ratio among non-leaves has an almost-sure limit". The abstract says "recorded by Addario-Berry et al." This matches [5].
+4. Long's bound was not said to be below 17/30. RESOLVED. The paper now says "a certified upper bound of 0.5664485422, also below 17/30, [7]". The README now says that Long "refined Uzay's round-one witness to certify mu <= 0.5664485422 < 17/30". I checked this against Long's README and docs/UPSTREAM.md at 090bbbe. Both say his bound is "a constant per-core correction" of Uzay's upper motif potential, with Uzay's existence result and initial bracket as inputs. The attribution is accurate.
+5. The unreferenced "first version" behind 5657/9983. RESOLVED. It is now reference [9], the archived first paper.
+6. 99/175 < mu sat under Tier B. RESOLVED. Tier B now records only the conditional implication ("not the exclusion of a rational value for the tree itself"). Tier C states that only the author family audited the four floors that exclude 99/175.
+7. The founder tie in Question 3. RESOLVED. The paper now says "hub probabilities tie at the two founders and decrease strictly from label two onward".
+8. Credit to [5] for the equivalence with the next-recipient law. RESOLVED. The paper now says "[5, Sec. 3] already observed that the conjectured conditional limit law ... is equivalent to unit hub mass".
+9. Sabba's numbers cited only to the author's own record. RESOLVED as far as possible. The paper says "Our source for these figures is the project attribution record". The README says the record "does not link a primary result".
+10. Saramaki-Kaski wording in the README. RESOLVED. It now reads "studied the family of random-walk attachment models that includes the undirected rule here".
+
+OPTIONAL CLARITY EDITS (not overclaims)
+a. README: "Addario-Berry et al. state the fixed-degree almost-sure version". This is true, but the paper's own wording is sharper: [5] attribute that almost-sure version to Krapivsky and Redner. Use the paper's wording in the README too.
+b. Abstract: "The growth and fixed-degree limits use a computer-checked lower bound on mu." The proof map says the existence of the exponent and its almost-sure identification in Theorem 1 are analytic. "The amplitude and fixed-degree limits" would say exactly what depends on the computation. As written the sentence overstates the dependence, which is the safe direction.
+c. Long's 24 November work is cited inconsistently. The paper's reference [8] gives revision 7904917 for the constant-factor mean bounds and the renewal germ. The README links revision 5bd25a7 as "His 24 November draft". Use one revision in both places.
+d. Not checked: the new Strogatz quotation ("It's an open problem to prove that 17/30 is really the exponent"). The X post was not readable without signing in. Krapivsky-Redner Eqs. (32)-(33) also remain unchecked.
+
+Verdict: the closure items are resolved. I have no blocking objection on attribution or overclaiming. My referee-level reservations about compressed proofs remain: the dirty-count coupling in Theorem 4 and the seed-uniform constants in Lemma B.2. Those are about checking the proofs, not about the packet's claims.

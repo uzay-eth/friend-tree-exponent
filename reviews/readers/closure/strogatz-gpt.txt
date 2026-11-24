@@ -1,0 +1,9 @@
+Result in one sentence: The random friend tree’s non-leaf count has a common mean and almost-sure growth exponent between 0.565713486333 and 0.565736986679, confirming Krapivsky and Redner’s estimate to three decimal places while ruling out 17/30.
+
+Remaining genuine overclaims or misattributions: None found in this focused reread. The packet gives Krapivsky and Redner credit for the estimate and degree prediction, distinguishes the almost-sure formulation in Addario-Berry et al., and treats the 2022 post as publicizing a question after hearing about the work from Redner. It also credits Long’s earlier characterization and a separate certified bound already below 17/30. The headline says “below,” not “first below.”
+
+Previous flags: Resolved. The core now explicitly starts empty; the motif proof distinguishes the old leaf promoted into the core from the new leaf attached to it and specifies a supported motif; the founders’ limiting shares now agree in distribution, with the first strict comparison still 2 versus 3. The revised abstract and README distinguish the degree prediction from its later almost-sure formulation, and the results keep the size limit at fixed degree separate from the tail of the limiting law.
+
+Optional clarity only: I still like the two-tree example from round two near the opening. Two adjacent core vertices with leaf counts (1, 3) or (2, 2) give the same core size but different promotion rates. That would make the need for weighted motifs immediately intuitive; it is not a correction.
+
+Quick check: At e795005c19c733db59aae99fff3284d3cbfa6c25, I ran `python3 -B paper/checks/check_literals.py --enclosure`. It printed `PASS: Gold2 receipt matches Theorem 2 and the abstract.` That verifies the receipt and endpoint arithmetic, not the drift inequalities.

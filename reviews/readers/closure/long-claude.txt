@@ -1,0 +1,34 @@
+Closure reread. Simulated reader: Christopher D. Long. This is an editorial simulation by Claude, not a statement by the actual person.
+Packet: the revised PDF, the README, and repository revision e795005c19c733db59aae99fff3284d3cbfa6c25. I also followed its links: Long revisions 090bbbe and 7904917/5bd25a7, and the archived first paper at a0972085.
+
+RESULT IN ONE SENTENCE
+In the random friend tree, the non-leaf count grows like n^mu with 0.565713486333 <= mu <= 0.565736986679 (so mu < 17/30). Individual trees differ by a positive random factor with a density. The fixed-degree core fractions settle almost surely to a law with tail p_k ~ a k^(-1-mu).
+
+QUICK CHECK AT THIS EXACT REVISION
+I ran this from a clone checked out at e795005c19c733db59aae99fff3284d3cbfa6c25:
+  python3 -B paper/checks/check_literals.py --enclosure
+Last three lines of output:
+  Exact enclosure: [35083855339718511/62017003637500000, 127993535256830043/226242120050000000]
+  Outward decimal enclosure: [0.565713486333, 0.565736986679]
+  PASS: Gold2 receipt matches Theorem 2 and the abstract.
+This checks the printed numbers only. The README now says so up front. I did not run the gold2 rebuild or replay.
+
+STATUS OF ROUND-TWO FLAGS
+(a) Duplicate citation of [8] and [9], and the false "built on [8]" chronology: RESOLVED.
+    The bibliography now has a single [8]: "Transcendence targets for the friend-tree exponent: exact first-promotion reduction and arithmetic obstructions, 24 November 2026. GitHub PDF, revision 7904917." That title and date are correct.
+    The Section 5 text now says "In the same draft that proved constant-factor mean growth, Long introduced the signed renewal germ". That is the true chronology.
+    The README cites one "24 November draft" for both the mean bounds and the transcendence programme. Also correct.
+(b) "Theorem 3 uses a different compact operator": RESOLVED. It now reads "Theorem 3 uses a compact operator on newborn marks." It no longer implies that my full-environment kernel is compact.
+(c) Credit for B_s(1): RESOLVED. The paper now says "Long introduced the signed renewal germ Bs(z) = 1 − 1/Fs(z) at z = 0 and proved its critical boundary value limz↑1 Bµ(z) = 1 along the real axis [8]. The comparison here evaluates his germ at z = 1 for real s > µ". That matches what I proved.
+(d) The phrase "Conditional on that identity": RESOLVED. It now says "Using the linked resolvent identity as input". The paper also adds that the argument "tests denominator primes in the expansion at large s, not arithmetic specialization at the critical discount".
+(e) The "first version" link: RESOLVED. Reference [9] is now "the earlier paper", archived at a0972085. Its Theorem 1.2 (th:bracket in Section 1) is the finite-size bracket the text points to.
+(f) Possible credit for my prime-denominator method: NOT ADDRESSED, but this was only ever a suggestion. The text now calls the argument "separate". I did not read that argument, so I cannot say whether more credit is owed. This is not a finding.
+
+REMAINING GENUINE OVERCLAIM OR MISATTRIBUTION
+None.
+I checked one new attribution in the README: "separately refined Uzay's round-one witness to certify mu<=0.5664485422<17/30". It is accurate. My 090bbbe abstract describes "a rational correction of the existing motif potential", and my UPSTREAM.md pins Uzay's commit ba2ec2e as the source of that potential.
+
+OPTIONAL CLARITY EDITS (not required)
+1. Section 1 says "He gave ... a certified upper bound of 0.5664485422, also below 17/30, [7]." There is a stray comma before [7]. The PDF also never says what the README says: that this bound corrects Uzay's own three-vertex upper potential. One clause would make the two consistent.
+2. Section 1 or the proof of Theorem 3 could add that my full-environment kernel has essential spectral radius one at criticality. That is why a compact operator on newborn marks is the real novelty. Today the reader learns it only by following [8].
+3. In the proof of Lemma B.1, the PDF text layer still shows the first discriminant as "−3591/106". The true value is −3591/10^6, which I recomputed exactly last round. This is probably a rendered superscript, but check it.

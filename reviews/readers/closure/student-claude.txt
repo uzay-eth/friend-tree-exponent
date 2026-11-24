@@ -1,0 +1,38 @@
+Closure reread: first-year probability graduate student (simulated). This is an editorial simulation, not a statement by any real person.
+
+Packet: the supplied README and PDF, which are byte-identical to README.md and paper/friend-tree-exponent.pdf at revision e795005c19c733db59aae99fff3284d3cbfa6c25. I followed the sources they cite where a credit line needed checking.
+
+RESULT IN ONE SENTENCE
+In the random friend tree, the number of non-leaves grows like n^mu (in mean and almost surely) with 0.565713486333 <= mu <= 0.565736986679. That excludes 17/30. The interval comes from computer-checked drift inequalities, and no human has refereed the proofs.
+
+QUICK CHECK (private temporary clone at e795005, Python 3.12.3)
+$ python3 -B paper/checks/check_literals.py --enclosure
+Exact enclosure: [35083855339718511/62017003637500000, 127993535256830043/226242120050000000]
+Outward decimal enclosure: [0.565713486333, 0.565736986679]
+PASS: Gold2 receipt matches Theorem 2 and the abstract.
+exit status 0
+The final line matches the line the README promises.
+
+REMAINING GENUINE OVERCLAIM OR MISATTRIBUTION: none.
+I checked these new or changed credit lines against their sources:
+- Strogatz quote. The paper has: "In a 2022 post relaying Redner's account, Strogatz wrote, 'It's an open problem to prove that 17/30 is really the exponent'". This matches the text of the post word for word, and the post does relay Redner. The earlier wording "asked whether" was weaker; this is better.
+- Long. The README says he "separately refined Uzay's round-one witness to certify mu<=0.5664485422<17/30". Long's own README at 090bbbe calls it "a constant-per-core correction to the upstream" certificate that "reuses and credits the upstream potential tables". So the claim is supported.
+- Long's constant-factor mean bounds. The README links 5bd25a7 and the paper cites 7904917. 5bd25a7 is the merge of the 7904917 work, both dated 24 November, so the two citations agree.
+- Hartle et al. The paper says they "used the word nucleus for a smaller set" and "called all non-leaves the core". This matches arXiv:2604.01540v1 §2: nucleus means rank > 1, and core means nucleus plus rank-1 nodes. The fit of 0.569 for the IR model matches Fig. 6.
+- Krapivsky-Redner and Addario-Berry et al. The README says Krapivsky and Redner predicted the scaling and Addario-Berry et al. state the almost-sure fixed-degree version in §7(2). This is consistent with what §7(2) itself writes.
+
+PREVIOUS ROUND-TWO FLAGS
+1. Uncited "Uzay's November 2026 first version": RESOLVED. It is now reference [9], "Archived first paper (PDF)", with a link.
+2. "For a historical replay" of the gold2 evidence: RESOLVED. The text now says "To replay the five-vertex enclosure". The remaining phrase "smaller historical tables" correctly refers to the older tables.
+3. Unexplained 142/251 and 99/175: RESOLVED. The text now says "For comparison with the arithmetic bounds discussed in Section 5", and Tier C explains both fractions.
+4. Sabba sourced only to the author's own record: RESOLVED by disclosure. The paper adds "Our source for these figures is the project attribution record." The README adds "which does not link a primary result."
+5. Long references were commit hashes only: RESOLVED. References [7] and [8] are now hyperlinked GitHub PDFs at pinned revisions.
+6. "Certified interval" far from the no-referee caveat: RESOLVED. The abstract now says "interval", notes the replay with "one exhaustive verifier", and ends "No human referee has reviewed the proofs." The README says "computer-certified" and "the proofs await human refereeing".
+7. "Check it yourself" could read as checking the theorem: RESOLVED. The section now opens with "the command below checks the printed numbers, not the drift inequalities" and points to the three-vertex replay. The paper adds "It checks neither the drift rows nor the reduction from trees to rows."
+8. Theorem 9 is stated "On the event sum Cn/n^2 < infinity" and only then made unconditional: NOT CHANGED. This is clarity only, not an error, because the next sentence says the event has probability one.
+My round-two edit (say what a reader can check cheaply and what needs the big replay): DONE.
+
+OPTIONAL CLARITY EDITS (not errors)
+- Theorem 9: state the result unconditionally and move the summability condition into the proof.
+- Intro: the paper says Long gave "a certified upper bound of 0.5664485422". It could add, as the README does, that this refines the round-one witness. The two documents would then credit him the same way.
+- Not checked by me: the "Random Structures & Algorithms 69 (2026)" and "Phys. Rev. E 114 (2026)" journal details.

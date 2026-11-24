@@ -1,0 +1,75 @@
+# Cold read: simulated Christopher D. Long
+
+Editorial simulation. This is not a statement by the real person. The reader is modelled as the author of an earlier critical equation in discounted generation sums, an effective two-sided search, constant-factor mean bounds and a transcendence programme for the friend-tree exponent. Inputs: the PDF, the README and the public repository at the pinned commit, plus the Long repository commits the README links.
+
+What I ran: I recomputed Theorem 2's endpoints from the table in its proof with exact fractions, `a± = λ± ± e±/m±`. Both match the displayed fractions, and `a+ < 17/30`. I did not run `run_all.sh` or the full replay.
+
+## 1. Gut reaction (one minute)
+
+The enclosure is strong. If it holds, the 17/30 question is closed, and the interval is about a thousand times narrower than the one my drafts took as input. The amplitude, degree-law and hub-mass results go well past what I claimed. I have no quarrel with them in principle.
+
+My problem is how my work is credited. I appear in two sentences of prose and one paragraph at the back, never in the bibliography. The theorems that overlap mine (Theorem 3's `E C_n ≍ n^µ`, Theorem 7's two-sided finite certificates, and the "response transcendence" in §5) do not name me where they are stated. The repository's own ledger says my work has priority for exactly those statements. The PDF does not carry that over. Anyone who reads the paper on paper or in a citation index will not find me.
+
+## 2. What I would do next
+
+1. Check whether §5's "signed response" is the same object as my signed scalar `B_s(1)`. The ledger (Fable fact 26) says `B_s(1) = U_s(J)` and that mine predates Astra 14. If so, the transcendence-over-`C(s)` result is a result about my function and should say so.
+2. Put Theorem 7 next to my computability theorem. Both say that finite rational certificates on each side have certified exponents converging to µ. I would want to see stated what is new: an explicit rate, a different descriptor family, or both.
+3. Check Theorem 3 against my generation-limit crossing `r_∞(µ) = 1`, and Lemma B.1's use of Theorem 1's exponent. Then check whether the mean comparison it calls "in particular" is new or is my constant-factor result reached by another route.
+4. Ask for a bibliography entry for each of my three drafts, pinned to commits, with dates. Mine are dated 23 and 24 November 2026; this paper is dated 24 November 2026.
+5. Only after that, replay the Theorem 2 certificate. My own upper bound, 0.5664485422, reused the round-one potential tables, so I know that pipeline's failure modes.
+
+## 3. Sentences that overclaim, confuse or misattribute
+
+1. **"Christopher D. Long first gave a critical equation in discounted generation sums and an effective search and then constant-factor bounds on the mean."** (§1)
+   *Misattribution by form.* The content is correct, but there is no citation. The reference list has [1]–[5] and none of them is mine. The only pointer is a hyperlink, which is lost in print and in indexing. The sentence also leaves out my certified upper bound 0.5664485422, which the repository's credit record mentions, and my companion irrationality result for the solvable `VAN(ω)` variants.
+
+2. **"His equation retains the full birth environment."**
+   *Confusing.* It is literally true of my kernel: `X_v` is the whole environment at birth. But my headline characterization is the generation limit of an *inert-newborn* component. A cold reader will either be puzzled or conclude the opposite. Say which object you mean, or drop the sentence and say only what Theorem 3 does differently.
+
+3. **Theorem 3: "In particular `E C_n ≍ n^µ`."**
+   *Misattribution by omission.* This is the constant-factor mean growth that I published first. The repository's own ledger says so (F3: "first public proof by C. D. Long"; fact 26: Θ(n^µ)). The theorem should cite it. Also, the proof defers this claim forward to Theorem 5, whose proof defers back to Theorem 4. A reader will want the dependency stated in one place.
+
+4. **Theorem 7: "This concerns the tables constructed here, not completeness of a previously used descriptor family."**
+   *Confusing and under-credited.* The hedge reads as a disclaimer about *your* earlier motif tables. It does not say that two-sided finite-certificate convergence to µ was already proved in my computability theorem. Theorem 7's new content, as I read it, is the explicit rate and the phase-averaged cut tables. State that, and cite the earlier result.
+
+5. **"Claude also checked the transcendence argument for the signed response as a function of the discount, given the resolvent identity. The response is a function of the discount; Long's programme asks for the arithmetic nature of its critical value."** (§5, Tier B)
+   *Confusing and possibly misattributed.* The sentence never says whose argument this is, what "the signed response" is, or which resolvent identity is meant. The ledger shows it is `U_s(J)` (Neon-2 4a, resting on Astra 14), which the ledger itself says equals my earlier `B_s(1)`. "Long's programme asks for…" frames my work as the question and yours as the result, when the function is mine. Name the function, cite where it first appeared, and say who proved transcendence over `C(s)`.
+
+6. **"Neither that programme nor the response-transcendence results here settle the arithmetic of the critical value."** ("How this work was done")
+   *Confusing.* This is correct, but "results here" suggests the paper proves transcendence results. The paper only reports them in §5 at Tier B/C, without proofs. Also, a paragraph on how *this* work was done is the wrong place for my independent programme; it reads as if I took part in the project.
+
+7. **Abstract: "the fraction of non-leaves of degree k converges almost surely to a deterministic limit of order k^−(1+µ) as k grows, as Krapivsky and Redner conjectured."**
+   *Overclaims against the paper's own §6.* §6 says the results "do not settle the pointwise growing-degree law of Krapivsky–Redner [2] throughout the intermediate range." The README's narrower framing (the conjecture *as recorded in* Addario-Berry et al. §7(2)) is the accurate one. The abstract should match it. §3's "Krapivsky and Redner's prediction [2] in this notation is … almost surely" also puts an almost-sure statement in the mouths of physicists who gave a mean-field prediction.
+
+8. **Theorem 1 remark: "The finite-size prefactors and an independent degree-band upper bound 5657/9983 appear in the original paper, Theorem 1.2."**
+   *Confusing.* "The original paper" is not in the references. A cold reader cannot tell whether this means Addario-Berry et al. or the author's round-one report. It matters to me because my drafts cite the round-one bracket as their input.
+
+9. **Abstract: "These results answer Questions 1, 2, 4 and the first part of Question 3."**
+   *Mild overclaim.* Question 2 is answered at fixed k only (see point 7). Theorem 9's unit mass comes with a pathwise hypothesis that is shown to hold a.s. for the edge seed, which is fine. Theorem 6's spectral characterization is conditional, and the abstract and §1 bullets do not say so.
+
+No problems with the Sabba, Strogatz, Hartle et al. or Cannings–Jordan attributions on my reading.
+
+## 4. Which theorem I would check first, and whether the paper lets me
+
+**Theorem 3** (compact marked-fringe kernel, `r(K_s) = 1` exactly at `s = µ` on `(51/100, ∞)`). It is the direct alternative to my generation-sum crossing, and it is where the priority question is sharpest.
+
+**Partly.** Lemma B.1 is self-contained enough to follow:
+- weight `W` with the four explicit quadratic discriminants;
+- `R_t W ≤ e^{ρt} W`;
+- compactness by Arzelà–Ascoli;
+- Krein–Rutman;
+- strict monotonicity;
+- criticality from the abscissa of `∫ e^{-st}(F_3(t) − 1) dt`.
+
+The last step correctly imports µ from Theorem 1, so the crossing is an identification of a known exponent, not an independent derivation. That is the same logical status as my `r_∞(µ) = 1`, and the paper should say so plainly.
+
+Where it stops letting me:
+- "In particular `E C_n ≍ n^µ`" routes through Theorem 5 → Theorem 4 → Lemma B.2. The contour argument in B.2 is compressed to a paragraph.
+- The first-moment identity (5) is justified in two sentences that point to a repository file.
+- Several "Source:" tags lead to repository files, not to anything in the PDF.
+
+I could check the spectral crossing from the PDF alone. I could not check the mean comparison without the repository.
+
+## 5. One edit
+
+Add my three drafts to the reference list, pinned to commit and date. Cite them at the point of use: in Theorem 3 (the mean comparison, and the inert-newborn crossing as prior characterization), in Theorem 7 (prior two-sided computability), and in §5 (the signed scalar whose transcendence is reported). Each citation should be one clause saying what is new here, for example: "Long [6] first proved `E C_n ≍ n^µ`; Theorem 5 sharpens this to `E N_{≥k}(n) ∼ c_k n^µ`." The repository's credit record already says all of this. The paper is the only place that does not.
