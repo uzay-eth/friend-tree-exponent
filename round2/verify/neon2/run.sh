@@ -41,6 +41,41 @@ q3_full() {
 
 result() { printf 'RESULT neon2-%s: %s\n' "$1" "$2"; }
 
+historical_receipt() {
+    local pinned=$1 status=matched
+    cmp -s -- "$pinned" "$work/replay.json" || status='did not match'
+    cat "$work/replay.json"
+    "$py" -B - "$mode" "$pinned" "$work/replay.json" "$status" >&2 <<'PY'
+import json
+import sys
+from pathlib import Path
+
+mode, pinned, replay, status = sys.argv[1:]
+actual = json.loads(Path(replay).read_text())
+if mode == 'marginals-check':
+    entries = actual['observables']
+    endpoints = '; '.join(f"obs{key} [{', '.join(row['certified_interval_exact'])}]"
+                          for key, row in entries.items())
+else:
+    entries = {'quintet': actual}
+    endpoints = '[{}, {}]'.format(*(actual[side]['certified_exact'] for side in ('lower', 'upper')))
+
+if status != 'matched':
+    try:
+        expected = json.loads(Path(pinned).read_text())
+        expected_entries = expected['observables'] if mode == 'marginals-check' else {'quintet': expected}
+        wrong = [f'{key}/{side}' for key, row in entries.items() for side in ('lower', 'upper')
+                 if row[f'{side}_sha256'] != expected_entries[key][f'{side}_sha256']]
+        status += (' (snapshot SHA-256 mismatch: ' + ', '.join(wrong) + ')') if wrong else ' (JSON differs)'
+    except (OSError, ValueError, KeyError, TypeError):
+        status += ' (cannot read pinned receipt digests)'
+else:
+    status += ' byte for byte'
+print(f'{mode}: certified endpoints {endpoints}; historical receipt {status}.')
+PY
+    [[ $status == matched ]]
+}
+
 case "$mode" in
     quick)
         "$py" -B "$src/limit-density/check_density.py"
@@ -96,12 +131,7 @@ case "$mode" in
         compile "$q/verify_quintet.cpp" "$work/verify_quintet"
         "$py" -B "$q/cert_check.py" --verify-bin "$work/verify_quintet" --lower "$2/quintet_lower.bin" --upper "$2/quintet_upper.bin" --threads "$threads" > "$work/replay.json"
         "$py" -B "$q/audit_independent.py" "$work/replay.json" "$2/quintet_lower.bin" "$2/quintet_upper.bin" >&2
-        cat "$work/replay.json"
-        if cmp -s "$q/certificate_${mode%-check}.json" "$work/replay.json"; then
-            printf '%s\n' 'Historical receipt matched byte for byte.' >&2
-        else
-            printf '%s\n' 'Historical receipt did not match; only the newly verified endpoints apply.' >&2
-        fi
+        historical_receipt "$q/certificate_${mode%-check}.json"
         ;;
     marginals-build)
         mkdir -p -- "$2"
@@ -116,11 +146,6 @@ case "$mode" in
     marginals-check)
         compile "$m/verify_marginal.cpp" "$work/verify_marginal"
         "$py" -OB "$m/verify_all_marginals.py" --verify-bin "$work/verify_marginal" --dir "$2" --threads "$threads" > "$work/replay.json"
-        cat "$work/replay.json"
-        if cmp -s "$m/certificates_all.json" "$work/replay.json"; then
-            printf '%s\n' 'Historical receipt matched byte for byte.' >&2
-        else
-            printf '%s\n' 'Historical receipt did not match; only the newly verified endpoints apply, conditional on the original gold2 bracket.' >&2
-        fi
+        historical_receipt "$m/certificates_all.json"
         ;;
 esac

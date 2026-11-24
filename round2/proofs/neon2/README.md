@@ -48,7 +48,7 @@ Claims 8, 9 and 12 use no inherited results. Claim 11 needs no Astra result; see
 
 The historical Git receipts record exact output and SHA-256 input digests. The multi-gigabyte inputs are absent from this archive. Builders use a fixed-seed empirical centering step and floating-point Bellman/optimizer sweeps, followed by integer quantization and envelope export. Compiler, OpenMP scheduling and reduction order can change the quantized values. A successful build gives only a candidate; a successful exact check on different bytes establishes only its own resulting endpoints. A byte-for-byte comparison with the historical receipt is meaningful only after actual verification. The original gold1 numerical check covered 191,375,747 finite rows and 29,879,919 envelope inequalities per side; gold2 covered 767,588,844 and 106,953,150 per side. See the separate gold1 and gold2 sections of the [GPT](../../reviews/attacks/astra-on-neon2-6.md) and [Claude](../../reviews/attacks/fable-on-neon2-6.md) attack reports.
 
-Run one production command at a time, with output directories on a volume with sufficient space. Commands are from the repository root. For a check-only run with snapshots obtained separately, supply their directory instead and confirm that the receipt matches.
+Run one production command at a time, with output directories on a volume with sufficient space. Commands are from the repository root. For a check-only run with snapshots obtained separately, supply their directory. `gold1-check`, `gold2-check`, and `marginals-check` require the original receipt for that mode to match byte for byte, including its snapshot SHA-256 digests. They exit nonzero on a mismatch, even if the exact checker accepts the snapshots. After verification they write the unchanged replay JSON to stdout and report exact endpoints and receipt-match status on stderr. Use the exit status, not the presence of replay JSON, to tell whether the historical check passed.
 
 ```sh
 runner=round2/verify/neon2/run.sh
@@ -59,6 +59,15 @@ bash "$runner" gold2-check "$HOME/neon2-work/gold2" > gold2-replay.out
 ```
 
 Per side, gold1 writes 1.59 GB and took about 8 minutes to build on the original setup; gold2 writes 6.35 GB and took about 25 minutes per side. The combiner can need about 3.5 GB (gold1) or 12.5 GB (gold2) peak RAM, plus enough disk for both files. A rebuild and a check both run lower and upper sequentially. For the published bracket use the exact rational endpoints in the matched receipt, not the nominal header exponents. The aborted gold3/gold4 investigations are not certificates.
+
+To verify a different quintet candidate without requiring historical identity, use the original checker directly (its output applies only to the supplied snapshots):
+
+```sh
+q=round2/proofs/neon2/quintet-cert
+g++ -std=c++17 -O3 -fopenmp "$q/verify_quintet.cpp" -o ./verify_quintet
+python3 -B "$q/cert_check.py" --verify-bin ./verify_quintet \
+  --lower /path/to/quintet_lower.bin --upper /path/to/quintet_upper.bin --threads 2
+```
 
 ```sh
 runner=round2/verify/neon2/run.sh
