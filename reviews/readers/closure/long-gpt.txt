@@ -1,0 +1,9 @@
+Result: From one edge, the random friend tree’s core has the same exponent in expectation and almost surely, with 0.565713486333 ≤ μ ≤ 0.565736986679 < 17/30, and its size divided by n^μ converges almost surely to a finite, strictly positive, nonconstant random variable with a density.
+
+Remaining genuine overclaim or misattribution: none found in the passages and results reread. The fixed-degree result does not claim joint exact-degree scaling, the moment order is not presented as stochastic order, and transcendence of the signed response as a function of the discount is not presented as transcendence of μ.
+
+Previous flags: The degree-law attribution is resolved in both the abstract and the README: Krapivsky and Redner supply the prediction, and Addario-Berry et al. record the almost-sure formulation. The provenance of 0.5664485422 is explicit in the README, which distinguishes the refinement of Uzay’s round-one witness from the terminating approximation theorem. The PDF still pairs those two results in one sentence, but does not misattribute either. My suggested kernel comparison is present in substance in Theorem 3: the two constructions identify the same critical discount without identifying their radius functions.
+
+Optional clarity edit: In the PDF introduction, mirror the README’s distinction by separating the terminating approximation theorem from the refinement of the round-one witness. This is not a correction to the result or its credit.
+
+Quick check: I ran `python3 -B paper/checks/check_literals.py --enclosure` using files from revision e795005c19c733db59aae99fff3284d3cbfa6c25. It printed `PASS: Gold2 receipt matches Theorem 2 and the abstract.` This checks the receipt and endpoints, not the drift inequalities.

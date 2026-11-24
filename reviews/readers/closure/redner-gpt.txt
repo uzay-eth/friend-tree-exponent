@@ -1,0 +1,9 @@
+Result in one sentence: The mean and almost-sure nucleus growth exponent is in the certified interval [0.565713486333, 0.565736986679], below 17/30, and the almost-sure degree proportions in the nucleus have a tail proportional to k^(-1−μ) when the size limit is taken first.
+
+Remaining genuine overclaim or misattribution: None found in the passages and headline results reread.
+
+Previous flags: Both resolved in substance. The README and the degree-ratio paragraph distinguish the 2017 prediction for normalized mean counts from the fixed-degree almost-sure version recorded by Addario-Berry et al. The sentence “Theorems 4 and 5 do not give a joint pointwise exact-degree equivalent with k = k(n)” now says exactly what it limits; the open-problems section separately distinguishes the cumulative law from the exact-degree result up to a small power of n.
+
+Optional clarity: In the abstract, “recorded by Addario-Berry et al.” is accurate, but putting their formulation first would make the distinction between the two versions immediate. I would not hold the paper for that.
+
+Quick check: The supplied PDF and README matched the files at e795005c19c733db59aae99fff3284d3cbfa6c25 byte for byte. I ran `python3 -B paper/checks/check_literals.py --enclosure` using the files at that exact revision. It printed `PASS: Gold2 receipt matches Theorem 2 and the abstract.` That checks receipt arithmetic and the printed endpoints, not the drift inequalities.

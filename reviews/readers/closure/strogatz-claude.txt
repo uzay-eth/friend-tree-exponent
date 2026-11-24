@@ -1,0 +1,50 @@
+Closure reread: Strogatz-perspective simulation (Claude)
+Editorial simulation, not a statement by the actual person.
+Packet: revised PDF, README, repository at e795005c19c733db59aae99fff3284d3cbfa6c25.
+The PDF and README in the packet are byte-identical to the ones at that revision.
+
+RESULT IN ONE SENTENCE
+In the random friend tree, the number of non-leaves grows like n^mu, both in mean and on almost every tree. A computer-checked interval puts 0.565713486333 <= mu <= 0.565736986679, which rounds to Krapivsky and Redner's 0.566 and excludes 17/30.
+
+README QUICK CHECK AT THIS REVISION
+Run from the repository root at e795005:
+  $ python3 -B paper/checks/check_literals.py --enclosure
+  Exact enclosure: [35083855339718511/62017003637500000, 127993535256830043/226242120050000000]
+  Outward decimal enclosure: [0.565713486333, 0.565736986679]
+  PASS: Gold2 receipt matches Theorem 2 and the abstract.
+  exit=0
+As the README now says, this checks the printed numbers, not the drift inequalities.
+
+REMAINING GENUINE OVERCLAIM OR MISATTRIBUTION
+None.
+
+STATUS OF ROUND-TWO FLAGS
+1. The post was misdescribed as Strogatz "asked whether the exponent could be 17/30" (misattribution). RESOLVED.
+   The paper now reads: "In a 2022 post relaying Redner's account, Strogatz wrote, 'It's an open problem to prove that 17/30 is really the exponent' [4]."
+   The README now reads: "publicized the open problem in a 2022 post relaying a conversation with Redner".
+   Both match the post. Neither assigns the 17/30 guess to anyone.
+2. The abstract's "fixed-degree formulation of Krapivsky and Redner's scaling prediction in Section 7(2) of Addario-Berry et al." was garbled. RESOLVED.
+   It now reads: "the almost-sure form of Krapivsky and Redner's degree prediction recorded by Addario-Berry et al. in Section 7(2)."
+   The README separates the two cleanly: "Krapivsky and Redner predicted the scaling of the normalized mean counts. Addario-Berry et al. state the fixed-degree almost-sure version".
+3. "Answers Question 1" needed to say in what sense. PARTLY RESOLVED, now a clarity point only.
+   Section 1 restates Question 1 as two parts: whether the growth bounds close, and whether the normalized counts have a nontrivial random limit. Theorems 1 and 4 address both. The text no longer implies the value of mu is known, and the open problems say it is not.
+4. "Certified" appeared with no review status. RESOLVED.
+   The abstract now says: "The finite drift inequalities for this enclosure were replayed with one exhaustive verifier." It also says: "No human referee has reviewed the proofs."
+   The README now says: "the proofs await human refereeing."
+5. The 5657/9983 bound pointed to an uncited "first version". RESOLVED. It now cites reference [9], the archived earlier paper.
+6. The Long references were confusing, and the credit chain was unclear. RESOLVED.
+   - The duplicate-title reference is gone.
+   - The paper adds that Long's 0.5664485422 is "also below 17/30".
+   - The README says Long "refined Uzay's round-one witness".
+7. The Sabba citation looked like a primary source. RESOLVED.
+   The paper now says: "Our source for these figures is the project attribution record."
+   The README says the record "does not link a primary result".
+8. Hartle et al.'s 0.569 was handled obliquely. RESOLVED.
+   The paper now says: "The published finite-window fit 0.569 [6, Fig. 6] lies outside the certified interval."
+   It also explains the terminology difference fairly: Hartle et al. "used the word nucleus for a smaller set".
+
+OPTIONAL CLARITY EDITS (not overclaims)
+a. Reference [4]'s title, "post on the exponent in isotropic redirection", uses a term the post never uses. A neutral title such as "post on the Krapivsky–Redner network growth exponent" would be more exact.
+b. Krapivsky and Redner wrote that 0.566 "seems accurate to within 0.001". One clause noting that the certified interval confirms this would credit their numerics more fully than "rounds to their estimate".
+c. The README links Long's 24 November draft at 5bd25a7. The paper cites [8] at 7904917. The first is the merge of the second, so the content is the same, but using one revision in both places avoids a double take.
+d. The abstract's phrase "These results answer Questions 1, 2, 4 ..." could add "in the senses stated in Section 1".

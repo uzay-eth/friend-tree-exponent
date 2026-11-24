@@ -21,7 +21,7 @@ To replay just the shipped upper witness from the repository root, use Bash, GCC
 )
 ```
 
-The last line was `=== SUMMARY: 17329108 exact GMP inequality checks, 0 failures => VERIFIED OK ===`. This replays the authored verifier on the round-one upper witness only; it does not establish existence of the exponent or reproduce the sharper enclosure. For the round-one lower bound, replace `upper` with `lower` in the last two commands; the lower replay also passed 17,329,108 checks with zero failures. These are one-sided comparisons: $`\Phi_{\rm up}\ge c_0 C`$ and $`\Phi_{\rm lo}\le C_0 C`$ for positive constants $`c_0,C_0`$, not two-sided bounds on each potential. Both start positive at the three-vertex path; the lower potential need not be positive on every tree.
+The last line was `=== SUMMARY: 17329108 exact GMP inequality checks, 0 failures => VERIFIED OK ===`. This replays the authored verifier on the round-one upper witness only; it does not establish existence of the exponent or reproduce the sharper enclosure. For the round-one lower bound, replace `upper` with `lower` in the last two commands; the lower replay also passed 17,329,108 checks with zero failures. These are one-sided comparisons: $`\Phi_{\rm up}\ge c_0 C`$ and $`\Phi_{\rm lo}\le C_0 C`$ for positive constants $`c_0, C_0`$, not two-sided bounds on each potential. Both start positive at the three-vertex path; the lower potential need not be positive on every tree.
 
 ## Where computation enters
 
