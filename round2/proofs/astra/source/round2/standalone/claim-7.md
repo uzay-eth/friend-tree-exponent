@@ -89,8 +89,7 @@ This handles the random promotion time by conditioning on each possible size $`r
 \begin{aligned}
 \mathbb E\sum_{v>m}q_n(v)
 &\le 2\sum_{r=m+1}^n\frac{a_r-a_{r-1}}r
- \le 2K\sum_{j=m}^{\infty}\frac{j^{\alpha-1}}{j+1}\\
-&\le 2K\left(m^{\alpha-2}+\frac{m^{\alpha-1}}{1-\alpha}\right)=:b_m.
+ \le 2K\sum_{j=m}^{\infty}\frac{j^{\alpha-1}}{j+1}\\ &\le 2K\left(m^{\alpha-2}+\frac{m^{\alpha-1}}{1-\alpha}\right)=:b_m.
 \end{aligned}
 \qquad\text{(7)}
 ```
@@ -116,8 +115,7 @@ For $`r<\tau`$, $`B_r\le Kr^\beta`$. If $`r\ge\tau\ge4`$, then $`B_r=C_\tau\le C
 \begin{aligned}
 \sum_{r=m+1}^n\frac{B_r-B_{r-1}}r
 &=\frac{B_n}{n}-\frac{B_m}{m+1}
- +\sum_{r=m+1}^{n-1}\frac{B_r}{r(r+1)}\\
-&\le (K+1)\left(1+\frac1{1-\beta}\right)m^{\beta-1}.
+ +\sum_{r=m+1}^{n-1}\frac{B_r}{r(r+1)}\\ &\le (K+1)\left(1+\frac1{1-\beta}\right)m^{\beta-1}.
 \end{aligned}
 ```
 

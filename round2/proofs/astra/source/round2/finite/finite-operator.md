@@ -109,10 +109,7 @@ The table reports rational enclosing intervals for the auxiliary growth rates. T
 For $`M=3,B=1`$, label the types as the founder, the hub, the singleton with one leaf and one inactive slot, and the singleton with zero leaves and two inactive slots. In that order the full row generator is
 ```math
  \begin{pmatrix}
- -3&2&2&0\\
- 0&0&1&0\\
- 0&1&-1&1/2\\
- 0&0&0&0
+ -3&2&2&0\\ 0&0&1&0\\ 0&1&-1&1/2\\ 0&0&0&0
  \end{pmatrix}.
 ```
 The hub and the one-leaf singleton form the maximizing class, giving $`\lambda_{3,1}=(\sqrt5-1)/2`$. For $`(M,B)=(3,3)`$ the listed root satisfies $`x^5+17x^4+94x^3+162x^2-132x-416=0`$ with $`x=2\lambda_{3,3}`$. For $`(4,1)`$ it satisfies $`x^4+15x^3+62x^2+12x-270=0`$ with $`x=3\lambda_{4,1}`$. The $`B=1`$ values at $`M=3`$ and $`M=4`$ fall on opposite sides of the existing certified interval for the true exponent. Individual small auxiliary matrices therefore supply neither a general upper bound nor a general lower bound by themselves. [True-exponent bounds](../../proofs/bracket-motifs.md)

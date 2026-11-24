@@ -30,18 +30,36 @@ and let $`\mu_N := \frac{1}{\log N} \int_0^{\log N} P_a^0(J, \cdot)\,da`$, where
 
 ### Theorem 1 (Simultaneous Count and Log-Volume Law for ALL $`N(n) \to \infty, N(n)/n \to 0`$)
 Let $`N(n) \in \mathbb Z_{\ge 2}`$ be **any** deterministic sequence satisfying $`N(n) \to \infty`$ and $`N(n)/n \to 0`$ as $`n \to \infty`$. Then almost surely:
-1. **(Simultaneous component count):**
-   $`\displaystyle \frac{M_{n, N(n)}}{A X \,(n / N(n))^\mu \log N(n)} \;\longrightarrow\; 1. \qquad\text{(1)}`$
-2. **(Simultaneous rescaled log-volume law):** For the ordinary vertex count $`V_{n, N}`$ of a component sampled uniformly from $`\mathcal C_{n, N(n)}`$ given $`T_n`$,
-   $`\displaystyle \sup_{x \in [0, 1]} \Big|\nu_{n, N(n)}\!\big(V \le N(n)^x\big) - x\Big| \;\longrightarrow\; 0, \qquad\text{(2)}`$
-   i.e., $`\mathcal L(\log V_{n, N(n)} / \log N(n) \mid T_n) \Rightarrow \mathrm{Uniform}[0, 1]`$ almost surely.
+
+1\. **(Simultaneous component count):**
+
+```math
+\frac{M_{n, N(n)}}{A X \,(n / N(n))^\mu \log N(n)} \;\longrightarrow\; 1. \qquad\text{(1)}
+```
+
+2\. **(Simultaneous rescaled log-volume law):** For the ordinary vertex count $`V_{n, N}`$ of a component sampled uniformly from $`\mathcal C_{n, N(n)}`$ given $`T_n`$,
+
+```math
+\sup_{x \in [0, 1]} \Big|\nu_{n, N(n)}\!\big(V \le N(n)^x\big) - x\Big| \;\longrightarrow\; 0, \qquad\text{(2)}
+```
+
+i.e., $`\mathcal L(\log V_{n, N(n)} / \log N(n) \mid T_n) \Rightarrow \mathrm{Uniform}[0, 1]`$ almost surely.
 
 ### Theorem 2 (Separated Simultaneous Total-Variation Regimes)
-1. **(Convergence regime — logarithmic thresholds):** There exists an explicit deterministic constant $`c_0 > 0`$ (depending only on $`\mu`$ and the spectral gap $`\sigma < \mu`$ of Claim 6) such that for **every** deterministic sequence $`N(n) \to \infty`$ with $`N(n) \le c_0 \log n`$,
-   $`\displaystyle \big\|\nu_{n, N(n)} - \mu_{N(n)}\big\|_{\mathrm{TV}} \;\longrightarrow\; 0 \qquad \text{almost surely.} \qquad\text{(3)}`$
-2. **(Breakdown regime — polynomial thresholds):** For **every** deterministic sequence $`N(n) \to \infty`$ with $`N(n)/n \to 0`$ and $`\alpha := \liminf_{n\to\infty} \frac{\log N(n)}{\log n} > \frac{\mu}{1 + \mu}`$ ($`\approx 0.3613`$),
-   $`\displaystyle \liminf_{n\to\infty} \big\|\nu_{n, N(n)} - \mu_{N(n)}\big\|_{\mathrm{TV}} \;\ge\; 1 - \mu\!\left(\frac{1}{\alpha} - 1\right) \;>\; 0 \qquad \text{almost surely.} \qquad\text{(4)}`$
-   In particular, whenever $`N(n) = n^{1 - o(1)}`$ with $`N(n)/n \to 0`$ (for example $`N(n) = \lfloor n / \log n \rfloor`$), $`\|\nu_{n, N(n)} - \mu_{N(n)}\|_{\mathrm{TV}} \to 1`$ almost surely — even though (1)–(2) hold.
+
+1\. **(Convergence regime — logarithmic thresholds):** There exists an explicit deterministic constant $`c_0 > 0`$ (depending only on $`\mu`$ and the spectral gap $`\sigma < \mu`$ of Claim 6) such that for **every** deterministic sequence $`N(n) \to \infty`$ with $`N(n) \le c_0 \log n`$,
+
+```math
+\big\|\nu_{n, N(n)} - \mu_{N(n)}\big\|_{\mathrm{TV}} \;\longrightarrow\; 0 \qquad \text{almost surely.} \qquad\text{(3)}
+```
+
+2\. **(Breakdown regime — polynomial thresholds):** For **every** deterministic sequence $`N(n) \to \infty`$ with $`N(n)/n \to 0`$ and $`\alpha := \liminf_{n\to\infty} \frac{\log N(n)}{\log n} > \frac{\mu}{1 + \mu}`$ ($`\approx 0.3613`$),
+
+```math
+\liminf_{n\to\infty} \big\|\nu_{n, N(n)} - \mu_{N(n)}\big\|_{\mathrm{TV}} \;\ge\; 1 - \mu\!\left(\frac{1}{\alpha} - 1\right) \;>\; 0 \qquad \text{almost surely.} \qquad\text{(4)}
+```
+
+In particular, whenever $`N(n) = n^{1 - o(1)}`$ with $`N(n)/n \to 0`$ (for example $`N(n) = \lfloor n / \log n \rfloor`$), $`\|\nu_{n, N(n)} - \mu_{N(n)}\|_{\mathrm{TV}} \to 1`$ almost surely — even though (1)–(2) hold.
 
 *(Honest scope: Theorem 2 establishes separated sufficient regimes for TV convergence and TV breakdown; it does not locate a sharp single threshold between $`c_0 \log n`$ and $`n^{\mu/(1+\mu)}`$, nor does it prove volume-only TV convergence below $`\mu/(1+\mu)`$ or fixed-shape intensity at the $`O((n/N)^\mu)`$ scale.)*
 
@@ -119,13 +137,23 @@ Consequently, intersecting over countable integers $`B \ge 1`$ (since $`n e^{-\t
 ```
 
 **Proof.** Set $`b := 3\gamma_0`$. On each block $`[j, j+1]`$, put $`u_j := (1 - a)j`$ and partition $`[j, j+1]`$ into $`m_j := \lceil e^{b j} \rceil`$ equal subintervals of length $`\delta_j := 1/m_j \le e^{-b j}`$ (yielding $`m_j + 1`$ mesh points).
-1. **Mesh concentration:** At each mesh point $`v \in [j, j+1]`$, $`h = v - u_j = a j + O(1)`$, so by Lemma 2.2,
-   $`\displaystyle \mathbb E\!\left[\Big(e^{-\mu v}\big(M_{v, N}(f) - \mathbb E[M_{v, N}(f) \mid \mathcal F_{u_j}]\big)\Big)^2\right] \;\le\; K_1 (j+2)^2 e^{(4 - 2\mu)v - 3 u_j} \;=\; O\!\left((j+2)^2 e^{-(2\mu - 1) j + 3 a j}\right).`$
-   Note $`3 a = \frac{3}{10}(2\mu - 1)`$, so the decay exponent is $`-\frac{7}{10}(2\mu - 1) j`$. Multiplying by $`N^{2\mu} \le B^{2\mu} e^{2\mu\gamma_0(j+1)}`$ and summing over $`m_j + 1 = O(e^{3\gamma_0 j})`$ mesh points, $`O(e^{\gamma_0 j})`$ cutoffs $`N`$, and $`O(e^{\gamma_0 j})`$ tests $`f \in \mathcal F_{j,N}`$ gives a combined positive exponent of at most $`(5 + 2\mu)\gamma_0 j \le 7\gamma_0 j \le \frac{7}{20}(2\mu - 1)j < \frac{7}{10}(2\mu - 1)j`$. Chebyshev and Borel–Cantelli send the weighted centered mesh error to $`0`$ a.s.
+
+1\. **Mesh concentration:** At each mesh point $`v \in [j, j+1]`$, $`h = v - u_j = a j + O(1)`$, so by Lemma 2.2,
+
+```math
+\mathbb E\!\left[\Big(e^{-\mu v}\big(M_{v, N}(f) - \mathbb E[M_{v, N}(f) \mid \mathcal F_{u_j}]\big)\Big)^2\right] \;\le\; K_1 (j+2)^2 e^{(4 - 2\mu)v - 3 u_j} \;=\; O\!\left((j+2)^2 e^{-(2\mu - 1) j + 3 a j}\right).
+```
+
+Note $`3 a = \frac{3}{10}(2\mu - 1)`$, so the decay exponent is $`-\frac{7}{10}(2\mu - 1) j`$. Multiplying by $`N^{2\mu} \le B^{2\mu} e^{2\mu\gamma_0(j+1)}`$ and summing over $`m_j + 1 = O(e^{3\gamma_0 j})`$ mesh points, $`O(e^{\gamma_0 j})`$ cutoffs $`N`$, and $`O(e^{\gamma_0 j})`$ tests $`f \in \mathcal F_{j,N}`$ gives a combined positive exponent of at most $`(5 + 2\mu)\gamma_0 j \le 7\gamma_0 j \le \frac{7}{20}(2\mu - 1)j < \frac{7}{10}(2\mu - 1)j`$. Chebyshev and Borel–Cantelli send the weighted centered mesh error to $`0`$ a.s.
 2. **Conditional mean & exponential martingale tail:** By Lemma 2.1, since $`e^{-\mu u_j}(C(T_{u_j}) + c_o(u_j) + j)`$ is bounded a.s. and $`N^\mu e^{-\eta(v - u_j)} \le B^\mu e^{(\mu\gamma_0 - \eta a)j + O(1)} \to 0`$ (as $`\mu\gamma_0 < \eta a/20`$), uniformly on the mesh $`N^\mu |e^{-\mu v} M_{v, N}(f) - d_2 Z^*_{u_j} M_N(f)| \to 0`$ a.s. To replace $`Z^*_{u_j}`$ by $`Z^*_\infty`$ despite $`N^\mu |M_N(f)| \le N^\mu d_N = O(\log N) = O(j)`$: apply `almost-sure.md` (8) at integer $`m`$ with lag $`h = \kappa m`$ where $`0 < 4\kappa < 2\mu - 1`$; using uniform $`\sup_m \mathbb E[(Z^*_m)^2] < \infty`$ (`almost-sure.md` (9)) and $`C \le C_3(1 + \Psi)`$, the orthogonal martingale increments obey $`\mathbb E[(Z^*_{m+1} - Z^*_m)^2] = O(e^{-(2\mu - 1 - 4\kappa) m} + e^{-2\eta\kappa m})`$. Summing over $`m \ge \lfloor u_j \rfloor`$ and applying conditional Jensen between integer times gives $`\mathbb E[(Z^*_\infty - Z^*_{u_j})^2] \le C e^{-2\lambda_0 u_j}`$ for an explicit $`\lambda_0 > 0`$, whence $`(j + 1)|Z^*_{u_j} - Z^*_\infty| \to 0`$ a.s. by Borel–Cantelli! Thus uniformly on the mesh, $`N^\mu |e^{-\mu v} M_{v, N}(f) - d_2 Z^*_\infty M_N(f)| \to 0`$ a.s.
-3. **Localized inter-mesh variation without monotonicity:** Fix deterministic integers $`M_* \ge 1, K_* \ge 1`$ and consider the path event $`\mathcal E_{M_*, K_*} := \{\forall t \ge 0,\, C(T_t) \le M_* e^{\mu t} \text{ and } \forall t \ge 1,\, \max_{x \in T_t} c_x(t) \le K_* t\}`$ (which exhausts probability $`1`$ as $`M_*, K_* \to \infty`$ by Claim 6 and `hub-spectrum.md` §3). On each mesh subinterval $`[v, w] \subset [j, j+1]`$ of length $`\delta_j \le e^{-3\gamma_0 j}`$, define the stopping time $`\sigma_{v, K_*} := \inf\{t \ge v : C(T_t) > 2 C(T_v) \text{ or } \max_x c_x(t) > K_*(j+2)\}`$. Because $`e^{-\mu t} C(T_t) \to d_2 Z^*_\infty > 0`$ uniformly on compact steps and $`\delta_j \to 0`$, on $`\mathcal E_{M_*, K_*}`$ we have $`\sigma_{v, K_*} > w`$ eventually for all mesh intervals. A leaf attachment to a vertex of degree $`> N`$ leaves $`\mathcal C(T_t, N)`$ **completely invariant** (the vertex remains deleted and the new leaf is an isolated non-core). Thus $`\mathcal C(T_t, N)`$ changes ONLY at: (i) a promotion anywhere (total rate $`\le C(T_{t-})`$, changing at most $`2`$ component indicators), or (ii) a leaf attachment to a core $`x`$ with $`D_x(t-) \le N`$ (total rate $`\le \sum_{D_x \le N} D_x \le N C(T_{t-})`$, changing at most $`2 + c_x(t-)`$ components: if $`D_x`$ stays $`\le N`$ it modifies only $`x`$'s component, cost $`\le 2`$; if $`D_x`$ crosses $`N`$, it removes $`x`$'s component, possibly leaves one ancestral remnant, and exposes at most $`c_x`$ core-child components). Prior to $`\sigma_{v, K_*}`$, the predictable left-limit rate of relevant events is at most $`2(N+1) C(T_v)`$, so by standard thinning the stopped event count $`E_N(v, w \wedge \sigma_{v, K_*})`$ is conditionally dominated given $`\mathcal F_v`$ by $`\mathrm{Pois}(\Lambda)`$ with $`\Lambda := 2(N+1) C(T_v) \delta_j`$. Poisson Chernoff gives $`\mathbb P(E_N(v, w \wedge \sigma_{v, K_*}) > 2\Lambda + j^2 \mid \mathcal F_v) \le e^{-c j^2}`$, summable over all $`m_j`$ intervals and all $`N \le B e^{\gamma_0(j+1)}`$! On $`\mathcal E_{M_*, K_*}`$ and $`\{E_N(v, w \wedge \sigma_{v, K_*}) \le 2\Lambda + j^2\}`$, for all $`t \in [v, w]`$ and ALL $`|f| \le 1`$ simultaneously:
-   $`\displaystyle \big|M_{t, N}(f) - M_{v, N}(f)\big| \;\le\; \big(2 + K_*(j+2)\big)\big(4(N+1) M_* e^{\mu(j+1) - 3\gamma_0 j} + j^2\big) \;=\; o\big(N^{-\mu} e^{\mu j}\big),`$
-   since $`N^{1+\mu} e^{-3\gamma_0 j} \le B^{1+\mu} e^{(1+\mu-3)\gamma_0 j + O(1)} \le C e^{-\gamma_0 j}`$. The change in the scaling factor satisfies $`|e^{-\mu t} - e^{-\mu v}| M_{v, N}(1) \le \mu \delta_j e^{-\mu v} C(T_v) = O(e^{-3\gamma_0 j}) = o(N^{-\mu})`$.
+
+3\. **Localized inter-mesh variation without monotonicity:** Fix deterministic integers $`M_* \ge 1, K_* \ge 1`$ and consider the path event $`\mathcal E_{M_*, K_*} := \{\forall t \ge 0,\, C(T_t) \le M_* e^{\mu t} \text{ and } \forall t \ge 1,\, \max_{x \in T_t} c_x(t) \le K_* t\}`$ (which exhausts probability $`1`$ as $`M_*, K_* \to \infty`$ by Claim 6 and `hub-spectrum.md` §3). On each mesh subinterval $`[v, w] \subset [j, j+1]`$ of length $`\delta_j \le e^{-3\gamma_0 j}`$, define the stopping time $`\sigma_{v, K_*} := \inf\{t \ge v : C(T_t) > 2 C(T_v) \text{ or } \max_x c_x(t) > K_*(j+2)\}`$. Because $`e^{-\mu t} C(T_t) \to d_2 Z^*_\infty > 0`$ uniformly on compact steps and $`\delta_j \to 0`$, on $`\mathcal E_{M_*, K_*}`$ we have $`\sigma_{v, K_*} > w`$ eventually for all mesh intervals. A leaf attachment to a vertex of degree $`> N`$ leaves $`\mathcal C(T_t, N)`$ **completely invariant** (the vertex remains deleted and the new leaf is an isolated non-core). Thus $`\mathcal C(T_t, N)`$ changes ONLY at: (i) a promotion anywhere (total rate $`\le C(T_{t-})`$, changing at most $`2`$ component indicators), or (ii) a leaf attachment to a core $`x`$ with $`D_x(t-) \le N`$ (total rate $`\le \sum_{D_x \le N} D_x \le N C(T_{t-})`$, changing at most $`2 + c_x(t-)`$ components: if $`D_x`$ stays $`\le N`$ it modifies only $`x`$'s component, cost $`\le 2`$; if $`D_x`$ crosses $`N`$, it removes $`x`$'s component, possibly leaves one ancestral remnant, and exposes at most $`c_x`$ core-child components). Prior to $`\sigma_{v, K_*}`$, the predictable left-limit rate of relevant events is at most $`2(N+1) C(T_v)`$, so by standard thinning the stopped event count $`E_N(v, w \wedge \sigma_{v, K_*})`$ is conditionally dominated given $`\mathcal F_v`$ by $`\mathrm{Pois}(\Lambda)`$ with $`\Lambda := 2(N+1) C(T_v) \delta_j`$. Poisson Chernoff gives $`\mathbb P(E_N(v, w \wedge \sigma_{v, K_*}) > 2\Lambda + j^2 \mid \mathcal F_v) \le e^{-c j^2}`$, summable over all $`m_j`$ intervals and all $`N \le B e^{\gamma_0(j+1)}`$! On $`\mathcal E_{M_*, K_*}`$ and $`\{E_N(v, w \wedge \sigma_{v, K_*}) \le 2\Lambda + j^2\}`$, for all $`t \in [v, w]`$ and ALL $`|f| \le 1`$ simultaneously:
+
+```math
+\big|M_{t, N}(f) - M_{v, N}(f)\big| \;\le\; \big(2 + K_*(j+2)\big)\big(4(N+1) M_* e^{\mu(j+1) - 3\gamma_0 j} + j^2\big) \;=\; o\big(N^{-\mu} e^{\mu j}\big),
+```
+
+since $`N^{1+\mu} e^{-3\gamma_0 j} \le B^{1+\mu} e^{(1+\mu-3)\gamma_0 j + O(1)} \le C e^{-\gamma_0 j}`$. The change in the scaling factor satisfies $`|e^{-\mu t} - e^{-\mu v}| M_{v, N}(1) \le \mu \delta_j e^{-\mu v} C(T_v) = O(e^{-3\gamma_0 j}) = o(N^{-\mu})`$.
 4. **Normalization by $`e^{-\mu t} C(T_t)`$:** Because $`N^\mu |M_N(f)| \le N^\mu d_N = O(\log N) = O(j)`$, passing from $`N^\mu |e^{-\mu t} M_{t, N}(f) - d_2 Z^*_\infty M_N(f)| \to 0`$ to (8) requires $`(j + 1)\sup_{t \in [j, j+1]} |e^{-\mu t} C(T_t) - d_2 Z^*_\infty| \to 0`$ a.s. This follows on the exact same mesh $`u_j = (1 - a)j`$, $`\delta_j \le e^{-3\gamma_0 j}`$: by `almost-sure.md` (4) and (7) applied to $`C = A_2`$, the variance at each mesh point $`v`$ multiplied by $`(j+1)^2`$ is $`O((j+1)^2 e^{-(2\mu - 1) j + 3 a j})`$, summable over all $`m_j + 1`$ mesh points; the conditional mean error is $`O((j+1) e^{-\eta a j}) \to 0`$; Step 2 already proved $`(j+1)|Z^*_{u_j} - Z^*_\infty| \to 0`$ a.s.; and monotonicity of $`C(T_t)`$ across $`[v, w]`$ introduces relative factor $`e^{\pm \mu \delta_j} = 1 + O(e^{-3\gamma_0 j})`$, negligible after multiplying by $`(j+1)`$. Dividing $`e^{-\mu t} M_{t, N}(f)`$ by $`e^{-\mu t} C(T_t) = d_2 Z^*_\infty + o(j^{-1})`$ now yields (8) cleanly, and passing to $`\tau_n`$ proves (9). $`\square`$
 
 ### Deduction of Theorem 1 on the Engine B Subsequence $`\{n : N(n) \le n^{\gamma_0}\}`$
@@ -151,17 +179,30 @@ H_{s_0}^+ := \big\{v \in K(T_{s_0}) : D_v(s_0) > (1 - \delta_n) e^{-\omega_\vare
 ```
 1. **No late-blooming hubs:** For any $`v`$ alive at $`s_0`$ with $`D_v(s_0) = d \le t_-^2`$, over duration $`h_+ := t_+ - s_0 = L - b + \omega_\varepsilon`$, $`D_v(t_+)`$ is dominated by $`\mathrm{NB}(d, p)`$ with $`p = e^{-h_+}`$. Since a $`\mathrm{Geom}(p)`$ variable satisfies $`\mathbb E[e^{(p/2)\mathrm{Geom}(p)}] = \frac{p e^{p/2}}{1 - (1-p)e^{p/2}} \le 2`$ (as $`(1 - p/2)e^{p/2} \le 1`$ for $`p \in (0, 1]`$), Markov gives $`\mathbb P(D_v(t_+) > N \mid \mathcal F_{s_0}) \le 2^d e^{-p N/2} = 2^d \exp(-\frac{1}{2} e^{b - \omega_\varepsilon}) \le \exp(-\frac{1}{4} t_-^4)`$. For vertices born at $`r \in (s_0, t_+]`$, $`D_v(t_+)`$ is dominated by $`\mathrm{Geom}(e^{-(t_+ - r)})`$, giving $`\mathbb P(D_v(t_+) > N \mid \tau_v = r) \le \exp(-e^{b - \omega_\varepsilon})`$. Compensating births over $`(s_0, t_+]`$ ($`\mathbb E[|T_{t_+}|] = O(n)`$) gives total failure probability $`O(n \exp(-c t_-^4))`$, summable in $`n`$.
 2. **Finite-horizon vanishing-tolerance concentration:** Fix deterministic integer $`K_* \ge 1`$ and localize on $`\{\max_{x \in T_{s_0}} c_x(s_0) \le K_* t_-\}`$. For any $`v \in K(T_{s_0})`$ with $`D = D_v(s_0) > t_-^2`$ and $`c = c_v(s_0) \le K_* t_- \ll \delta_n D`$, apply the tagged-leaf construction of `hub-spectrum.md` §2 over finite elapsed time $`h \in \{L - b, L - b + \omega_\varepsilon\}`$: conditional on $`\mathcal F_{s_0}`$, $`e^{-h} D_v(s_0 + h)`$ is sandwiched between a normalized $`\mathrm{Yule}(D - c)`$ minus a normalized rate-1-immigrating Yule population $`E_h`$ ($`\mathbb E[e^{E_h/2}] \le 2`$) and a normalized $`\mathrm{Yule}(D)`$. Each normalized $`\mathrm{Yule}(1)`$ individual $`G = e^{-h}\mathrm{Geom}(e^{-h})`$ has $`\mathbb E[G] = 1`$ and uniform MGF $`\mathbb E[e^{G/2}] \le 2`$, so by Taylor's theorem its centered log-MGF obeys $`\log \mathbb E[e^{\theta(G - 1)}] \le C \theta^2`$ uniformly for $`|\theta| \le 1/4`$ and all $`h > 0`$. Setting $`\theta \propto \delta_n`$ (plus the exponential tail $`\mathbb P(E_h > \delta_n D / 16) \le 2 e^{-\delta_n D / 32}`$) yields $`\mathbb P(|e^{-h}D_v(s_0 + h)/D - 1| > \delta_n / 4 \mid \mathcal F_{s_0}) \le K \exp(-c \delta_n^2 D) \le K \exp(-c t_-^{3/2})`$. Summing over $`\mathbb E[|T_{s_0}|] = O(n)`$ gives $`O(n \exp(-c t_-^{3/2}))`$, summable in $`n`$!
-3. **Sandwich & asymptotic hub counts:** By Borel–Cantelli (exhausting $`K_* \to \infty`$), almost surely eventually,
-   $`\displaystyle H_{s_0}^- \;\subseteq\; H(t_-) \;\subseteq\; H(\tau_n) \;\subseteq\; H(t_+) \;\subseteq\; H_{s_0}^+. \qquad\text{(10)}`$
-   Evaluating the common-event intermediate degree law of Claim 11 (`hub-spectrum.md` §4) at the integer tree size $`|T_{s_0}| \sim Y e^{s_0}`$ with integer ceiling/floor rounding on thresholds $`(1+\delta_n)e^b`$ and $`(1-\delta_n)e^{-\omega_\varepsilon}e^b`$ (using $`e^b \to \infty`$ and $`e^b / e^{s_0} = e^{L - t_-} \to 0`$) yields almost surely:
-   $`\displaystyle \frac{|H_{s_0}^-|}{A X (n/N)^\mu} \;\to\; \left(\frac{Y}{(1+\varepsilon)^{r+1}}\right)^\mu \in \big[(1+\varepsilon)^{-\mu}, 1\big], \qquad \frac{|H_{s_0}^+|}{A X (n/N)^\mu} \;\to\; \left(\frac{Y}{(1+\varepsilon)^r}\right)^\mu \in \big[1, (1+\varepsilon)^\mu\big]. \qquad\text{(11)}`$
+
+3\. **Sandwich & asymptotic hub counts:** By Borel–Cantelli (exhausting $`K_* \to \infty`$), almost surely eventually,
+
+```math
+H_{s_0}^- \;\subseteq\; H(t_-) \;\subseteq\; H(\tau_n) \;\subseteq\; H(t_+) \;\subseteq\; H_{s_0}^+. \qquad\text{(10)}
+```
+
+Evaluating the common-event intermediate degree law of Claim 11 (`hub-spectrum.md` §4) at the integer tree size $`|T_{s_0}| \sim Y e^{s_0}`$ with integer ceiling/floor rounding on thresholds $`(1+\delta_n)e^b`$ and $`(1-\delta_n)e^{-\omega_\varepsilon}e^b`$ (using $`e^b \to \infty`$ and $`e^b / e^{s_0} = e^{L - t_-} \to 0`$) yields almost surely:
+
+```math
+\frac{|H_{s_0}^-|}{A X (n/N)^\mu} \;\to\; \left(\frac{Y}{(1+\varepsilon)^{r+1}}\right)^\mu \in \big[(1+\varepsilon)^{-\mu}, 1\big], \qquad \frac{|H_{s_0}^+|}{A X (n/N)^\mu} \;\to\; \left(\frac{Y}{(1+\varepsilon)^r}\right)^\mu \in \big[1, (1+\varepsilon)^\mu\big]. \qquad\text{(11)}
+```
 
 ### Step 3.2 (Negligibility of Pre-$`s_0`$ Children of $`H_{s_0}^+`$ at Scale $`K L`$)
 We show $`\sum_{v \in H_{s_0}^+} c_v(s_0) = o\big(L |H_{s_0}^+|\big)`$ a.s. (the founder contributes at most $`c_o(s_0) = O(t_-)`$). Fix deterministic integers $`M_*, K_* \ge 1`$ and localize on $`\mathcal E_{M_*, K_*}`$. Set $`M := \lceil 4 b / \mu \rceil = O(\log t_-) = o(L)`$, and split $`v \in H_{s_0}^+`$ by **core promotion time** $`\tau_v^{\text{core}}`$ (counting the founder separately):
 - **Old cores ($`\tau_v^{\text{core}} \le s_0 - M`$; empty if $`s_0 \le M`$):** Let $`P_{\text{old}}(s_0)`$ count all promotions up to $`s_0`$ by cores promoted by time $`s_0 - M`$. Fix any deterministic integer $`D \ge 1`$; by (11), the countable union over $`D \ge 1`$ of the eventual events $`\{|H_{s_0}^+| \ge e^{\mu(s_0 - b)} / D\}`$ has probability $`1`$. Prior to the deterministic localization exit $`\sigma_{M_*} := \inf\{u \ge 0 : C(T_u) > M_* e^{\mu u}\}`$, the predictable compensator of $`P_{\text{old}}(s_0 \wedge \sigma_{M_*})`$ over $`[0, s_0]`$ is bounded deterministically by $`\Lambda_{\text{old}} := M_* \int_0^{s_0 - M} e^{\mu u}\,du + M M_* e^{\mu(s_0 - M)} \le C M_* M e^{\mu(s_0 - M)} = O(M e^{-(4 - \mu)b} e^{\mu(s_0 - b)})`$. Set the **deterministic** threshold $`T_n := \varepsilon L e^{\mu(s_0 - b)} / D`$. Since $`s_0 - b = t_- - L \to \infty`$ and $`L \ge \gamma_0 \log n`$, for all sufficiently large $`n`$ we have $`T_n \ge 2 e \Lambda_{\text{old}}`$ AND $`(\ln 2) T_n \ge 3 \log n`$ deterministically! Hence Poisson Chernoff on the stopped count gives $`\mathbb P(P_{\text{old}}(s_0 \wedge \sigma_{M_*}) \ge T_n) \le 2^{-T_n} = e^{-(\ln 2) T_n} \le n^{-3}`$, summable in $`n`$. On $`\{|H_{s_0}^+| \ge e^{\mu(s_0 - b)}/D\} \cap \mathcal E_{M_*, K_*}`$, we have $`T_n \le \varepsilon L |H_{s_0}^+|`$ and $`C(T_{s_0 - M}) \le M_* e^{\mu(s_0 - M)} = o(|H_{s_0}^+|)`$. Sending rational $`\varepsilon \downarrow 0`$ shows the old-core contribution is $`o(L |H_{s_0}^+|)`$ a.s.!
-- **Young cores ($`\tau_v^{\text{core}} \in (s_0 - M, s_0]`$):** Group $`t_- \in [j, j+1]`$ ($`j = \lfloor t_- \rfloor \ge 1`$); then $`b = 4 \log j + O(1/j)`$ and $`s_0 \in [m-1, m]`$ for one of at most $`j + 3`$ integer right-endpoints $`m \in \{0, 1, \dots, j+2\}`$. Put $`M_j := \lceil 4(4\log j + 1)/\mu \rceil + 2`$, so $`(s_0 - M, s_0] \subseteq (m - M_j, m]`$ and $`c_v(s_0) \le c_v(m)`$ by monotonicity. Truncating at $`10 M_j + 1`$:
-  $`\displaystyle \sum_{\substack{v \in H_{s_0}^+ \\ \tau_v^{\text{core}} \in (s_0 - M, s_0]}} c_v(s_0) \;\le\; (10 M_j + 1)|H_{s_0}^+| + \sum_{\tau_v^{\text{core}} \in (m - M_j, m]} c_v(m) \mathbf 1_{\{c_v(m) > 10 M_j + 1\}}.`$
-  The first term is $`O(M_j |H_{s_0}^+|) = o(L |H_{s_0}^+|)`$. For the tail sum at a fixed integer pair $`(j, m)`$, every core promoted at $`\tau_v^{\text{core}} \in (m - M_j, m]`$ starts at core degree $`1`$ and has $`c_v(m) - 1 \preceq \mathrm{Pois}(M_j)`$ by strong Markov; exact Poisson Chernoff at $`10 M_j`$ has exponent $`-(10\log 10 - 9) M_j < -14 M_j`$, absorbing $`(1 + M_j)`$ to yield expectation $`\le C \mathbb E[C(T_m)] e^{-10 M_j} \le C' e^{\mu m - 40 \log j / \mu}`$. By Markov, the probability that this tail sum exceeds $`e^{\mu(m - 4\log j)}`$ is at most $`C' j^{4\mu - 40/\mu} \le C' j^{-30}`$. Summing over all $`j + 3`$ integer bins $`m`$ gives $`O(j^{-29})`$, **summable over all integers $`j \ge 1`$**! Since $`e^{\mu(m - 4\log j)} = O(e^{\mu(s_0 - b)}) = O(|H_{s_0}^+|) = o(L |H_{s_0}^+|)`$, Borel–Cantelli yields $`\sum_{v \in H_{s_0}^+} c_v(s_0) = o(L |H_{s_0}^+|)`$ a.s.!
+
+• **Young cores ($`\tau_v^{\text{core}} \in (s_0 - M, s_0]`$):** Group $`t_- \in [j, j+1]`$ ($`j = \lfloor t_- \rfloor \ge 1`$); then $`b = 4 \log j + O(1/j)`$ and $`s_0 \in [m-1, m]`$ for one of at most $`j + 3`$ integer right-endpoints $`m \in \{0, 1, \dots, j+2\}`$. Put $`M_j := \lceil 4(4\log j + 1)/\mu \rceil + 2`$, so $`(s_0 - M, s_0] \subseteq (m - M_j, m]`$ and $`c_v(s_0) \le c_v(m)`$ by monotonicity. Truncating at $`10 M_j + 1`$:
+
+```math
+\sum_{\substack{v \in H_{s_0}^+ \\ \tau_v^{\text{core}} \in (s_0 - M, s_0]}} c_v(s_0) \;\le\; (10 M_j + 1)|H_{s_0}^+| + \sum_{\tau_v^{\text{core}} \in (m - M_j, m]} c_v(m) \mathbf 1_{\{c_v(m) > 10 M_j + 1\}}.
+```
+
+The first term is $`O(M_j |H_{s_0}^+|) = o(L |H_{s_0}^+|)`$. For the tail sum at a fixed integer pair $`(j, m)`$, every core promoted at $`\tau_v^{\text{core}} \in (m - M_j, m]`$ starts at core degree $`1`$ and has $`c_v(m) - 1 \preceq \mathrm{Pois}(M_j)`$ by strong Markov; exact Poisson Chernoff at $`10 M_j`$ has exponent $`-(10\log 10 - 9) M_j < -14 M_j`$, absorbing $`(1 + M_j)`$ to yield expectation $`\le C \mathbb E[C(T_m)] e^{-10 M_j} \le C' e^{\mu m - 40 \log j / \mu}`$. By Markov, the probability that this tail sum exceeds $`e^{\mu(m - 4\log j)}`$ is at most $`C' j^{4\mu - 40/\mu} \le C' j^{-30}`$. Summing over all $`j + 3`$ integer bins $`m`$ gives $`O(j^{-29})`$, **summable over all integers $`j \ge 1`$**! Since $`e^{\mu(m - 4\log j)} = O(e^{\mu(s_0 - b)}) = O(|H_{s_0}^+|) = o(L |H_{s_0}^+|)`$, Borel–Cantelli yields $`\sum_{v \in H_{s_0}^+} c_v(s_0) = o(L |H_{s_0}^+|)`$ a.s.!
 
 ### Step 3.3 (Simultaneous Independent Poisson–Inert Coupling on $`[s_0, t_+]`$)
 Condition on $`\mathcal F_{s_0}`$. Every hub $`v \in H_{s_0}^+`$ is ALREADY a core at time $`s_0`$, so the leaf branches promoted by distinct $`v \in H_{s_0}^+`$ during $`(s_0, t_+]`$ are **pairwise disjoint** and contain **no** hub in $`H_{s_0}^+`$. Extending `hub-children.md` §3 simultaneously to all $`v \in H_{s_0}^+`$: attach to each $`v`$'s independent rate-1 initiating clock on $`[s_0, t_+]`$ a fresh independent sequence of inert virgin trajectories $`S^{(v, j)}(u)`$ ($`u \ge 0`$), using fresh disjoint internal drivers for each branch while routing outgoing child-to-parent arrows on a separate channel that updates the exterior without altering the ideal branch. Conditional on $`\mathcal F_{s_0}`$, the resulting ideal Poisson–inert marks across all $`v \in H_{s_0}^+`$ are **mutually independent**!
@@ -206,14 +247,28 @@ In the inert planted virgin process $`S_a`$ started from $`J`$ ($`|S_0| = 2`$), 
 \qquad\text{(12)}
 ```
 Let $`S_{n, N} := \{V(F) : F \in \mathcal C_{n, N}\} \subset \mathbb Z_{\ge 1}`$ be the empirical support of component vertex counts (which may include size $`1`$); clearly $`|S_{n, N}| \le M_{n, N}`$. For $`N \ge 3`$ (so $`\log\log N > 0`$), set $`v_n := \lceil M_{n, N} \cdot \frac{\log\log N}{\log N} \rceil + 1 \ge 2`$ and define the pathwise event $`E_n := \{F : V(F) \in S_{n, N} \text{ and } V(F) > v_n\}`$ (every $`v \in E_n`$ satisfies $`v \ge 3 > 2`$). Then:
-1. By (12),
-   $`\displaystyle \mu_N(E_n) \;\le\; \sum_{v \in S_{n, N},\, v > v_n} \frac{1}{(v - 1/2)\log N} \;\le\; \frac{M_{n, N}}{(v_n - 1/2)\log N} \;\le\; \frac{1}{\log\log N} \;\longrightarrow\; 0.`$
+
+1\. By (12),
+
+```math
+\mu_N(E_n) \;\le\; \sum_{v \in S_{n, N},\, v > v_n} \frac{1}{(v - 1/2)\log N} \;\le\; \frac{M_{n, N}}{(v_n - 1/2)\log N} \;\le\; \frac{1}{\log\log N} \;\longrightarrow\; 0.
+```
+
 2. Under $`\nu_{n, N}`$, every component has $`V(F) \in S_{n, N}`$, so $`\nu_{n, N}(E_n) = \nu_{n, N}(V > v_n)`$.
-3. By Theorem 1(1), $`M_{n, N} \sim A X (n/N)^\mu \log N`$ a.s. (diverging to $`\infty`$), so
-   $`\displaystyle \frac{\log v_n}{\log N} \;=\; \frac{\mu \log(n/N) + \log(A X) + \log\log\log N + o(1)}{\log N} \;=\; \mu\!\left(\frac{\log n}{\log N} - 1\right) + o(1) \quad \text{a.s.}`$
-   When $`\alpha = \liminf \frac{\log N}{\log n} > \frac{\mu}{1+\mu}`$, we have $`\limsup \frac{\log v_n}{\log N} = \mu(\alpha^{-1} - 1) \in [0, 1)`$, so by Theorem 1(2) $`\liminf \nu_{n, N}(V > v_n) \ge 1 - \mu(\alpha^{-1} - 1)`$ a.s. Hence
-   $`\displaystyle \liminf_{n\to\infty} \big\|\nu_{n, N} - \mu_N\big\|_{\mathrm{TV}} \;\ge\; \liminf_{n\to\infty} \big(\nu_{n, N}(E_n) - \mu_N(E_n)\big) \;\ge\; 1 - \mu\!\left(\frac{1}{\alpha} - 1\right) \;>\; 0 \qquad \text{a.s.}`$
-   When $`\alpha = 1`$ ($`N(n) = n^{1 - o(1)}`$), since TV distance is at most $`1`$, $`\|\nu_{n, N} - \mu_N\|_{\mathrm{TV}} \to 1`$ a.s. $`\square`$
+
+3\. By Theorem 1(1), $`M_{n, N} \sim A X (n/N)^\mu \log N`$ a.s. (diverging to $`\infty`$), so
+
+```math
+\frac{\log v_n}{\log N} \;=\; \frac{\mu \log(n/N) + \log(A X) + \log\log\log N + o(1)}{\log N} \;=\; \mu\!\left(\frac{\log n}{\log N} - 1\right) + o(1) \quad \text{a.s.}
+```
+
+When $`\alpha = \liminf \frac{\log N}{\log n} > \frac{\mu}{1+\mu}`$, we have $`\limsup \frac{\log v_n}{\log N} = \mu(\alpha^{-1} - 1) \in [0, 1)`$, so by Theorem 1(2) $`\liminf \nu_{n, N}(V > v_n) \ge 1 - \mu(\alpha^{-1} - 1)`$ a.s. Hence
+
+```math
+\liminf_{n\to\infty} \big\|\nu_{n, N} - \mu_N\big\|_{\mathrm{TV}} \;\ge\; \liminf_{n\to\infty} \big(\nu_{n, N}(E_n) - \mu_N(E_n)\big) \;\ge\; 1 - \mu\!\left(\frac{1}{\alpha} - 1\right) \;>\; 0 \qquad \text{a.s.}
+```
+
+When $`\alpha = 1`$ ($`N(n) = n^{1 - o(1)}`$), since TV distance is at most $`1`$, $`\|\nu_{n, N} - \mu_N\|_{\mathrm{TV}} \to 1`$ a.s. $`\square`$
 
 ---
 

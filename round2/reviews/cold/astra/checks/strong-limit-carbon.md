@@ -16,11 +16,17 @@ Section 1 of finite-kernel.md (`fringe/finite-kernel.md`) (the nineteen capped b
 
 ### 1.1 Capped-mark root-gain bound, $`\|R B_0 g\|_W \le C`$, and removal of stopping
 Let $`m(D) = \min(D, 20) \in \{2, \dots, 20\}`$, $`B_0 g(S) = b_S g(m(D_{\mathrm{root}}))`$ for $`g \in \mathbb C^{19}`$ with $`\|g\|_\infty \le 1`$, and $`k(t) = J R_t B_0`$. On any finite planted type $`S`$ with root $`o`$ ($`D_o \ge 2`$, $`c_o \ge 1`$, $`b_S = 1 - c_o/D_o \in [0, 1]`$), $`(B_0 g)(S)`$ depends only on $`(L_o, c_o)`$, so intrinsic transitions strictly below $`o`$ (and rings of $`o`$ choosing a core child or the inert parent slot) produce **zero** change in $`B_0 g`$. Only two intrinsic root events change $`B_0 g`$:
-- **Root leaf gain** ($`(L_o, c_o) \mapsto (L_o + 1, c_o)`$, rate $`r_{\mathrm{gain}}(o) = L_o + \sum_{y \text{ core child}} 1/D_y < D_o`$):
-  - If $`D_o < 20`$: $`r_{\mathrm{gain}}(o) < 20`$ and $`|\Delta(B_0 g)| \le 2`$, so $`r_{\mathrm{gain}}(o)|\Delta(B_0 g)| \le 40`$.
-  - If $`D_o \ge 20`$: $`m(D_o + 1) = m(D_o) = 20`$, so $`g(m(D_o))`$ is **unchanged** and only $`b_S`$ changes by $`\frac{L_o + 1}{D_o + 1} - \frac{L_o}{D_o} = \frac{c_o}{D_o(D_o + 1)}`$. Thus
-    $`\displaystyle r_{\mathrm{gain}}(o)\,|\Delta(B_0 g)| \le D_o \cdot \frac{c_o}{D_o(D_o + 1)} |g(20)| = \frac{c_o}{D_o + 1} < 1.`$
-    (Without capping the mark space, an oscillating bounded $`g`$ has $`D_o |\Delta(B_0 g)| = \Theta(D_o) \to \infty`$; capping at $`20`$ is essential here and also preserves $`(1 + d\,m(D))^{-1} = 1/4 \le q h(c) = 63/250`$ for $`D \ge 20, c \ge 4`$.)
+
+• **Root leaf gain** ($`(L_o, c_o) \mapsto (L_o + 1, c_o)`$, rate $`r_{\mathrm{gain}}(o) = L_o + \sum_{y \text{ core child}} 1/D_y < D_o`$):
+- If $`D_o < 20`$: $`r_{\mathrm{gain}}(o) < 20`$ and $`|\Delta(B_0 g)| \le 2`$, so $`r_{\mathrm{gain}}(o)|\Delta(B_0 g)| \le 40`$.
+
+◦ If $`D_o \ge 20`$: $`m(D_o + 1) = m(D_o) = 20`$, so $`g(m(D_o))`$ is **unchanged** and only $`b_S`$ changes by $`\frac{L_o + 1}{D_o + 1} - \frac{L_o}{D_o} = \frac{c_o}{D_o(D_o + 1)}`$. Thus
+
+```math
+r_{\mathrm{gain}}(o)\,|\Delta(B_0 g)| \le D_o \cdot \frac{c_o}{D_o(D_o + 1)} |g(20)| = \frac{c_o}{D_o + 1} < 1.
+```
+
+(Without capping the mark space, an oscillating bounded $`g`$ has $`D_o |\Delta(B_0 g)| = \Theta(D_o) \to \infty`$; capping at $`20`$ is essential here and also preserves $`(1 + d\,m(D))^{-1} = 1/4 \le q h(c) = 63/250`$ for $`D \ge 20, c \ge 4`$.)
 - **Root promotion** ($`(L_o, c_o) \mapsto (L_o - 1, c_o + 1)`$, rate $`b_S \le 1`$): $`D_o`$ is unchanged and $`|\Delta(B_0 g)| = |g(m(D_o))|/D_o \le 1/2`$.
 
 Killing occurs at rate $`a_S \le 1/2`$ with $`|\Delta(B_0 g)| \le 1`$, and copy births have nonnegative rates $`a_Y - p_S \ge 0`$, $`p_S \ge 0`$ (since $`a_Y = 1/m(D_{\mathrm{parent}}(\text{birth})) \ge 1/D_{\mathrm{parent}}(\text{birth}) \ge p_S`$) with expected absolute jump sum $`\sum_Y a_Y \le \sum_Y a_Y W(Y) = (a_S + d)W(S) - h(c_o) \le \frac{13}{20} W(S)`$. Since $`W(S) \ge 14/13 > 1`$, both $`|(R B_0 g)(S)|`$ and the predictable rate of nonzero absolute jumps of $`\Phi_t = \sum_{S \in \mathcal P_t} (B_0 g)(S)`$ are bounded by $`42 W(S)`$. Stopping $`\mathcal P_t`$ at finite event/size cutoffs $`\tau_M`$, the pathwise total variation $`V_t = |\Phi_0| + \sum_{0 < u \le t}|\Delta \Phi_u|`$ satisfies $`\mathbb E_{J_{1/i}}[V_t] \le 1 + 42 \int_0^t R_u W(J_{1/i})\,du < \infty`$ by monotone convergence and nonexplosion. Dominated convergence with majorant $`V_t \in L^1`$ removes the stopping cutoff to give
@@ -58,9 +64,14 @@ For any $`|f| \le W`$, $`\|h_f(u)\|_\infty = \|J R_u f\|_\infty \le \frac{20}{3}
 Let $`T`$ be any finite tree with $`C(T) \ge 1`$. Pick any core $`o \in K(T)`$ as founder and any marks $`a_v \in \{1/2, \dots, 1/20\}`$ ($`v \in K(T) \setminus \{o\}`$) satisfying $`p_{\mathrm{parent}(v)}(T) \le a_v`$ (note that **every** finite tree $`T`$ with $`C(T) \ge 1`$ admits such marks: setting $`a_v = 1/2`$ for all $`v \ne o`$ satisfies $`1/D_u(T) \le 1/2 = a_v`$ on every core edge).
 - **Weight bounds:** $`Z(T) = \sum_{x \in K(T)} w_x h(c_x) \le 2 C(T)`$ since $`w_x \le 1`$ and $`h \le 2`$. Along every path from $`o`$, $`z(a) \le z(1/2) = 10/13 < 1`$, so summing $`W(S_v)`$ over ancestors $`v \ne o`$ of each core $`x \ne o`$ gives $`\sum_{v \ne o} W(S_v) \le \frac{20}{3}(1 - 10/13)^{-1} C(T) = \frac{260}{9} C(T)`$. Because $`L^0 W \le q W`$ holds for all $`D \ge \max(2, c)`$ under $`m(D) = \min(D, 20)`$, $`\mathbb E_T Z(T_t) \le e^{qt} Z(T)`$, and $`\mathcal I(T_t) W = b_o W(J_{1/m(D_o)}) + \sum_{Y \text{ at } o} a_Y W(Y) \le 1/d + Z(T_t)`$ gives $`I_{T, t} W \le 1/d + e^{qt} Z(T) \le (1/d + 2 e^{qt}) C(T)`$ (using $`C(T) \ge 1`$).
 - **General-founder immigration and Equation (4):** Applying the time-dependent jump formula on $`[0, t]`$ to $`\sum_{v \ne o \text{ in } T_u} (P_{t-u} f)(S_v(u))`$ retains the non-empty initial value $`\sum_{v \ne o \text{ in } T} P_t f(S_v)`$ at $`u = 0`$, giving $`\mathbb E_T \sum_{v \ne o} f(S_v(t)) = \sum_{v \ne o} P_t f(S_v) + \int_0^t I_{T, u}(P_{t-u} f)\,du`$. Inserting (3) and using $`0 < q = 9/25 < \rho = 51/100 < \sigma < \mu`$ bounds both $`\sum_{v \ne o}`$ error and the $`[0, t]`$ / $`[t, \infty)`$ immigration errors by $`C_1 C(T) e^{\sigma t}`$, uniformly in $`T`$ and $`|f| \le W`$. Since the founder $`o`$ contributes $`\Pr_T(D_o(t) \ge k) \in [0, 1]`$ and $`1 \le C(T) e^{\sigma t}`$, $`|\mathbb E_T A_k(T_t) - e^{\mu t} \Psi(T) d_k| \le (C_1 + 1) C(T) e^{\sigma t}`$.
-- **Mark/founder independence, two-sided $`C(T)`$ bounds, and exact martingale (Equation (5)):** Taking $`f = f_2 = 1`$ ($`d_2 > 0`$) gives
-  $`\displaystyle \Psi(T) = d_2^{-1} \lim_{u \to \infty} e^{-\mu u} \mathbb E_T C(T_u),`$
-  whose right-hand side is purely physical, independent of the chosen founder $`o \in K(T)`$ and compatible marks. By $`H \le C_H W`$, $`\Psi(T) \le C_2 C(T)`$. Conversely, $`\min_{2 \le j \le 20} g(j) > 0`$ gives uniform positive lower bounds on $`H(S_v)`$ for noninitial cores with $`(c_v \le 2, L_v \ge 1)`$ and for bare noninitial cores with a bare child; by the eligibility lemma (`|\mathcal E| \ge C/4`), the count $`|G|`$ of such noninitial vertices satisfies $`|G| \ge \max(0, C(T)/8 - 3/2) \ge C(T)/12 - 1`$ for every $`C(T) \ge 1`$, giving $`C(T) \le C_3(1 + \Psi(T))`$. For any $`h \ge 0`$, conditioning at $`h`$ gives $`|d_2^{-1} e^{-\mu u} \mathbb E_T C(T_{h+u}) - \mathbb E_T \Psi(T_h)| \le d_2^{-1}(C_1 + 1)\mathbb E_T[C(T_h)] e^{-(\mu-\sigma)u} \to 0`$ as $`u \to \infty`$ (since $`\mathbb E_T C(T_h) \le n(T)e^h < \infty`$), while the left-hand side tends to $`e^{\mu h}\Psi(T)`$. Thus $`\mathbb E_T \Psi(T_h) = e^{\mu h}\Psi(T)`$, making $`Z_t^* = e^{-\mu t}\Psi(T_t)`$ a nonnegative càdlàg martingale with finite a.s. limit $`Z_\infty^*`$.
+
+• **Mark/founder independence, two-sided $`C(T)`$ bounds, and exact martingale (Equation (5)):** Taking $`f = f_2 = 1`$ ($`d_2 > 0`$) gives
+
+```math
+\Psi(T) = d_2^{-1} \lim_{u \to \infty} e^{-\mu u} \mathbb E_T C(T_u),
+```
+
+whose right-hand side is purely physical, independent of the chosen founder $`o \in K(T)`$ and compatible marks. By $`H \le C_H W`$, $`\Psi(T) \le C_2 C(T)`$. Conversely, $`\min_{2 \le j \le 20} g(j) > 0`$ gives uniform positive lower bounds on $`H(S_v)`$ for noninitial cores with $`(c_v \le 2, L_v \ge 1)`$ and for bare noninitial cores with a bare child; by the eligibility lemma (`|\mathcal E| \ge C/4`), the count $`|G|`$ of such noninitial vertices satisfies $`|G| \ge \max(0, C(T)/8 - 3/2) \ge C(T)/12 - 1`$ for every $`C(T) \ge 1`$, giving $`C(T) \le C_3(1 + \Psi(T))`$. For any $`h \ge 0`$, conditioning at $`h`$ gives $`|d_2^{-1} e^{-\mu u} \mathbb E_T C(T_{h+u}) - \mathbb E_T \Psi(T_h)| \le d_2^{-1}(C_1 + 1)\mathbb E_T[C(T_h)] e^{-(\mu-\sigma)u} \to 0`$ as $`u \to \infty`$ (since $`\mathbb E_T C(T_h) \le n(T)e^h < \infty`$), while the left-hand side tends to $`e^{\mu h}\Psi(T)`$. Thus $`\mathbb E_T \Psi(T_h) = e^{\mu h}\Psi(T)`$, making $`Z_t^* = e^{-\mu t}\Psi(T_t)`$ a nonnegative càdlàg martingale with finite a.s. limit $`Z_\infty^*`$.
 
 ---
 
@@ -70,9 +81,14 @@ Let $`T`$ be any finite tree with $`C(T) \ge 1`$. Pick any core $`o \in K(T)`$ a
 Let $`T`$ have $`C(T) \ge 1`$ ($`n(T) \ge 3`$) and let $`T^+`$ attach one new leaf $`\ell^*`$ to $`w \in V(T)`$. Let $`D_{\mathrm{comb}}(u) = |\mathcal D(T_u)| + |\mathcal D(T^+_u)|`$ be the combined count of dirty cores across both trees.
 - **At $`u = 0`$:** If $`w \in K(T)`$, marking both copies $`(w, w')`$ dirty gives $`D_{\mathrm{comb}}(0) = 2`$. If $`w`$ is a leaf of $`T`$, its unique neighbour $`p`$ lies in $`K(T)`$ (since $`C(T) \ge 1`$); marking both copies $`(p, p')`$ and the newly promoted core $`w'`$ in $`T^+`$ dirty gives $`D_{\mathrm{comb}}(0) = 3`$.
 - **Clean invariants for all $`u \ge 0`$:** Every clean pair $`(z, z') \in \pi`$ satisfies: (C1) $`L_z(T_u) = L_{z'}(T^+_u)`$, (C2) clean core neighbours of $`z`$ correspond under $`\pi`$ to clean core neighbours of $`z'`$, and (C3) $`c_z^{\mathrm{dirty}}(T_u) = c_{z'}^{\mathrm{dirty}}(T^+_u)`$ (in fact $`\in \{0, 1\}`$ since dirty cores form a connected subtree in each tree). Consequently $`D_z(T_u) = D_{z'}(T^+_u)`$ identically! Synchronising paired leaf clocks and synchronising $`(z, z')`$'s rate-$`1`$ clock across paired leaves, paired clean neighbours, and paired dirty neighbours preserves (C1)–(C3), realizes the exact friend-tree marginal law in each tree, and creates zero dirty vertices. Note that when a dirty core promotes a leaf, the newborn is adjacent only to its dirty parent, preserving (C3); when a dirty core sends a leaf to a clean neighbour $`z`$, marking **both** $`(z, z')`$ dirty simultaneously shifts $`(z, z')`$ from clean to dirty for all remaining clean neighbours $`(u, u')`$, preserving (C2)–(C3).
-- **Exact drift bound $`\le 2 D_{\mathrm{comb}}`$:** Each dirty core $`x`$ rings at rate $`1`$: choosing a leaf (prob $`L_x/D_x`$) creates $`1`$ dirty newborn ($`\Delta D_{\mathrm{comb}} = +1`$); choosing a dirty neighbour gives $`\Delta D_{\mathrm{comb}} = 0`$; choosing a clean neighbour (prob $`c_x^{\mathrm{clean}}/D_x`$) marks a clean pair dirty ($`\Delta D_{\mathrm{comb}} = +2`$). Thus the expected rate of increase of $`D_{\mathrm{comb}}`$ per dirty core is
-  $`\displaystyle \frac{L_x \cdot 1 + c_x^{\mathrm{clean}} \cdot 2}{D_x} \le \frac{2(L_x + c_x^{\mathrm{clean}})}{D_x} \le 2.`$
-  (Both constants in $`3 e^{2u}`$ are sharp: leaf promotion gives $`D_{\mathrm{comb}}(0) = 3`$, and a bare dirty core between two clean cores has $`L_x = 0, c_x^{\mathrm{clean}} = D_x = 2`$, giving instantaneous rate $`2`$.) Since clean pairs have $`D_z = D_{z'}`$, $`|A_k(T^+_u) - A_k(T_u)| \le \max(|\mathcal D(T_u)|, |\mathcal D(T^+_u)|) \le D_{\mathrm{comb}}(u)`$, and Grönwall (localized by Yule moments) yields $`|\mathbb E_{T^+} A_k(T_u) - \mathbb E_T A_k(T_u)| \le 3 e^{2u}`$.
+
+• **Exact drift bound $`\le 2 D_{\mathrm{comb}}`$:** Each dirty core $`x`$ rings at rate $`1`$: choosing a leaf (prob $`L_x/D_x`$) creates $`1`$ dirty newborn ($`\Delta D_{\mathrm{comb}} = +1`$); choosing a dirty neighbour gives $`\Delta D_{\mathrm{comb}} = 0`$; choosing a clean neighbour (prob $`c_x^{\mathrm{clean}}/D_x`$) marks a clean pair dirty ($`\Delta D_{\mathrm{comb}} = +2`$). Thus the expected rate of increase of $`D_{\mathrm{comb}}`$ per dirty core is
+
+```math
+\frac{L_x \cdot 1 + c_x^{\mathrm{clean}} \cdot 2}{D_x} \le \frac{2(L_x + c_x^{\mathrm{clean}})}{D_x} \le 2.
+```
+
+(Both constants in $`3 e^{2u}`$ are sharp: leaf promotion gives $`D_{\mathrm{comb}}(0) = 3`$, and a bare dirty core between two clean cores has $`L_x = 0, c_x^{\mathrm{clean}} = D_x = 2`$, giving instantaneous rate $`2`$.) Since clean pairs have $`D_z = D_{z'}`$, $`|A_k(T^+_u) - A_k(T_u)| \le \max(|\mathcal D(T_u)|, |\mathcal D(T^+_u)|) \le D_{\mathrm{comb}}(u)`$, and Grönwall (localized by Yule moments) yields $`|\mathbb E_{T^+} A_k(T_u) - \mathbb E_T A_k(T_u)| \le 3 e^{2u}`$.
 
 ### 3.2 Backward martingale quadratic variation and the $`h = \eta^{-1}\log(j+2)`$ $`L^2`$ recursion (Equations (7)–(9))
 For fixed $`b > 0`$, $`M_v = \mathbb E_{T_v} A_k(\widetilde T_{b-v})`$ ($`0 \le v \le b`$) is an $`L^2`$-bounded martingale of finite pathwise variation (smooth compensating drift between jumps, zero continuous martingale part), so $`[M, M]_b = \sum_{0 < v \le b, \Delta T_v \ne 0} (\Delta M_v)^2`$. Every jump is a one-leaf extension at total physical rate $`n(T_v)`$ with $`|\Delta M_v| \le 3 e^{2(b-v)}`$ by (6), giving Equation (7):
@@ -104,16 +120,33 @@ which is summable in $`j`$, sending the centered term to $`0`$ a.s. by Borel–C
 
 ## 5. Discrete Eigenmartingale $`Y_m`$ and Nontrivial Support of $`X`$ (Section 5)
 
-1. **One-step discrete eigenrelation:** For any tree $`T`$ of size $`m \ge 3`$ ($`C(T) \ge 1`$), let $`(\widetilde T_t)_{t \ge 0}`$ start at $`T`$, with first jump wait $`\sigma_1 \sim \mathrm{Exp}(m)`$ independent of the one-step discrete successor $`T_{m+1}`$. Multiplying $`\mathbb E_T[\Psi(\widetilde T_t)] = e^{\mu t}\Psi(T)`$ by $`e^{-st}`$ ($`s > 1 > \mu`$) and integrating over $`t > 0`$ splits at $`\sigma_1`$ to give
-   $`\displaystyle \frac{\Psi(T)}{s - \mu} = \frac{\Psi(T)}{s + m} + \frac{m}{s + m}\frac{\mathbb E[\Psi(T_{m+1}) \mid T_m = T]}{s - \mu} \iff \mathbb E[\Psi(T_{m+1}) \mid T_m = T] = \left(1 + \frac{\mu}{m}\right)\Psi(T).`$
-   (Equivalently, differentiating $`\mathbb E_T[\Psi(\widetilde T_h)] = e^{-mh}\Psi(T) + m e^{-mh}(1 - e^{-h})\mathbb E[\Psi(T_{m+1})\mid T_m = T] + R(h)`$ at $`h = 0^+`$, where $`0 \le R(h) \le C_2\mathbb E_m[N(h)\mathbf{1}_{\{N(h)\ge m+2\}}] = C_2[m e^h - m e^{-mh} - m(m+1)e^{-mh}(1-e^{-h})] = O_m(h^2)`$, yields the same identity.) Using $`\Gamma(m+1)/\Gamma(m+1+\mu) = \frac{m}{m+\mu}\Gamma(m)/\Gamma(m+\mu)`$, $`Y_m = \frac{\Gamma(m)}{\Gamma(m+\mu)}\Psi(T_m)`$ ($`m \ge 3`$) is a nonnegative discrete martingale.
-2. **$`L^2`$ boundedness and identification $`X = d_2 \lim_m Y_m`$:** In the continuous-time coupling from $`T_3`$, $`\tau_m = \sum_{j=3}^{m-1} E_j`$ ($`E_j \sim \mathrm{Exp}(j)`$ independent) is independent of $`(T_m)_{m \ge 3}`$ and satisfies
-   $`\displaystyle \mathbb E[e^{-2\mu \tau_m}] = \prod_{j=3}^{m-1} \frac{j}{j + 2\mu} = \frac{\Gamma(3 + 2\mu)}{2}\frac{\Gamma(m)}{\Gamma(m + 2\mu)} \asymp m^{-2\mu}.`$
-   Optional sampling of the $`L^2`$-bounded martingale $`Z_t^*`$ (or conditional Jensen at $`\tau_m \wedge K`$ plus Fatou) gives $`\mathbb E[e^{-2\mu \tau_m}]\mathbb E[\Psi(T_m)^2] = \mathbb E[(Z_{\tau_m}^*)^2] \le \mathbb E[(Z_\infty^*)^2] < \infty`$, so $`\mathbb E[\Psi(T_m)^2] = O(m^{2\mu})`$ and $`\sup_{m \ge 3} \mathbb E[Y_m^2] < \infty`$. Moreover, on the coupled space,
-   $`\displaystyle Y_n = \left(\frac{n^\mu \Gamma(n)}{\Gamma(n + \mu)}\right) \big(n e^{-\tau_n}\big)^{-\mu} Z_{\tau_n}^* \longrightarrow \big(Y_\infty^{\mathrm{size}}\big)^{-\mu} Z_\infty^* \quad \text{a.s.},`$
-   so $`X = \lim_{n \to \infty} C_n / n^\mu = d_2 (Y_\infty^{\mathrm{size}})^{-\mu} Z_\infty^* = d_2 \lim_{m \to \infty} Y_m`$ a.s., and $`L^2`$-convergence of $`Y_m`$ yields
-   $`\displaystyle \mathbb E[X \mid T_m] = d_2 Y_m = d_2 \frac{\Gamma(m)}{\Gamma(m + \mu)}\Psi(T_m) \qquad (m \ge 3).`$
-   (Cross-check at $`m = 3`$: $`\mathbb E[X] = d_2 \frac{\Gamma(3)}{\Gamma(3+\mu)}\Psi(T_3) = \frac{2}{(2+\mu)\Gamma(\mu+2)}(\Psi(T_3)d_2) = c_2`$, agreeing identically with asymptotics.md (`fringe/asymptotics.md`).)
+1\. **One-step discrete eigenrelation:** For any tree $`T`$ of size $`m \ge 3`$ ($`C(T) \ge 1`$), let $`(\widetilde T_t)_{t \ge 0}`$ start at $`T`$, with first jump wait $`\sigma_1 \sim \mathrm{Exp}(m)`$ independent of the one-step discrete successor $`T_{m+1}`$. Multiplying $`\mathbb E_T[\Psi(\widetilde T_t)] = e^{\mu t}\Psi(T)`$ by $`e^{-st}`$ ($`s > 1 > \mu`$) and integrating over $`t > 0`$ splits at $`\sigma_1`$ to give
+
+```math
+\frac{\Psi(T)}{s - \mu} = \frac{\Psi(T)}{s + m} + \frac{m}{s + m}\frac{\mathbb E[\Psi(T_{m+1}) \mid T_m = T]}{s - \mu} \iff \mathbb E[\Psi(T_{m+1}) \mid T_m = T] = \left(1 + \frac{\mu}{m}\right)\Psi(T).
+```
+
+(Equivalently, differentiating $`\mathbb E_T[\Psi(\widetilde T_h)] = e^{-mh}\Psi(T) + m e^{-mh}(1 - e^{-h})\mathbb E[\Psi(T_{m+1})\mid T_m = T] + R(h)`$ at $`h = 0^+`$, where $`0 \le R(h) \le C_2\mathbb E_m[N(h)\mathbf{1}_{\{N(h)\ge m+2\}}] = C_2[m e^h - m e^{-mh} - m(m+1)e^{-mh}(1-e^{-h})] = O_m(h^2)`$, yields the same identity.) Using $`\Gamma(m+1)/\Gamma(m+1+\mu) = \frac{m}{m+\mu}\Gamma(m)/\Gamma(m+\mu)`$, $`Y_m = \frac{\Gamma(m)}{\Gamma(m+\mu)}\Psi(T_m)`$ ($`m \ge 3`$) is a nonnegative discrete martingale.
+
+2\. **$`L^2`$ boundedness and identification $`X = d_2 \lim_m Y_m`$:** In the continuous-time coupling from $`T_3`$, $`\tau_m = \sum_{j=3}^{m-1} E_j`$ ($`E_j \sim \mathrm{Exp}(j)`$ independent) is independent of $`(T_m)_{m \ge 3}`$ and satisfies
+
+```math
+\mathbb E[e^{-2\mu \tau_m}] = \prod_{j=3}^{m-1} \frac{j}{j + 2\mu} = \frac{\Gamma(3 + 2\mu)}{2}\frac{\Gamma(m)}{\Gamma(m + 2\mu)} \asymp m^{-2\mu}.
+```
+
+Optional sampling of the $`L^2`$-bounded martingale $`Z_t^*`$ (or conditional Jensen at $`\tau_m \wedge K`$ plus Fatou) gives $`\mathbb E[e^{-2\mu \tau_m}]\mathbb E[\Psi(T_m)^2] = \mathbb E[(Z_{\tau_m}^*)^2] \le \mathbb E[(Z_\infty^*)^2] < \infty`$, so $`\mathbb E[\Psi(T_m)^2] = O(m^{2\mu})`$ and $`\sup_{m \ge 3} \mathbb E[Y_m^2] < \infty`$. Moreover, on the coupled space,
+
+```math
+Y_n = \left(\frac{n^\mu \Gamma(n)}{\Gamma(n + \mu)}\right) \big(n e^{-\tau_n}\big)^{-\mu} Z_{\tau_n}^* \longrightarrow \big(Y_\infty^{\mathrm{size}}\big)^{-\mu} Z_\infty^* \quad \text{a.s.},
+```
+
+so $`X = \lim_{n \to \infty} C_n / n^\mu = d_2 (Y_\infty^{\mathrm{size}})^{-\mu} Z_\infty^* = d_2 \lim_{m \to \infty} Y_m`$ a.s., and $`L^2`$-convergence of $`Y_m`$ yields
+
+```math
+\mathbb E[X \mid T_m] = d_2 Y_m = d_2 \frac{\Gamma(m)}{\Gamma(m + \mu)}\Psi(T_m) \qquad (m \ge 3).
+```
+
+(Cross-check at $`m = 3`$: $`\mathbb E[X] = d_2 \frac{\Gamma(3)}{\Gamma(3+\mu)}\Psi(T_3) = \frac{2}{(2+\mu)\Gamma(\mu+2)}(\Psi(T_3)d_2) = c_2`$, agreeing identically with asymptotics.md (`fringe/asymptotics.md`).)
 3. **Accumulation at zero and unboundedness above:** Starting from $`T_2`$, for every $`m \ge 3`$:
    - The star $`K_{1, m-1}`$ has exact probability $`\prod_{j=3}^{m-1}\frac{j-1}{j} = \frac{2}{m-1} > 0`$ and $`C(K_{1, m-1}) = 1`$, so $`\mathbb E[X \mid T_m \cong K_{1, m-1}] \le d_2 C_2 \frac{\Gamma(m)}{\Gamma(m+\mu)} \sim d_2 C_2 m^{-\mu} \to 0`$ as $`m \to \infty`$, forcing $`\mathbb P(X < \varepsilon) > 0`$ for every $`\varepsilon > 0`$.
    - The path $`P_m`$ has exact probability $`\frac{2}{(m-1)!} > 0`$ and $`C(P_m) = m - 2`$, so $`\Psi(P_m) \ge C_3^{-1}(m - 2) - 1`$ gives $`\mathbb E[X \mid T_m \cong P_m] \ge c' m^{1 - \mu} \to +\infty`$ as $`m \to \infty`$ (since $`\mu < 1`$), forcing $`\mathbb P(X > M) > 0`$ for every $`M > 0`$. This strictly strengthens the non-trivial support condition in Question (1) of Section 7 of Addario-Berry et al. (`arXiv:2403.20185`).

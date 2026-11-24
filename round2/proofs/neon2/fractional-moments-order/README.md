@@ -76,22 +76,40 @@ a_p^{\mathrm{tail}}(L) \;:=\; \frac{L}{L + 2}\, q_p(L) \quad (L \ge 1), \qquad a
 \qquad\text{(8)}
 ```
 Then for **every** $`p \in (0, 1]`$ and **every** finite tree $`T'`$:
-1. **(High-degree core lower bound for $`D_v \ge 12`$):** Whenever $`D_v \ge 12`$,
-   $`\displaystyle a_p^{\mathrm{tail}}(L_v) \;\le\; \widetilde M_p(T', v). \qquad\text{(9)}`$
-2. **(Global core upper bound):** For every core $`v \in K(T')`$,
-   $`\displaystyle \widetilde M_p(T', v) \;\le\; \widetilde W_p(D_v, L_v). \qquad\text{(10)}`$
-3. **(Predictable-hazard leaf upper bound):** For any leaf $`a`$ attached to a core $`x`$ of degree $`d \ge 2`$, letting $`\widetilde w_p^* := \sup_{T'', u : (D_u, L_u) = (2, 1)} \widetilde M_p(T'', u)`$,
-   $`\displaystyle \widetilde M_p(T', a) \;\le\; \frac{\widetilde w_p^*}{p d + 1}. \qquad\text{(11)}`$
+
+1\. **(High-degree core lower bound for $`D_v \ge 12`$):** Whenever $`D_v \ge 12`$,
+
+```math
+a_p^{\mathrm{tail}}(L_v) \;\le\; \widetilde M_p(T', v). \qquad\text{(9)}
+```
+
+2\. **(Global core upper bound):** For every core $`v \in K(T')`$,
+
+```math
+\widetilde M_p(T', v) \;\le\; \widetilde W_p(D_v, L_v). \qquad\text{(10)}
+```
+
+3\. **(Predictable-hazard leaf upper bound):** For any leaf $`a`$ attached to a core $`x`$ of degree $`d \ge 2`$, letting $`\widetilde w_p^* := \sup_{T'', u : (D_u, L_u) = (2, 1)} \widetilde M_p(T'', u)`$,
+
+```math
+\widetilde M_p(T', a) \;\le\; \frac{\widetilde w_p^*}{p d + 1}. \qquad\text{(11)}
+```
 
 **Proof.**
 *(1) Proof of (9):* We verify $`(\mathcal L a_p^{\mathrm{tail}})(D, L) \ge p\, a_p^{\mathrm{tail}}(L)`$ for **every** $`D \ge 12`$, **every** $`0 \le L \le D`$, and **every** $`p \in [0, 1]`$.
 - At $`L = 0`$: $`a_p^{\mathrm{tail}}(0) = 0`$ and $`a_p^{\mathrm{tail}}(1) = 1/3 > 0`$, so $`(\mathcal L a_p^{\mathrm{tail}})(D, 0) = r_v/3 \ge 0 = p\,a_p^{\mathrm{tail}}(0)`$.
 - At $`L = 1`$: $`(\mathcal L a_p^{\mathrm{tail}})(D, 1) - p\,a_p^{\mathrm{tail}}(1) \ge 1\cdot(\frac{2}{4}(1+p) - \frac{1}{3}) - \frac{1}{D}\cdot\frac{1}{3} - \frac{p}{3} = \frac{1+p}{6} - \frac{1}{3D} \ge \frac{1}{6} - \frac{1}{36} > 0`$.
-- At $`L \ge 2`$: since $`a_p^{\mathrm{tail}}(L)`$ is strictly increasing in $`L`$, $`r_v \ge L`$ yields $`r_v\Delta a_p^{\mathrm{tail}} \ge L\Delta a_p^{\mathrm{tail}}`$. Dividing by $`q_p(L) > 0`$ and using $`q_p(L + 1) = (1 + p/L)q_p(L)`$ and $`q_p(L - 1) = \frac{L - 1}{L - 1 + p}q_p(L)`$:
-  - Gain minus $`p\,a_p^{\mathrm{tail}}(L)`$ equals $`(L + p)\big(\frac{L + 1}{L + 3} - \frac{L}{L + 2}\big) = \frac{2(L + p)}{(L + 2)(L + 3)} \ge \frac{2L}{(L + 2)(L + 3)}`$.
-  - Loss from leaf promotion equals $`\frac{L}{D}\big(\frac{L}{L + 2} - \frac{(L - 1)^2}{(L + 1)(L - 1 + p)}\big) = \frac{L}{D}\cdot\frac{p L(L + 1) + 2(L - 1)}{(L + 2)(L + 1)(L - 1 + p)}`$. Differentiating $`\frac{p L(L + 1) + 2(L - 1)}{L - 1 + p}`$ with respect to $`p`$ gives $`\frac{(L - 1)(L^2 + L - 2)}{(L - 1 + p)^2} > 0`$ for all $`L \ge 2`$, so the fraction is maximized over $`p \in [0, 1]`$ at $`p = 1`$, where it equals $`\frac{L(L + 1) + 2(L - 1)}{L} = L + 3 - \frac{2}{L} < L + 3`$. Hence
-    $`\displaystyle \text{Loss} \;<\; \frac{L(L + 3)}{D(L + 2)(L + 1)}.`$
-  - Comparing Gain and Loss reduces to $`(L + 3)^2 \le 2 D(L + 1)`$. For $`L \ge 6`$, since $`D \ge L`$, $`2 D(L + 1) - (L + 3)^2 \ge 2L(L + 1) - (L + 3)^2 = (L - 2)^2 - 13 \ge 3 > 0`$; for $`L \in \{2, 3, 4, 5\}`$ and $`D \ge 12`$, $`(L + 3)^2 \le 64 < 72 = 2 \cdot 12 \cdot 3 \le 2 D(L + 1)`$.
+
+• At $`L \ge 2`$: since $`a_p^{\mathrm{tail}}(L)`$ is strictly increasing in $`L`$, $`r_v \ge L`$ yields $`r_v\Delta a_p^{\mathrm{tail}} \ge L\Delta a_p^{\mathrm{tail}}`$. Dividing by $`q_p(L) > 0`$ and using $`q_p(L + 1) = (1 + p/L)q_p(L)`$ and $`q_p(L - 1) = \frac{L - 1}{L - 1 + p}q_p(L)`$:
+- Gain minus $`p\,a_p^{\mathrm{tail}}(L)`$ equals $`(L + p)\big(\frac{L + 1}{L + 3} - \frac{L}{L + 2}\big) = \frac{2(L + p)}{(L + 2)(L + 3)} \ge \frac{2L}{(L + 2)(L + 3)}`$.
+
+◦ Loss from leaf promotion equals $`\frac{L}{D}\big(\frac{L}{L + 2} - \frac{(L - 1)^2}{(L + 1)(L - 1 + p)}\big) = \frac{L}{D}\cdot\frac{p L(L + 1) + 2(L - 1)}{(L + 2)(L + 1)(L - 1 + p)}`$. Differentiating $`\frac{p L(L + 1) + 2(L - 1)}{L - 1 + p}`$ with respect to $`p`$ gives $`\frac{(L - 1)(L^2 + L - 2)}{(L - 1 + p)^2} > 0`$ for all $`L \ge 2`$, so the fraction is maximized over $`p \in [0, 1]`$ at $`p = 1`$, where it equals $`\frac{L(L + 1) + 2(L - 1)}{L} = L + 3 - \frac{2}{L} < L + 3`$. Hence
+
+```math
+\text{Loss} \;<\; \frac{L(L + 3)}{D(L + 2)(L + 1)}.
+```
+
+- Comparing Gain and Loss reduces to $`(L + 3)^2 \le 2 D(L + 1)`$. For $`L \ge 6`$, since $`D \ge L`$, $`2 D(L + 1) - (L + 3)^2 \ge 2L(L + 1) - (L + 3)^2 = (L - 2)^2 - 13 \ge 3 > 0`$; for $`L \in \{2, 3, 4, 5\}`$ and $`D \ge 12`$, $`(L + 3)^2 \le 64 < 72 = 2 \cdot 12 \cdot 3 \le 2 D(L + 1)`$.
 
 Because $`D_v(t)`$ is nondecreasing in $`t`$, starting from $`D_v(0) \ge 12`$ preserves $`D_v(t) \ge 12`$ for all $`t \ge 0`$. Moreover, $`0 \le a_p^{\mathrm{tail}}(L_v(t)) \le q_p(D_v(t)) \le D_v(t)^p / \Gamma(p + 1) \le N(t)^p / \Gamma(p + 1)`$ (using $`\Gamma(x + p)/\Gamma(x) \le x^p`$ for $`p \in (0, 1]`$ by log-convexity of $`\Gamma`$ at $`x + p = (1 - p)x + p(x + 1)`$). Thus $`e^{-pt} a_p^{\mathrm{tail}}(L_v(t))`$ is dominated by the uniformly integrable family $`(e^{-t} N(t))^p / \Gamma(p + 1)`$ (Lemma 1), hence size localization shows it is a uniformly integrable submartingale. For $`x \ge 1`$ and $`p \in (0, 1]`$, log-convexity at $`x = p(x + p - 1) + (1 - p)(x + p)`$ also gives $`(x + p - 1)^p \le \Gamma(x + p)/\Gamma(x) \le x^p`$. Since $`c_v(t) = D_v(t) - L_v(t) \le c_v(0) + N_v^{\mathrm{self}}(t) = O(t)`$ a.s., we have $`e^{-pt} a_p^{\mathrm{tail}}(L_v(t)) \to W_N^p Z_v^p / \Gamma(p + 1)`$ a.s. (both on $`\{Z_v > 0\}`$ and on $`\{Z_v = 0\}`$). Taking $`t \to \infty`$ yields (9).
 
@@ -111,9 +129,14 @@ Fix any integer $`n \ge 2`$, any finite tree $`T`$ of size $`n`$, and any real $
 ```
 In particular, $`\sum_{x \in T} \frac{r_T(x)}{D_x + 1} \ge 1`$, and:
 1. **At $`n = 2`$ ($`T_2 = \{1, 2\}`$):** $`r_{T_2}(1) = r_{T_2}(2) = 1`$ and $`D_1 = D_2 = 1`$, so the edge sum in (12) vanishes **identically**, leaving $`\sum_{x \in \{1,2\}} \frac{1}{2}\widetilde\Delta_{\mathrm{path}, p}(T_2, x)`$.
-2. **At every $`n \ge 3`$:** Dropping the two nonnegative cross terms in each edge summand of (12) yields
-   $`\displaystyle \frac{n(n + 1)\,\Gamma(n + 2 + p)}{\Gamma(n + 2)\,\Gamma(p + 1)}\,\mathbb E\big[Z_{n+1}^p - Z_{n+2}^p \mid T_n = T\big] \;\ge\; \sum_{x \in T} \frac{r_T(x)}{D_x + 1}\!\left[\widetilde\Delta_{\mathrm{path}, p}(T, x) - \frac{1}{D_x}\sum_{y \sim x} \widetilde M_p(T_{x, y}, a_x)\right], \qquad\text{(13)}`$
-   and moreover for **every leaf $`x \in T`$** ($`D_T(x) = 1`$), its unique neighbor $`y \in T`$ satisfies $`D_T(y) \ge 2`$ (since $`n \ge 3`$). Consequently, in $`T_{x-a-b}`$ every leaf $`x`$ of $`T`$ starts in the **bare-core state $`(D_x, L_x) = (2, 0)`$** with its two neighbors $`a`$ (degree $`D_a \ge 2`$) and $`y`$ (degree $`D_y \ge 2`$) both cores, so until $`x`$'s first leaf gain ($`D_x: 2 \to 3`$), $`x`$'s exact leaf-gain rate satisfies $`r_x = \frac{1}{D_a} + \frac{1}{D_y} \in \big[\frac{1}{D_a},\, \frac{1}{D_a} + \frac{1}{2}\big]`$.
+
+2\. **At every $`n \ge 3`$:** Dropping the two nonnegative cross terms in each edge summand of (12) yields
+
+```math
+\frac{n(n + 1)\,\Gamma(n + 2 + p)}{\Gamma(n + 2)\,\Gamma(p + 1)}\,\mathbb E\big[Z_{n+1}^p - Z_{n+2}^p \mid T_n = T\big] \;\ge\; \sum_{x \in T} \frac{r_T(x)}{D_x + 1}\!\left[\widetilde\Delta_{\mathrm{path}, p}(T, x) - \frac{1}{D_x}\sum_{y \sim x} \widetilde M_p(T_{x, y}, a_x)\right], \qquad\text{(13)}
+```
+
+and moreover for **every leaf $`x \in T`$** ($`D_T(x) = 1`$), its unique neighbor $`y \in T`$ satisfies $`D_T(y) \ge 2`$ (since $`n \ge 3`$). Consequently, in $`T_{x-a-b}`$ every leaf $`x`$ of $`T`$ starts in the **bare-core state $`(D_x, L_x) = (2, 0)`$** with its two neighbors $`a`$ (degree $`D_a \ge 2`$) and $`y`$ (degree $`D_y \ge 2`$) both cores, so until $`x`$'s first leaf gain ($`D_x: 2 \to 3`$), $`x`$'s exact leaf-gain rate satisfies $`r_x = \frac{1}{D_a} + \frac{1}{D_y} \in \big[\frac{1}{D_a},\, \frac{1}{D_a} + \frac{1}{2}\big]`$.
 
 **Proof.** Identical to Claim 9 Lemma 3 (using Lemma 1 eq. (5) at size $`N = n + 2`$, exhausting the four cases for $`b`$'s attachment site, pairing non-adjacent and adjacent births $`(x, y)`$ vs $`(y, x)`$, and checking $`D_T(y) \ge 2`$ for every leaf $`x`$ of a tree of size $`n \ge 3`$). $`\square`$
 

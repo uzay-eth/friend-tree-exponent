@@ -6,10 +6,21 @@ This follows up the fixed-shape question in the [Neon-2 discussion](../../../../
 
 Let `M_N(R)` be its limiting count per physical `C_n` for a fixed finite ordinary rooted shape `R`. Use the stable-age [parent birth law](../../../../../../astra/source/round2/degree-law.md) `β`, and write `W_o=lim_t e^-t D_o(t)` for the focal parent's mass from its own promotion. Put `A=E_β W_o^mu`. At each promotion time `τ` of the focal parent a new physical child `v_τ` starts as a virgin with one leaf; the exterior continues to send to it. Let `T^0` be the inert, planted virgin dynamics, with its one exterior slot counted in the degree and omitted from the observed shape. Then:
 
-* For **each** fixed `|R|≥2`, $`\displaystyle \lim_{N\to\infty}N^\mu M_N(R)=A\,I(R),\qquad I(R)=\int_0^\infty \Pr(T^0_u=R)\,du.`$ (1)
-  This is precisely the inert occupation coefficient at the fine scale. The two-vertex shape has coefficient `2A/3`. Every rooted tree with at least two vertices can be reached by a finite sequence of positive-rate additions, so all coefficients in (1) are positive. The finite coefficient is the inert hit probability times `1/(|R|−1/D_root)`; the hit probability is a finite rational recursion from the virgin through trees of size at most `|R|`.
-* The **singleton core** instead has coefficient $`\displaystyle \lim_{N\to\infty}N^\mu M_N(\bullet) = E_\beta\sum_{\tau<\infty}\mathbf1\{D_{v_\tau}(\infty)<\infty\} \left(\min\{W_o,\inf_{w}W_w\}\right)^\mu.`$ (2)
-  The infimum ranges over the final nonparent neighbours of the bounded child; it is over a nonempty finite set. `W_w=lim_t e^-t D_w(t)` uses the **parent's** time origin, not the neighbour's own birth time. This expectation is finite and strictly positive. The inert singleton intensity is zero. Formula (2) is a physical lifetime coefficient with live input, not an occupation of the inert virgin or a product of independent hub events.
+• For **each** fixed `|R|≥2`,
+
+```math
+\lim_{N\to\infty}N^\mu M_N(R)=A\,I(R),\qquad I(R)=\int_0^\infty \Pr(T^0_u=R)\,du. \qquad\text{(1)}
+```
+
+This is precisely the inert occupation coefficient at the fine scale. The two-vertex shape has coefficient `2A/3`. Every rooted tree with at least two vertices can be reached by a finite sequence of positive-rate additions, so all coefficients in (1) are positive. The finite coefficient is the inert hit probability times `1/(|R|−1/D_root)`; the hit probability is a finite rational recursion from the virgin through trees of size at most `|R|`.
+
+• The **singleton core** instead has coefficient
+
+```math
+\lim_{N\to\infty}N^\mu M_N(\bullet) = E_\beta\sum_{\tau<\infty}\mathbf1\{D_{v_\tau}(\infty)<\infty\} \left(\min\{W_o,\inf_{w}W_w\}\right)^\mu. \qquad\text{(2)}
+```
+
+The infimum ranges over the final nonparent neighbours of the bounded child; it is over a nonempty finite set. `W_w=lim_t e^-t D_w(t)` uses the **parent's** time origin, not the neighbour's own birth time. This expectation is finite and strictly positive. The inert singleton intensity is zero. Formula (2) is a physical lifetime coefficient with live input, not an occupation of the inert virgin or a product of independent hub events.
 
 By the same proof one may keep the relative parent-degree mark. For a bounded continuous test `f` of `log(D_parent/N)`, the coefficient in (1) becomes `A I(R) ∫_0^∞ f(e) mu e^-mu e de`. In (2), let `m_*` be the minimum in the summand and replace `m_*^mu` by `W_o^mu ∫_{log(W_o/m_*)}^∞ f(e) mu e^-mu e de` on `m_*>0` (zero otherwise). Thus the other cut neighbours can impose a positive lower shift on the singleton's log overshoot. For an unrooted observation, sum over its finitely many distinct top-rootings, without a multiplicity for equivalent roots.
 

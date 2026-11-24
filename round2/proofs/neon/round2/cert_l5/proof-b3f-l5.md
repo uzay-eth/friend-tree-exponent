@@ -72,9 +72,14 @@ In `version=1`, each core neighbour $`z \in N_K(u) \setminus V(m)`$ outside $`m`
 \frac{1}{D_z} = \min\!\left(\frac{1}{D_z}, \frac{1}{D_c}\right) + \mathbf{1}_{\{D_z < D_c\}} \left(\frac{1}{D_z} - \frac{1}{D_c}\right).
 ```
 - The first term lies in $`[0, 1/D_c]`$ for **every** external core neighbour $`z`$ (both $`D_z < D_c`$ and $`D_z \ge D_c`$). Replacing $`u`$'s external rate interval $`[0, c_{\mathrm{ext}}/2]`$ by $`[0, c_{\mathrm{ext}}/D_c]`$ in the L4 row equation covers the entire first term.
-- For each external core neighbour $`z`$ with $`D_z < D_c`$, attaching $`z`$ as a leaf of $`u`$ forms a unique 5-motif $`M = m \cup \{z\} \in \mathcal{M}_5^{\mathrm{supp}}(T)`$ in which $`z`$ is an exact endpoint ($`\deg_M(z) = 1`$, $`D_z < D_c`$) adjacent to $`u`$. Moving the exact positive residual term
-  $`\displaystyle \left(\frac{1}{D_z} - \frac{1}{D_c}\right) \Delta \Phi_4(m, u)`$
-  from the L4 equation for $`m`$ into the L5 equation for $`M`$ is an **exact zero-sum identity on every tree $`T`$**.
+
+• For each external core neighbour $`z`$ with $`D_z < D_c`$, attaching $`z`$ as a leaf of $`u`$ forms a unique 5-motif $`M = m \cup \{z\} \in \mathcal{M}_5^{\mathrm{supp}}(T)`$ in which $`z`$ is an exact endpoint ($`\deg_M(z) = 1`$, $`D_z < D_c`$) adjacent to $`u`$. Moving the exact positive residual term
+
+```math
+\left(\frac{1}{D_z} - \frac{1}{D_c}\right) \Delta \Phi_4(m, u)
+```
+
+from the L4 equation for $`m`$ into the L5 equation for $`M`$ is an **exact zero-sum identity on every tree $`T`$**.
 
 Because a coarse endpoint spectator $`w \in V(m) \setminus \{u\}`$ has physical L4 contribution given by a convex combination $`\sum_{\gamma \in \mathcal{F}(w)} \alpha_\gamma \Delta I_4(m[w \mapsto \gamma], u)`$ with the **same** nonnegative weights $`\alpha_\gamma`$ ($`\sum \alpha_\gamma = 1`$) before and after the arrival at $`u`$ (since $`w`$'s state does not change), for upper bounds (`mode=1`) and lower bounds (`mode=2`) respectively we have the exact inequalities
 ```math
@@ -85,18 +90,30 @@ where $`\mathcal{F}`$ is the exact fiber of L4 controls compatible with each coa
 ### 2.3 Exact Level-5 Own-Drift Bounds
 
 For each vertex $`i \in V(M)`$ of a supported 5-motif $`M \in \mathcal{M}_5^{\mathrm{supp}}(T)`$:
-1. **Exact vertex ($`D_i < D_c`$):**
-   - *Leaf arrival at $`i`$:* transitions $`s_i`$ to $`(L_i + 1, k_i, h_i)`$ if $`D_i + 1 < D_c`$; to the coarse bucket $`\mathrm{BIG}`$ / $`\mathrm{BIG\_INNER}`$ if $`D_i + 1 = D_c`$ and $`\deg_M(i) = 1`$; and out of support (value $`0`$) if $`D_i + 1 = D_c`$ and $`\deg_M(i) \ge 2`$. Let $`\Delta_i = q_5(\mathrm{after}) - q_5(\mathrm{before})`$. The arrival rate at $`i`$ is
-     $`\displaystyle r_i = L_i + \sum_{\substack{j \in N_M(i) \\ D_j < D_c}} \frac{1}{D_j} + \sum_{\substack{j \in N_M(i) \\ D_j \ge D_c}} \frac{1}{D_j} + \sum_{w \in N_K(i) \setminus V(M)} \frac{1}{D_w}.`$
-     The first two sums are exact; each coarse motif neighbour $`j`$ has $`1/D_j \in [0, 1/D_c]`$ (`BIG`/`BIG_INNER`) or $`[0, 1/D_0]`$ (`TAIL`); each of the $`c_{\mathrm{ext},i} = k_i + h_i - \deg_M(i)`$ external core neighbours has $`1/D_w \in [0, 1/2]`$. Selecting the adverse endpoint of these intervals according to the sign of $`\Delta_i`$ is exact.
-   - *Leaf promotion at $`i`$ ($`L_i \ge 1`$):* occurs at exact rate $`L_i / D_i`$, leaves $`D_i < D_c`$ unchanged, and transitions $`s_i`$ to $`(L_i - 1, k_i + 1, h_i)`$.
+
+1\. **Exact vertex ($`D_i < D_c`$):**
+
+◦ *Leaf arrival at $`i`$:* transitions $`s_i`$ to $`(L_i + 1, k_i, h_i)`$ if $`D_i + 1 < D_c`$; to the coarse bucket $`\mathrm{BIG}`$ / $`\mathrm{BIG\_INNER}`$ if $`D_i + 1 = D_c`$ and $`\deg_M(i) = 1`$; and out of support (value $`0`$) if $`D_i + 1 = D_c`$ and $`\deg_M(i) \ge 2`$. Let $`\Delta_i = q_5(\mathrm{after}) - q_5(\mathrm{before})`$. The arrival rate at $`i`$ is
+
+```math
+r_i = L_i + \sum_{\substack{j \in N_M(i) \\ D_j < D_c}} \frac{1}{D_j} + \sum_{\substack{j \in N_M(i) \\ D_j \ge D_c}} \frac{1}{D_j} + \sum_{w \in N_K(i) \setminus V(M)} \frac{1}{D_w}.
+```
+
+The first two sums are exact; each coarse motif neighbour $`j`$ has $`1/D_j \in [0, 1/D_c]`$ (`BIG`/`BIG_INNER`) or $`[0, 1/D_0]`$ (`TAIL`); each of the $`c_{\mathrm{ext},i} = k_i + h_i - \deg_M(i)`$ external core neighbours has $`1/D_w \in [0, 1/2]`$. Selecting the adverse endpoint of these intervals according to the sign of $`\Delta_i`$ is exact.
+- *Leaf promotion at $`i`$ ($`L_i \ge 1`$):* occurs at exact rate $`L_i / D_i`$, leaves $`D_i < D_c`$ unchanged, and transitions $`s_i`$ to $`(L_i - 1, k_i + 1, h_i)`$.
 2. **Coarse `TAIL` endpoint ($`D_i \ge D_0`$, $`\deg_M(i) = 1`$):** Degree only increases on leaf arrival and is invariant on promotion; hence `TAIL` stays `TAIL` with zero change.
-3. **Coarse `BIG_INNER` endpoint ($`D_c \le D_i \le D_0 - 1`$, $`\deg_M(i) = 1`$, $`B = 2`$):**
-   - Promotion leaves $`D_i`$ unchanged (stays `BIG_INNER`).
-   - Leaf arrival leaves $`i`$ in `BIG_INNER` if $`D_i \le D_0 - 2`$, and crosses to `TAIL` with jump $`\Delta_i^{\mathrm{cross}} = q_5(\mathrm{TAIL}) - q_5(\mathrm{BIG\_INNER})`$ if $`D_i = D_0 - 1`$.
-   - At $`D_i = D_0 - 1`$, every core neighbour of $`i`$ has degree $`\ge 2`$, so the leaf-arrival rate at $`i`$ satisfies
-     $`\displaystyle 0 \;\le\; r_i = L_i + \sum_{w \sim_K i} \frac{1}{D_w} \;\le\; L_i + \frac{k_i + h_i}{2} \;\le\; L_i + k_i + h_i = D_0 - 1.`$
-   - Therefore, uniformly over all $`D_i \in [D_c, D_0 - 1]`$, the exact own-change contribution of a `BIG_INNER` endpoint lies between $`\min(0, (D_0 - 1)\Delta_i^{\mathrm{cross}})`$ and $`\max(0, (D_0 - 1)\Delta_i^{\mathrm{cross}})`$.
+
+3\. **Coarse `BIG_INNER` endpoint ($`D_c \le D_i \le D_0 - 1`$, $`\deg_M(i) = 1`$, $`B = 2`$):**
+- Promotion leaves $`D_i`$ unchanged (stays `BIG_INNER`).
+- Leaf arrival leaves $`i`$ in `BIG_INNER` if $`D_i \le D_0 - 2`$, and crosses to `TAIL` with jump $`\Delta_i^{\mathrm{cross}} = q_5(\mathrm{TAIL}) - q_5(\mathrm{BIG\_INNER})`$ if $`D_i = D_0 - 1`$.
+
+◦ At $`D_i = D_0 - 1`$, every core neighbour of $`i`$ has degree $`\ge 2`$, so the leaf-arrival rate at $`i`$ satisfies
+
+```math
+0 \;\le\; r_i = L_i + \sum_{w \sim_K i} \frac{1}{D_w} \;\le\; L_i + \frac{k_i + h_i}{2} \;\le\; L_i + k_i + h_i = D_0 - 1.
+```
+
+- Therefore, uniformly over all $`D_i \in [D_c, D_0 - 1]`$, the exact own-change contribution of a `BIG_INNER` endpoint lies between $`\min(0, (D_0 - 1)\Delta_i^{\mathrm{cross}})`$ and $`\max(0, (D_0 - 1)\Delta_i^{\mathrm{cross}})`$.
 
 Each L5 row inequality is verified in pure GMP integer arithmetic over the common positive denominator $`Q \cdot \mathrm{lcm}(1, \dots, D_0)`$.
 
@@ -139,10 +156,18 @@ c_0\, C(T) \;\le\; \Phi^{(2)}(T) \;\le\; C_0\, C(T) \qquad \text{for every finit
 ## 4. Main Certificate Theorem (Theorem 2)
 
 **Theorem 2.** *If a `version=2` certificate file passes `cert_b3f_l5_verify_gmp` with `total_fails = 0` (covering all 8 Level-1–4 tables, all `nL5` Level-5 rows, header/size validation, and the mode-required strict comparison positivity $`S C_0 > 0, S\Phi^{(2)}(T_3) > 0`$ for both modes plus $`4 S c_0 > 0`$ for upper mode; both pinned production payloads satisfy all three strictly):*
-- *In LOWER mode (`mode=2`),* $`\mathcal{L}\Phi^{(2)}(T) \ge \frac{P}{Q}\Phi^{(2)}(T)`$ for every finite tree $`T`$ with $`C(T) \ge 1`$, hence for all $`n \ge 3`$.
-  $`\displaystyle \mathbb{E}[C_n] \;\ge\; \frac{\Phi^{(2)}(T_3)}{C_0} \prod_{j=3}^{n-1} \left(1 + \frac{P/Q}{j}\right) \qquad \text{and} \qquad \mu \;\ge\; \frac{P}{Q}.`$
-- *In UPPER mode (`mode=1`),* $`\mathcal{L}\Phi^{(2)}(T) \le \frac{P}{Q}\Phi^{(2)}(T)`$ for every finite tree $`T`$ with $`C(T) \ge 1`$, hence for all $`n \ge 3`$.
-  $`\displaystyle \mathbb{E}[C_n] \;\le\; \frac{\Phi^{(2)}(T_3)}{c_0} \prod_{j=3}^{n-1} \left(1 + \frac{P/Q}{j}\right) \qquad \text{and} \qquad \mu \;\le\; \frac{P}{Q}.`$
+
+• *In LOWER mode (`mode=2`),* $`\mathcal{L}\Phi^{(2)}(T) \ge \frac{P}{Q}\Phi^{(2)}(T)`$ for every finite tree $`T`$ with $`C(T) \ge 1`$, hence for all $`n \ge 3`$.
+
+```math
+\mathbb{E}[C_n] \;\ge\; \frac{\Phi^{(2)}(T_3)}{C_0} \prod_{j=3}^{n-1} \left(1 + \frac{P/Q}{j}\right) \qquad \text{and} \qquad \mu \;\ge\; \frac{P}{Q}.
+```
+
+• *In UPPER mode (`mode=1`),* $`\mathcal{L}\Phi^{(2)}(T) \le \frac{P}{Q}\Phi^{(2)}(T)`$ for every finite tree $`T`$ with $`C(T) \ge 1`$, hence for all $`n \ge 3`$.
+
+```math
+\mathbb{E}[C_n] \;\le\; \frac{\Phi^{(2)}(T_3)}{c_0} \prod_{j=3}^{n-1} \left(1 + \frac{P/Q}{j}\right) \qquad \text{and} \qquad \mu \;\le\; \frac{P}{Q}.
+```
 
 *Proof.* By Sections 2.1–2.3, every event on every tree $`T`$ with $`C(T) \ge 1`$ decomposes identically into verified Level-1–4 row terms, zero-sum L4 $`\to`$ L5 edge transfers, exact-promoter L5 newborns, and verified Level-5 own-drift terms; thus `total_fails = 0` implies the global pointwise drift inequality $`\mathcal{L}\Phi^{(2)}(T) \ge \frac{P}{Q}\Phi^{(2)}(T)`$ (lower) or $`\le \frac{P}{Q}\Phi^{(2)}(T)`$ (upper). Since $`\mathbb{E}[\Phi^{(2)}(T_{n+1}) \mid T_n] = \Phi^{(2)}(T_n) + \frac{1}{n}\mathcal{L}\Phi^{(2)}(T_n)`$, induction from $`T_3`$ combined with Section 3's uniform comparison $`c_0 C(T) \le \Phi^{(2)}(T) \le C_0 C(T)`$ yields both finite-size product bounds and the asymptotic exponent inequalities via $`\mu = \lim \frac{\log \mathbb{E}[C_n]}{\log n}`$. $`\square`$
 
@@ -178,8 +203,16 @@ With parameters `(D0, KT, LF, KF) = (20, 19, 16000, 200)`, `P4=(12,9)`, `Yt=(11,
     - Exact exponent `P/Q = 5657570/10000000 = 565757/1000000 = 0.5657570`, `total_fails = 0` across all 9 tables (`1,421,095,995` reported rows / `1,421,095,991` valid/equality checks), `34/34` GMP concrete trees, `38/38` independent Python `Fraction` trees.
     - Exact GMP comparison integers: `4*S*c0 = 88296060680` (matched identically by Python), `S*C0 = 200835990548` (Python joint tail-child extremum gives `200701592409 <= 200835990548`), `S*Phi^(2)(T_3) = 146044250013`.
 
-- **Corollary 4.** *For the undirected random friend tree started from one edge, with zero external prior bracket on $`\mu`$:*
-  $`\displaystyle \frac{5656929}{10000000} \;\le\; \mu \;\le\; \frac{565757}{1000000}, \qquad \text{i.e., } \mu \in [0.5656929,\; 0.5657570] \quad (\text{width } 0.0000641).`$
-  *Moreover, for every integer $`n \ge 3`$,*
-  $`\displaystyle \frac{8113447325}{10248982441} \prod_{j=3}^{n-1} \left(1 + \frac{5656929/10000000}{j}\right) \;\le\; \mathbb{E}[C_n] \;\le\; \frac{146044250013}{22074015170} \prod_{j=3}^{n-1} \left(1 + \frac{565757/1000000}{j}\right),`$
-  *where $`\frac{8113447325}{10248982441} = \frac{146042051850}{184481683938}`$ and $`\frac{146044250013}{22074015170} = \frac{4 \cdot 146044250013}{88296060680}`$.*
+• **Corollary 4.** *For the undirected random friend tree started from one edge, with zero external prior bracket on $`\mu`$:*
+
+```math
+\frac{5656929}{10000000} \;\le\; \mu \;\le\; \frac{565757}{1000000}, \qquad \text{i.e., } \mu \in [0.5656929,\; 0.5657570] \quad (\text{width } 0.0000641).
+```
+
+*Moreover, for every integer $`n \ge 3`$,*
+
+```math
+\frac{8113447325}{10248982441} \prod_{j=3}^{n-1} \left(1 + \frac{5656929/10000000}{j}\right) \;\le\; \mathbb{E}[C_n] \;\le\; \frac{146044250013}{22074015170} \prod_{j=3}^{n-1} \left(1 + \frac{565757/1000000}{j}\right),
+```
+
+*where $`\frac{8113447325}{10248982441} = \frac{146042051850}{184481683938}`$ and $`\frac{146044250013}{22074015170} = \frac{4 \cdot 146044250013}{88296060680}`$.*

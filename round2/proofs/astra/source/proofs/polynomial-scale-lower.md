@@ -49,8 +49,7 @@ If a core receiver $`u`$ has $`L_u\ge L_{\max}`$, its own leaf coordinate is alr
 ```math
 \begin{split}
 \mathbb P(W_n\in K_n,\ L_{W_n}<L_{\max}\mid\mathcal F_n)
-&\le (L_{\max}+1) C_n/n,\\
-\mathbb E[(\Phi_{n+1}^- -\Phi_n^-)^2\mid\mathcal F_n]
+&\le (L_{\max}+1) C_n/n,\\ \mathbb E[(\Phi_{n+1}^- -\Phi_n^-)^2\mid\mathcal F_n]
 &\le B^2(L_{\max}+2)C_n/n, \qquad (3)
 \end{split}
 ```
@@ -114,8 +113,7 @@ Here $`A_m=Z_m=0`$, and each increment of $`A`$ is the nonnegative conditional m
 ```math
 \begin{split}
 K_- U N_m \sum_{j=m}^\infty\frac{P_\lambda(m,j)}{jP_\delta(m,j+1)^2}
-&\le K_- U e^{\lambda+2\delta^2} N_m \sum_{j=m}^\infty \frac{(j/m)^{-q}}j\\
-&\le D_- N_m,\qquad D_-=K_- U e^{\lambda+2\delta^2}(1+1/q). \qquad (10)
+&\le K_- U e^{\lambda+2\delta^2} N_m \sum_{j=m}^\infty \frac{(j/m)^{-q}}j\\ &\le D_- N_m,\qquad D_-=K_- U e^{\lambda+2\delta^2}(1+1/q). \qquad (10)
 \end{split}
 ```
 

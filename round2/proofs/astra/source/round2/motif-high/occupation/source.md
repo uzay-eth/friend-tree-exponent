@@ -20,11 +20,9 @@ For each member $`x`$, partition its outside slots into the centered slots $`B_x
 ```math
  \begin{aligned}
  R^*(M)={}&-\lambda w_M+
- \sum_{\text{deleted leaves }y}(p_y-z_{J,x,y})\Delta_x w_J\\
- &+\sum_{x\in M}\Big[
+ \sum_{\text{deleted leaves }y}(p_y-z_{J,x,y})\Delta_x w_J\\ &+\sum_{x\in M}\Big[
     (L_x+\sum_{y\in M:\,y\sim x} p_y+\sum_{s\in B_x} z_s)d_x
-    +\tfrac12|U_x|\max(d_x,0)\\
- &\hspace{34mm}+ b_x\big(w_M(x^{\rm bud})-w_M+w_{M+xN}\big)\Big] .
+    +\tfrac12|U_x|\max(d_x,0)\\ &\hspace{34mm}+ b_x\big(w_M(x^{\rm bud})-w_M+w_{M+xN}\big)\Big] .
  \end{aligned}
 ```
 When $`L_x=0`$ the final term is zero. For a triple, $`w_{M+xN}`$ is its four-core extension after the promoter changes state. At a quartet it is zero. The six preimage/birth cases are listed in the frozen proof. This expression maximizes the signed row over an independent input in $`[0,1/2]`$ at each uncovered slot. It works for physically specified tail members too, since the actual gain difference is an exact rational even there.

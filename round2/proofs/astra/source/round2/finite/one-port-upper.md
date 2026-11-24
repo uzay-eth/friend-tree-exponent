@@ -18,10 +18,7 @@ The following constants are explicit. Choose an integer $`d\ge3`$ (the Hölder p
 
 ```math
 \begin{split}
- \gamma&=1/B,\quad \delta=(B-1)/H,\quad z=(1+1/(2\gamma))^d,\\
- c_d&=d(d-1)(3/2)^{d-2}/8,\qquad V=d\gamma+c_d/K+(z-1)K/M,\\
- D_0&=(1-\kappa)^{-b}/(s-\kappa),\\
- \Lambda&=1/J+(1-\kappa)/2+V/d+2/d+\gamma+\delta .
+ \gamma&=1/B,\quad \delta=(B-1)/H,\quad z=(1+1/(2\gamma))^d,\\ c_d&=d(d-1)(3/2)^{d-2}/8,\qquad V=d\gamma+c_d/K+(z-1)K/M,\\ D_0&=(1-\kappa)^{-b}/(s-\kappa),\\ \Lambda&=1/J+(1-\kappa)/2+V/d+2/d+\gamma+\delta .
 \end{split}
 ```
 
@@ -115,8 +112,7 @@ Let $`q=d/(d-1)\in(1,2)`$, $`\theta=(2-q)/q=1-2/d\in(0,1)`$, $`f=C_B(t)e^{-A_x(\
 ```math
 \begin{split}
  \mathbb E^{R_{\beta,\tau}}[C_B(t)e^{-\kappa A_x(\tau)}]
- &\le e^{(1-\kappa)t/2}(\mathbb E_P Z^d)^{1/d}(\mathbb E_P f^q)^{1/q},\\
- (\mathbb E_P f^q)^{1/q}
+ &\le e^{(1-\kappa)t/2}(\mathbb E_P Z^d)^{1/d}(\mathbb E_P f^q)^{1/q},\\ (\mathbb E_P f^q)^{1/q}
  &\le (\mathbb E_P f)^{(2-q)/q}(\mathbb E_P f^2)^{(q-1)/q}
  \le h(\tau)^\theta 2^{1/d}e^{2t/d}.
 \end{split}                                                                          \qquad\text{(7)}

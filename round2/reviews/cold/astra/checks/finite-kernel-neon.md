@@ -35,15 +35,26 @@ CORRECT
 ## 3. Rational Truncations $`K^-_N(s)`$ and $`K^+_N(s)`$, Nesting, and Endpoints (§3)
 
 - **Finiteness, boundary diagonal, and M-matrix invertibility:** For $`N \ge 2`$, the domain $`\mathcal D_N`$ of states reachable from the 19 newborns within size $`\le N`$ is finite (clamped marks take only 19 values). Since copies have size $`\le n(S)`$, only intrinsic transitions from boundary states $`n(S) = N`$ exit to size $`N + 1`$. Retaining the full subtraction $`a_S + r_0(S)`$ on the diagonal (including on the boundary $`n(S) = N`$) kills particles upon exit to size $`N + 1`$. Since $`R_N`$ is Metzler and $`(A_N W)(S) \ge ((s - R)W)(S) \ge (s - \rho) W(S) > 0`$ on $`\mathcal D_N`$ for $`s > \rho`$, $`A_N = sI - R_N`$ is a nonsingular M-matrix with entrywise nonnegative inverse $`A_N^{-1} \ge 0`$ (rational for $`s \in \mathbb Q`$).
-- **First-exit enclosure (4):** Partitioning walks in (2) by whether they exit $`\mathcal D_N`$ gives on $`\mathcal D_N`$ the exact identity
-  $`\displaystyle U_s^{(j)} = A_N^{-1} B_j + A_N^{-1} \Big[S \mapsto \sum_{n(S')=N+1} t(S, S') U_s^{(j)}(S')\Big].`$
-  Inserting $`0 \le U_s^{(j)}(S') \le W(S')/(s - \rho)`$ yields $`K^-_N(s) \le K(s) \le K^+_N(s)`$ entrywise, and monotonicity of the spectral radius of nonnegative matrices gives $`r(K^-_N(s)) \le r(K(s)) \le r(K^+_N(s))`$.
-- **Nesting in $`N`$ and sharper test-column bound (line 55):**
-  - $`K^-_N \le K^-_{N+1}`$ holds since $`\mathcal D_N \subset \mathcal D_{N+1}`$.
-  - For $`K^+_{N+1} \le K^+_N`$, let $`v_N = A_N^{-1}(B_j + H_N)`$ on $`\mathcal D_N`$ and $`v_N = W/(s-\rho)`$ outside $`\mathcal D_N`$. First, $`A_N(W/(s-\rho) - v_N) \ge W - B_j \ge 0`$ on $`\mathcal D_N`$, so $`v_N \le W/(s-\rho)`$ on $`\mathcal D_N`$. On $`\mathcal D_{N+1}`$, $`(A_{N+1} v_N)(S) = B_j(S) = (A_{N+1} v_{N+1})(S)`$ for $`n(S) \le N`$; for $`n(S) = N + 1`$, using $`v_N(S') \le W(S')/(s-\rho)`$ on copies $`S' \in \mathcal D_N`$ returning into the interior gives
-    $`\displaystyle (A_{N+1} v_N)(S) \ge \frac{(s - R)W(S)}{s - \rho} + H_{N+1}(S) \ge W(S) + H_{N+1}(S) \ge B_j(S) + H_{N+1}(S) = (A_{N+1} v_{N+1})(S).`$
-    Multiplying by $`A_{N+1}^{-1} \ge 0`$ gives $`v_{N+1} \le v_N`$, hence $`K^+_{N+1}(s) \le K^+_N(s)`$.
-  - For any test vector $`g \ge 0`$, the total direct reward $`\sum_j g_j B_j(S) \le \|g\|_\infty W(S)`$ implies $`U_s g(S') \le \|g\|_\infty W(S')/(s - \rho)`$, so $`K(s) g \le K^-_N(s) g + u_N \|g\|_\infty`$ (avoiding the factor-of-19 inflation of $`K^+_N g`$).
+
+• **First-exit enclosure (4):** Partitioning walks in (2) by whether they exit $`\mathcal D_N`$ gives on $`\mathcal D_N`$ the exact identity
+
+```math
+U_s^{(j)} = A_N^{-1} B_j + A_N^{-1} \Big[S \mapsto \sum_{n(S')=N+1} t(S, S') U_s^{(j)}(S')\Big].
+```
+
+Inserting $`0 \le U_s^{(j)}(S') \le W(S')/(s - \rho)`$ yields $`K^-_N(s) \le K(s) \le K^+_N(s)`$ entrywise, and monotonicity of the spectral radius of nonnegative matrices gives $`r(K^-_N(s)) \le r(K(s)) \le r(K^+_N(s))`$.
+
+• **Nesting in $`N`$ and sharper test-column bound (line 55):**
+- $`K^-_N \le K^-_{N+1}`$ holds since $`\mathcal D_N \subset \mathcal D_{N+1}`$.
+
+◦ For $`K^+_{N+1} \le K^+_N`$, let $`v_N = A_N^{-1}(B_j + H_N)`$ on $`\mathcal D_N`$ and $`v_N = W/(s-\rho)`$ outside $`\mathcal D_N`$. First, $`A_N(W/(s-\rho) - v_N) \ge W - B_j \ge 0`$ on $`\mathcal D_N`$, so $`v_N \le W/(s-\rho)`$ on $`\mathcal D_N`$. On $`\mathcal D_{N+1}`$, $`(A_{N+1} v_N)(S) = B_j(S) = (A_{N+1} v_{N+1})(S)`$ for $`n(S) \le N`$; for $`n(S) = N + 1`$, using $`v_N(S') \le W(S')/(s-\rho)`$ on copies $`S' \in \mathcal D_N`$ returning into the interior gives
+
+```math
+(A_{N+1} v_N)(S) \ge \frac{(s - R)W(S)}{s - \rho} + H_{N+1}(S) \ge W(S) + H_{N+1}(S) \ge B_j(S) + H_{N+1}(S) = (A_{N+1} v_{N+1})(S).
+```
+
+Multiplying by $`A_{N+1}^{-1} \ge 0`$ gives $`v_{N+1} \le v_N`$, hence $`K^+_{N+1}(s) \le K^+_N(s)`$.
+- For any test vector $`g \ge 0`$, the total direct reward $`\sum_j g_j B_j(S) \le \|g\|_\infty W(S)`$ implies $`U_s g(S') \le \|g\|_\infty W(S')/(s - \rho)`$, so $`K(s) g \le K^-_N(s) g + u_N \|g\|_\infty`$ (avoiding the factor-of-19 inflation of $`K^+_N g`$).
 - **Endpoint $`N = 2`$:** $`\mathcal D_2`$ consists solely of the 19 newborns ($`A_2`$ diagonal with entries $`s + 1/i + 3/2`$), $`K^-_2(s)`$ has only column $`j = 2`$ nonzero (reducible, $`r(K^-_2(s)) = \frac{1/2}{s+2}`$), and $`H_2(J_{1/i}) = \frac{941}{520} \frac{W(J_{1/i})}{s - \rho}`$, giving valid enclosures even at $`N = 2`$.
 
 ---
@@ -58,9 +69,14 @@ CORRECT
   - Along the pure root-leaf-gain path from $`J_{1/i}`$ through degrees $`k = 2, \dots, j`$ ($`2 \le j \le 20`$), each intermediate state has $`L = k - 1`$, $`0`$ core children, root gain rate $`k - 1`$, $`r_0 = k - 1/k = k - 1 + (k - 1)/k`$, death rate $`1/i \le 1/2`$, and terminal direct rate $`(j-1)/j`$ into label $`m(j) = j`$ (including both endpoints $`j = 2`$ with empty product and $`j = 20`$ at the clamp). Thus $`K_{ij}(s) \ge e > 0`$ uniformly on $`[l, u]`$ (exact value $`e \approx 3.294 \times 10^{-4}`$, attained at $`j = 20`$).
   - For the Perron vector $`g > 0`$ of $`K(s)`$ with $`\max g = 1`$, $`r(K(s)) g_i \ge e \implies g_{\min} \ge g_* := e/(19 H) \approx 1.430 \times 10^{-7}`$.
   - On $`g`$, $`((K^+_N - K^-_N) g)_i = u_N(i)\sum_j g_j \le 19 \max_i u_N(i) \le 19 H (2/(N+1))^{1/24} =: \varepsilon_N`$, giving $`K^+_N g \le (r(K) + \varepsilon_N/g_*) g`$ and $`K^-_N g \ge (r(K) - \varepsilon_N/g_*) g`$. Separate Collatz–Wielandt bounds hold for any nonnegative matrix (even reducible $`K^-_N`$, by iterating $`M^k g`$ and taking $`k`$-th roots, and trivially when $`r(K) - \varepsilon_N/g_* \le 0`$ since $`r(K^-_N) \ge 0`$), yielding (7): $`0 \le r(K^+_N(s)) - r(K^-_N(s)) \le (38 H / g_*)(2/(N+1))^{1/24}`$.
-- **Uniform inverse slope:** At $`S_0 = J_{1/i}`$, $`r_0(J_{1/i}) = 2 - 1/2 = 3/2`$ and $`a_{J_{1/i}} = 1/i \le 1/2`$, so total exit rate is $`a_{J_{1/i}} + r_0(J_{1/i}) = 1/i + 3/2 \le 2`$ (equality at $`i = 2`$). For $`l \le s < s' \le u`$, the $`\ell = 0`$ direct-production term into label $`j = 2`$ (rate $`b = 1/2`$) gives
-  $`\displaystyle (K_{i,2}(s) - K_{i,2}(s')) g_2 \ge g_* \int_0^\infty \tfrac{1}{2}(e^{-st} - e^{-s't}) e^{-2t}\,dt = \frac{g_*(s' - s)}{2(s+2)(s'+2)} \ge \frac{g_*(s' - s)}{2(u+2)^2}.`$
-  Every other path contribution in (2) is nonnegative for $`s < s'`$, and $`g_i \le 1`$, so $`K(s) g \ge (r(K(s')) + \frac{g_*(s'-s)}{2(u+2)^2}) g`$, whence $`r(K(s)) - r(K(s')) \ge g_*(s' - s)/[2(u+2)^2]`$ by Collatz–Wielandt. Combined with (7), rational grid/bisection enclosures converge at an explicit power rate $`O((N+1)^{-1/24})`$.
+
+• **Uniform inverse slope:** At $`S_0 = J_{1/i}`$, $`r_0(J_{1/i}) = 2 - 1/2 = 3/2`$ and $`a_{J_{1/i}} = 1/i \le 1/2`$, so total exit rate is $`a_{J_{1/i}} + r_0(J_{1/i}) = 1/i + 3/2 \le 2`$ (equality at $`i = 2`$). For $`l \le s < s' \le u`$, the $`\ell = 0`$ direct-production term into label $`j = 2`$ (rate $`b = 1/2`$) gives
+
+```math
+(K_{i,2}(s) - K_{i,2}(s')) g_2 \ge g_* \int_0^\infty \tfrac{1}{2}(e^{-st} - e^{-s't}) e^{-2t}\,dt = \frac{g_*(s' - s)}{2(s+2)(s'+2)} \ge \frac{g_*(s' - s)}{2(u+2)^2}.
+```
+
+Every other path contribution in (2) is nonnegative for $`s < s'`$, and $`g_i \le 1`$, so $`K(s) g \ge (r(K(s')) + \frac{g_*(s'-s)}{2(u+2)^2}) g`$, whence $`r(K(s)) - r(K(s')) \ge g_*(s' - s)/[2(u+2)^2]`$ by Collatz–Wielandt. Combined with (7), rational grid/bisection enclosures converge at an explicit power rate $`O((N+1)^{-1/24})`$.
 
 ---
 

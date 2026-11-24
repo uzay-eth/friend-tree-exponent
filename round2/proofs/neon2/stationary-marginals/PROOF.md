@@ -53,13 +53,19 @@ Suppose a snapshot passes `verify_marginal.cpp` and `verify_marginal_tail.py` wi
 ```
 
 **Proof.**
-1. **Finite rows and analytic tail at each endpoint $`\lambda \in \{\mu_{\mathrm{lo}}, \mu_{\mathrm{hi}}\}`$:**
-   Decomposing $`(\mathcal L \Phi - \lambda \Phi)(T) + \sigma(A_\psi(T) - \theta C(T))`$ over the 8 motif families exactly as in `quintet-cert/PROOF.md` §3 places the 1-vertex forcing $`\sigma(\psi(D_u, c_u) - \theta)`$ exclusively on the singleton row $`R_f(u)`$ of each core vertex $`u \in K(T)`$.
-   - For $`2 \le D < D_F`$ and $`0 \le c \le D`$, `verify_marginal.cpp` checks every finite singleton row in exact directed 128-bit sub-tick arithmetic ($`K_{\mathrm{SUB}} = 1024`$), including the exact 4-term seam $`w((D_F - c)/D_F, 1/D_F)`$ at $`D = D_F - 1`$ and the exact rational forcing $`\sigma(\psi(D, c)\theta_Q - \theta_P) S / \theta_Q`$.
-   - For $`D \ge D_F`$, $`\psi(D, c) = 0`$, the gain jump satisfies $`(1+x)^2(w((q+x)/(1+x), x/(1+x)) - w(q,x))/x = \mathrm{gain}(q,x)`$, the promotion jump satisfies $`w(q-x,x) - w(q,x) = \mathrm{bud}(q,x)`$, the newborn edge satisfies $`S\cdot(f(J) + g((D, c+1), J)) \le C_{\mathrm{nb}} + d_g x`$ with $`C_{\mathrm{nb}} = S f(J) + S g(\infty, J)`$ and $`d_g = d_2(\max_{1 \le \kappa \le K_2+1} S g(T_2(\kappa), J) - S g(\infty, J))`$, and the gain rate $`r_u`$ lies in $`[L_u, L_u + c_u/2] = [q/x, (1+q)/(2x)]`$. By affinity in $`r_u`$ and positivity of $`(1+x)^2 \in [1, (1+1/D_F)^2]`$, `verify_marginal_tail.py` bounds the exact numerator polynomial on $`[0, 1] \times [0, 1/D_F]`$ across 16 rational Bernstein panels (plus an independent exact concrete-state oracle check at $`D \in \{D_F, D_F+1, 3D_F+17\}`$), yielding $`\mathrm{cap}_{f,\mathrm{ana}}(\lambda)`$.
-   - Every row of $`g, H_3, P_4, S_3, P_5, B_5, S_4`$ and all 7 exact 128-bit cross-level envelopes (`env23` through `env45s4`) are verified verbatim as in `quintet-cert/PROOF.md` §3 at both $`\lambda = \mu_{\mathrm{lo}}`$ and $`\lambda = \mu_{\mathrm{hi}}`$ on the exact same SHA-256-authenticated in-memory buffer.
-   - Aggregating per core vertex exactly as in `quintet-cert/PROOF.md` §4 (with $`C(T)`$ singletons, $`C(T)-1 < C(T)`$ core edges, and every positive higher-motif cap charged to its finite internal host(s)), setting $`\mathrm{cap}_f(\lambda) = \max(\mathrm{cap}_{f,\mathrm{in}}(\lambda), \mathrm{cap}_{f,\mathrm{tab}}(\lambda), \mathrm{cap}_{f,\mathrm{ana}}(\lambda))`$ and $`E(\lambda) = \max(0, \mathrm{cap}_f(\lambda) + \max(0, \mathrm{cap}_g(\lambda)) + \mathrm{higher\_per\_core}(\lambda))`$ yields
-     $`\displaystyle (\mathcal L\Phi - \lambda\Phi)(T) + \sigma(A_\psi(T) - \theta C(T)) \;\le\; \frac{E(\lambda)}{S}\, C(T) \qquad (\lambda \in \{\mu_{\mathrm{lo}}, \mu_{\mathrm{hi}}\}).`$
+
+1\. **Finite rows and analytic tail at each endpoint $`\lambda \in \{\mu_{\mathrm{lo}}, \mu_{\mathrm{hi}}\}`$:**
+Decomposing $`(\mathcal L \Phi - \lambda \Phi)(T) + \sigma(A_\psi(T) - \theta C(T))`$ over the 8 motif families exactly as in `quintet-cert/PROOF.md` §3 places the 1-vertex forcing $`\sigma(\psi(D_u, c_u) - \theta)`$ exclusively on the singleton row $`R_f(u)`$ of each core vertex $`u \in K(T)`$.
+- For $`2 \le D < D_F`$ and $`0 \le c \le D`$, `verify_marginal.cpp` checks every finite singleton row in exact directed 128-bit sub-tick arithmetic ($`K_{\mathrm{SUB}} = 1024`$), including the exact 4-term seam $`w((D_F - c)/D_F, 1/D_F)`$ at $`D = D_F - 1`$ and the exact rational forcing $`\sigma(\psi(D, c)\theta_Q - \theta_P) S / \theta_Q`$.
+- For $`D \ge D_F`$, $`\psi(D, c) = 0`$, the gain jump satisfies $`(1+x)^2(w((q+x)/(1+x), x/(1+x)) - w(q,x))/x = \mathrm{gain}(q,x)`$, the promotion jump satisfies $`w(q-x,x) - w(q,x) = \mathrm{bud}(q,x)`$, the newborn edge satisfies $`S\cdot(f(J) + g((D, c+1), J)) \le C_{\mathrm{nb}} + d_g x`$ with $`C_{\mathrm{nb}} = S f(J) + S g(\infty, J)`$ and $`d_g = d_2(\max_{1 \le \kappa \le K_2+1} S g(T_2(\kappa), J) - S g(\infty, J))`$, and the gain rate $`r_u`$ lies in $`[L_u, L_u + c_u/2] = [q/x, (1+q)/(2x)]`$. By affinity in $`r_u`$ and positivity of $`(1+x)^2 \in [1, (1+1/D_F)^2]`$, `verify_marginal_tail.py` bounds the exact numerator polynomial on $`[0, 1] \times [0, 1/D_F]`$ across 16 rational Bernstein panels (plus an independent exact concrete-state oracle check at $`D \in \{D_F, D_F+1, 3D_F+17\}`$), yielding $`\mathrm{cap}_{f,\mathrm{ana}}(\lambda)`$.
+- Every row of $`g, H_3, P_4, S_3, P_5, B_5, S_4`$ and all 7 exact 128-bit cross-level envelopes (`env23` through `env45s4`) are verified verbatim as in `quintet-cert/PROOF.md` §3 at both $`\lambda = \mu_{\mathrm{lo}}`$ and $`\lambda = \mu_{\mathrm{hi}}`$ on the exact same SHA-256-authenticated in-memory buffer.
+
+◦ Aggregating per core vertex exactly as in `quintet-cert/PROOF.md` §4 (with $`C(T)`$ singletons, $`C(T)-1 < C(T)`$ core edges, and every positive higher-motif cap charged to its finite internal host(s)), setting $`\mathrm{cap}_f(\lambda) = \max(\mathrm{cap}_{f,\mathrm{in}}(\lambda), \mathrm{cap}_{f,\mathrm{tab}}(\lambda), \mathrm{cap}_{f,\mathrm{ana}}(\lambda))`$ and $`E(\lambda) = \max(0, \mathrm{cap}_f(\lambda) + \max(0, \mathrm{cap}_g(\lambda)) + \mathrm{higher\_per\_core}(\lambda))`$ yields
+
+```math
+(\mathcal L\Phi - \lambda\Phi)(T) + \sigma(A_\psi(T) - \theta C(T)) \;\le\; \frac{E(\lambda)}{S}\, C(T) \qquad (\lambda \in \{\mu_{\mathrm{lo}}, \mu_{\mathrm{hi}}\}).
+```
+
 2. **Affinity in $`\lambda`$:**
    For each fixed $`T \in \mathcal T`$, the left-hand side of (1) is affine in $`\lambda`$. Writing any $`\lambda \in [\mu_{\mathrm{lo}}, \mu_{\mathrm{hi}}]`$ as $`(1-\alpha)\mu_{\mathrm{lo}} + \alpha\mu_{\mathrm{hi}}`$ with $`\alpha \in [0, 1]`$ gives (1) immediately with $`\varepsilon_* = \max(E(\mu_{\mathrm{lo}}), E(\mu_{\mathrm{hi}}))/S`$.
 3. **Linear boundedness (2):**
@@ -71,11 +77,20 @@ Suppose a snapshot passes `verify_marginal.cpp` and `verify_marginal_tail.py` wi
 
 ### Theorem 2 (Certified Stationary Marginal Enclosures)
 Assume $`\mu \in [\mu_{\mathrm{lo}}, \mu_{\mathrm{hi}}]`$ (Neon-2 Claim 6 `gold2`, commit `b435b4c`) and let $`\mathcal M_\mu`$ be the unique stationary fringe probability measure of Neon-2 Claim 3 (`claim14-proofs/README.md`, commit `ea6a093`, which Theorem 1(2) identifies with the downward-fringe marginal $`\pi_{\mathrm{fringe}}`$ of the unique spatial eigenmeasure $`\pi`$ of Claim 4/10). For any snapshot satisfying Theorem 1:
-1. **(Discounted Cesàro bound from $`T_3`$, using only positive mean growth $`e^{-\mu t}\mathbb E_{T_3}[C(T_t)] \to c_* \in (0,\infty)`$, without $`R_{\psi,\mu}`$):** Writing $`I(t) := \int_0^t e^{-\mu s}\mathbb E_{T_3}[C(T_s)]\,ds`$,
-   $`\displaystyle \sigma \limsup_{t\to\infty}\frac{\int_0^t e^{-\mu s}\mathbb E_{T_3}[A_\psi(T_s)]\,ds}{I(t)} \;\le\; \sigma\theta + \varepsilon_* \quad (\sigma = +1), \qquad \liminf_{t\to\infty}\frac{\int_0^t e^{-\mu s}\mathbb E_{T_3}[A_\psi(T_s)]\,ds}{I(t)} \;\ge\; \theta - \varepsilon_* \quad (\sigma = -1).`$
-2. **(Exact stationary marginal bound on $`\mathcal M_\mu(\psi) = \pi(\psi)`$):**
-   $`\displaystyle \sigma\big(\mathcal M_\mu(\psi) - \theta\big) \;\le\; \varepsilon_*, \qquad\text{(3)}`$
-   i.e. $`\mathcal M_\mu(\psi) \le \theta + \varepsilon_*`$ when $`\sigma = +1`$, and $`\mathcal M_\mu(\psi) \ge \theta - \varepsilon_*`$ when $`\sigma = -1`$.
+
+1\. **(Discounted Cesàro bound from $`T_3`$, using only positive mean growth $`e^{-\mu t}\mathbb E_{T_3}[C(T_t)] \to c_* \in (0,\infty)`$, without $`R_{\psi,\mu}`$):** Writing $`I(t) := \int_0^t e^{-\mu s}\mathbb E_{T_3}[C(T_s)]\,ds`$,
+
+```math
+\sigma \limsup_{t\to\infty}\frac{\int_0^t e^{-\mu s}\mathbb E_{T_3}[A_\psi(T_s)]\,ds}{I(t)} \;\le\; \sigma\theta + \varepsilon_* \quad (\sigma = +1), \qquad \liminf_{t\to\infty}\frac{\int_0^t e^{-\mu s}\mathbb E_{T_3}[A_\psi(T_s)]\,ds}{I(t)} \;\ge\; \theta - \varepsilon_* \quad (\sigma = -1).
+```
+
+2\. **(Exact stationary marginal bound on $`\mathcal M_\mu(\psi) = \pi(\psi)`$):**
+
+```math
+\sigma\big(\mathcal M_\mu(\psi) - \theta\big) \;\le\; \varepsilon_*, \qquad\text{(3)}
+```
+
+i.e. $`\mathcal M_\mu(\psi) \le \theta + \varepsilon_*`$ when $`\sigma = +1`$, and $`\mathcal M_\mu(\psi) \ge \theta - \varepsilon_*`$ when $`\sigma = -1`$.
 
 **Proof.**
 Start the continuous-time friend tree $`(T_t)_{t \ge 0}`$ from the 3-vertex tree $`T_3`$ ($`C(T_3) = 1`$). Its total vertex count $`N(t) = |T_t|`$ is a rate-1 Yule process with $`\mathbb E[N(t)] = 3 e^t < \infty`$ and $`\mathbb E[N(t)^2] < \infty`$.
@@ -141,14 +156,30 @@ Applying the exact same stopped-Dynkin + Cesàro proof as Theorem 2 (combining w
 ### Theorem 4 (Degree-2 Decomposition & Conditional Neighbor-Reciprocal Expectations)
 Let $`f_J(T) := \sum_{u \in K(T)} \mathbf 1\{D_u = 2, c_u = 1\}`$, $`f_{22}(T) := \sum_{u \in K(T)} \mathbf 1\{D_u = 2, c_u = 2\}`$, $`Z_J(T) := \sum_{u \in K(T)} \mathbf 1\{D_u = 2, c_u = 1\}\frac{1}{D_{p_u}}`$ (where $`p_u`$ is the unique core neighbor of $`u`$), and $`Z_{22}(T) := \sum_{u \in K(T)} \mathbf 1\{D_u = 2, c_u = 2\}\big(\frac{1}{D_{v_1(u)}} + \frac{1}{D_{v_2(u)}}\big)`$ (where $`v_1(u), v_2(u)`$ are the two core neighbors of $`u`$). Then:
 1. $`\mathcal M_\mu(2, 0) = 0`$, hence $`p_2 = \mathcal M_\mu(D_o = 2) = \mathcal M_\mu(J) + \mathcal M_\mu(2, 2)`$.
-2. Under the discounted Cesàro limit from $`T_3`$ (and hence under the spatial eigenmeasure $`\pi`$ of Claim 4/10, where $`\pi(J) = \mathcal M_\mu(J) > 0`$ and $`\pi(2, 2) = \mathcal M_\mu(2, 2) > 0`$),
-   $`\displaystyle \lim_{t\to\infty}\frac{\int_0^t e^{-\mu s}\mathbb E_{T_3}[Z_J(T_s)]\,ds}{\int_0^t e^{-\mu s}\mathbb E_{T_3}[f_J(T_s)]\,ds} \;=\; \frac{\mu}{\mathcal M_\mu(J)} - \mu - \frac{3}{2}, \qquad\text{(6)}`$
-   $`\displaystyle \lim_{t\to\infty}\frac{\int_0^t e^{-\mu s}\mathbb E_{T_3}[Z_{22}(T_s)]\,ds}{\int_0^t e^{-\mu s}\mathbb E_{T_3}[f_{22}(T_s)]\,ds} \;=\; \frac{\mathcal M_\mu(J)}{2\,\mathcal M_\mu(2, 2)} - \mu. \qquad\text{(7)}`$
+
+2\. Under the discounted Cesàro limit from $`T_3`$ (and hence under the spatial eigenmeasure $`\pi`$ of Claim 4/10, where $`\pi(J) = \mathcal M_\mu(J) > 0`$ and $`\pi(2, 2) = \mathcal M_\mu(2, 2) > 0`$),
+
+```math
+\lim_{t\to\infty}\frac{\int_0^t e^{-\mu s}\mathbb E_{T_3}[Z_J(T_s)]\,ds}{\int_0^t e^{-\mu s}\mathbb E_{T_3}[f_J(T_s)]\,ds} \;=\; \frac{\mu}{\mathcal M_\mu(J)} - \mu - \frac{3}{2}, \qquad\text{(6)}
+```
+
+```math
+\lim_{t\to\infty}\frac{\int_0^t e^{-\mu s}\mathbb E_{T_3}[Z_{22}(T_s)]\,ds}{\int_0^t e^{-\mu s}\mathbb E_{T_3}[f_{22}(T_s)]\,ds} \;=\; \frac{\mathcal M_\mu(J)}{2\,\mathcal M_\mu(2, 2)} - \mu. \qquad\text{(7)}
+```
 
 **Proof.**
 1. On $`\mathcal S`$, every planted tree retains its inert parent slot counted in $`c_o`$, so $`c_o \ge 1`$ everywhere on $`\mathcal S`$ and hence $`\mathcal M_\mu(2, 0) = 0`$ and $`p_2 = \mathcal M_\mu(D_o = 2) = \mathcal M_\mu(J) + \mathcal M_\mu(2, 2)`$ directly. Moreover, on the free tree $`(T_s)_{s \ge 0}`$ started from $`T_3`$, a core vertex has $`c_u = 0`$ if and only if $`C(T_s) = 1`$, which holds only before the first leaf promotion of the single initial core; while $`C(T_s) = 1`$, $`c_o = 0`$ so $`L_o = D_o`$ and the promotion rate is identically $`L_o / D_o = 1`$, giving $`\mathbb P_{T_3}(C(T_s) = 1) = e^{-s}`$ and $`\int_0^\infty e^{-\mu s}\mathbb P_{T_3}(C(T_s) = 1)\,ds = \frac{1}{1+\mu} < \infty`$.
-2. For any $`T \in \mathcal T`$ with $`C(T) \ge 2`$, every promotion creates one new $`(2, 1)`$ core (total birth rate $`(\mathcal L C)(T)`$), and no existing core can enter $`(2, 1)`$ (since $`D`$ never decreases and $`c \ge 1`$ for all cores when $`C \ge 2`$). Each existing $`u`$ in state $`(2, 1)`$ leaves $`(2, 1)`$ via own-leaf gain (rate $`1`$), neighbor-induced gain (rate $`1/D_{p_u}`$), or own-leaf promotion to $`(2, 2)`$ (rate $`1/2`$). Hence
-   $`\displaystyle (\mathcal L f_J)(T) \;=\; (\mathcal L C)(T) - \frac{3}{2} f_J(T) - Z_J(T) + \mathbf 1\{C(T) = 1, D_o = 2\},`$
-   where at $`C(T) = 1, D_o = 2`$, promoting one leaf turns the root into $`(2, 1)`$ and creates a second $`(2, 1)`$ vertex (change $`+2 = (\mathcal L C)(T) + 1`$). Similarly, on every $`T \in \mathcal T`$ ($`C(T) \ge 1`$), a vertex enters $`(2, 2)`$ solely when a $`(2, 1)`$ vertex promotes its leaf (rate $`1/2`$) and leaves $`(2, 2)`$ solely via neighbor-induced gain (rate $`1/D_{v_1(u)} + 1/D_{v_2(u)}`$), giving
-   $`\displaystyle (\mathcal L f_{22})(T) \;=\; \frac{1}{2} f_J(T) - Z_{22}(T).`$
-   Applying Yule-dominated stopped Dynkin to $`e^{-\mu s} f_J(T_s)`$, $`e^{-\mu s} f_{22}(T_s)`$, and $`e^{-\mu s} C(T_s)`$ on $`[0, t]`$ (each bounded by $`C(T_s)`$), subtracting $`\mu`$ times each integral, using $`\int_0^\infty e^{-\mu s}\mathbb P_{T_3}(C(T_s)=1)\,ds < \infty`$, and dividing by $`I(t) \sim c_* t \to \infty`$ (with Theorem 2(1) and Claim 3 Corollary 2.1 giving $`\int_0^t e^{-\mu s}\mathbb E[f_J(T_s)]\,ds / I(t) \to \mathcal M_\mu(J)`$ and $`\int_0^t e^{-\mu s}\mathbb E[f_{22}(T_s)]\,ds / I(t) \to \mathcal M_\mu(2, 2)`$) yields (6) and (7). Under Claim 4/10, the left-hand sides of (6) and (7) equal $`\mathbb E_\pi[1/D_{\mathrm{parent}} \mid J]`$ and $`\mathbb E_\pi[1/D_{v_1} + 1/D_{v_2} \mid (2, 2)]`$, respectively. $`\square`$
+
+2\. For any $`T \in \mathcal T`$ with $`C(T) \ge 2`$, every promotion creates one new $`(2, 1)`$ core (total birth rate $`(\mathcal L C)(T)`$), and no existing core can enter $`(2, 1)`$ (since $`D`$ never decreases and $`c \ge 1`$ for all cores when $`C \ge 2`$). Each existing $`u`$ in state $`(2, 1)`$ leaves $`(2, 1)`$ via own-leaf gain (rate $`1`$), neighbor-induced gain (rate $`1/D_{p_u}`$), or own-leaf promotion to $`(2, 2)`$ (rate $`1/2`$). Hence
+
+```math
+(\mathcal L f_J)(T) \;=\; (\mathcal L C)(T) - \frac{3}{2} f_J(T) - Z_J(T) + \mathbf 1\{C(T) = 1, D_o = 2\},
+```
+
+where at $`C(T) = 1, D_o = 2`$, promoting one leaf turns the root into $`(2, 1)`$ and creates a second $`(2, 1)`$ vertex (change $`+2 = (\mathcal L C)(T) + 1`$). Similarly, on every $`T \in \mathcal T`$ ($`C(T) \ge 1`$), a vertex enters $`(2, 2)`$ solely when a $`(2, 1)`$ vertex promotes its leaf (rate $`1/2`$) and leaves $`(2, 2)`$ solely via neighbor-induced gain (rate $`1/D_{v_1(u)} + 1/D_{v_2(u)}`$), giving
+
+```math
+(\mathcal L f_{22})(T) \;=\; \frac{1}{2} f_J(T) - Z_{22}(T).
+```
+
+Applying Yule-dominated stopped Dynkin to $`e^{-\mu s} f_J(T_s)`$, $`e^{-\mu s} f_{22}(T_s)`$, and $`e^{-\mu s} C(T_s)`$ on $`[0, t]`$ (each bounded by $`C(T_s)`$), subtracting $`\mu`$ times each integral, using $`\int_0^\infty e^{-\mu s}\mathbb P_{T_3}(C(T_s)=1)\,ds < \infty`$, and dividing by $`I(t) \sim c_* t \to \infty`$ (with Theorem 2(1) and Claim 3 Corollary 2.1 giving $`\int_0^t e^{-\mu s}\mathbb E[f_J(T_s)]\,ds / I(t) \to \mathcal M_\mu(J)`$ and $`\int_0^t e^{-\mu s}\mathbb E[f_{22}(T_s)]\,ds / I(t) \to \mathcal M_\mu(2, 2)`$) yields (6) and (7). Under Claim 4/10, the left-hand sides of (6) and (7) equal $`\mathbb E_\pi[1/D_{\mathrm{parent}} \mid J]`$ and $`\mathbb E_\pi[1/D_{v_1} + 1/D_{v_2} \mid (2, 2)]`$, respectively. $`\square`$

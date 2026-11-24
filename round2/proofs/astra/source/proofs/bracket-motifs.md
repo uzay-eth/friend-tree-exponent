@@ -107,17 +107,26 @@ The verifier tests only some of these conditions on the header. The shipped head
 - A state $`(L, k, h)`$ is **inner** if $`D = L + k + h < D_0`$ and **tail** otherwise. $`\mathcal{I}`$ is the set of inner states with $`D \ge 2`$.
 - **Tail endpoints:** $`\mathrm{INF}`$ (standing for $`D = \infty`$) and $`T_1(\kappa, h)`$ for $`\kappa \in \{0, \dots, K_T+1\}`$, $`h \in \{0, 1\}`$ (standing for $`D = D_0`$ with clamped child count $`\kappa`$).
 - $`\mathcal{G} := \mathcal{I} \cup \{\mathrm{INF}\} \cup \{T_1(\kappa, h)\}`$. The **parent states** $`\mathcal{P} \subset \mathcal{G}`$ are $`\mathrm{INF}`$ and the inner or $`T_1`$ states with $`k \ge 1`$ (resp. $`\kappa \ge 1`$). The **child states** $`\mathcal{W} \subset \mathcal{G}`$ are $`\mathrm{INF}`$ and the inner or $`T_1`$ states with $`h = 1`$.
-- **Middle and apex domains:**
-  $`\displaystyle H_u := \{(L, k, 1) : 1 \le k \le K_{hu},\ L + k + 1 < D_{hu}\}, \qquad C_u := \{(L, k, h) : 2 \le k \le K_{cu},\ L + k + h < D_{cu}\}.`$
-  Both are subsets of $`\mathcal{I}`$, because $`D_{hu}, D_{cu} \le D_0`$.
+
+• **Middle and apex domains:**
+
+```math
+H_u := \{(L, k, 1) : 1 \le k \le K_{hu},\ L + k + 1 < D_{hu}\}, \qquad C_u := \{(L, k, h) : 2 \le k \le K_{cu},\ L + k + h < D_{cu}\}.
+```
+
+Both are subsets of $`\mathcal{I}`$, because $`D_{hu}, D_{cu} \le D_0`$.
 - **Vertex projection:** $`\pi_f(L, k, h) := \mathrm{VSTAR}_h`$ if $`k > K_F`$, and $`(\min(L, L_F), k, h)`$ otherwise.
 - For $`v \in \mathcal{G}`$ put $`\mathrm{inv}(v) := 1/D_v`$ if $`v \in \mathcal{I}`$, $`\mathrm{inv}(\mathrm{INF}) := 0`$ and $`\mathrm{inv}(T_1(\kappa, h)) := 1/D_0`$.
 
 ### 3.3 Tail interpolation
 For a core vertex $`v`$ define a probability vector $`\mu_v`$ on $`\mathcal{G}`$:
 - if $`D_v < D_0`$, then $`\mu_v := \delta_{s_v}`$;
-- if $`D_v \ge D_0`$, then with $`t_v := D_0/D_v \in (0, 1]`$ and $`\kappa_v := \min(k_v, K_T+1)`$,
-  $`\displaystyle \mu_v := (1 - t_v)\,\delta_{\mathrm{INF}} + t_v\,\delta_{T_1(\kappa_v, h_v)} .`$
+
+• if $`D_v \ge D_0`$, then with $`t_v := D_0/D_v \in (0, 1]`$ and $`\kappa_v := \min(k_v, K_T+1)`$,
+
+```math
+\mu_v := (1 - t_v)\,\delta_{\mathrm{INF}} + t_v\,\delta_{T_1(\kappa_v, h_v)} .
+```
 
 For a tail vertex, $`\iota_v = t_v/D_0`$. That is exactly the $`\mu_v`$-average of $`\mathrm{inv}`$. For an inner vertex, $`\iota_v = \mathrm{inv}(s_v)`$. So in all cases
 ```math
@@ -199,14 +208,7 @@ V(u) := (L_u + \theta_u)\,\Delta^L_u f + b_u\Big(f(\pi_f(s_u^{\mathrm{bud}})) - 
 **Edge term, $`p \to w`$.** Let $`\sigma_p`$ and $`\sigma_w`$ be the kept rates. If $`p`$ is inner, $`\sigma_p := L_p + \iota_w + [s_p \in H_u]\,x_{\mathrm{par}}[s_p] + [s_p \in C_u](k_p - 1)\,x_{cc}[s_p]`$. If $`w`$ is inner, $`\sigma_w := L_w + \iota_p + [s_w \in H_u]\,k_w x_{\mathrm{ch}}[s_w]`$. For a tail end, the kept rate is the full rate ($`\sigma_p := r_p`$, resp. $`\sigma_w := r_w`$). Then
 ```math
 \begin{aligned}
-E(p \to w) :=\;& [p\ \mathrm{inner}](\iota_w - r_{\mathrm{ch}}[s_p])\Delta^L_p f + [w\ \mathrm{inner}](\iota_p - r_{\mathrm{par}}[s_w])\Delta^L_w f \\
-&+ \sigma_p\,\Delta^L_p g + b_p\big(\Delta^B_p g + [s_p^{\mathrm{bud}} \in C_u]\,h_C(s_p^{\mathrm{bud}}; \{w, \mathrm{nb}\})\big) \\
-&+ \sigma_w\,\Delta^L_w g + b_w\big(\Delta^B_w g + [s_w^{\mathrm{bud}} \in H_u]\,h_V(p \to s_w^{\mathrm{bud}} \to \mathrm{nb})\big) \\
-&+ [p\ \mathrm{inner}, h_p = 1, s_p \notin H_u]\big(\iota_{p_p}\Delta^L_p g - A_{pc}[s_p](\iota_{p_p})\big) \\
-&+ [p\ \mathrm{inner}, s_p \notin C_u] \sum_{c \in \mathrm{ch}_K(p) \setminus \{w\}} \big(\iota_c\,\Delta^L_p g - A_{cc}[s_p](\iota_c)\big) \\
-&+ [w\ \mathrm{inner}, s_w \notin H_u] \sum_{c \in \mathrm{ch}_K(w)} \big(\iota_c\,\Delta^L_w g - A_{cp}[s_w](\iota_c)\big) \\
-&+ [w\ \mathrm{inner}, s_w \notin H_u]\,k_w\,A_{pc}[s_w](\iota_p) + [p\ \mathrm{inner}, h_p = 1, s_p \notin H_u]\,A_{cp}[s_p](\iota_w) \\
-&+ [p\ \mathrm{inner}, s_p \notin C_u](k_p - 1)\,A_{cc}[s_p](\iota_w).
+E(p \to w) :=\;& [p\ \mathrm{inner}](\iota_w - r_{\mathrm{ch}}[s_p])\Delta^L_p f + [w\ \mathrm{inner}](\iota_p - r_{\mathrm{par}}[s_w])\Delta^L_w f \\ &+ \sigma_p\,\Delta^L_p g + b_p\big(\Delta^B_p g + [s_p^{\mathrm{bud}} \in C_u]\,h_C(s_p^{\mathrm{bud}}; \{w, \mathrm{nb}\})\big) \\ &+ \sigma_w\,\Delta^L_w g + b_w\big(\Delta^B_w g + [s_w^{\mathrm{bud}} \in H_u]\,h_V(p \to s_w^{\mathrm{bud}} \to \mathrm{nb})\big) \\ &+ [p\ \mathrm{inner}, h_p = 1, s_p \notin H_u]\big(\iota_{p_p}\Delta^L_p g - A_{pc}[s_p](\iota_{p_p})\big) \\ &+ [p\ \mathrm{inner}, s_p \notin C_u] \sum_{c \in \mathrm{ch}_K(p) \setminus \{w\}} \big(\iota_c\,\Delta^L_p g - A_{cc}[s_p](\iota_c)\big) \\ &+ [w\ \mathrm{inner}, s_w \notin H_u] \sum_{c \in \mathrm{ch}_K(w)} \big(\iota_c\,\Delta^L_w g - A_{cp}[s_w](\iota_c)\big) \\ &+ [w\ \mathrm{inner}, s_w \notin H_u]\,k_w\,A_{pc}[s_w](\iota_p) + [p\ \mathrm{inner}, h_p = 1, s_p \notin H_u]\,A_{cp}[s_p](\iota_w) \\ &+ [p\ \mathrm{inner}, s_p \notin C_u](k_p - 1)\,A_{cc}[s_p](\iota_w).
 \end{aligned}
 ```
 The last two lines are the FY pieces this edge **receives**. It gets one $`A_{pc}[s_w](\iota_p)`$ from each path $`p \to w \to c`$ ($`k_w`$ of them), one $`A_{cp}[s_p](\iota_w)`$ from the path $`p_p \to p \to w`$, and one $`A_{cc}[s_p](\iota_w)`$ from each sibling $`c \ne w`$ ($`k_p - 1`$ of them). The two budding terms in the second and third lines are the newborn cherries and paths of $`N_p`$ and $`N_w`$, booked on this edge.
@@ -283,9 +285,14 @@ The bound $`X(t) \lessgtr \sum_c \omega_c(t)\widehat X(c)`$ comes from the follo
 Each line below gives a case of the local expression, the bound used, and the resulting finite inequality. Each finite inequality is checked by the verifier (map in `bracket-motifs-code-map.md`). "Corner" means a table state in $`\mathcal{G}`$; for tail endpoints, $`\mathrm{inv}`$ replaces $`\iota`$ as in (3.1).
 
 **Vertex family $`V(u) \lessgtr \lambda f`$.** Cases by $`\pi_f(s_u)`$:
-- (A) **Inner** ($`D < D_0`$, so $`L < L_F`$). $`V(u)`$ is a fixed rational:
-  $`\displaystyle (L + h r_{\mathrm{par}} + k r_{\mathrm{ch}})\Delta^L f + B(s) \lessgtr \lambda f(s), \qquad B(s) := [L \ge 1]\tfrac{L}{D}\big(f(s^{\mathrm{bud}}) - f(s) + f(\mathrm{nb}) + g(s^{\mathrm{bud}} \to \mathrm{nb})\big).`$
-  When $`s^{\mathrm{bud}}`$ is inner, $`g(s^{\mathrm{bud}} \to \mathrm{nb})`$ is a table entry, since $`s^{\mathrm{bud}}`$ has $`D`$ unchanged.
+
+• (A) **Inner** ($`D < D_0`$, so $`L < L_F`$). $`V(u)`$ is a fixed rational:
+
+```math
+(L + h r_{\mathrm{par}} + k r_{\mathrm{ch}})\Delta^L f + B(s) \lessgtr \lambda f(s), \qquad B(s) := [L \ge 1]\tfrac{L}{D}\big(f(s^{\mathrm{bud}}) - f(s) + f(\mathrm{nb}) + g(s^{\mathrm{bud}} \to \mathrm{nb})\big).
+```
+
+When $`s^{\mathrm{bud}}`$ is inner, $`g(s^{\mathrm{bud}} \to \mathrm{nb})`$ is a table entry, since $`s^{\mathrm{bud}}`$ has $`D`$ unchanged.
 - (B) **Tail with $`L < L_F`$ and $`k \le K_F`$.** Here $`\theta_u = \rho_u \in [0, (h+k)/2]`$, and every other quantity is a fixed rational. $`g(s^{\mathrm{bud}} \to \mathrm{nb})`$ is evaluated exactly at $`t = D_0/D`$, by the verifier's `eval_g_q`. The two inequalities are those with $`r \in \{L, L + (h+k)/2\}`$ in place of $`L + \theta_u`$.
 - (C) **$`L = L_F`$ exactly, $`k \le K_F`$.** This is a tail state because $`D \ge L_F \ge D_0`$. $`\Delta^L f = 0`$, since $`\pi_f`$ clamps $`L_F + 1 \mapsto L_F`$. So $`V = \frac{L_F}{D}(f(\pi_f(L_F - 1, k+1, h)) - f + f(\mathrm{nb}) + g(\cdot \to \mathrm{nb}))`$, a single exact inequality.
 - (D) **$`L \ge L_F + 1`$, $`k \le K_F`$.** $`\Delta^L f = 0`$, and $`f(\pi_f(s^{\mathrm{bud}})) = f(\pi_f(L_F, k+1, h))`$, which is $`\mathrm{VSTAR}_h`$ if $`k = K_F`$. The free quantities are $`b = L/D \in [\frac{L_F+1}{L_F+1+k+h}, 1]`$ and $`t = D_0/D \in (0, \frac{D_0}{L_F+1+k+h}]`$. The expression $`b\cdot(\text{const} + \text{affine}(t))`$ is bilinear in $`(b, t)`$. It is checked at the four corners of the rectangle, which contains every attainable $`(b, t)`$.

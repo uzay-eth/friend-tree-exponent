@@ -46,20 +46,42 @@ There exists a finite constant $`C > 0`$ such that for every $`v \in (0, 1]`$ an
 
 ### Corollary 1 ($`p_X \in L^p([v,\infty))`$ for All $`1 \le p < \infty`$ and Exponential-Orlicz Regularity)
 For every $`v \in (0, 1]`$, set $`C_v := C v^{-\beta}`$. Then:
-1. **(Stretched-exponential superlevel decay):** For every $`H \ge 2`$,
-   $`\displaystyle \mathrm{Leb}\big(\{x \ge v : p_X(x) > H\}\big) \;\le\; \exp\!\left(-\left(\frac{H}{C_v}\right)^{1/\gamma}\right). \qquad\text{(2)}`$
-2. **(All finite $`L^p`$ norms on every $`[v, \infty)`$):** For every $`1 \le p < \infty`$,
-   $`\displaystyle \int_v^\infty p_X(x)^p\,dx \;<\; \infty.`$
-3. **(Exponential-Orlicz integrability):** For every $`0 < \alpha < C_v^{-1/\gamma}`$ and every finite $`R > v`$,
-   $`\displaystyle \int_v^R \exp\!\big(\alpha\, p_X(x)^{1/\gamma}\big)\,dx \;<\; \infty, \qquad \mathbb E\!\left[\mathbf 1_{\{X \ge v\}} \exp\!\big(\alpha\, p_X(X)^{1/\gamma}\big)\right] \;=\; \int_v^\infty p_X(x)\exp\!\big(\alpha\, p_X(x)^{1/\gamma}\big)\,dx \;<\; \infty`$
-   (and the same holds for any strictly smaller positive exponent such as $`2/33`$ or $`1/17`$, for every fixed $`\alpha > 0`$).
+
+1\. **(Stretched-exponential superlevel decay):** For every $`H \ge 2`$,
+
+```math
+\mathrm{Leb}\big(\{x \ge v : p_X(x) > H\}\big) \;\le\; \exp\!\left(-\left(\frac{H}{C_v}\right)^{1/\gamma}\right). \qquad\text{(2)}
+```
+
+2\. **(All finite $`L^p`$ norms on every $`[v, \infty)`$):** For every $`1 \le p < \infty`$,
+
+```math
+\int_v^\infty p_X(x)^p\,dx \;<\; \infty.
+```
+
+3\. **(Exponential-Orlicz integrability):** For every $`0 < \alpha < C_v^{-1/\gamma}`$ and every finite $`R > v`$,
+
+```math
+\int_v^R \exp\!\big(\alpha\, p_X(x)^{1/\gamma}\big)\,dx \;<\; \infty, \qquad \mathbb E\!\left[\mathbf 1_{\{X \ge v\}} \exp\!\big(\alpha\, p_X(X)^{1/\gamma}\big)\right] \;=\; \int_v^\infty p_X(x)\exp\!\big(\alpha\, p_X(x)^{1/\gamma}\big)\,dx \;<\; \infty
+```
+
+(and the same holds for any strictly smaller positive exponent such as $`2/33`$ or $`1/17`$, for every fixed $`\alpha > 0`$).
 
 ### Corollary 2 (Global Borel Regularity and Global $`L^p(0, \infty)`$)
 Combining Theorem 1 with Astra's left-tail upper bound $`\mathbb P(X \le v) \le D v^{1/\mu}`$ ($`v \in (0, 1]`$):
-1. For every Borel set $`A \subset (0, \infty)`$ with $`\delta := |A| \in (0, 1/2]`$,
-   $`\displaystyle \mathbb P(X \in A) \;\le\; (D + C + 1)\, \delta^{\xi_*} \big(\log(1/\delta)\big)^{\gamma \xi_*}. \qquad\text{(3a)}`$
-   Consequently, for every $`\xi \in (0, \xi_*)`$ (in particular $`\xi = 1/19`$, and any admissible $`\xi \in (1/19, \xi_*)`$), there exists $`C_\xi < \infty`$ such that for every Borel set $`A \subset (0, \infty)`$ with $`|A| \le 1`$,
-   $`\displaystyle \mathbb P(X \in A) \;\le\; C_\xi \, |A|^\xi. \qquad\text{(3b)}`$
+
+1\. For every Borel set $`A \subset (0, \infty)`$ with $`\delta := |A| \in (0, 1/2]`$,
+
+```math
+\mathbb P(X \in A) \;\le\; (D + C + 1)\, \delta^{\xi_*} \big(\log(1/\delta)\big)^{\gamma \xi_*}. \qquad\text{(3a)}
+```
+
+Consequently, for every $`\xi \in (0, \xi_*)`$ (in particular $`\xi = 1/19`$, and any admissible $`\xi \in (1/19, \xi_*)`$), there exists $`C_\xi < \infty`$ such that for every Borel set $`A \subset (0, \infty)`$ with $`|A| \le 1`$,
+
+```math
+\mathbb P(X \in A) \;\le\; C_\xi \, |A|^\xi. \qquad\text{(3b)}
+```
+
 2. The full density $`p_X`$ satisfies $`p_X \in L^p(0, \infty)`$ for every $`1 \le p < \frac{1}{1 - \xi_*}`$ (in particular $`p_X \in L^{19/18}(0, \infty)`$, since $`\frac{1}{1 - \xi_*} > 1.0562 > \frac{19}{18} = 1.0555\ldots`$).
 
 ---
@@ -122,11 +144,20 @@ Fix $`K := 24`$.
 1. **(Sharp disjoint core-gadget packing):** Every finite tree $`T`$ with $`C = C(T) \ge 1`$ cores contains $`R \ge C/6`$ (indeed $`R \ge (C + 8)/6`$ for $`C \ge 2`$) **pairwise vertex-disjoint** core blocks $`B_1, \dots, B_R \subset K(T)`$ such that each $`B_j`$ is either:
    - **Type 1:** a singleton $`B_j = \{u_j\}`$ with $`c_{u_j} \le 2`$ and $`L_{u_j} \ge 1`$, or
    - **Type 2:** a triple $`B_j = \{u_j, w_j, x_j\}`$ of three consecutive vertices on a bare path in $`T`$, so $`w_j`$ has degree $`D_{w_j} = 2`$ with exact neighbor set $`N_T(w_j) = \{u_j, x_j\}`$, and $`u_j`$ is bare ($`c_{u_j} = 2, L_{u_j} = 0`$).
-2. **(Independent 7-unit cherry planting):** Start the continuous-time friend tree from $`T_{n_0}`$ at the stopping time $`\tau_{n_0}`$ (the hitting time of size $`n_0`$), and stop at $`T^* := \tau_{n_0} + 7`$. Call a triple $`(v, x, y)`$ of distinct cores in $`T_{T^*}`$ a **good 2-cut cherry** if $`e_1 = (v, x)`$ and $`e_2 = (x, y)`$ are core–core edges of $`T_{T^*}`$ and each of $`v, x, y`$ has at least $`K = 24`$ leaf neighbors in $`T_{T^*}`$. Let $`\mathcal H_{\mathrm{good}}(m_0)`$ be the $`\mathcal F_{T^*}`$-measurable event that $`T_{T^*}`$ contains at least $`m_0`$ pairwise vertex-disjoint good 2-cut cherries. With the explicit constant
-   $`\displaystyle p_* \;:=\; \frac{e^{-17}(1 - e^{-1})(1 - e^{-2})^3}{48}\left(\frac{K+1}{K+2}\right)^2 \big(\mathbb P(\mathrm{Pois}(1) \ge K)\big)^2 \,\mathbb P(\mathrm{Pois}(1) \ge K - 1) \;>\; 0,`$
-   whenever $`m_0 \le \frac{p_*}{12} C_{n_0}`$,
-   $`\displaystyle \mathbb P\big(\mathcal H_{\mathrm{good}}(m_0)^c \;\big|\; \mathcal F_{\tau_{n_0}}\big) \;\le\; \exp\!\left(-\frac{p_*}{48} C_{n_0}\right), \qquad\text{(5)}`$
-   and without conditioning on $`\mathcal H_{\mathrm{good}}(m_0)`$, $`\mathbb E\big[|T_{T^*}|^2 \;\big|\; \mathcal F_{\tau_{n_0}}\big] \le 2 e^{14} n_0^2`$.
+
+2\. **(Independent 7-unit cherry planting):** Start the continuous-time friend tree from $`T_{n_0}`$ at the stopping time $`\tau_{n_0}`$ (the hitting time of size $`n_0`$), and stop at $`T^* := \tau_{n_0} + 7`$. Call a triple $`(v, x, y)`$ of distinct cores in $`T_{T^*}`$ a **good 2-cut cherry** if $`e_1 = (v, x)`$ and $`e_2 = (x, y)`$ are core–core edges of $`T_{T^*}`$ and each of $`v, x, y`$ has at least $`K = 24`$ leaf neighbors in $`T_{T^*}`$. Let $`\mathcal H_{\mathrm{good}}(m_0)`$ be the $`\mathcal F_{T^*}`$-measurable event that $`T_{T^*}`$ contains at least $`m_0`$ pairwise vertex-disjoint good 2-cut cherries. With the explicit constant
+
+```math
+p_* \;:=\; \frac{e^{-17}(1 - e^{-1})(1 - e^{-2})^3}{48}\left(\frac{K+1}{K+2}\right)^2 \big(\mathbb P(\mathrm{Pois}(1) \ge K)\big)^2 \,\mathbb P(\mathrm{Pois}(1) \ge K - 1) \;>\; 0,
+```
+
+whenever $`m_0 \le \frac{p_*}{12} C_{n_0}`$,
+
+```math
+\mathbb P\big(\mathcal H_{\mathrm{good}}(m_0)^c \;\big|\; \mathcal F_{\tau_{n_0}}\big) \;\le\; \exp\!\left(-\frac{p_*}{48} C_{n_0}\right), \qquad\text{(5)}
+```
+
+and without conditioning on $`\mathcal H_{\mathrm{good}}(m_0)`$, $`\mathbb E\big[|T_{T^*}|^2 \;\big|\; \mathcal F_{\tau_{n_0}}\big] \le 2 e^{14} n_0^2`$.
 
 **Proof.**
 *(1) Disjoint packing.* If $`C = 1`$, the sole core $`u_1`$ has $`c_{u_1} = 0`$ and $`L_{u_1} \ge 2`$, giving $`R = 1 \ge 1/6`$. Let $`C \ge 2`$, and let $`K(T)`$ be the core subtree (connected, on $`C`$ vertices). Set
@@ -229,10 +260,18 @@ By a union bound on each cherry, $`\mathbb P(\widetilde F_{v_j} \cup \widetilde 
 ---
 
 ### Lemma 4 (Elementary Polar–Fubini Linear-in-$`|A|`$ Bound on a Single 2-Cut Cherry)
-1. **(Deterministic Polar–Fubini bound on $`\Delta_2`$):** Let $`\mu \in (0, 1)`$ and $`x_1, x_2, x_3 \ge 0`$ with $`M := \max(x_1, x_2, x_3) > 0`$. On the open 2-simplex $`\Delta_2 = \{(u_1, u_2) \in (0, 1)^2 : u_1 + u_2 < 1\}`$ (with $`u_3 := 1 - u_1 - u_2`$), set $`g(u_1, u_2) := x_1 u_1^\mu + x_2 u_2^\mu + x_3 u_3^\mu`$. Then for every Borel set $`A \subset \mathbb R`$,
-   $`\displaystyle \mathrm{Leb}_2\big(\{(u_1, u_2) \in \Delta_2 : g(u_1, u_2) \in A\}\big) \;\le\; \frac{32\pi}{\mu(1 - \mu) M} \, |A|. \qquad\text{(7)}`$
-2. **(Single 2-cut cherry probability bound):** Conditional on $`\mathcal F_{T^*}`$ on $`\mathcal H_{\mathrm{good}}(m_0)`$, for each fixed $`j \in \{1, \dots, m_0\}`$, every $`v > 0`$, and every Borel set $`A \subset [v, \infty)`$,
-   $`\displaystyle \mathbb P\big(X \in A,\; E_j \;\big|\; \mathcal F_{T^*}\big) \;\le\; \frac{96\pi}{\mu(1 - \mu)} \frac{|T_{T^*}|^2}{v} |A|. \qquad\text{(8)}`$
+
+1\. **(Deterministic Polar–Fubini bound on $`\Delta_2`$):** Let $`\mu \in (0, 1)`$ and $`x_1, x_2, x_3 \ge 0`$ with $`M := \max(x_1, x_2, x_3) > 0`$. On the open 2-simplex $`\Delta_2 = \{(u_1, u_2) \in (0, 1)^2 : u_1 + u_2 < 1\}`$ (with $`u_3 := 1 - u_1 - u_2`$), set $`g(u_1, u_2) := x_1 u_1^\mu + x_2 u_2^\mu + x_3 u_3^\mu`$. Then for every Borel set $`A \subset \mathbb R`$,
+
+```math
+\mathrm{Leb}_2\big(\{(u_1, u_2) \in \Delta_2 : g(u_1, u_2) \in A\}\big) \;\le\; \frac{32\pi}{\mu(1 - \mu) M} \, |A|. \qquad\text{(7)}
+```
+
+2\. **(Single 2-cut cherry probability bound):** Conditional on $`\mathcal F_{T^*}`$ on $`\mathcal H_{\mathrm{good}}(m_0)`$, for each fixed $`j \in \{1, \dots, m_0\}`$, every $`v > 0`$, and every Borel set $`A \subset [v, \infty)`$,
+
+```math
+\mathbb P\big(X \in A,\; E_j \;\big|\; \mathcal F_{T^*}\big) \;\le\; \frac{96\pi}{\mu(1 - \mu)} \frac{|T_{T^*}|^2}{v} |A|. \qquad\text{(8)}
+```
 
 **Proof.**
 *(1) Polar–Fubini on $`\Delta_2`$.* Permuting $`(u_1, u_2, u_3)`$ acts on $`(u_1, u_2) \in \Delta_2`$ by affine maps of Jacobian determinant $`\pm 1`$, preserving $`\mathrm{Leb}_2`$. Rescaling $`A`$ by $`1/M`$ (which divides $`|A|`$ by $`M`$), assume without loss of generality that $`1 = x_1 \ge x_2 \ge x_3 \ge 0`$. Set $`p := \frac{1}{1 - \mu} > 1`$, $`S := 1 + x_2^p + x_3^p \in [1, 3]`$, and $`u_i^* := x_i^p / S`$ ($`i = 1, 2, 3`$), so $`u^* \in \overline{\Delta_2}`$ (with $`u_i^* = 0 \iff x_i = 0`$). By Hölder's inequality with dual exponents $`1/\mu`$ and $`p`$,
@@ -244,8 +283,12 @@ Introduce polar coordinates $`(t, \theta)`$ in $`\mathbb R^2`$ centered at $`(u_
 -\psi_\theta''(s) \;=\; \mu(1 - \mu)\sum_{i=1}^3 x_i u_i(s)^{\mu - 2} v_i^2.
 ```
 - If $`|v_1| \ge 1/4`$: since $`x_1 = 1`$ and $`u_1(s) \in (0, 1)`$ with $`\mu - 2 < 0`$, we have $`-\psi_\theta''(s) \ge \mu(1 - \mu) v_1^2 \ge \frac{\mu(1 - \mu)}{16}`$.
-- If $`|v_1| < 1/4`$ (and $`T_\theta > 0`$): then $`|v_2| = \sqrt{1 - v_1^2} > 3/4`$, and $`v_3 = -v_1 - v_2`$ has the **opposite sign** to $`v_2`$ with $`|v_3| \ge |v_2| - |v_1| > 1/2`$. Thus exactly one index $`k \in \{2, 3\}`$ satisfies $`v_k < 0`$, with $`|v_k| > 1/2`$. Because $`T_\theta > 0`$, we have $`0 < u_k(s) = u_k^* + s v_k < u_k^* \le 1`$ on $`(0, T_\theta)`$, forcing $`u_k^* > 0`$ and $`x_k = (S u_k^*)^{1-\mu} > 0`$. Hence
-  $`\displaystyle -\psi_\theta''(s) \;\ge\; \mu(1 - \mu) x_k u_k(s)^{\mu - 2} v_k^2 \;>\; \mu(1 - \mu) S^{1-\mu} (u_k^*)^{1-\mu} (u_k^*)^{\mu - 2} v_k^2 \;=\; \frac{\mu(1 - \mu) S^{1-\mu}}{u_k^*} v_k^2 \;>\; \frac{\mu(1 - \mu)}{4}.`$
+
+• If $`|v_1| < 1/4`$ (and $`T_\theta > 0`$): then $`|v_2| = \sqrt{1 - v_1^2} > 3/4`$, and $`v_3 = -v_1 - v_2`$ has the **opposite sign** to $`v_2`$ with $`|v_3| \ge |v_2| - |v_1| > 1/2`$. Thus exactly one index $`k \in \{2, 3\}`$ satisfies $`v_k < 0`$, with $`|v_k| > 1/2`$. Because $`T_\theta > 0`$, we have $`0 < u_k(s) = u_k^* + s v_k < u_k^* \le 1`$ on $`(0, T_\theta)`$, forcing $`u_k^* > 0`$ and $`x_k = (S u_k^*)^{1-\mu} > 0`$. Hence
+
+```math
+-\psi_\theta''(s) \;\ge\; \mu(1 - \mu) x_k u_k(s)^{\mu - 2} v_k^2 \;>\; \mu(1 - \mu) S^{1-\mu} (u_k^*)^{1-\mu} (u_k^*)^{\mu - 2} v_k^2 \;=\; \frac{\mu(1 - \mu) S^{1-\mu}}{u_k^*} v_k^2 \;>\; \frac{\mu(1 - \mu)}{4}.
+```
 
 In both cases, $`-\psi_\theta''(s) \ge \frac{\mu(1 - \mu)}{16}`$ on $`(0, T_\theta)`$. Integrating from $`0`$ to $`t \in (0, T_\theta)`$ using $`\psi_\theta'(0+) \le 0`$ gives
 ```math
@@ -338,8 +381,13 @@ v \;:=\; \min\!\Big\{1,\; F(\delta)^{\frac{1}{\beta + 1/\mu}}\Big\} \;\in\; (0, 
 Because $`x \mapsto F(x)`$ is not monotone near $`x = 1/2`$, before applying Theorem 1 to $`A_v := A \cap [v, \infty)`$ (which has $`|A_v| \le \delta`$), pad $`A_v`$ to a Borel superset $`\widetilde A_v \subset [v, \infty)`$ of **exact** Lebesgue measure $`|\widetilde A_v| = \delta`$: since $`\mathrm{Leb}([v, \infty) \setminus A_v) = \infty`$, the continuous function $`t \mapsto \mathrm{Leb}([v, t] \setminus A_v)`$ attains $`\delta - |A_v| \ge 0`$ at some $`t_* \ge v`$, and $`\widetilde A_v := A_v \cup ([v, t_*] \setminus A_v) \subset [v, \infty)`$ satisfies $`A_v \subseteq \widetilde A_v`$ and $`|\widetilde A_v| = \delta \in (0, 1/2]`$.
 
 Using Astra's left tail $`\mathbb P(X < v) \le D v^{1/\mu}`$ and Theorem 1 on $`\widetilde A_v`$:
-- if $`v < 1`$, then $`v = F(\delta)^{\frac{1}{\beta + 1/\mu}}`$ satisfies $`v^{1/\mu} = v^{-\beta} F(\delta) = F(\delta)^{\xi_*} = \delta^{\xi_*} (\log(1/\delta))^{\gamma \xi_*}`$, giving
-  $`\displaystyle \mathbb P(X \in A) \;\le\; \mathbb P(X < v) + \mathbb P(X \in \widetilde A_v) \;\le\; (D + C)\,\delta^{\xi_*} \big(\log(1/\delta)\big)^{\gamma \xi_*};`$
+
+• if $`v < 1`$, then $`v = F(\delta)^{\frac{1}{\beta + 1/\mu}}`$ satisfies $`v^{1/\mu} = v^{-\beta} F(\delta) = F(\delta)^{\xi_*} = \delta^{\xi_*} (\log(1/\delta))^{\gamma \xi_*}`$, giving
+
+```math
+\mathbb P(X \in A) \;\le\; \mathbb P(X < v) + \mathbb P(X \in \widetilde A_v) \;\le\; (D + C)\,\delta^{\xi_*} \big(\log(1/\delta)\big)^{\gamma \xi_*};
+```
+
 - if $`v = 1`$, then $`F(\delta) \ge 1`$, so $`F(\delta)^{\xi_*} \ge 1`$ and trivially $`\mathbb P(X \in A) \le 1 \le \delta^{\xi_*} (\log(1/\delta))^{\gamma \xi_*}`$.
 
 This proves (3a). For every $`\xi \in (0, \xi_*)`$, absorbing $`(\log(1/\delta))^{\gamma \xi_*}`$ into $`\delta^{\xi_* - \xi}`$ (using absolute continuity for $`\delta = 0`$, and $`\mathbb P(X \in A) \le 1 \le 2^\xi |A|^\xi`$ for $`\delta \in (1/2, 1]`$) proves (3b). Finally, for $`H \ge 1`$, $`E_H := \{x > 0 : p_X(x) > H\}`$ has $`|E_H| \le 1/H \le 1`$, so $`H |E_H| \le C_\xi |E_H|^\xi`$ yields $`|E_H| \le (C_\xi / H)^{1/(1-\xi)}`$ (trivially if $`|E_H| = 0`$). Using $`y^p \le y + \int_1^\infty p H^{p-1} \mathbf 1_{\{y > H\}}\,dH`$ ($`y \ge 0, p \ge 1`$) and Tonelli yields $`p_X \in L^p(0, \infty)`$ for every $`1 \le p < \frac{1}{1 - \xi}`$, and hence for every $`1 \le p < \frac{1}{1 - \xi_*}`$. $`\square`$

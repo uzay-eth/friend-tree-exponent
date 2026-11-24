@@ -58,7 +58,7 @@ bash "$runner" gold2-build "$HOME/neon2-work/gold2"
 bash "$runner" gold2-check "$HOME/neon2-work/gold2" > gold2-replay.out
 ```
 
-Per side, gold1 writes 1.59 GB and took about 8 minutes to build on the original setup; gold2 writes 6.35 GB and took about 25 minutes per side. The combiner can need about 3.5 GB (gold1) or 12.5 GB (gold2) peak RAM, plus enough disk for both files. A rebuild and a check both run lower and upper sequentially. For the published bracket use the exact rational endpoints in the matched receipt, not the nominal header exponents. The aborted gold3/gold4 investigations are not certificates.
+Per side, gold1 writes 1.59 GB and took about 8 minutes to build on the original setup; gold2 writes 6.35 GB and took about 25 minutes per side. For the complete public pair command, allow 6 GiB RAM for gold1 and 20 GiB for gold2, plus disk for both files. The combined process-tree RSS exceeded the largest individual process. [Timed release rebuilds and replays](../../verify/gold/RESULTS.md). A rebuild and a check both run lower and upper sequentially. For the published bracket use the exact rational endpoints in the matched receipt, not the nominal header exponents. The aborted gold3/gold4 investigations are not certificates.
 
 To verify a different quintet candidate without requiring historical identity, use the original checker directly (its output applies only to the supplied snapshots):
 
@@ -75,7 +75,9 @@ bash "$runner" marginals-build "$HOME/neon2-work/marginals"
 bash "$runner" marginals-check "$HOME/neon2-work/marginals" > marginals-replay.out
 ```
 
-The marginal builder takes `high ID SIDE 565713486333 1000000000000 565736986679 1000000000000 OUT` for `ID=1..8` and `SIDE=lower,upper`; the wrapper builds all 16 without changing the original exponent interval. Plan for at least 6.7 GB of output and roughly 1.5 GB peak RAM at replay; the original build took roughly 1.5 minutes per file. The builder's secant/optimization loop chooses each nominal observable threshold; the verifier, not the optimizer, supplies rigorous margins across both endpoints. If a fresh gold2 result does not imply the original outward interval, it does not by itself discharge the numerical premise of the listed marginal bounds. The default quick run exercises a tiny pair for observable 1; this verifies the build-to-check route and passes the bracket as a premise, but does not establish that the pinned `high` builder reproduces the sixteen historical digests or intervals.
+The [timed clean `high` rebuild and exact replay](../../verify/neon2/MARGINALS.md) matched all 16 historical SHA-256 digests and reproduced the full receipt byte for byte. Use the recorded single-thread settings to reproduce that run. The snapshots total 6.61 GB; the strict replay took about 2.5 minutes and GNU `time` reported 1,658,036 KiB peak RSS (not summed across concurrent processes).
+
+The marginal builder takes `high ID SIDE 565713486333 1000000000000 565736986679 1000000000000 OUT` for `ID=1..8` and `SIDE=lower,upper`. Its optimizer chooses each nominal threshold; the exact verifier supplies rigorous margins at both exponent endpoints. The check takes the original outward exponent interval as a premise. A fresh gold2 interval that does not imply it does not discharge that premise. The default quick run exercises only a tiny pair for observable 1, not the production receipt.
 
 ## Diagnostic dead ends
 

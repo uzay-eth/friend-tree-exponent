@@ -16,19 +16,30 @@ All claims, intermediate lemmas, couplings, constants, parameter schedules, expl
 
 ### 1. Setup, Parameters, and Schedule (Section 1, eqs. (1)–(2))
 - **Preconditions**: The interval starts immediately after an existing core $`p`$ promotes one of its leaves $`v`$, so $`v`$ has degree $`2`$ (edge $`pv`$ plus one leaf), $`p`$ has degree $`\ge 2`$, and both endpoints remain core forever. Thus $`a_x(u) = 1/D_v(x_{u-}) \le 1/2`$ and $`b_y(u) = 1/D_p(y_{u-}) \le 1/2`$ hold permanently. (The separate founding-edge transition $`T_2 \to T_3`$, where $`p`$ has degree $`1`$ and $`b_y = 1 > 1/2`$, is explicitly excluded from (1) and handled in Section 8.)
-- **Parameter constraints**: For integer $`j \ge 4`$ with $`d = B = j`$, $`J = 2j`$, $`H = j^2`$, $`\kappa = 1 - 1/j`$, $`b = 2j`$, $`K = \max(1, \lceil j c_d \rceil)`$, $`M = K + 1 + \lceil j(z-1)K \rceil`$:
-  - $`d \ge 4 \ge 3`$, $`J \ge 8`$ even, $`B, H \ge 4 \ge 2`$, $`K \ge 1`$, $`M > K`$, $`s = 1 - 1/(2j) > 1 - 1/j = \kappa > 0`$.
-  - $`V = d\gamma + c_d/K + (z-1)K/M \le 1 + 1/j + 1/j = 1 + 2/j`$, so $`V/d \le 1/j + 2/j^2`$.
-  - Summing $`\Lambda = 1/J + (1-\kappa)/2 + V/d + 2/d + \gamma + \delta`$:
-    $`\displaystyle \Lambda \le \frac{1}{2j} + \frac{1}{2j} + \left(\frac{1}{j} + \frac{2}{j^2}\right) + \frac{2}{j} + \frac{1}{j} + \left(\frac{1}{j} - \frac{1}{j^2}\right) = \frac{6}{j} + \frac{1}{j^2} < \frac{6}{j} + \frac{2}{j^2}.`$
-  - At fixed $`j`$, $`A(t) = O_j((2+t)^{J/2}(t+\gamma^{-1}))`$, so $`\log A(t) = O_j(\log(2+t))`$.
+
+• **Parameter constraints**: For integer $`j \ge 4`$ with $`d = B = j`$, $`J = 2j`$, $`H = j^2`$, $`\kappa = 1 - 1/j`$, $`b = 2j`$, $`K = \max(1, \lceil j c_d \rceil)`$, $`M = K + 1 + \lceil j(z-1)K \rceil`$:
+- $`d \ge 4 \ge 3`$, $`J \ge 8`$ even, $`B, H \ge 4 \ge 2`$, $`K \ge 1`$, $`M > K`$, $`s = 1 - 1/(2j) > 1 - 1/j = \kappa > 0`$.
+- $`V = d\gamma + c_d/K + (z-1)K/M \le 1 + 1/j + 1/j = 1 + 2/j`$, so $`V/d \le 1/j + 2/j^2`$.
+
+◦ Summing $`\Lambda = 1/J + (1-\kappa)/2 + V/d + 2/d + \gamma + \delta`$:
+
+```math
+\Lambda \le \frac{1}{2j} + \frac{1}{2j} + \left(\frac{1}{j} + \frac{2}{j^2}\right) + \frac{2}{j} + \frac{1}{j} + \left(\frac{1}{j} - \frac{1}{j^2}\right) = \frac{6}{j} + \frac{1}{j^2} < \frac{6}{j} + \frac{2}{j^2}.
+```
+
+- At fixed $`j`$, $`A(t) = O_j((2+t)^{J/2}(t+\gamma^{-1}))`$, so $`\log A(t) = O_j(\log(2+t))`$.
 
 ### 2. Joint Path Density Across the Cut (Section 2, eq. (3))
 - Projecting onto the cut-labeled state space $`(X, Y)`$ (rooted core trees on each side with newly promoted cores labeled by promotion order separately on each side, and leaf counts $`L_w`$ per core) is Markovian with zero symmetry/collision factors: all transitions from any state produce distinct next states, and no jump alters both $`X`$ and $`Y`$.
 - Total intrinsic exit rate on the $`v`$-side is $`\Lambda_{\mathrm{int}}(x) = |V(x)| - a_x`$, and on the $`p`$-side is $`\Lambda_{\mathrm{ext}}(y) = |V(y)| - b_y`$, so the coupled exit rate is $`\Lambda_{\mathrm{int}}(x) + b_y + \Lambda_{\mathrm{ext}}(y) + a_x = |V(x)| + |V(y)|`$, matching the exact friend-tree generator.
-- Merging $`m`$ interior jumps and $`n`$ exterior jumps over all $`\binom{m+n}{m}`$ interleavings factors the joint path measure on the product simplex into
-  $`\displaystyle I(x)\,dx \; Q^{a_x}(dy) \; e^{-\int_0^t b_y(u)\,du} \prod_{u \in G(x)} [r_x(u) + b_y(u)],`$
-  where $`Q^{a_x}(dy)`$ is the normalized non-explosive prescribed-input exterior law (total birth rate $`\le |V(y)| + 1/2 < |V(y)| + 1`$). Tonelli over $`(m, n)`$ gives (3) on the full path space with no conditioning of the true exterior on $`x`$.
+
+• Merging $`m`$ interior jumps and $`n`$ exterior jumps over all $`\binom{m+n}{m}`$ interleavings factors the joint path measure on the product simplex into
+
+```math
+I(x)\,dx \; Q^{a_x}(dy) \; e^{-\int_0^t b_y(u)\,du} \prod_{u \in G(x)} [r_x(u) + b_y(u)],
+```
+
+where $`Q^{a_x}(dy)`$ is the normalized non-explosive prescribed-input exterior law (total birth rate $`\le |V(y)| + 1/2 < |V(y)| + 1`$). Tonelli over $`(m, n)`$ gives (3) on the full path space with no conditioning of the true exterior on $`x`$.
 - **Exact small-tree check**: On the 5-vertex cut seed ($`x_0`$: $`v`$ + 1 leaf; $`y_0`$: $`p`$ + core neighbor $`u`$ + 1 leaf), integrating eq. (3) via Gauss-Legendre quadrature and exact piecewise uniformization of killed $`Q^{a_x}`$ agrees with the exact killed full coupled CTMC across all 16 interior states to $`L_\infty`$ error `3.181e-15`, and both agree with independent vertex-ringing Monte Carlo. Planting errors (dropping cut slot, omitting $`e^{-\int b_y}`$, omitting core children from $`r_x`$) breaks the identity by `6.0e-3` to `1.7e-1`.
 
 ### 3. Exterior Estimate for One Late Arrow (Section 3, eq. (4))
@@ -70,13 +81,19 @@ All claims, intermediate lemmas, couplings, constants, parameter schedules, expl
 - For any finite tree $`T`$ with $`C(T) \ge 1`$, core ancestry partitions all cores born in $`(0, t]`$ into disjoint branches rooted at direct children of initial cores. Strong Markov at each direct promotion time, (1), and compensation with direct promotion intensity $`L_u/D_u \le 1`$ per initial core yield (10).
 - Deterministic iteration from $`T_3`$ plus $`F(u) \le \mathbb E_{T_3} C(u)`$ gives $`\mu \le t^{-1}\log U(t)`$.
 - From $`F'(u) \le F(u) + 2 e^{-2u}`$, multiplying by $`e^{-u}`$ and integrating over $`[t, t+1]`$ gives $`F(t+1) \le e(F(t) + \frac{2}{3} e^{-2t}) \le e(F(t) + 1)`$ (valid for all $`t \ge 0`$). Also $`F(t) \ge 1 - e^{-2t}`$ (and in fact $`F(t) \ge t`$ since instantaneous promotion rate $`\ge 1`$ on every tree, including $`T_2`$ where it equals $`2`$).
-- **Section 9 checks**:
-  - Eq. (11) follows directly from (2), (10), $`1 \le c^{-1} F(t)`$, and $`F(t+1) \le e(1 + c^{-1}) F(t)`$ for $`t \ge 1`$.
-  - Eq. (12) matches Proposition 6.2 and Lemma 5.1 of `proofs/existence.md` with $`M_0 = j, \epsilon_0 = e^{-j}, k = \lceil 6je^j \rceil, h = k+1`$: for $`x = t/(jk) \ge 2`$, $`1 + \log(6x) \le 2x`$ holds strictly (at $`x=2`$: $`3.4849 \le 4`$, derivative $`2 - 1/x \ge 3/2 > 0`$); $`\theta_k(t) \le 1`$; $`F(t) \ge t \ge 2(k+1)`$ makes the Proposition 6.2 bracket $`\ge F(t)/2`$; and $`f(t) \le 1 + \log 2 < 2`$ for $`t \ge 1`$ gives $`f(t) - \mu \le \eta_j + \frac{2h + \log(8k/p_j)}{t}`$ (and $`\le 2`$ trivially).
-  - Exact algebraic derivation confirms the closed-form negative-binomial first-moment tail (line 197):
-    $`\displaystyle \sum_{n=N+1}^\infty n(n-1) q^2 (1-q)^{n-2} = (1-q)^{N-1}\! \left[N(N+1)q + 2(N+1)(1-q) + 2(1-q)^2/q\right],`$
-    verified with exact `Fraction` equality across $`(q, N)`$.
-  - Asymptotic rate $`|t^{-1}\log F(t) - \mu| = O(\log\log t / \log t)`$: for $`j = \lfloor \log t / (4\log\log t) \rfloor`$, $`\log A_j(t) \le \exp(j\log j + O(j)) + O(j\log t) \le t^{1/4 + o(1)}`$, while $`2h + \log(8k/p_j) = \exp(2j + O(\log j)) = t^{o(1)}`$ and $`2jk = t^{o(1)} \le t`$.
+
+• **Section 9 checks**:
+- Eq. (11) follows directly from (2), (10), $`1 \le c^{-1} F(t)`$, and $`F(t+1) \le e(1 + c^{-1}) F(t)`$ for $`t \ge 1`$.
+- Eq. (12) matches Proposition 6.2 and Lemma 5.1 of `proofs/existence.md` with $`M_0 = j, \epsilon_0 = e^{-j}, k = \lceil 6je^j \rceil, h = k+1`$: for $`x = t/(jk) \ge 2`$, $`1 + \log(6x) \le 2x`$ holds strictly (at $`x=2`$: $`3.4849 \le 4`$, derivative $`2 - 1/x \ge 3/2 > 0`$); $`\theta_k(t) \le 1`$; $`F(t) \ge t \ge 2(k+1)`$ makes the Proposition 6.2 bracket $`\ge F(t)/2`$; and $`f(t) \le 1 + \log 2 < 2`$ for $`t \ge 1`$ gives $`f(t) - \mu \le \eta_j + \frac{2h + \log(8k/p_j)}{t}`$ (and $`\le 2`$ trivially).
+
+◦ Exact algebraic derivation confirms the closed-form negative-binomial first-moment tail (line 197):
+
+```math
+\sum_{n=N+1}^\infty n(n-1) q^2 (1-q)^{n-2} = (1-q)^{N-1}\! \left[N(N+1)q + 2(N+1)(1-q) + 2(1-q)^2/q\right],
+```
+
+verified with exact `Fraction` equality across $`(q, N)`$.
+- Asymptotic rate $`|t^{-1}\log F(t) - \mu| = O(\log\log t / \log t)`$: for $`j = \lfloor \log t / (4\log\log t) \rfloor`$, $`\log A_j(t) \le \exp(j\log j + O(j)) + O(j\log t) \le t^{1/4 + o(1)}`$, while $`2h + \log(8k/p_j) = \exp(2j + O(\log j)) = t^{o(1)}`$ and $`2jk = t^{o(1)} \le t`$.
 
 ---
 

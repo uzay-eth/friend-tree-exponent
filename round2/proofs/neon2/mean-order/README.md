@@ -44,13 +44,26 @@ m_u - m_{u+1} \;\ge\; \frac{2493671}{62500000\,(u-1)u(u+1)} \qquad (\forall\, u 
 ### Lemma 1 (Yule-Process Embedding & Scale-Invariant Local Expectation $`M(T', v)`$)
 Let $`(T_t)_{t \ge 0}`$ be the continuous-time friend tree started from any finite tree $`T'`$ of size $`N \ge 2`$ (each vertex $`u \in T_t`$ carries an independent rate-1 Poisson clock; on a ring, $`u`$ picks a uniform neighbor $`x \sim u`$ and attaches a new leaf to $`x`$). Then:
 1. For every $`v \in T'`$, the discrete degree share $`D_v(m)/m`$ ($`m \ge N`$) is a bounded nonnegative supermartingale, hence converges a.s. and in $`L^1`$ to $`Z_v \in [0, 1]`$.
-2. Defining the continuous-time local expected amplitude
-   $`\displaystyle M(T', v) \;:=\; \lim_{t \to \infty} e^{-t}\,\mathbb E_{T'}[D_v(t)], \qquad\text{(3)}`$
-   we have the exact scale-invariant identity
-   $`\displaystyle M(T', v) \;=\; N\,\mathbb E_{T'}[Z_v] \;\ge\; 0, \qquad\text{(4)}`$
-   and $`e^{-t} M(T_t, v) = \mathbb E_{T'}[W_N Z_v \mid \mathcal F_t]`$ is a closed (uniformly integrable) Doob martingale on $`[0, \infty]`$ with terminal value $`W_N Z_v`$ ($`W_N = \lim_{t\to\infty} e^{-t} |T_t| \sim \mathrm{Gamma}(N, 1)`$).
-3. For every $`T'`$ and every vertex $`v \in T'`$ with degree $`D_v \ge 1`$ and leaf-neighbor count $`L_v \ge 0`$,
-   $`\displaystyle (L_v - 1)_+ \;\le\; M(T', v) \;\le\; D_v. \qquad\text{(5)}`$
+
+2\. Defining the continuous-time local expected amplitude
+
+```math
+M(T', v) \;:=\; \lim_{t \to \infty} e^{-t}\,\mathbb E_{T'}[D_v(t)], \qquad\text{(3)}
+```
+
+we have the exact scale-invariant identity
+
+```math
+M(T', v) \;=\; N\,\mathbb E_{T'}[Z_v] \;\ge\; 0, \qquad\text{(4)}
+```
+
+and $`e^{-t} M(T_t, v) = \mathbb E_{T'}[W_N Z_v \mid \mathcal F_t]`$ is a closed (uniformly integrable) Doob martingale on $`[0, \infty]`$ with terminal value $`W_N Z_v`$ ($`W_N = \lim_{t\to\infty} e^{-t} |T_t| \sim \mathrm{Gamma}(N, 1)`$).
+
+3\. For every $`T'`$ and every vertex $`v \in T'`$ with degree $`D_v \ge 1`$ and leaf-neighbor count $`L_v \ge 0`$,
+
+```math
+(L_v - 1)_+ \;\le\; M(T', v) \;\le\; D_v. \qquad\text{(5)}
+```
 
 **Proof.**
 At discrete size $`m`$, vertex $`v`$ gains a leaf with probability $`r_{T_m}(v)/m`$, where $`r_T(v) := \sum_{u \sim v} 1/D_T(u) \le D_T(v)`$. Hence $`\mathbb E[D_v(m+1) \mid T_m] = D_v(m) + r_{T_m}(v)/m \le \frac{m+1}{m} D_v(m)`$, so $`D_v(m)/m \in [0, 1]`$ is a bounded supermartingale and converges a.s. and in $`L^1`$ to $`Z_v`$.
@@ -86,9 +99,14 @@ Write $`a = n + 1`$ and $`b = n + 2`$. At step $`n \to n + 1`$, $`a`$ attaches t
 1. $`b`$ attaches to $`a`$ (only possible when $`x`$ rings and selects $`a`$, probability $`\frac{1}{(n+1)(D_x+1)}`$): contributes $`\frac{r_T(x)}{n(n+1)(D_x+1)} \Delta_{\mathrm{path}}(T, x)`$.
 2. $`b`$ attaches to $`x`$: $`a`$ and $`b`$ are twin leaves of $`x`$, so $`M(T_{n+2}, a) - M(T_{n+2}, b) = 0`$ by graph symmetry.
 3. $`b`$ attaches to $`y \in T \setminus \{x\}`$ with $`y \not\sim x`$: $`r_{T'}(y) = r_T(y)`$, so $`P(a \to x, b \to y) = \frac{r_T(x)r_T(y)}{n(n+1)} = P(a \to y, b \to x)`$ and the opposite assignments cancel identically.
-4. $`b`$ attaches to $`y \sim x`$ in $`T`$: incrementing $`D_x \to D_x + 1`$ changes $`r_{T'}(y)`$ to $`r_T(y) - \frac{1}{D_x} + \frac{1}{D_x+1} = r_T(y) - \frac{1}{D_x(D_x+1)}`$ (while leaf $`a`$ is not adjacent to $`y`$). Pairing $`(a \to x, b \to y)`$ with $`(a \to y, b \to x)`$ gives the exact net signed probability
-   $`\displaystyle \frac{r_T(x)\big(r_T(y) - \frac{1}{D_x(D_x+1)}\big) - r_T(y)\big(r_T(x) - \frac{1}{D_y(D_y+1)}\big)}{n(n+1)} \;=\; \frac{1}{n(n+1)}\left[\frac{r_T(y)}{D_y(D_y+1)} - \frac{r_T(x)}{D_x(D_x+1)}\right],`$
-   proving (6).
+
+4\. $`b`$ attaches to $`y \sim x`$ in $`T`$: incrementing $`D_x \to D_x + 1`$ changes $`r_{T'}(y)`$ to $`r_T(y) - \frac{1}{D_x} + \frac{1}{D_x+1} = r_T(y) - \frac{1}{D_x(D_x+1)}`$ (while leaf $`a`$ is not adjacent to $`y`$). Pairing $`(a \to x, b \to y)`$ with $`(a \to y, b \to x)`$ gives the exact net signed probability
+
+```math
+\frac{r_T(x)\big(r_T(y) - \frac{1}{D_x(D_x+1)}\big) - r_T(y)\big(r_T(x) - \frac{1}{D_y(D_y+1)}\big)}{n(n+1)} \;=\; \frac{1}{n(n+1)}\left[\frac{r_T(y)}{D_y(D_y+1)} - \frac{r_T(x)}{D_x(D_x+1)}\right],
+```
+
+proving (6).
 
 For (7): since $`M \ge 0`$, expanding each unordered edge term in (6) and dropping the two nonnegative cross terms $`\frac{r_T(y)}{D_y(D_y+1)} M(T_{x,y}, a_x) \ge 0`$ and $`\frac{r_T(x)}{D_x(D_x+1)} M(T_{x,y}, a_y) \ge 0`$ yields
 ```math
@@ -102,15 +120,23 @@ Regrouping over all vertices $`x \in T`$ (each $`x`$ has $`D_x`$ incident edges 
 ### Lemma 3 (Six Exact Finite-State Local Martingales — Zero-Float Verification)
 Fix integer cutoffs $`D_M = 40`$, $`K = 14`$, $`D_{x,\max} = 8`$, and scale $`S = 10^9`$. The standalone pure-`Fraction` script `cert_mean_order.py` constructs and independently verifies six integer-tick tables (divided by $`S`$) satisfying exact boundary and generator-drift inequalities at all extreme external rates:
 
-1. **1-vertex core bounds $`v(D, L)`$ and $`w(D, L)`$ ($`2 \le D \le D_M, 0 \le L \le D`$):**
-   For any core vertex $`u`$ in any tree $`T'`$, its degree $`D_u`$ and leaf count $`L_u`$ jump only via leaf gain $`(D, L) \to (D+1, L+1)`$ at rate $`r_u \in [L, L + (D - L)/2]`$ (since each of the $`D - L`$ core neighbors has degree $`\ge 2`$) and leaf promotion $`(D, L) \to (D, L-1)`$ at rate $`L/D`$. On $`\tau := \inf\{t \ge 0 : D_u(t) = D_M + 1\}`$, on $`\{\tau = \infty\}`$ we have $`D_u(t) \le D_M`$ for all $`t`$, hence $`Z_u = 0`$ a.s. and $`e^{-t} v, e^{-t} w \to 0`$. At $`D = D_M + 1`$, $`v(D_M+1, L) \le (L-1)_+ \le M(T_\tau, u) \le D_M + 1 \le w(D_M+1, L)`$ by Lemma 1 eq. (5). Since $`e^{-t} M(T_t, u)`$ is a closed Doob martingale and $`e^{-t} v(D_u(t), L_u(t))`$ (resp. $`e^{-t} w(D_u(t), L_u(t))`$) is a bounded submartingale (resp. supermartingale) on $`[0, \tau]`$, optional stopping gives
-   $`\displaystyle v(D_u, L_u) \;\le\; M(T', u) \;\le\; w(D_u, L_u) \qquad (\forall\, 2 \le D_u \le D_M,\; 0 \le L_u \le D_u).`$
-   In particular, $`v(2, 2) = \frac{1187553139}{1000000000}`$ and $`w(2, 1) = \frac{639419937}{500000000} \approx 1.27884`$.
+1\. **1-vertex core bounds $`v(D, L)`$ and $`w(D, L)`$ ($`2 \le D \le D_M, 0 \le L \le D`$):**
+For any core vertex $`u`$ in any tree $`T'`$, its degree $`D_u`$ and leaf count $`L_u`$ jump only via leaf gain $`(D, L) \to (D+1, L+1)`$ at rate $`r_u \in [L, L + (D - L)/2]`$ (since each of the $`D - L`$ core neighbors has degree $`\ge 2`$) and leaf promotion $`(D, L) \to (D, L-1)`$ at rate $`L/D`$. On $`\tau := \inf\{t \ge 0 : D_u(t) = D_M + 1\}`$, on $`\{\tau = \infty\}`$ we have $`D_u(t) \le D_M`$ for all $`t`$, hence $`Z_u = 0`$ a.s. and $`e^{-t} v, e^{-t} w \to 0`$. At $`D = D_M + 1`$, $`v(D_M+1, L) \le (L-1)_+ \le M(T_\tau, u) \le D_M + 1 \le w(D_M+1, L)`$ by Lemma 1 eq. (5). Since $`e^{-t} M(T_t, u)`$ is a closed Doob martingale and $`e^{-t} v(D_u(t), L_u(t))`$ (resp. $`e^{-t} w(D_u(t), L_u(t))`$) is a bounded submartingale (resp. supermartingale) on $`[0, \tau]`$, optional stopping gives
 
-2. **Leaf upper bound $`U(d)`$ ($`2 \le d \le D_M + 1`$):**
-   Let $`a`$ be a leaf attached to a core vertex $`x`$ of degree $`d \ge 2`$ in any tree $`T'`$, and let $`\tau_a := \inf\{t : D_a(t) = 2\}`$. Since $`D_x(t-) \ge d`$ for all $`t`$, the promotion time $`\tau_a`$ has predictable intensity $`\mathbf 1_{\{t < \tau_a\}}/D_x(t-) \le \mathbf 1_{\{t < \tau_a\}}/d`$; thus the survival function $`H(t) := \mathbb P(t < \tau_a) = 1 - \int_0^t \mathbb E[\mathbf 1_{\{s < \tau_a\}}/D_x(s-)]\,ds`$ satisfies $`H'(t) \ge -H(t)/d`$ a.e., hence $`H(t) \ge e^{-t/d}`$ and $`\mathbb E[e^{-\tau_a}] = 1 - \int_0^\infty e^{-t}H(t)\,dt \le \frac{1}{d+1}`$. At $`t = \tau_a`$, $`a`$ is a degree-2 core with 1 leaf, so $`M(T_{\tau_a}, a) \le w(2, 1)`$ (while on $`\{\tau_a = \infty\}`$, $`Z_a = 0`$), giving the global bound $`M(T', a) \le \frac{w(2, 1)}{d+1}`$ for all $`d \ge 2`$. Stopping at $`\tau := \tau_a \wedge \inf\{t : D_x(t) = D_M + 1\}`$: while $`t < \tau`$, $`a`$ rings at rate $`1`$ incrementing $`D_x \to D_x + 1`$ (and any other neighbor of $`x`$ increments $`D_x`$ at nonnegative rate $`r_{\mathrm{other}} \ge 0`$), while $`x`$ promotes $`a`$ at exact rate $`1/D_x`$. Because `cert_mean_order.py` verifies $`U(d+1) \le U(d)`$ for all $`2 \le d \le D_M`$, $`U(D_M+1) \ge w(2, 1)/(D_M+2)`$, and $`(U(d+1) - U(d)) + \frac{1}{d}(w(2, 1) - U(d)) - U(d) \le 0`$, optional stopping yields
-   $`\displaystyle M(T', a) \;\le\; U(\min(D_{T'}(x),\, D_M + 1)) \qquad (\forall\, T',\; \text{leaf } a \sim x \text{ with } D_{T'}(x) \ge 2),`$
-   with $`U(2) = \frac{367808441}{1000000000}`$, $`U(3) = \frac{70025291}{250000000}`$, and $`U(4) = \frac{14205589}{62500000}`$ (and $`U(d) \le U(4)`$ for all $`d \ge 4`$).
+```math
+v(D_u, L_u) \;\le\; M(T', u) \;\le\; w(D_u, L_u) \qquad (\forall\, 2 \le D_u \le D_M,\; 0 \le L_u \le D_u).
+```
+
+In particular, $`v(2, 2) = \frac{1187553139}{1000000000}`$ and $`w(2, 1) = \frac{639419937}{500000000} \approx 1.27884`$.
+
+2\. **Leaf upper bound $`U(d)`$ ($`2 \le d \le D_M + 1`$):**
+Let $`a`$ be a leaf attached to a core vertex $`x`$ of degree $`d \ge 2`$ in any tree $`T'`$, and let $`\tau_a := \inf\{t : D_a(t) = 2\}`$. Since $`D_x(t-) \ge d`$ for all $`t`$, the promotion time $`\tau_a`$ has predictable intensity $`\mathbf 1_{\{t < \tau_a\}}/D_x(t-) \le \mathbf 1_{\{t < \tau_a\}}/d`$; thus the survival function $`H(t) := \mathbb P(t < \tau_a) = 1 - \int_0^t \mathbb E[\mathbf 1_{\{s < \tau_a\}}/D_x(s-)]\,ds`$ satisfies $`H'(t) \ge -H(t)/d`$ a.e., hence $`H(t) \ge e^{-t/d}`$ and $`\mathbb E[e^{-\tau_a}] = 1 - \int_0^\infty e^{-t}H(t)\,dt \le \frac{1}{d+1}`$. At $`t = \tau_a`$, $`a`$ is a degree-2 core with 1 leaf, so $`M(T_{\tau_a}, a) \le w(2, 1)`$ (while on $`\{\tau_a = \infty\}`$, $`Z_a = 0`$), giving the global bound $`M(T', a) \le \frac{w(2, 1)}{d+1}`$ for all $`d \ge 2`$. Stopping at $`\tau := \tau_a \wedge \inf\{t : D_x(t) = D_M + 1\}`$: while $`t < \tau`$, $`a`$ rings at rate $`1`$ incrementing $`D_x \to D_x + 1`$ (and any other neighbor of $`x`$ increments $`D_x`$ at nonnegative rate $`r_{\mathrm{other}} \ge 0`$), while $`x`$ promotes $`a`$ at exact rate $`1/D_x`$. Because `cert_mean_order.py` verifies $`U(d+1) \le U(d)`$ for all $`2 \le d \le D_M`$, $`U(D_M+1) \ge w(2, 1)/(D_M+2)`$, and $`(U(d+1) - U(d)) + \frac{1}{d}(w(2, 1) - U(d)) - U(d) \le 0`$, optional stopping yields
+
+```math
+M(T', a) \;\le\; U(\min(D_{T'}(x),\, D_M + 1)) \qquad (\forall\, T',\; \text{leaf } a \sim x \text{ with } D_{T'}(x) \ge 2),
+```
+
+with $`U(2) = \frac{367808441}{1000000000}`$, $`U(3) = \frac{70025291}{250000000}`$, and $`U(4) = \frac{14205589}{62500000}`$ (and $`U(d) \le U(4)`$ for all $`d \ge 4`$).
 
 3. **Phase-2 adjacent-core difference lower bound $`\phi_2(D_a, L_a; D_b, L_b)`$ ($`2 \le D_a, D_b \le K`$, $`0 \le L_a \le D_a - 1`$, $`0 \le L_b \le D_b - 1`$):**
    For any two adjacent core vertices $`a \sim b`$ in $`T'`$, let $`\tau := \inf\{t : D_a(t) = K + 1 \text{ or } D_b(t) = K + 1\}`$. On $`\{\tau = \infty\}`$, $`Z_a = Z_b = 0`$ a.s.; on $`\{\tau < \infty\}`$, $`\phi_2 \le v(D_a, L_a) - w(D_b, L_b) \le M(T_\tau, a) - M(T_\tau, b)`$. While $`t < \tau`$, no single jump alters both $`(D_a, L_a)`$ and $`(D_b, L_b)`$; $`a`$ gains a leaf at rate $`L_a + 1/D_b + r_{\mathrm{ext}}(a)`$ with $`r_{\mathrm{ext}}(a) \in [0, (D_a - L_a - 1)/2]`$, $`b`$ gains a leaf at rate $`L_b + 1/D_a + r_{\mathrm{ext}}(b)`$ with $`r_{\mathrm{ext}}(b) \in [0, (D_b - L_b - 1)/2]`$, and leaf promotions occur at exact rates $`L_a/D_a`$ and $`L_b/D_b`$. Verifying submartingale drift $`\ge 0`$ at all 4 extreme-rate corners on all 10,816 interior states gives $`\phi_2(D_a, L_a; D_b, L_b) \le M(T', a) - M(T', b)`$.

@@ -143,9 +143,14 @@ Finally, at each finite $`t`$ the nonexplosive residual family from $`J_a`$ has 
 ### 4.1 Bridge to `round2/operator.md` and `round2/degree-law.md`
 In `round2/operator.md` Section 2, $`m_t(f) = \mathbb E_{T_3}\sum_{u \in K_t} f(G_t, u)`$, $`F_3(t) = m_t(1)`$, $`w(t) = \exp(-\mu t - \delta|t - T|)`$, $`Z = \int_0^\infty w(t) F_3(t)\,dt`$, and $`\pi`$ is a weak limit of $`\pi_{\delta, T} = Z^{-1}\int_0^\infty w(t) m_t\,dt`$ along $`\delta \downarrow 0`$ and $`T \to \infty`$ chosen so $`w(0)/Z \to 0`$.
 - For $`\tilde f_k(G, o) = \mathbf{1}_{\{D_o \ge k\}}`$ on $`\mathcal X`$, $`m_t(\tilde f_k) = \mathbb E_{T_3} N_{\ge k}(t) \sim d_{f_k} e^{\mu t}`$ and $`m_t(1) = \mathbb E_{T_3} N_{\ge 2}(t) \sim d_{f_2} e^{\mu t} = d_1 e^{\mu t}`$ (since $`f_2 \equiv 1`$), so $`m_t(\tilde f_k)/m_t(1) \to d_{f_k}/d_1 = c_k / c_2`$.
-- For $`0 < \delta < \mu`$, $`T > 0`$, and every $`t \ge 0`$, the reverse triangle inequality $`|t - T| \ge T - t`$ gives
-  $`\displaystyle \frac{w(t)}{w(0)} = \exp\big(-\mu t + \delta(T - |t - T|)\big) \le e^{-(\mu - \delta)t} \le 1.`$
-  Hence for every fixed $`M > 0`$, $`Z^{-1}\int_0^M w(t) m_t(1)\,dt \le \frac{w(0)}{Z}\int_0^M 3 e^t\,dt \to 0`$, which forces $`\pi_{\delta, T}(\tilde f_k) \to c_k / c_2`$.
+
+• For $`0 < \delta < \mu`$, $`T > 0`$, and every $`t \ge 0`$, the reverse triangle inequality $`|t - T| \ge T - t`$ gives
+
+```math
+\frac{w(t)}{w(0)} = \exp\big(-\mu t + \delta(T - |t - T|)\big) \le e^{-(\mu - \delta)t} \le 1.
+```
+
+Hence for every fixed $`M > 0`$, $`Z^{-1}\int_0^M w(t) m_t(1)\,dt \le \frac{w(0)}{Z}\int_0^M 3 e^t\,dt \to 0`$, which forces $`\pi_{\delta, T}(\tilde f_k) \to c_k / c_2`$.
 - Because agreement on the marked ball of radius $`1`$ fixes both $`L_o`$ and $`c_o`$, $`\tilde f_k`$ is bounded and clopen (continuous) on $`\mathcal X`$. Weak convergence $`\pi_{\delta_j, T_j} \Rightarrow \pi`$ therefore gives $`\pi(D_o \ge k) = c_k / c_2`$ and $`p_k = \frac{c_k - c_{k+1}}{c_2} = \pi(D_o = k)`$ (independent of which subsequential limit $`\pi`$ is taken).
 
 ### 4.2 Audit of prerequisites used

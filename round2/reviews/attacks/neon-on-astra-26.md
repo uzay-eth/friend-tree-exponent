@@ -15,15 +15,25 @@ VERDICT: HOLDS
 
 I read `hostile/RELEASE.md`, `hostile/README.md`, `early/README.md`, `hub-ranking/README.md`, `adjacent/README.md`, `preplacement-transfer/README.md`, `hostile/discharge/README.md`, `hostile/mixed-stock/README.md`, `hostile/edge-dual/README.md`, `hostile/interfaces/README.md`, and `hostile/interfaces/low-end.md` directly and independently rederived each step:
 
-1. **Exact two-birth identity:** Starting from any finite tree $`T`$ of size $`n\ge 2`$ with $`r_u = \sum_{z\sim u} 1/D_z`$, $`w_u = r_u/(D_u+1)`$, and $`s_u = w_u/D_u`$, pairing the two orders of distinct targets cancels nonadjacent pairs and exchangeable repeated-target leaves, leaving
-   $`\displaystyle n(n+1)\bigl(\Pr(H_{n+1}\mid\mathcal F_n)-\Pr(H_{n+2}\mid\mathcal F_n)\bigr) = \sum_{u\in V(T)} w_u I(u) + \sum_{\{u, v\}\in E(T)} (s_v - s_u) H(u, v).`$
-   Confirmed algebraically and by exact brute-force enumeration on all 94 non-isomorphic free trees $`n=2\dots 9`$ (6,902 exact trajectories).
-2. **Continuous-time couplings and scalar barriers:**
-   - **Return-race lower bound $`R_d(k)`$ and tracked-stock rescue $`B(d, l)`$:** Stopping at the first time *either* the newly promoted degree-$`k`$ neighbour returns to $`z`$ *or* any other neighbour sends to $`z`$ holds $`D_z \equiv d`$ up to $`\tau`$ and lands in state $`(d+1, 1)`$ on win; dropping exterior sends to $`z`$ is conservative. At $`d \ge 20`$, tracked leaves dominate a birth–death process with birth rate $`1`$ and death rate $`1/d`$, giving survival $`\ge 1 - d^{-l}`$ (and $`\{D_z\to\infty\}=\{Z_z>0\}`$ a.s. by the hub dichotomy).
-   - **Serial middle-minus-tip gap $`G(p)`$:** Watching the joint clocks out of $`(D_M=2, L_M=1, D_u=p)`$ (parent send to $`M`$ at rate $`a=1/p`$, tip send to $`M`$ at rate $`1`$, $`M`$ send to tip at rate $`1/2`$, exterior degree gain of $`u`$ at rate $`\gamma \le p - 1/2 < p`$) and substituting $`B(3,2)+\frac12 B(2,0)=\frac32 B(2,1)`$ yields
-     $`\displaystyle h(M) \ge B(2,1) + \frac{a(B(3,2)-B(2,1))}{a + \frac32 + \gamma} \ge B(2,1) + \frac{a(B(3,2)-B(2,1))}{p + \frac32 + a}.`$
-   - **First-send upper bound $`P(d, j)`$:** Whenever the parent retains at least one core neighbour ($`d \ge j+2`$), which holds in every single serial and parallel call, $`f(j) = 1/(j+1)`$ has exact generator drift $`\le \frac{j+2-d}{d(j+2)} \le 0`$ for all $`j\ge 1`$ and $`-\frac{1+r_{\rm ext}}{2} < 0`$ at $`j=0`$. Together with $`P(d+1, j+1) \le P(d, j)`$ on $`2\le d < 112`$, $`M_t = \mathbf 1_{\{\tau\le t\}} + \mathbf 1_{\{\tau>t\}} P(D_p(t), J_p(t)) \in [0,1]`$ is a bounded supermartingale, giving $`\Pr(\tau<\infty) \le P(d, j)`$.
-   - **89ae's $`+1`$ tick rounding clarification:** Verified directly. Rounding $`U(d, j)=\lceil 10^{12}P(d, j)\rceil/10^{12}`$ violates literal $`U\le 1/(j+1)`$ by $`<10^{-12}`$ when $`(j+1)\nmid 10^{12}`$ (e.g. $`U(113,2) - 1/3 = 2/(3\cdot 10^{12})`$). All finite checks use the rounded grid $`U`$ directly, and every analytic tail inequality ($`1/228 < 0.017`$, $`1/86 < 0.012`$, $`1/4 < L(2)`$) holds for the unrounded physical bound $`P(d, j)\le 1/(j+1)`$ and still retains wide slack even with $`+10^{-12}`$ added.
+1\. **Exact two-birth identity:** Starting from any finite tree $`T`$ of size $`n\ge 2`$ with $`r_u = \sum_{z\sim u} 1/D_z`$, $`w_u = r_u/(D_u+1)`$, and $`s_u = w_u/D_u`$, pairing the two orders of distinct targets cancels nonadjacent pairs and exchangeable repeated-target leaves, leaving
+
+```math
+n(n+1)\bigl(\Pr(H_{n+1}\mid\mathcal F_n)-\Pr(H_{n+2}\mid\mathcal F_n)\bigr) = \sum_{u\in V(T)} w_u I(u) + \sum_{\{u, v\}\in E(T)} (s_v - s_u) H(u, v).
+```
+
+Confirmed algebraically and by exact brute-force enumeration on all 94 non-isomorphic free trees $`n=2\dots 9`$ (6,902 exact trajectories).
+
+2\. **Continuous-time couplings and scalar barriers:**
+- **Return-race lower bound $`R_d(k)`$ and tracked-stock rescue $`B(d, l)`$:** Stopping at the first time *either* the newly promoted degree-$`k`$ neighbour returns to $`z`$ *or* any other neighbour sends to $`z`$ holds $`D_z \equiv d`$ up to $`\tau`$ and lands in state $`(d+1, 1)`$ on win; dropping exterior sends to $`z`$ is conservative. At $`d \ge 20`$, tracked leaves dominate a birth–death process with birth rate $`1`$ and death rate $`1/d`$, giving survival $`\ge 1 - d^{-l}`$ (and $`\{D_z\to\infty\}=\{Z_z>0\}`$ a.s. by the hub dichotomy).
+
+◦ **Serial middle-minus-tip gap $`G(p)`$:** Watching the joint clocks out of $`(D_M=2, L_M=1, D_u=p)`$ (parent send to $`M`$ at rate $`a=1/p`$, tip send to $`M`$ at rate $`1`$, $`M`$ send to tip at rate $`1/2`$, exterior degree gain of $`u`$ at rate $`\gamma \le p - 1/2 < p`$) and substituting $`B(3,2)+\frac12 B(2,0)=\frac32 B(2,1)`$ yields
+
+```math
+h(M) \ge B(2,1) + \frac{a(B(3,2)-B(2,1))}{a + \frac32 + \gamma} \ge B(2,1) + \frac{a(B(3,2)-B(2,1))}{p + \frac32 + a}.
+```
+
+- **First-send upper bound $`P(d, j)`$:** Whenever the parent retains at least one core neighbour ($`d \ge j+2`$), which holds in every single serial and parallel call, $`f(j) = 1/(j+1)`$ has exact generator drift $`\le \frac{j+2-d}{d(j+2)} \le 0`$ for all $`j\ge 1`$ and $`-\frac{1+r_{\rm ext}}{2} < 0`$ at $`j=0`$. Together with $`P(d+1, j+1) \le P(d, j)`$ on $`2\le d < 112`$, $`M_t = \mathbf 1_{\{\tau\le t\}} + \mathbf 1_{\{\tau>t\}} P(D_p(t), J_p(t)) \in [0,1]`$ is a bounded supermartingale, giving $`\Pr(\tau<\infty) \le P(d, j)`$.
+- **89ae's $`+1`$ tick rounding clarification:** Verified directly. Rounding $`U(d, j)=\lceil 10^{12}P(d, j)\rceil/10^{12}`$ violates literal $`U\le 1/(j+1)`$ by $`<10^{-12}`$ when $`(j+1)\nmid 10^{12}`$ (e.g. $`U(113,2) - 1/3 = 2/(3\cdot 10^{12})`$). All finite checks use the rounded grid $`U`$ directly, and every analytic tail inequality ($`1/228 < 0.017`$, $`1/86 < 0.012`$, $`1/4 < L(2)`$) holds for the unrounded physical bound $`P(d, j)\le 1/(j+1)`$ and still retains wide slack even with $`+10^{-12}`$ added.
 3. **All-tree discharging & convexity reductions:**
    - **Seed and stars:** Seed $`n=2`$ gives $`G(2) > 0.18940948 > 371/12500`$; stars $`d=2,3`$ give $`>0.20181908`$ and $`>0.22577249`$; stars $`d\ge 4`$ have zero edge debit because $`P(d+1, d-1)\le 1/d \le 1/4 < L(2)`$, leaving leaf credit $`\ge G(2)/2 > 0.0947 > 371/12500`$.
    - **High internal donors ($`d\ge 10, c\ge 2`$):** For fixed $`(d, c)`$, the margin $`C(u) + A(c-2) - B - c(s_u U_u - B)_+ - c_F F - c_D D_2`$ is **concave** in $`(R, c_0, c_F, c_D)`$ over the reciprocal polytope $`\frac14 c_F + \frac12 c_D \le R \le \frac12 c`$, so its minimum lies on the 5 tested vertices $`((0,0),(0,2),(F,4),(F,2),(D_2,2))`$. For $`d\ge 113`$, verified both $`s_\ell \ge s_u`$ (where $`l = (d+1)/2`$ gives zero leaf toll and $`l \le \lfloor d/2\rfloor`$ gives $`c \ge d/2 \ge 113/2`$) and $`s_u > s_\ell`$ (where $`w_u > 1/2 > 113/228`$, leaf toll is $`0`$ for $`l\ge 4`$, and covered by $`\frac{l}{2d}G(2)`$ for $`l\in\{2,3\}`$ since $`G(2) > 2/114`$).

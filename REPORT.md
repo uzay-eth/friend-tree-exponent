@@ -4,7 +4,22 @@
 
 ---
 
-## Executive Summary
+## Round 2, 24 November 2026
+
+The same edge-seeded exponent is enclosed between $`35083855339718511/62017003637500000`$ and $`127993535256830043/226242120050000000`$. The outward decimals are $`0.565713486333`$ and $`0.565736986679`$. Gemini produced the five-vertex certificate. GPT and Claude reviewed the mathematical deduction and replayed the authenticated witnesses with Gemini’s verifier. Of the outside reviewers, GPT checked how its loops implement the proof and audited the high-degree tail. The ledger distinguishes review of those bytes from reconstruction by the builder. [Proof and checker guide](round2/proofs/neon2/README.md) · [Clean builds and expected digests](round2/verify/gold/README.md)
+
+| Scope | Round-two evidence |
+|---|---|
+| Tier A | The five-vertex enclosure, fixed-degree mean asymptotics, the positive almost-sure count amplitude, allocation of total hub mass, and strict ordering of all positive moments and hub probabilities after the founders. The register includes the operator characterizations, density and forest-law implications with their premises. |
+| Tier B | One outside family verified the specified part. Examples include stationary marginal certificates, height and diameter bounds, and the Farey calculation **conditional** on the Gold2 certificate and four reward floors. A finite-fixture replay tests the indicated finite step. |
+| Tier C | The decisive reward bounds and pricing in the narrower interval $`0.565714467904<\mu<0.565735974375`$ were checked only within GPT. Applying the conditional denominator-426 result unconditionally requires those four GPT-checked reward bounds. That step, several later stochastic-order or regularity extensions and the extrapolation from finite Monte Carlo windows have limited or missing independent review. |
+| Corrections | The signed-toll and marked-forest arguments have scoped corrections. The early three-reward Gold2 argument and its dependent endpoints were withdrawn. The original artifacts and review verdicts are identified by digest. |
+
+The register covers 51 numbered claims and Carbon’s salvaged findings. The remaining sections retain the round-one account, with display formatting adjusted for GitHub, including the open questions and verifier timings at that date. [Ledger and reviews](round2/LEDGER.md) · [Round-two verification](round2/verify/README.md) · [Credit to C. D. Long and Mohamed Sabba](round2/who-did-what.md)
+
+---
+
+## Round 1 · Executive Summary
 
 In the random friend tree $`(T_n)_{n \ge 2}`$ (Krapivsky–Redner isotropic/complete redirection with $`r=1`$, starting from one edge $`T_2`$), let $`C_n`$ be the number of non-leaves (vertices of degree at least $`2`$). Astra proves that a single growth exponent $`\mu := \lim_{n \to \infty} \frac{\log \mathbb{E}[C_n]}{\log n}`$ exists and that $`\frac{\log C_n}{\log n} \to \mu`$ almost surely ([`proofs/existence.md`](proofs/existence.md), [`proofs/almost-sure-exponent.md`](proofs/almost-sure-exponent.md)). The existence theorem and [motif bounds](proofs/bracket-motifs.md) give $`113/200\le\mu\le1133/2000`$. The upper endpoint lies $`1/6000`$ below $`17/30`$, the fraction mentioned in [Strogatz’s 2022 post](https://x.com/stevenstrogatz/status/1572287647715934210).
 
@@ -57,33 +72,39 @@ because every leaf in a tree with $`n \ge 3`$ vertices has a unique core neighbo
 
 Four technical points govern how statements from different proofs can (and cannot) be combined:
 
-1. **Exact product $`\leftrightarrow`$ $`\Gamma`$-ratio $`\leftrightarrow`$ power-law conversion.** For every $`a \in (0,1)`$ and every integer $`n \ge 3`$,
-   ```math
-   P_a(3,n) := \prod_{j=3}^{n-1}\!\left(1 + \frac{a}{j}\right) = \frac{2}{\Gamma(3+a)}\,\frac{\Gamma(n+a)}{\Gamma(n)},
-   ```
-   with the empty product $`P_a(3,3) = 1`$. Hence $`P_a(3,n) = \frac{2}{\Gamma(3+a)}\,n^a\,(1 + O(1/n))`$ as $`n \to \infty`$, and by Gautschi's inequality $`n(n+1)^{a-1} < \frac{\Gamma(n+a)}{\Gamma(n)} < n^a`$ ($`0 < a < 1`$, $`n \ge 3`$),
-   ```math
-   \frac{2}{\Gamma(3+a)}\!\left(\frac{3}{4}\right)^{1-a}\! n^a \;<\; P_a(3,n) \;<\; \frac{2}{\Gamma(3+a)}\,n^a \qquad (\forall n \ge 3).
-   ```
-   Applying this to Neon Theorem 1 (`113/200 = 0.5650`, `1133/2000 = 0.5665`) gives, for every integer $`m \ge 3`$,
-   ```math
-   0.41\,m^{0.5650} \;\le\; \mathbb{E}[C_m] \;\le\; 2.74\,m^{0.5665}
-   ```
-   (exact Gautschi lower constant $`\frac{7304352308}{8763936965}\cdot\frac{2}{\Gamma(3.565)}\cdot(3/4)^{0.435} = 0.41166674\ldots > 0.41`$; exact upper constant $`\frac{14606753031}{2989767809}\cdot\frac{2}{\Gamma(3.5665)} = 2.73020494\ldots < 2.74`$).
+1\. **Exact product $`\leftrightarrow`$ $`\Gamma`$-ratio $`\leftrightarrow`$ power-law conversion.** For every $`a \in (0,1)`$ and every integer $`n \ge 3`$,
 
-   Selected certified finite-$`n`$ bounds ($`n \ge 3`$) converted between product and $`\Gamma`$-ratio forms (decimals are 8-digit approximations):
+```math
+P_a(3,n) := \prod_{j=3}^{n-1}\!\left(1 + \frac{a}{j}\right) = \frac{2}{\Gamma(3+a)}\,\frac{\Gamma(n+a)}{\Gamma(n)},
+```
 
-   | Certificate | Side & Exponent $`a`$ | Exact / Reported Product Prefactor $`c_{\mathrm{prod}}`$ | Equivalent $`\Gamma`$-Ratio Prefactor $`c_\Gamma = \frac{2\,c_{\mathrm{prod}}}{\Gamma(3+a)}`$ | Exact Margin $`\frac{17}{30} - a`$ |
-   |---|---|---|---|---|
-   | Neon (`motif-bracket`) | Lower $`113/200 = 0.5650`$ | $`7304352308 / 8763936965 \approx 0.83345560`$ | $`\approx 0.46654564`$ | $`+1/600`$ |
-   | Neon (`motif-bracket`) | Upper $`1133/2000 = 0.5665`$ | $`14606753031 / 2989767809 \approx 4.88558108`$ | $`\approx 2.73020494`$ | **$`+1/6000`$** |
-   | Astra (`banded-upper`) | Upper $`5657/9983 \approx 0.56666333`$ | $`1539738114735 / 3908512529 \approx 393.94478`$ (indep. audit: $`393.94479`$) | $`\approx 220.10737`$ | **$`+1/299490`$** |
-   | Astra (`transfer-bounds`) | Lower $`563/1000 = 0.5630`$ | $`15430450607 / 17611596558 \approx 0.87615286`$ | $`\approx 0.49155024`$ | $`+11/3000`$ |
-   | Astra (`transfer-bounds`) | Upper $`568/1000 = 0.5680`$ | $`15361771189 / 640204837 \approx 23.99508767`$ | $`\approx 13.38654204`$ | $`-1/750`$ |
-   | Fable (`cross-charging`) | Lower $`11/20 = 0.5500`$ | $`\approx 0.88219234`$ | $`\approx 0.50220838 \ge 0.5022`$ | $`+1/60`$ |
-   | Fable (`cross-charging`) | Upper $`29/50 = 0.5800`$ | $`\approx 7.21981746`$ | $`\approx 3.97372002 \le 3.974`$ | $`-1/75`$ |
-   | Baseline (`baseline`) | Lower $`543/1000 = 0.5430`$ | $`\approx 0.87551816`$ | $`\approx 0.50232622 \ge 0.502`$ | $`+71/3000`$ |
-   | Baseline (`baseline`) | Upper $`293/500 = 0.5860`$ | $`\approx 3.95462373`$ | $`\approx 2.16187785 \le 2.17`$ | $`-29/1500`$ |
+with the empty product $`P_a(3,3) = 1`$. Hence $`P_a(3,n) = \frac{2}{\Gamma(3+a)}\,n^a\,(1 + O(1/n))`$ as $`n \to \infty`$, and by Gautschi's inequality $`n(n+1)^{a-1} < \frac{\Gamma(n+a)}{\Gamma(n)} < n^a`$ ($`0 < a < 1`$, $`n \ge 3`$),
+
+```math
+\frac{2}{\Gamma(3+a)}\!\left(\frac{3}{4}\right)^{1-a}\! n^a \;<\; P_a(3,n) \;<\; \frac{2}{\Gamma(3+a)}\,n^a \qquad (\forall n \ge 3).
+```
+
+Applying this to Neon Theorem 1 (`113/200 = 0.5650`, `1133/2000 = 0.5665`) gives, for every integer $`m \ge 3`$,
+
+```math
+0.41\,m^{0.5650} \;\le\; \mathbb{E}[C_m] \;\le\; 2.74\,m^{0.5665}
+```
+
+(exact Gautschi lower constant $`\frac{7304352308}{8763936965}\cdot\frac{2}{\Gamma(3.565)}\cdot(3/4)^{0.435} = 0.41166674\ldots > 0.41`$; exact upper constant $`\frac{14606753031}{2989767809}\cdot\frac{2}{\Gamma(3.5665)} = 2.73020494\ldots < 2.74`$).
+
+Selected certified finite-$`n`$ bounds ($`n \ge 3`$) converted between product and $`\Gamma`$-ratio forms (decimals are 8-digit approximations):
+
+| Certificate | Side & Exponent $`a`$ | Exact / Reported Product Prefactor $`c_{\mathrm{prod}}`$ | Equivalent $`\Gamma`$-Ratio Prefactor $`c_\Gamma = \frac{2\,c_{\mathrm{prod}}}{\Gamma(3+a)}`$ | Exact Margin $`\frac{17}{30} - a`$ |
+|---|---|---|---|---|
+| Neon (`motif-bracket`) | Lower $`113/200 = 0.5650`$ | $`7304352308 / 8763936965 \approx 0.83345560`$ | $`\approx 0.46654564`$ | $`+1/600`$ |
+| Neon (`motif-bracket`) | Upper $`1133/2000 = 0.5665`$ | $`14606753031 / 2989767809 \approx 4.88558108`$ | $`\approx 2.73020494`$ | **$`+1/6000`$** |
+| Astra (`banded-upper`) | Upper $`5657/9983 \approx 0.56666333`$ | $`1539738114735 / 3908512529 \approx 393.94478`$ (indep. audit: $`393.94479`$) | $`\approx 220.10737`$ | **$`+1/299490`$** |
+| Astra (`transfer-bounds`) | Lower $`563/1000 = 0.5630`$ | $`15430450607 / 17611596558 \approx 0.87615286`$ | $`\approx 0.49155024`$ | $`+11/3000`$ |
+| Astra (`transfer-bounds`) | Upper $`568/1000 = 0.5680`$ | $`15361771189 / 640204837 \approx 23.99508767`$ | $`\approx 13.38654204`$ | $`-1/750`$ |
+| Fable (`cross-charging`) | Lower $`11/20 = 0.5500`$ | $`\approx 0.88219234`$ | $`\approx 0.50220838 \ge 0.5022`$ | $`+1/60`$ |
+| Fable (`cross-charging`) | Upper $`29/50 = 0.5800`$ | $`\approx 7.21981746`$ | $`\approx 3.97372002 \le 3.974`$ | $`-1/75`$ |
+| Baseline (`baseline`) | Lower $`543/1000 = 0.5430`$ | $`\approx 0.87551816`$ | $`\approx 0.50232622 \ge 0.502`$ | $`+71/3000`$ |
+| Baseline (`baseline`) | Upper $`293/500 = 0.5860`$ | $`\approx 3.95462373`$ | $`\approx 2.16187785 \le 2.17`$ | $`-29/1500`$ |
 
 2. **History-dependent potentials, canonical rooting, and continuous-time embedding do not block combination.** In Neon, $`T_3`$ has deterministic shape $`K_{1,2}`$ with a unique degree-$`2`$ centre $`r`$, so rooting $`T_n`$ ($`n \ge 3`$) at $`r`$ requires no extra random choice and preserves the law of $`(T_n)_{n \ge 3}`$. In Astra's drift bounds and the baseline upper bound, the potential $`\Phi_n`$ is adapted to the full growth history $`\mathcal{F}_n`$, and $`\mathbb{E}[\Phi_{n+1} \mid \mathcal{F}_n] \le (1+\lambda/n)\Phi_n`$ implies $`\mathbb{E}[\Phi_n] \le \Phi_3 P_\lambda(3,n)`$ by the tower property; pointwise comparison $`\Phi_n \ge c_{\min} C_n`$ then yields an unconditional bound on $`\mathbb{E}[C_n]`$. In Astra's existence and sample-path proofs, assigning each vertex an independent rate-1 Poisson clock gives total jump rate $`|V(T(t))|`$ and a uniform ringing vertex independent of the holding time, so the jump chain of $`T(t)`$ has the exact law of $`(T_n)_{n \ge 2}`$, and de-Poissonization converts the continuous-time limit back to discrete $`n`$.
 
@@ -101,65 +122,83 @@ Four technical points govern how statements from different proofs can (and canno
 
 Let $`(T_n)_{n \ge 2}`$ be the random friend tree, $`C_n = \#\{v \in V(T_n) : \deg_{T_n}(v) \ge 2\}`$, and $`N_k(n) = \#\{v \in V(T_n) : \deg_{T_n}(v) \ge k\}`$ for $`k \ge 2`$. Every part below states its exact proof dependency.
 
-1. **Finite-$`n`$ mean bounds for the core size.**
-   * *(a) Tightest two-sided exponent bracket — depends solely on Neon Theorem 1 ([`proofs/bracket-motifs.md`](proofs/bracket-motifs.md)):* For every integer $`n \ge 3`$,
-     ```math
-     \frac{7304352308}{8763936965}\prod_{j=3}^{n-1}\!\left(1 + \frac{113}{200j}\right)
-     \;\le\; \mathbb{E}[C_n] \;\le\;
-     \frac{14606753031}{2989767809}\prod_{j=3}^{n-1}\!\left(1 + \frac{1133}{2000j}\right).
-     ```
-     *(At small $`n`$, e.g. $`n=3`$, Fable's unrounded lower product prefactor $`0.882192\ldots`$ is larger than Neon's $`0.833455\ldots`$; Neon has the tightest two-sided exponent bracket.)* In particular, these exact product bounds imply $`\mathbb{E}[C_n] = \Omega(n^{0.5650})`$, $`\mathbb{E}[C_n] = O(n^{0.5665})`$, and the explicit power-law bounds $`0.41\,n^{0.5650} \le \mathbb{E}[C_n] \le 2.74\,n^{0.5665}`$ for all $`n \ge 3`$, so
-     ```math
-     \limsup_{n \to \infty}\frac{\log \mathbb{E}[C_n]}{\log n} \;\le\; \frac{1133}{2000} \;=\; \frac{17}{30} - \frac{1}{6000} \;<\; \frac{17}{30},
-     \qquad\text{hence }\; \mathbb{E}[C_n] \neq n^{17/30 + o(1)}.
-     ```
-   * *(b) Independent upper bound below $`17/30`$ — depends solely on Astra's banded upper bound ([`proofs/upper-bound-banded.md`](proofs/upper-bound-banded.md)):* For every integer $`n \ge 3`$,
-     ```math
-     \mathbb{E}[C_n] \;\le\; \frac{1539738114735}{3908512529}\prod_{j=3}^{n-1}\!\left(1 + \frac{5657}{9983j}\right),
-     \qquad \frac{5657}{9983} = \frac{17}{30} - \frac{1}{299490} < \frac{17}{30}.
-     ```
-     *(Independently, [`proofs/bounds-transfer.md`](proofs/bounds-transfer.md) proves $`\mathbb{E}[C_n] \ge \frac{15430450607}{17611596558}\prod_{j=3}^{n-1}(1+\frac{563}{1000j})`$ for all $`n \ge 3`$.)*
+1\. **Finite-$`n`$ mean bounds for the core size.**
 
-2. **Existence of a single exponent $`\mu`$ for the mean and almost surely.**
-   * *(a) Mean exponent — depends solely on [`proofs/existence.md`](proofs/existence.md):* There exists a deterministic constant $`\mu \in [0,1]`$ such that
-     ```math
-     \lim_{n \to \infty}\frac{\log \mathbb{E}[C_n]}{\log n} = \mu, \qquad \text{i.e., } \mathbb{E}[C_n] = n^{\mu + o(1)}.
-     ```
-   * *(b) Almost-sure exponent — depends on [`proofs/existence.md`](proofs/existence.md) and [`proofs/almost-sure-exponent.md`](proofs/almost-sure-exponent.md):* Almost surely,
-     ```math
-     \lim_{n \to \infty}\frac{\log C_n}{\log n} = \mu.
-     ```
-   * *(c) Numerical location of $`\mu`$:*
-     * *Tightest certified bracket — combines [`proofs/existence.md`](proofs/existence.md) with [`proofs/bracket-motifs.md`](proofs/bracket-motifs.md):*
-       ```math
-       \frac{113}{200} = 0.5650 \;\le\; \mu \;\le\; \frac{1133}{2000} = 0.5665 \;<\; \frac{17}{30} \qquad (\text{width } 3/2000 = 0.0015;\text{ certified minimum gap } 1/6000).
-       ```
-     * *Independent Astra-only bracket — combines [`proofs/existence.md`](proofs/existence.md), [`proofs/bounds-transfer.md`](proofs/bounds-transfer.md), and [`proofs/upper-bound-banded.md`](proofs/upper-bound-banded.md):*
-       ```math
-       \frac{563}{1000} = 0.5630 \;\le\; \mu \;\le\; \frac{5657}{9983} \approx 0.5666633 \;<\; \frac{17}{30} \qquad (\text{certified minimum gap } 1/299490).
-       ```
+◦ *(a) Tightest two-sided exponent bracket — depends solely on Neon Theorem 1 ([`proofs/bracket-motifs.md`](proofs/bracket-motifs.md)):* For every integer $`n \ge 3`$,
 
-3. **Cumulative mean degree tail.**
-   * *(a) Uniform logarithmic limit — combines [`proofs/degree-tail.md`](proofs/degree-tail.md) (Theorem D(d)) with [`proofs/existence.md`](proofs/existence.md) and any positive lower exponent and upper exponent strictly below $`1`$ on $`\mathbb{E}[C_m]`$ (e.g., Neon's $`[0.5650, 0.5665]`$ or Fable's $`[0.55, 0.58]`$, supplying $`\mu \in (0,1)`$):*
-     ```math
-     \lim_{n/k \to \infty}\frac{\log \mathbb{E}[N_k(n)]}{\log(n/k)} = \mu \qquad \text{uniformly over all integers } k \ge 2.
-     ```
-   * *(b) Explicit finite-$`(n,k)`$ bounds — combines Theorem D(c) ([`proofs/degree-tail.md`](proofs/degree-tail.md)) with Neon Theorem 1 ([`proofs/bracket-motifs.md`](proofs/bracket-motifs.md)) via Gautschi's inequality ($`0.41\,m^{0.5650} \le \mathbb{E}[C_m] \le 2.74\,m^{0.5665}`$ for all $`m \ge 3`$):* For every integer $`k \ge 2`$ and every integer $`n \ge 24k`$,
-     ```math
-     \frac{0.41}{44160}\!\left(\frac{n}{12k}\right)^{0.5650}
-     \;\le\; \mathbb{E}[N_k(n)] \;\le\;
-     22\!\left(\frac{n}{k}\right)^{0.5665}
-     ```
-     *(Theorem D(c) yields upper constant $`A\bigl(2 + \frac{1}{1-\lambda}\bigr)3^\lambda = 21.988467\ldots < 22`$ with $`A = 2.74`$, and $`21.909862\ldots`$ using the sharper $`\Gamma`$-ratio constant $`A = 2.7302049\ldots`$, at $`\lambda = 0.5665`$.)*
+```math
+\frac{7304352308}{8763936965}\prod_{j=3}^{n-1}\!\left(1 + \frac{113}{200j}\right) \;\le\; \mathbb{E}[C_n] \;\le\; \frac{14606753031}{2989767809}\prod_{j=3}^{n-1}\!\left(1 + \frac{1133}{2000j}\right).
+```
 
-4. **Almost-sure bounds not relying on Astra's existence/sample-path proofs.**
-   * *(a) Upper almost-sure bound — Neon Corollary 2 ([`proofs/bracket-motifs.md`](proofs/bracket-motifs.md)):* $`\limsup_{n\to\infty} \frac{\log C_n}{\log n} \le \frac{1133}{2000}`$ a.s. (similarly $`\le \frac{5657}{9983}`$ from Astra's banded bound by the same dyadic Markov + Borel–Cantelli argument).
-   * *(b) Logarithmic lower bound — Fable ([`proofs/almost-sure-lower.md`](proofs/almost-sure-lower.md), [`proofs/cross-charging.md`](proofs/cross-charging.md)):* $`\liminf_{n\to\infty} \frac{\log C_n}{\log n} \ge \frac{11}{20} = 0.55`$ a.s. (and $`\ge 0.543`$ using the baseline `certs9` table).
-   * *(c) Loss-free polynomial-scale lower bound from the baseline tables — Carbon / Sol ([`proofs/polynomial-scale-lower.md`](proofs/polynomial-scale-lower.md)), using both tables in [`verify/baseline/`](verify/baseline/):*
-     ```math
-     \liminf_{n \to \infty}\frac{C_n}{n^{543/1000}} > 0 \qquad \text{almost surely,}
-     ```
-     and the normalized baseline lower potential $`\Phi_n^- / n^{543/1000}`$ converges almost surely in $`(0,\infty]`$. *(As a standalone inequality on $`C_n`$, $`\liminf C_n / n^{543/1000} > 0`$ a.s. already follows from 4(b), since $`0.55 > 0.543`$; Carbon's distinct content is eliminating the $`-\varepsilon`$ exponent loss at the certificate's own exponent and proving a.s. convergence of $`\Phi_n^-/n^{543/1000}`$ in $`(0,\infty]`$.)*
+*(At small $`n`$, e.g. $`n=3`$, Fable's unrounded lower product prefactor $`0.882192\ldots`$ is larger than Neon's $`0.833455\ldots`$; Neon has the tightest two-sided exponent bracket.)* In particular, these exact product bounds imply $`\mathbb{E}[C_n] = \Omega(n^{0.5650})`$, $`\mathbb{E}[C_n] = O(n^{0.5665})`$, and the explicit power-law bounds $`0.41\,n^{0.5650} \le \mathbb{E}[C_n] \le 2.74\,n^{0.5665}`$ for all $`n \ge 3`$, so
+
+```math
+\limsup_{n \to \infty}\frac{\log \mathbb{E}[C_n]}{\log n} \;\le\; \frac{1133}{2000} \;=\; \frac{17}{30} - \frac{1}{6000} \;<\; \frac{17}{30}, \qquad\text{hence }\; \mathbb{E}[C_n] \neq n^{17/30 + o(1)}.
+```
+
+◦ *(b) Independent upper bound below $`17/30`$ — depends solely on Astra's banded upper bound ([`proofs/upper-bound-banded.md`](proofs/upper-bound-banded.md)):* For every integer $`n \ge 3`$,
+
+```math
+\mathbb{E}[C_n] \;\le\; \frac{1539738114735}{3908512529}\prod_{j=3}^{n-1}\!\left(1 + \frac{5657}{9983j}\right), \qquad \frac{5657}{9983} = \frac{17}{30} - \frac{1}{299490} < \frac{17}{30}.
+```
+
+*(Independently, [`proofs/bounds-transfer.md`](proofs/bounds-transfer.md) proves $`\mathbb{E}[C_n] \ge \frac{15430450607}{17611596558}\prod_{j=3}^{n-1}(1+\frac{563}{1000j})`$ for all $`n \ge 3`$.)*
+
+2\. **Existence of a single exponent $`\mu`$ for the mean and almost surely.**
+
+◦ *(a) Mean exponent — depends solely on [`proofs/existence.md`](proofs/existence.md):* There exists a deterministic constant $`\mu \in [0,1]`$ such that
+
+```math
+\lim_{n \to \infty}\frac{\log \mathbb{E}[C_n]}{\log n} = \mu, \qquad \text{i.e., } \mathbb{E}[C_n] = n^{\mu + o(1)}.
+```
+
+◦ *(b) Almost-sure exponent — depends on [`proofs/existence.md`](proofs/existence.md) and [`proofs/almost-sure-exponent.md`](proofs/almost-sure-exponent.md):* Almost surely,
+
+```math
+\lim_{n \to \infty}\frac{\log C_n}{\log n} = \mu.
+```
+
+◦ *(c) Numerical location of $`\mu`$:*
+
+▪ *Tightest certified bracket — combines [`proofs/existence.md`](proofs/existence.md) with [`proofs/bracket-motifs.md`](proofs/bracket-motifs.md):*
+
+```math
+\frac{113}{200} = 0.5650 \;\le\; \mu \;\le\; \frac{1133}{2000} = 0.5665 \;<\; \frac{17}{30} \qquad (\text{width } 3/2000 = 0.0015;\text{ certified minimum gap } 1/6000).
+```
+
+▪ *Independent Astra-only bracket — combines [`proofs/existence.md`](proofs/existence.md), [`proofs/bounds-transfer.md`](proofs/bounds-transfer.md), and [`proofs/upper-bound-banded.md`](proofs/upper-bound-banded.md):*
+
+```math
+\frac{563}{1000} = 0.5630 \;\le\; \mu \;\le\; \frac{5657}{9983} \approx 0.5666633 \;<\; \frac{17}{30} \qquad (\text{certified minimum gap } 1/299490).
+```
+
+3\. **Cumulative mean degree tail.**
+
+◦ *(a) Uniform logarithmic limit — combines [`proofs/degree-tail.md`](proofs/degree-tail.md) (Theorem D(d)) with [`proofs/existence.md`](proofs/existence.md) and any positive lower exponent and upper exponent strictly below $`1`$ on $`\mathbb{E}[C_m]`$ (e.g., Neon's $`[0.5650, 0.5665]`$ or Fable's $`[0.55, 0.58]`$, supplying $`\mu \in (0,1)`$):*
+
+```math
+\lim_{n/k \to \infty}\frac{\log \mathbb{E}[N_k(n)]}{\log(n/k)} = \mu \qquad \text{uniformly over all integers } k \ge 2.
+```
+
+◦ *(b) Explicit finite-$`(n,k)`$ bounds — combines Theorem D(c) ([`proofs/degree-tail.md`](proofs/degree-tail.md)) with Neon Theorem 1 ([`proofs/bracket-motifs.md`](proofs/bracket-motifs.md)) via Gautschi's inequality ($`0.41\,m^{0.5650} \le \mathbb{E}[C_m] \le 2.74\,m^{0.5665}`$ for all $`m \ge 3`$):* For every integer $`k \ge 2`$ and every integer $`n \ge 24k`$,
+
+```math
+\frac{0.41}{44160}\!\left(\frac{n}{12k}\right)^{0.5650} \;\le\; \mathbb{E}[N_k(n)] \;\le\; 22\!\left(\frac{n}{k}\right)^{0.5665}
+```
+
+*(Theorem D(c) yields upper constant $`A\bigl(2 + \frac{1}{1-\lambda}\bigr)3^\lambda = 21.988467\ldots < 22`$ with $`A = 2.74`$, and $`21.909862\ldots`$ using the sharper $`\Gamma`$-ratio constant $`A = 2.7302049\ldots`$, at $`\lambda = 0.5665`$.)*
+
+4\. **Almost-sure bounds not relying on Astra's existence/sample-path proofs.**
+* *(a) Upper almost-sure bound — Neon Corollary 2 ([`proofs/bracket-motifs.md`](proofs/bracket-motifs.md)):* $`\limsup_{n\to\infty} \frac{\log C_n}{\log n} \le \frac{1133}{2000}`$ a.s. (similarly $`\le \frac{5657}{9983}`$ from Astra's banded bound by the same dyadic Markov + Borel–Cantelli argument).
+* *(b) Logarithmic lower bound — Fable ([`proofs/almost-sure-lower.md`](proofs/almost-sure-lower.md), [`proofs/cross-charging.md`](proofs/cross-charging.md)):* $`\liminf_{n\to\infty} \frac{\log C_n}{\log n} \ge \frac{11}{20} = 0.55`$ a.s. (and $`\ge 0.543`$ using the baseline `certs9` table).
+
+◦ *(c) Loss-free polynomial-scale lower bound from the baseline tables — Carbon / Sol ([`proofs/polynomial-scale-lower.md`](proofs/polynomial-scale-lower.md)), using both tables in [`verify/baseline/`](verify/baseline/):*
+
+```math
+\liminf_{n \to \infty}\frac{C_n}{n^{543/1000}} > 0 \qquad \text{almost surely,}
+```
+
+and the normalized baseline lower potential $`\Phi_n^- / n^{543/1000}`$ converges almost surely in $`(0,\infty]`$. *(As a standalone inequality on $`C_n`$, $`\liminf C_n / n^{543/1000} > 0`$ a.s. already follows from 4(b), since $`0.55 > 0.543`$; Carbon's distinct content is eliminating the $`-\varepsilon`$ exponent loss at the certificate's own exponent and proving a.s. convergence of $`\Phi_n^-/n^{543/1000}`$ in $`(0,\infty]`$.)*
 
 ### 2.2 What is NOT proved
 
@@ -240,18 +279,21 @@ Two non-trivial `GAP` verdicts occurred during review:
 * **Cannings & Jordan (2013)** (*Random walk attachment graphs*, [arXiv:1303.1052](https://arxiv.org/abs/1303.1052)) analyzed random-walk attachment of length $`\ell`$; for $`\ell = 1`$ (which coincides with the random friend tree) their results show $`C_n = o(n)`$ a.s. and leave the nucleus exponent open.
 * **Krapivsky & Redner (2017)** (*Emergent Network Modularity*, [arXiv:1706.01514](https://arxiv.org/abs/1706.01514), *J. Stat. Mech.* 2017, 073405) introduced *complete (isotropic) redirection* ($`r = 1`$), observed numerically that the number of non-leaves scales as $`N^\mu`$ with $`\mu \approx 0.566`$ and degree counts $`N_k \sim N^\mu k^{-(1+\mu)}`$, and highlighted the puzzle of determining $`\mu`$. (See also **Krapivsky & Redner (2023 / 2024)**, *The Magic of Networks Grown by Redirection*, [arXiv:2305.10628](https://arxiv.org/abs/2305.10628), *Indian J. Phys.* 98, 3777.)
 * **Steven Strogatz (2022)** publicized the question of whether the exponent equals $`17/30 = 0.5666\overline{6}`$ ([2022-09-20 post](https://x.com/stevenstrogatz/status/1572287647715934210)).
-* **Addario-Berry, Briend, Devroye, Donderwinkel, Kerriou & Lugosi (2024 / 2026)** (*Random friend trees*, [arXiv:2403.20185](https://arxiv.org/abs/2403.20185); *Random Structures & Algorithms* 69(1), e70082, 2026, [DOI](https://doi.org/10.1002/rsa.70082)) coined the name *random friend tree* and proved the first non-trivial rigorous bounds on the nucleus size: Propositions 6.20 and 6.22 show $`n^{-\delta} C_n \to \infty`$ a.s. for every $`\delta < \frac{\sqrt{13}-3}{6} \approx 0.100925`$ and $`n^{-\lambda} C_n \to 0`$ a.s. for every $`\lambda > \sqrt{2} - \frac{1}{2} \approx 0.914214`$, giving
-  ```math
-  \frac{\sqrt{13}-3}{6} \;\le\; \liminf_{n\to\infty}\frac{\log C_n}{\log n} \;\le\; \limsup_{n\to\infty}\frac{\log C_n}{\log n} \;\le\; \sqrt{2} - \frac{1}{2} \qquad \text{almost surely}
-  ```
-  *(the arXiv abstract displays $`n^{9/10}`$ as an upper ceiling, whereas the written proof of Proposition 6.22 yields $`1 - \gamma/2 = \sqrt{2}-1/2 \approx 0.914214`$)*. Their Theorem 4.8 also proves $`c_k < \liminf_{n\to\infty} N_{k+1}(n)/N_k(n)`$ a.s. (with $`N_{k+1}(n)/N_k(n) \le 1`$ by nesting) for every fixed $`k \ge 2`$. Existence and exact value of $`\mu`$ were left open.
+
+• **Addario-Berry, Briend, Devroye, Donderwinkel, Kerriou & Lugosi (2024 / 2026)** (*Random friend trees*, [arXiv:2403.20185](https://arxiv.org/abs/2403.20185); *Random Structures & Algorithms* 69(1), e70082, 2026, [DOI](https://doi.org/10.1002/rsa.70082)) coined the name *random friend tree* and proved the first non-trivial rigorous bounds on the nucleus size: Propositions 6.20 and 6.22 show $`n^{-\delta} C_n \to \infty`$ a.s. for every $`\delta < \frac{\sqrt{13}-3}{6} \approx 0.100925`$ and $`n^{-\lambda} C_n \to 0`$ a.s. for every $`\lambda > \sqrt{2} - \frac{1}{2} \approx 0.914214`$, giving
+
+```math
+\frac{\sqrt{13}-3}{6} \;\le\; \liminf_{n\to\infty}\frac{\log C_n}{\log n} \;\le\; \limsup_{n\to\infty}\frac{\log C_n}{\log n} \;\le\; \sqrt{2} - \frac{1}{2} \qquad \text{almost surely}
+```
+
+*(the arXiv abstract displays $`n^{9/10}`$ as an upper ceiling, whereas the written proof of Proposition 6.22 yields $`1 - \gamma/2 = \sqrt{2}-1/2 \approx 0.914214`$)*. Their Theorem 4.8 also proves $`c_k < \liminf_{n\to\infty} N_{k+1}(n)/N_k(n)`$ a.s. (with $`N_{k+1}(n)/N_k(n) \le 1`$ by nesting) for every fixed $`k \ge 2`$. Existence and exact value of $`\mu`$ were left open.
 * **Hartle, Krapivsky, Redner & Zhang (2026)** (*Anomalous scaling in redirection networks*, [arXiv:2604.01540](https://arxiv.org/abs/2604.01540), *Phys. Rev. E* 114, 034314) cite the earlier $`\mu \approx 0.566`$ estimate, report $`\mu \approx 0.569`$ from their own finite-size isotropic-redirection fit over $`N = 10^2\text{--}10^6`$ (Fig. 6), and solve two *modified* local redirection models (DAN and PAN) analytically, noting that isotropic redirection itself still lacks a closed recurrence or exact exponent.
 
 **Dated literature check (2026-11-22):** live arXiv API queries across `math.PR`, `math.CO`, `cond-mat.stat-mech`, and `physics.soc-ph` and web searches found no published paper or preprint excluding $`\mu = 17/30`$, proving existence of $`\mu`$, or determining the exact value of $`\mu`$.
 
 ---
 
-## 7. Open Problems
+## 7. Open problems at the close of round 1
 
 1. **Tightening the certified bracket beyond $`[0.5650, 0.5665]`$.** Neon's motif-plus-analytic-tail architecture verifies in ~20 seconds at `17.3M` checks; extending its active motif domains or combining its analytic $`1/D`$ tail with signed transfers could plausibly narrow the certified interval substantially around the simulated $`\approx 0.565723`$.
 2. **Sharp asymptotics ($`C_n / n^\mu`$) and polynomial-scale convergence.** Proving that $`\mathbb{E}[C_n] \asymp n^\mu`$ (or $`\mathbb{E}[C_n]/n^\mu \to c \in (0,\infty)`$) and that $`C_n / \mathbb{E}[C_n]`$ converges to a non-degenerate random variable $`W > 0`$ remains open.

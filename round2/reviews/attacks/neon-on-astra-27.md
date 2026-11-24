@@ -2,9 +2,13 @@ VERDICT: HOLDS
 
 # Independent Gemini-Family Audit of Astra Claim 27 (All-Label Strict Order for Every Positive Moment $`p > 0`$)
 
-- **Target:** Astra Claim 27 (*Every positive moment of limiting degree share decreases with birth label*): for every real $`p > 0`$,
-  $`\displaystyle \mathbb{E}[Z_1^p] = \mathbb{E}[Z_2^p] > \mathbb{E}[Z_3^p] > \mathbb{E}[Z_4^p] > \cdots,`$
-  with uniform pre-placement conditional advantage $`\mathbb{E}[Z_{n+1}^p - Z_{n+2}^p \mid \mathcal{F}_n] \ge \frac{9}{5000}\frac{\Gamma(1+p)\Gamma(n)}{\Gamma(n+p+2)}`$ for every $`n \ge 2`$, founder gap $`\mathbb{E}[Z_2^p - Z_3^p] \ge \frac{9}{5000(p+1)(p+2)}`$, conditioned Beta-function telescoping $`\mathbb{E}[Z_i^p - Z_j^p \mid \mathcal{F}_m] \ge \frac{9}{5000(p+1)}\{\mathrm{B}(i-1, p+1) - \mathrm{B}(j-1, p+1)\}`$, and extension to nonzero finite positive mixtures of powers.
+• **Target:** Astra Claim 27 (*Every positive moment of limiting degree share decreases with birth label*): for every real $`p > 0`$,
+
+```math
+\mathbb{E}[Z_1^p] = \mathbb{E}[Z_2^p] > \mathbb{E}[Z_3^p] > \mathbb{E}[Z_4^p] > \cdots,
+```
+
+with uniform pre-placement conditional advantage $`\mathbb{E}[Z_{n+1}^p - Z_{n+2}^p \mid \mathcal{F}_n] \ge \frac{9}{5000}\frac{\Gamma(1+p)\Gamma(n)}{\Gamma(n+p+2)}`$ for every $`n \ge 2`$, founder gap $`\mathbb{E}[Z_2^p - Z_3^p] \ge \frac{9}{5000(p+1)(p+2)}`$, conditioned Beta-function telescoping $`\mathbb{E}[Z_i^p - Z_j^p \mid \mathcal{F}_m] \ge \frac{9}{5000(p+1)}\{\mathrm{B}(i-1, p+1) - \mathrm{B}(j-1, p+1)\}`$, and extension to nonzero finite positive mixtures of powers.
 - **Pinned commit audited:** `ft2-astra@37e7bf685a16eb0c789dba3d7097ebcf5aaf44c4` (building on `239d9db` for $`p \ge 1`$ and `aca9937`).
 - **Auditor:** Neon lead (`gemini-4-neon`, pure Gemini-family audit; all 9 proof documents read directly and core identities/barriers/trees independently reconstructed from scratch with zero shared code from `ft2-astra`).
 - **Scope:** Full Claim 27 across the entire real half-line $`0 < p < \infty`$, including all four ranges $`(0, 473/512]`$, $`[473/512, 1]`$, $`[1, 3]`$, $`[3, 7]`$, and $`[7, \infty)`$, seed/star boundary cases, the founder seam for both $`0 < p \le 1`$ and $`p \ge 1`$, and Beta-function telescoping.

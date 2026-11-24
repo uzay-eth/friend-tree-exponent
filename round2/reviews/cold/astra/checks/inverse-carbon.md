@@ -22,9 +22,13 @@ The exhaustive low-height search script `../inverse/search.py` (`inverse/search.
 
 ### 2. HKRZ interval arithmetic and constant-term pruning
 
-- **Exact alternating enclosure of $`F(x) = \int_0^1 t^x e^{t-1}\, dt`$.** Repeated integration by parts for $`x > -1`$ gives
-  $`\displaystyle F(x) = \sum_{k=0}^{j-1}\frac{(-1)^k}{(x+1)(x+2)\cdots(x+1+k)} + R_{j-1}(x), \qquad R_{j-1}(x) = \frac{(-1)^j}{(x+1)\cdots(x+j)}\int_0^1 t^{x+j}e^{t-1}\,dt.`$
-  For $`x \in (0, 1)`$, $`0 < \int_0^1 t^{x+j}e^{t-1}\,dt < \frac{1}{x+1+j}`$, so $`R_{j-1}(x)`$ has the exact sign of the $`j`$-th term $`a_j`$ and $`|R_{j-1}(x)| < |a_j|`$. Thus `min(total, new_total) < F(x) < max(total, new_total)` in exact `Fraction` arithmetic, terminating at $`j = 32 < 80`$ with width $`< 10^{-35}`$.
+• **Exact alternating enclosure of $`F(x) = \int_0^1 t^x e^{t-1}\, dt`$.** Repeated integration by parts for $`x > -1`$ gives
+
+```math
+F(x) = \sum_{k=0}^{j-1}\frac{(-1)^k}{(x+1)(x+2)\cdots(x+1+k)} + R_{j-1}(x), \qquad R_{j-1}(x) = \frac{(-1)^j}{(x+1)\cdots(x+j)}\int_0^1 t^{x+j}e^{t-1}\,dt.
+```
+
+For $`x \in (0, 1)`$, $`0 < \int_0^1 t^{x+j}e^{t-1}\,dt < \frac{1}{x+1+j}`$, so $`R_{j-1}(x)`$ has the exact sign of the $`j`$-th term $`a_j`$ and $`|R_{j-1}(x)| < |a_j|`$. Thus `min(total, new_total) < F(x) < max(total, new_total)` in exact `Fraction` arithmetic, terminating at $`j = 32 < 80`$ with width $`< 10^{-35}`$.
 - **Monotonicity and positivity on $`[a, b] \subset (0, 1)`$.** Since $`\log t < 0`$ on $`(0, 1)`$, $`x \mapsto F(x)`$ is strictly decreasing, so `lower_f = hkrz(b)[0] < F(x) < hkrz(a)[1] = upper_f`. Because $`0 < a \le x \le b`$ and $`\mathrm{lower\_f} > 1/3 > 0`$, `[a * lower_f, b * upper_f]` validly encloses $`x F(x)`$ on $`[a, b]`$.
 - **Integer pruning bounds.** In `search_polynomials`, `den = lcm(a.denominator, b.denominator)` makes `a**j * scale` and `b**j * scale` exact integers. In `search_hkrz`, all four positive lower endpoints are floored via `int(x * UNIT)` and upper endpoints ceilinged via `ceil(x * UNIT)`, widening `[lo, hi]` conservatively. For every signed integer pair `(lo, hi)` and positive `scale` / `UNIT`, Python's floor division satisfies `-(hi // scale) == ceil(-hi / scale)` and `(-lo) // scale == floor(-lo / scale)`, so no valid constant term $`c_0`$ is ever pruned.
 

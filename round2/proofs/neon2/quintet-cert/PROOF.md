@@ -72,21 +72,34 @@ M_3 \subseteq G_2^{\mathrm{ex}}, \quad M_{4P} \subseteq (M_3 \cap G_3^{\mathrm{e
 
 Let $`\sigma = +1`$ (UPPER) or $`\sigma = -1`$ (LOWER). Every local inequality bounds $`\sigma S (\text{row drift} - \lambda \cdot \text{row weight})`$ from above in integer ticks.
 
-1. **Paired inter-level transfers (exact cancellation):**
-   - $`f \to g`$: At any exact $`G_2`$ vertex $`u`$ ($`D_u < d_2, 1 \le c_u \le K_2`$), replace $`u`$'s neighbor gain rate $`\sum_{v \sim u} \iota_v`$ in the $`f`$-row by $`c_u r_1(u)`$, transferring $`(\iota_v - r_1(u))\Delta_u^L f`$ to the incident edge $`g(u, v)`$.
-   - $`g \to H_3`$ & Fenchel–Young (FY): At an exact $`G_2`$ vertex $`u`$ with $`c_u \ge 2`$:
-     - If $`u \in M_3`$: replace the external donor rate $`\sum_{w \sim u, w \ne v} \iota_w`$ in $`g(u, v)`$ by $`(c_u - 1) r_1(u)`$, transferring $`(\iota_w - r_1(u))\Delta_u^L g(u, v)`$ to $`H_3(u; \{v, w\})`$.
-     - If $`u \notin M_3`$: transfer a piecewise-linear function $`A_u(\iota_w)`$ (on rational knot grid $`0 = \xi_0 < \xi_1 = 1/d_2 < \dots < \xi_{m-1} = 1/2`$, denominator $`Q_K`$) from edge $`g(u, v)`$ to edge $`g(u, w)`$ for every $`w \ne v`$. Summing over all ordered pairs of incident edges at $`u`$ cancels identically. Thus $`g(u, v)`$ receives $`(c_u - 1) A_u(\iota_v)`$ (since $`A_u`$ is affine on $`[\xi_0, \xi_1] = [0, 1/d_2]`$, its expectation over $`\mu_v^{(2)}`$ is **exact** even when $`D_v \ge d_2`$) and keeps, in signed units,
-       $`\displaystyle \sum_{w \ne v} \sigma\big(\iota_w \Delta_u^L g(u, v) - A_u(\iota_w)\big) \;\le\; (c_u - 1) \max_{0 \le k < m} \sigma\big(\xi_k \Delta_u^L g(u, v) - A_u(\xi_k)\big),`$
-       because each segment $`[\xi_k, \xi_{k+1}]`$ is affine in $`\iota_w`$, and $`z \mapsto \max_k \sigma(\xi_k z - A_u(\xi_k))`$ is convex in $`z = \Delta_u^L g(u, v) = \mathbb E_{V \sim \mu_v^{(2)}}[\Delta_u^L g(u, V)]`$ so Jensen's inequality passes directly to the corners $`V \in G_2`$.
-   - $`H_3 \to P_4, S_3`$ and $`P_4, S_3 \to P_5, B_5, S_4`$: Whenever adjoining an external core neighbor $`w`$ of an exact-inner motif vertex $`x`$ produces a supported motif of the next size, retain $`r_1(x)`$ per external donor in the lower-level row and transfer $`(\iota_w - r_1(x))\Delta_x^L h`$ to the unique higher-level motif. Because every higher-level motif has full $`G_{j+1}`$ tail endpoints, the support condition depends **only** on the internal vertices, never on the degree of $`w`$ or the other endpoints. Uncovered external donors at exact-inner vertices have $`\iota_w \in [0, 1/2]`$, bounded by extremizing over $`[0, \frac{1}{2} n_{\mathrm{ext}}]`$.
-   All transfers occur in exact cancelling pairs, so summing over all embeddings on any tree $`T`$ preserves $`(\mathcal L \Phi)(T)`$ identically.
+1\. **Paired inter-level transfers (exact cancellation):**
+- $`f \to g`$: At any exact $`G_2`$ vertex $`u`$ ($`D_u < d_2, 1 \le c_u \le K_2`$), replace $`u`$'s neighbor gain rate $`\sum_{v \sim u} \iota_v`$ in the $`f`$-row by $`c_u r_1(u)`$, transferring $`(\iota_v - r_1(u))\Delta_u^L f`$ to the incident edge $`g(u, v)`$.
 
-2. **Exact 1D, 2D, and 3D projection envelopes:**
-   Each cross-level source change $`d_{\mathrm{fine}}`$ on $`G_j^k`$ ($`k \in \{1, 2, 3\}`$) is enclosed by stored integer arrays $`(m, r)`$ on $`G_{j+1}^k`$ with $`r \ge 0`$ verified over **every** fine state/pair/triple in exact `__int128` arithmetic (clearing integer denominators):
-   $`\displaystyle \big| d_{\mathrm{fine}}(s) - (\Pi^{\otimes k} m)(s) \big| \;\le\; (\Pi^{\otimes k} r)(s).`$
-   By independence of the donor coordinate from the remaining coordinates and convexity of $`|\cdot|`$,
-   $`\displaystyle \sigma(\iota_w - r_1)\,\mathbb E[d_{\mathrm{fine}}] \;\le\; \mathbb E\big[\sigma(\mathrm{inv}_{j+1}(w) - r_1)\,m + |\mathrm{inv}_{j+1}(w) - r_1|\,r\big].`$
+◦ $`g \to H_3`$ & Fenchel–Young (FY): At an exact $`G_2`$ vertex $`u`$ with $`c_u \ge 2`$:
+- If $`u \in M_3`$: replace the external donor rate $`\sum_{w \sim u, w \ne v} \iota_w`$ in $`g(u, v)`$ by $`(c_u - 1) r_1(u)`$, transferring $`(\iota_w - r_1(u))\Delta_u^L g(u, v)`$ to $`H_3(u; \{v, w\})`$.
+
+▪ If $`u \notin M_3`$: transfer a piecewise-linear function $`A_u(\iota_w)`$ (on rational knot grid $`0 = \xi_0 < \xi_1 = 1/d_2 < \dots < \xi_{m-1} = 1/2`$, denominator $`Q_K`$) from edge $`g(u, v)`$ to edge $`g(u, w)`$ for every $`w \ne v`$. Summing over all ordered pairs of incident edges at $`u`$ cancels identically. Thus $`g(u, v)`$ receives $`(c_u - 1) A_u(\iota_v)`$ (since $`A_u`$ is affine on $`[\xi_0, \xi_1] = [0, 1/d_2]`$, its expectation over $`\mu_v^{(2)}`$ is **exact** even when $`D_v \ge d_2`$) and keeps, in signed units,
+
+```math
+\sum_{w \ne v} \sigma\big(\iota_w \Delta_u^L g(u, v) - A_u(\iota_w)\big) \;\le\; (c_u - 1) \max_{0 \le k < m} \sigma\big(\xi_k \Delta_u^L g(u, v) - A_u(\xi_k)\big),
+```
+
+because each segment $`[\xi_k, \xi_{k+1}]`$ is affine in $`\iota_w`$, and $`z \mapsto \max_k \sigma(\xi_k z - A_u(\xi_k))`$ is convex in $`z = \Delta_u^L g(u, v) = \mathbb E_{V \sim \mu_v^{(2)}}[\Delta_u^L g(u, V)]`$ so Jensen's inequality passes directly to the corners $`V \in G_2`$.
+- $`H_3 \to P_4, S_3`$ and $`P_4, S_3 \to P_5, B_5, S_4`$: Whenever adjoining an external core neighbor $`w`$ of an exact-inner motif vertex $`x`$ produces a supported motif of the next size, retain $`r_1(x)`$ per external donor in the lower-level row and transfer $`(\iota_w - r_1(x))\Delta_x^L h`$ to the unique higher-level motif. Because every higher-level motif has full $`G_{j+1}`$ tail endpoints, the support condition depends **only** on the internal vertices, never on the degree of $`w`$ or the other endpoints. Uncovered external donors at exact-inner vertices have $`\iota_w \in [0, 1/2]`$, bounded by extremizing over $`[0, \frac{1}{2} n_{\mathrm{ext}}]`$.
+All transfers occur in exact cancelling pairs, so summing over all embeddings on any tree $`T`$ preserves $`(\mathcal L \Phi)(T)`$ identically.
+
+2\. **Exact 1D, 2D, and 3D projection envelopes:**
+Each cross-level source change $`d_{\mathrm{fine}}`$ on $`G_j^k`$ ($`k \in \{1, 2, 3\}`$) is enclosed by stored integer arrays $`(m, r)`$ on $`G_{j+1}^k`$ with $`r \ge 0`$ verified over **every** fine state/pair/triple in exact `__int128` arithmetic (clearing integer denominators):
+
+```math
+\big| d_{\mathrm{fine}}(s) - (\Pi^{\otimes k} m)(s) \big| \;\le\; (\Pi^{\otimes k} r)(s).
+```
+
+By independence of the donor coordinate from the remaining coordinates and convexity of $`|\cdot|`$,
+
+```math
+\sigma(\iota_w - r_1)\,\mathbb E[d_{\mathrm{fine}}] \;\le\; \mathbb E\big[\sigma(\mathrm{inv}_{j+1}(w) - r_1)\,m + |\mathrm{inv}_{j+1}(w) - r_1|\,r\big].
+```
 
 3. **Exact-degree overflow inner endpoints (`kind = 3`), one-knot tail endpoints (`kind = 1`), and double-tail / `INF` edges:**
    - For `kind = 3` ($`K_j < D_u < d_j`$, $`c_u \ge K_j + 1`$): $`\mathrm{inv} = 1/D_u`$ is exact; promotion leaves the state unchanged ($`\Delta_u^B = 0`$); its adjacent motif neighbor contributes exact rate $`\iota_{\mathrm{nbr}}`$ (when inner) or tail quadratic credit (charged once at the tail when the adjacent vertex is a tail); and its remaining gain rate $`L_u + \sum_{z \ne \mathrm{nbr}} \iota_z \le (D_u - c_u) + \frac{c_u - 1}{2} = D_u - \frac{c_u + 1}{2} \le D_u - \frac{K_j + 2}{2}`$ lies in $`[0, (2 D_u - K_j - 2)/2]`$.

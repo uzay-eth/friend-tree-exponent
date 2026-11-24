@@ -75,8 +75,7 @@ For a physical tail endpoint $`x`$, let $`v`$ be its unique selected neighbor, n
 ```math
  \max_{\gamma\in\{g,1\}}\gamma\,[w(x=\infty)-w(x=T_\kappa)],\qquad
  g=\begin{cases}
- \max(0,d_j-\kappa-1+1/D_v)/(d_j+1), &\kappa\le K_j,\\
- 0,&\kappa=K_j+1 .
+ \max(0,d_j-\kappa-1+1/D_v)/(d_j+1), &\kappa\le K_j,\\ 0,&\kappa=K_j+1 .
  \end{cases}
 ```
 Indeed $`t-t^+=t/(D_x+1)`$, so the physical expression has the knot mass $`t`$ times this jump with coefficient $`r_x/(D_x+1)`$. This coefficient is at most one. For fixed $`k_x=\kappa`$ the lower bound $`(D_x-k_x-1+1/D_v)/(D_x+1)`$ increases in $`D_x`$. For $`\kappa\le K_j`$, promotion changes the knot index to $`\kappa+1`$ with coefficient $`b_x`$ inside the same mass $`t`$. Its two coefficient extremes are $`\max(0,d_j-\kappa-1)/d_j`$ and one. Overflow leaves the knot index unchanged. The promoter in an active newborn quartet must be internal and have degree below the fourth-level cutoff.

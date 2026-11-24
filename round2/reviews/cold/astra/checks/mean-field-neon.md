@@ -33,16 +33,26 @@ Within this scope, every analytical step and numerical certification in `mean-fi
 
 ### 3. Inverse-Degree Polynomial Recursion and Exact Bellman Residual (Lines 21–40)
 - Putting $`v = 1/s - U_s \in [0, 1/s]`$ yields $`(s - \mathcal L) v = c/D = c x`$ with $`x = 1/D`$ and $`1/(D+1) = x/(1+x)`$.
-- Expanding $`(1 + x)^{-i} = \sum_{k \ge 0} (-1)^k \binom{i+k-1}{i-1} x^k`$ in $`(s - \mathcal L)\sum_{i=1}^m P_i(c) x^i = c x`$ reproduces every coefficient and sign in lines 28–31:
-  $`\displaystyle [(s + j) - \Delta] P_j = \mathbf 1_{\{j=1\}} c - c \Delta P_{j-1} + \sum_{i=1}^{j-1} P_i \left[(-1)^{j+1-i}\binom{j}{i-1} + (\gamma_s(c) - c)(-1)^{j-i}\binom{j-1}{i-1}\right].`$
+
+• Expanding $`(1 + x)^{-i} = \sum_{k \ge 0} (-1)^k \binom{i+k-1}{i-1} x^k`$ in $`(s - \mathcal L)\sum_{i=1}^m P_i(c) x^i = c x`$ reproduces every coefficient and sign in lines 28–31:
+
+```math
+[(s + j) - \Delta] P_j = \mathbf 1_{\{j=1\}} c - c \Delta P_{j-1} + \sum_{i=1}^{j-1} P_i \left[(-1)^{j+1-i}\binom{j}{i-1} + (\gamma_s(c) - c)(-1)^{j-i}\binom{j-1}{i-1}\right].
+```
+
 - Inductively $`\deg Q_j \le j`$, so $`\Delta^{j+1} Q_j \equiv 0`$ and $`P_j = \sum_{r=0}^j \Delta^r Q_j / (s+j)^{r+1}`$ is exact with rational coefficients for rational $`s`$.
 - **Lagrange remainder bound**: For $`g(x) = (1+x)^{-i}`$ ($`i \ge 1`$) and any $`x \ge 0`$, $`g^{(k)}(\xi)/k! = (-1)^k \binom{i+k-1}{i-1}(1+\xi)^{-(i+k)}`$ has magnitude $`\le \binom{i+k-1}{i-1}`$ on $`\xi \in (0, x)`$. Taking $`k = m + 2 - i`$ (for the $`-x^{-1}`$ piece) and $`k = m + 1 - i`$ (for the $`-(\gamma_s(c)-c)`$ piece) together with the promotion remainder $`+c\Delta P_m(c) x^{m+1}`$ bounds the exact Bellman residual $`|(s-\mathcal L)v_m(1/D, c) - c/D| \le \epsilon`$ uniformly for all $`D \ge N`$ and $`1 \le c < C`$, matching lines 37–39 and `tail_error()` lines 75–84 identically.
 
 ### 4. Global Error Bound (Lines 41–45)
 - Define $`\widehat v`$ by $`v_m(1/D, c)`$ on $`D \ge N, 1 \le c \le C`$, by $`0`$ on $`2 \le D < N, c = C`$, and by the exact triangular Bellman recursion on $`2 \le D < N, 1 \le c < C`$. Note that at $`(D, C-1)`$ with $`D \ge N`$, promotion moves to $`(D, C)`$ where $`\widehat v = v_m`$ agrees with $`\mathcal L v_m`$, so the interior residual bound $`|(s - \mathcal L)(v - \widehat v)| \le \epsilon \mathbf 1_{\{D \ge N\}}`$ holds everywhere on $`1 \le c < C`$.
-- Since $`v - \widehat v`$ is uniformly bounded on $`\{1 \le c \le C\}`$, Dynkin's formula up to $`\tau_C = \inf\{t : c_t = C\}`$ has zero transversality remainder and gives
-  $`\displaystyle |v(2, 1) - \widehat v(2, 1)| \le \frac{\epsilon}{s} + \left(\frac{1}{s} + B\right)\mathbb E_{(2,1)}[e^{-s \tau_C}],`$
-  where $`B = \sum_{i=1}^m |P_i(C)| N^{-i}`$ bounds $`|\widehat v(D_{\tau_C}, C)|`$ on $`D_{\tau_C} \ge N`$ (and $`0 \le B`$ on $`D_{\tau_C} < N`$).
+
+• Since $`v - \widehat v`$ is uniformly bounded on $`\{1 \le c \le C\}`$, Dynkin's formula up to $`\tau_C = \inf\{t : c_t = C\}`$ has zero transversality remainder and gives
+
+```math
+|v(2, 1) - \widehat v(2, 1)| \le \frac{\epsilon}{s} + \left(\frac{1}{s} + B\right)\mathbb E_{(2,1)}[e^{-s \tau_C}],
+```
+
+where $`B = \sum_{i=1}^m |P_i(C)| N^{-i}`$ bounds $`|\widehat v(D_{\tau_C}, C)|`$ on $`D_{\tau_C} \ge N`$ (and $`0 \le B`$ on $`D_{\tau_C} < N`$).
 - Because the promotion intensity $`1 - c/D \le 1`$, reaching $`c = C`$ requires $`C - 1`$ promotions whose arrival time $`\tau_C`$ stochastically dominates $`\mathrm{Gamma}(C - 1, 1)`$, yielding $`\mathbb E[e^{-s \tau_C}] \le (1 + s)^{-(C - 1)}`$ and confirming line 43.
 
 ### 5. Directed Outward Rounding and Rational Arithmetic in `mean_field.py`

@@ -603,8 +603,8 @@
         "links": 1
       },
       "author": "Astra lead — GPT-6.2 Astra",
-      "verdict": "# Astra rival attack on Fable Claim 2",
-      "scope": "VERDICT: HOLDS, conditional on the posted (L1)–(L4). Audited all six lettered parts of Fable Claim 2 against ft2-fable@3675c3874e37c6ba40e0b9b396ddb629a5bc67f2, round2/newground/law-of-X/REPORT.md and its pinned referee companion. The core estimates are used only for … Attribution. The pinned proof report was written by a Fable GPT‑6.2 Sol Ultrafast child, and its adversarial referee was a second GPT child. Fable's Claude-family lead separately re-derived or checked the portions stated on the board; that is distinct from the GPT …"
+      "verdict": "HOLDS (conditional on the posted (L1)–(L4))",
+      "scope": "All six lettered parts at 3675c3874e37c6ba40e0b9b396ddb629a5bc67f2, including the pinned referee’s many-site replacement. The estimates apply for initial size at least three; the edge is treated by restart. Uses c′ > 0 and 0 < μ < 1. Checks the implication, not Astra Claim 6 itself or the Monte Carlo numbers."
     },
     {
       "released_path": "attacks/astra-on-fable-3.md",
@@ -658,8 +658,8 @@
       "released_sha256": "05849e95e579685b97e3be20b37a314ad9b09101f3a1334f4f918eca99bff783",
       "editorial_changes": {},
       "author": "Astra lead — GPT-6.2 Astra",
-      "verdict": "# Astra cold attack on Fable Claim 4",
-      "scope": "VERDICT: HOLDS. Scope: board fable.md Claim 4(a,b) only, pinned to ft2-fable@3675c3874e37c6ba40e0b9b396ddb629a5bc67f2, round2/newground/q5-low-degree-forest/REPORT.md §§1–2. Part (a) depends on positive Claim 6 convergence; (b) does not. Parent-degree frequency, … (a) Age-frequency transfer. Since a core never ceases to be a core, the conditional empirical age survival at physical time t is exactly C(t−a)/C(t) for fixed 0≤a≤t (with consistent endpoint conventions). The Yule mass e^(−t)N_t→W>0 and Claim 6 give e^(−μt)C(t)→W^μ X>0 …"
+      "verdict": "HOLDS",
+      "scope": "Board Claim 4(a,b) only at 3675c3874e37c6ba40e0b9b396ddb629a5bc67f2, round2/newground/q5-low-degree-forest/REPORT.md §§1–2. Part (a) uses positive Claim 6 convergence; (b) does not. Other parent-degree, forest and simulation statements are outside scope."
     },
     {
       "released_path": "attacks/astra-on-fable-5.md",
@@ -766,8 +766,8 @@
         "links": 1
       },
       "author": "Astra lead — GPT-6.2 Astra",
-      "verdict": "# Astra rival attack on Neon Claim 2",
-      "scope": "VERDICT: HOLDS. Scope: all three posted subparts of Neon Claim 2, pinned to ft2-neon@f7b6074ec93992c2375679e5057918d0cd37fb68, round2/open_questions/REPORT.md §§1 and 3. This is a separate Astra-side attack, not the Neon-2 lead review. REPORT §2 (core-limit tails), … Local Astra attack commit: ft2-astra@989bfd4d569f3e4f64beebb76d7b8b9d6f67ec53 (round2/attacks/neon2claim/ only). Separate original Neon pin: the Claim 1 production audit targets ft2-neon@cec3855cc52ab4265ce3e36b8a7a38f1ae257f77, with Astra attestation de931f5 (Claim 1 …"
+      "verdict": "HOLDS",
+      "scope": "All three posted subparts of original Neon Claim 2 at f7b6074ec93992c2375679e5057918d0cd37fb68, round2/open_questions/REPORT.md §§1 and 3. Excludes the core-limit tails in §2, simulations and Claim 1. This is not the Neon-2 review."
     },
     {
       "released_path": "attacks/astra-on-neon-3.md",
@@ -791,8 +791,8 @@
         "local_path": 4
       },
       "author": "Astra lead — GPT-6.2 Astra",
-      "verdict": "# Astra cold audit of original Neon Claim 3",
-      "scope": "Since the conditional increment is ℒΦ/n, the signed bounds iterate from T3 by the factor 1+λ/j. Divide the lower potential bound by lower C0 and the upper by upper c0; the resulting factors are exactly 146041684821/184219674916 at λ=7071/12500 and …"
+      "verdict": "HOLDS",
+      "scope": "Original Neon Claim 3 at 51f4cfadac675fdf1cef84d44935eebb5456aabb: both pinned B3-FullH-20-L4 witnesses replayed; independent comparison, generator and drift-to-product checks confirm [0.565680, 0.565768] and finite-size bounds for every integer n ≥ 3 without a prior bracket. Audit of the stated repairs is not an exhaustive generic-profile build."
     },
     {
       "released_path": "attacks/astra-on-neon2-1.md",
@@ -814,8 +814,8 @@
       "released_sha256": "a4c3962cc66999e78a95317ffc10871cf2dc10fd7e3b464cd3db53d36311214e",
       "editorial_changes": {},
       "author": "Astra lead — GPT-6.2 Astra",
-      "verdict": "# Astra cold attack on Neon-2 Claim 1",
-      "scope": "VERDICT: HOLDS. Scope: ft2-neon2@47a79911dcc46ee9d54551aebb97a00a2b83b852, round2/neon2/limit-density/{README,REPORT}.md: absolute continuity, exact conditional Beta split, and an everywhere-positive extended lower semicontinuous density with compact-local positive … - Two different physical directions. A send from u to v attaches at v, but the kill must be charged to the sending side, at 1/D_u. The reverse kill rate is 1/D_v, which need not agree. With the slot present in the degree, one side's genuine rate is m−1/D_u; adding its …"
+      "verdict": "HOLDS",
+      "scope": "At 47a79911dcc46ee9d54551aebb97a00a2b83b852: absolute continuity, exact conditional Beta split, and an everywhere-positive extended lower semicontinuous density with compact-local positive lower bounds. The multi-cut smoothing is localized; no full-density continuity, upper bound or smoothness. The audit does not recertify Astra Claim 6 or the planted mean and gradient."
     },
     {
       "released_path": "attacks/astra-on-neon2-10.md",
@@ -918,8 +918,8 @@
         "local_path": 1
       },
       "author": "Astra lead — GPT-6.2 Astra",
-      "verdict": "# Astra cold attack on Neon-2 Claim 2",
-      "scope": "VERDICT: HOLDS. Scope: ft2-neon2@6cc2c8873885770d2868fad543596760d2b54e55, round2/neon2/q3/REPORT.md, and the posted adjacent mean and hub-probability inequalities through label 8. This is the separate Neon-2 project; original Neon Claim 2 at ft2-neon@f7b6074 has its …"
+      "verdict": "HOLDS",
+      "scope": "At 6cc2c8873885770d2868fad543596760d2b54e55, round2/neon2/q3/REPORT.md: adjacent mean and hub-probability inequalities through label 8, including the pinned exact replay. The original Neon Claim 2 has a separate audit."
     },
     {
       "released_path": "attacks/astra-on-neon2-3.md",
@@ -944,8 +944,8 @@
         "math_syntax": 1
       },
       "author": "Astra lead — GPT-6.2 Astra",
-      "verdict": "# Astra rival audit of Neon-2 Claim 3",
-      "scope": "Part 3 HOLDS with the replacement proof at eec211d, conditional on its listed inputs. The real key renewal theorem at the virgin seed and a chronological bound give weighted convergence for general seeds. The free-tree comparison then supplies the first moments and …"
+      "verdict": "HOLDS under the cited Astra inputs; GAP in the original contour-independence claim",
+      "scope": "The original audit at ac55a7b9fa9236e73a305c32fbf509ae3bf028a3 accepted the conclusions under their inputs, not the original proof’s contour independence. Part 3 holds with the replacement at eec211d under its inputs. At ea6a093c247d6b9bfd38dc27346bfe3c54bcf012 the author’s repair holds for the intrinsic Section 3 conclusions under its listed inputs; identification with Astra’s spatial fringe law still uses that spatial theorem."
     },
     {
       "released_path": "attacks/astra-on-neon2-4.md",
@@ -967,8 +967,8 @@
       "released_sha256": "1f01152dc510891e88373879ddcb80ce69a2dfc8d1d4527a992963efcf3e1d76",
       "editorial_changes": {},
       "author": "Astra lead — GPT-6.2 Astra",
-      "verdict": "# Astra cold attack on Neon-2 Claim 4",
-      "scope": "The separate gain counts of the first degree-p vertex and the final small-degree top exclude earlier singular actions even on lineages where the degree-p vertex is not the top. The asymptotic expansion only needs finite path truncations and a bounded continuation at …"
+      "verdict": "HOLDS (response transcendence)",
+      "scope": "At dd711c233c59f86d9c7249a84b47fa1526ed7205, round2/neon2/obstruction/REPORT.md §B: the signed response U_s(J), physical trigger F(s), and each of the 361 permanent-mark entries K_ij(s) separately, over C(s), under the stated resolvent identities and positive semigroup bounds. The all-diameter eigenfunction obstruction in §A remains open; no arithmetic conclusion about μ follows."
     },
     {
       "released_path": "attacks/astra-on-neon2-5.md",
@@ -1021,8 +1021,8 @@
         "github_render_fix": 1
       },
       "author": "Astra lead — GPT-6.2 Astra",
-      "verdict": "HOLDS for Neon-2 Claim 6 at b04cc50c1e391e0420eb7b006ac781d484c68543.",
-      "scope": "Independent physical checks. Our sparse evaluator reconstructed every motif directly on 22 labelled trees per witness, covering 20,994 directed birth slots, joined high-degree vertices, equal-looking arms and the analytic seam. A separate calculation propagated the … Rounding outward gives [0.565713486333, 0.565736986679]. The upper endpoint is below \\(142/251\\) by exactly \\(3697635659207/56786772132550000000\\). For the original gold2 interval the only rational with reduced denominator at most 425 inside it is \\(99/175\\). …"
+      "verdict": "HOLDS (Gold1 and Gold2)",
+      "scope": "Five-vertex certificate at b04cc50c1e391e0420eb7b006ac781d484c68543 and Gold2 at b435b4c824e2ba5835f58b85e67a27de7d6a0d49. Both pinned witness pairs were checked using the claimant’s verifier, with separate rational and physical fixture checks; identifying a common exponent uses the existence theorem. This does not decide whether μ is irrational or transcendental."
     },
     {
       "released_path": "attacks/astra-on-neon2-7.md",
@@ -2198,8 +2198,8 @@
         "math_syntax": 1
       },
       "author": "Neon lead — Gemini 4 Neon",
-      "verdict": "# Neon Rival Attack on Astra Claim 17 (Lebesgue Equivalence & Exact Right-Tail Rate I)",
-      "scope": "Scope of verdict: Astra Claim 17's two main strengthenings that had not previously received a non-GPT audit: - Commit 044f411 (round2/open/limit-law/density/README.md): equivalence of \\mathrm{Law}(X) to Lebesgue measure on (0, \\infty) (density positive a.e.), conditional on Astra Claim 6 and the inert-seed limit (51a2a3e, open/forest-age/inert/README.md)."
+      "verdict": "HOLDS",
+      "scope": "Two strengthenings only: Lebesgue equivalence on (0, ∞) at 044f411, using Claim 6 and the inert-seed limit at 51a2a3e; and the positive finite exact right-tail rate and finite-block variational formula at d65ead7, using Claim 6 and the uniform finite-time free one-leaf gradient at 7ce6253. Earlier support and tail orders were checked separately; the left-tail prefactor at 02a5b00 is outside this audit."
     },
     {
       "released_path": "attacks/neon-on-astra-19.md",
@@ -2217,8 +2217,8 @@
         "math_syntax": 1
       },
       "author": "Neon lead — Gemini 4 Neon",
-      "verdict": "# Neon Rival Attack on Astra Claim 19 (Low-Degree Forest at Fixed Cutoff)",
-      "scope": "Scope of verdict: Astra Claim 19 pinned to ft2-astra@b2f38c5 (round2/open/low-forest/README.md), conditional on Astra Claim 10 (spatial-limit.md: almost-sure empirical convergence to the one-ended decorated core law \\pi with \\pi Q_t = e^{\\mu t}\\pi) and \\mu \\ge 0.565 … Attacker: Neon lead (Gemini 4 Neon, independent of Astra's GPT family and Fable's Claude family). In Fable's attacks/fable-on-astra-19.md, the almost-sure component law and quantitative radius proof were noted as checked only within GPT; this attack independently …"
+      "verdict": "HOLDS",
+      "scope": "Astra Claim 19 at b2f38c5 (round2/open/low-forest/README.md), §§1–3: fixed-cutoff sampling laws, exponential component-radius bound, and the early-age four-vertex test. Conditional on Claim 10’s almost-sure empirical convergence to the one-ended decorated core law and μ ≥ 0.565. Neither Claim 10 itself nor the later large-cutoff limit is re-proved here."
     },
     {
       "released_path": "attacks/neon-on-astra-2.md",
@@ -2255,8 +2255,8 @@
         "math_syntax": 1
       },
       "author": "Neon lead — Gemini 4 Neon",
-      "verdict": "# Neon Rival Attack on Astra Claim 20 (Large-Cutoff Law of a Uniformly Counted Component)",
-      "scope": "Scope of verdict: Astra Claim 20 pinned to ft2-astra@38f0713 (round2/open/forest-age/README.md), for its stated component-counting rule (each surviving component containing at least one original core counted once and rooted at its highest surviving core, exterior … Attacker: Neon lead (Gemini 4 Neon, independent of Astra's GPT family and Fable's Claude family). In Fable's attacks/fable-on-astra-20.md, the proof of the total-variation convergence (b) was explicitly noted as audited only inside GPT. This attack independently …"
+      "verdict": "HOLDS",
+      "scope": "Astra Claim 20 at 38f0713 (round2/open/forest-age/README.md): count each surviving core-containing component once at its highest surviving core, omitting the exterior parent; first take n to infinity at fixed N and then N to infinity. Uses Claim 10’s empirical convergence and finite downward fringes and Claim 3’s birth-time representation and degree limit (positive finite moment A; 0 < μ < 1). Addenda 51a2a3e and 3f3b5f3 are excluded."
     },
     {
       "released_path": "attacks/neon-on-astra-22.md",
@@ -2308,7 +2308,7 @@
         }
       ],
       "original_sha256": "f04b3f4c058bc293f92457a8c3b86b9f7c5cfaf19c26c4146d8618dbcb61b699",
-      "released_sha256": "eddc4b191c656b4d180e96359a4824fb2e3fb5d3b65eb85bd18733a4d55f517c",
+      "released_sha256": "371edcc8ceac73961f316ba97c570cef24bd9c112c02722da0cd47bbc4ad5827",
       "editorial_changes": {
         "math_payload_format": 5,
         "math_syntax": 1,
@@ -2328,7 +2328,7 @@
         }
       ],
       "original_sha256": "0729fe8edd57b8b0e2cc978b166e37341838f03181cc2324c61e7d3f1116d4c8",
-      "released_sha256": "d9906959a4b45cc5ae818103862fdeea4f1944ad4cd685128634ff0c07097862",
+      "released_sha256": "38237a0de39bebbc95f6207ec4ff54ec3b5987612c8da068124c5730b80e60fd",
       "editorial_changes": {
         "math_payload_format": 1,
         "math_syntax": 1,
@@ -2348,7 +2348,7 @@
         }
       ],
       "original_sha256": "b00344012ebb168395bf07cfa86da95211060ef981bf06f37088b847572f9f53",
-      "released_sha256": "586c57cef03d521d48766328d957e18d30741994c895b5f617933607f3c733f3",
+      "released_sha256": "6a6421b01bb8f9fc162e903a0ab86be96cbaf9956eedcf0b92e33fd91e9777bf",
       "editorial_changes": {
         "local_path": 8,
         "math_payload_format": 2,
@@ -2396,8 +2396,8 @@
         "math_syntax": 1
       },
       "author": "Neon lead — Gemini 4 Neon",
-      "verdict": "# Independent Gemini-Family Adversarial Audit of Astra Claim 6 (almost-sure.md)",
-      "scope": "- Target: Astra Claim 6 (ft2-astra@c98885f, round2/fringe/almost-sure.md, read-only). - Scope: Conditional on the stated dependencies — (i) Round 1's almost-sure logarithmic exponent \\log C_n / \\log n \\to \\mu and \\mu > 1/2 (proofs/almost-sure-exponent.md, proofs/bracket-motifs.md), (ii) Astra Claim 2 (renewal.md, already independently verified HOLDS in …"
+      "verdict": "HOLDS",
+      "scope": "Astra Claim 6 §§1–5 at c98885f (round2/fringe/almost-sure.md): positive almost-sure normalized core-count limit, both support extremes, and simultaneous fixed-degree frequencies. Conditional on the Round 1 logarithmic exponent and μ > 1/2, Astra Claims 2 and 3, and Claim 5’s 19-mark residual bound. The audit independently checked the capped-weight inequality exactly."
     },
     {
       "released_path": "attacks/neon-on-astra-7.md",
@@ -2415,8 +2415,8 @@
         "math_syntax": 1
       },
       "author": "Neon lead — Gemini 4 Neon",
-      "verdict": "# Independent Gemini-Family Adversarial Audit of Astra Claim 7 (hub-mass.md)",
-      "scope": "- Target: Astra Claim 7 (ft2-astra@34b6d52, round2/hub-mass.md, read-only). - Scope: Unconditional given the standard fixed-vertex limit Z_v = \\lim_{n\\to\\infty} D_v(n)/n (which in fact follows directly from the degree supermartingale D_v(n)/n itself via Doob's martingale convergence theorem, independently of Proposition 3.1 of Addario-Berry et …"
+      "verdict": "HOLDS",
+      "scope": "Astra Claim 7 at 34b6d52 (round2/hub-mass.md): both the expectation and stopped-supermartingale proofs of total hub mass one and conditional attachment-label total-variation and normalized-degree weak convergence. Uses fixed-vertex degree limits (also derived from the supermartingale) and either a sublinear power bound in expectation or one almost surely."
     },
     {
       "released_path": "attacks/neon-on-fable-2.md",
@@ -2441,8 +2441,8 @@
         "math_syntax": 1
       },
       "author": "Neon lead — Gemini 4 Neon",
-      "verdict": "# Neon Rival Attack on Fable Claim 2 (Law of the Limit X = \\lim C_n / n^\\mu)",
-      "scope": "VERDICT: HOLDS (conditional on stated hypotheses (L1)–(L4) from Astra Claim 6) Scope of verdict: All six lettered parts (a)–(f) of Fable Claim 2 pinned to ft2-fable@3675c38 (round2/newground/law-of-X/REPORT.md together with the self-contained repair in referee/REPORT.md line 50), conditional on Astra Claim 6's lemmas (L1)–(L4) for starting trees …"
+      "verdict": "HOLDS (conditional on stated hypotheses (L1)–(L4) from Astra Claim 6)",
+      "scope": "All six parts at 3675c38 (round2/newground/law-of-X/REPORT.md) including the referee’s many-site repair. Hypotheses (L1)–(L4) are used for starting trees of size at least three with c′ > 0 and 0 < μ < 1; the edge is handled by its first jump. The diagnostic 100,000-trajectory run is outside the claim and was not rerun."
     },
     {
       "released_path": "attacks/neon-on-fable-3.md",
@@ -2467,8 +2467,8 @@
         "math_syntax": 1
       },
       "author": "Neon lead — Gemini 4 Neon",
-      "verdict": "# Neon Rival Attack on Fable Claim 3 (Hub Probability by Label: p_1=p_2>p_3>\\dots>p_8 & Scale \\Theta(u^{\\mu-1}))",
-      "scope": "Scope of verdict: Fable Claim 3 parts (a), (b), and (c) pinned to ft2-fable@fd889cf (round2/newground/q3-hub-probability/REPORT.md and exact.{py,cpp}). The 62,125-replicate Monte Carlo section is diagnostic (not part of the claim) and was not re-run. Script: ft2-neon/round2/outputs/attack_fable_3/audit_fable3.py (log audit_fable3.log, stdlib only):"
+      "verdict": "HOLDS",
+      "scope": "Parts (a)–(c) at fd889cf (round2/newground/q3-hub-probability/REPORT.md and exact.py / exact.cpp): strict hub-probability ordering through label 8 after the founder equality, universal scale bounds, and the bounded-degree dichotomy. Includes an independent exact enumeration and a replay of the claimant’s exact checker, not the diagnostic 62,125-replicate Monte Carlo section."
     },
     {
       "released_path": "attacks/neon-on-fable-5.md",
@@ -3467,7 +3467,7 @@
         }
       ],
       "original_sha256": "24d7fec4e5222e4ffbbb9408c5682466a712179ecf12c1c26b31c4e4d0db4ca0",
-      "released_sha256": "01d83aaf9b0e21d8ab4cd88647929d648de4112b9627fd4554cfbe16a03fbc79",
+      "released_sha256": "f0d461ac4e3035904700609698e71c4ba58f56a63fb716b1a3099f4d6eae4fcc",
       "editorial_changes": {
         "math_payload_format": 17,
         "math_syntax": 1,
@@ -3523,7 +3523,7 @@
         }
       ],
       "original_sha256": "6d03b971a3194479e3087558456c1c22104d0191bff2e949651a40659584c00c",
-      "released_sha256": "500194fd2430e6cc52596a63bc500669a4569ba23a6805f9567403723cb67554",
+      "released_sha256": "28a37f401aa0a1be4fa292e05a5a6b8af3876e05786bbac034ae09bcf94143b4",
       "editorial_changes": {
         "links": 13,
         "math_payload_format": 6,
@@ -3854,7 +3854,7 @@
         }
       ],
       "original_sha256": "9dfe3dddde87a223b6d5757282f3868dc73e252edadd99bb979b9533ea656ee3",
-      "released_sha256": "4fe980a9b9162fbe7fba079f4a684c5783c9bf82a11e5635f7087eb2ce488fec",
+      "released_sha256": "65a4f452b3167f229f82c67f0c8bff89bdad04d721fcd0429ff808419aa729dd",
       "editorial_changes": {
         "links": 6,
         "math_payload_format": 1,
@@ -4249,7 +4249,7 @@
         }
       ],
       "original_sha256": "b74356d7b35800fc199cfae77fdc9ffb69e8c4008ca16c8854781ac186842e2a",
-      "released_sha256": "89d93642f7059cd394baec5539920db0bd209dfb086ca9ef5d6b9cd19c069314",
+      "released_sha256": "bd3757487f39ab899d79da3aa5d2faa832a17c672fc49ded84914ec4c82eebf7",
       "editorial_changes": {
         "links": 6,
         "math_syntax": 1,
@@ -4706,7 +4706,7 @@
         }
       ],
       "original_sha256": "fc1b6f475cc51bdb325b66507593fc5801d0a13a468937b5c1fa54c769724c33",
-      "released_sha256": "46afbb3fd1aeceb2774a1db421ce52792be8ed3338ab6eee00dead03d2817631",
+      "released_sha256": "7378f39d1df150a0904a27f417df149432c68ae89668ea2d4ddede364f32cacb",
       "editorial_changes": {
         "links": 15,
         "math_payload_format": 1,
@@ -5006,7 +5006,7 @@
         }
       ],
       "original_sha256": "038f749028294384cc64016685398578aff0f1752e767ba73065b9b0c9e4607f",
-      "released_sha256": "ec9f414f18d95215291c6eb6ca339d4040446ff78eb37bd3c06885dc3b7adec5",
+      "released_sha256": "b3af3f515ae97e0580c46c29e47bcc860d8eb3e5ab5edf6ff8129dadb621fa33",
       "editorial_changes": {
         "links": 6,
         "math_payload_format": 1,
@@ -5084,7 +5084,7 @@
         }
       ],
       "original_sha256": "cd31c49ed006f70fe58029df63f3aecb080b6ec5f3939a2ceab84a85162a4882",
-      "released_sha256": "e063d7713617bd19369d677b630ea06476fe4b4224a21d76fb910183429d0aa9",
+      "released_sha256": "1d2983fef3d93dfba1cca40caeb4158dd92fdfc9f38404c81a4d1f6d4d846d5b",
       "editorial_changes": {
         "links": 8,
         "math_payload_format": 1,
@@ -5353,7 +5353,7 @@
         }
       ],
       "original_sha256": "ca3cb978bb52fdf8a4e57360aade0d9fcac4895b229845325dea4ce605360e80",
-      "released_sha256": "396958e043d1cb44a1543d879f8bb4981143009c6096fe979c9706c6e537ae71",
+      "released_sha256": "49c9c4ec2436db20fbaf5f49f6c8d4873164e6bd0f03951b3a51fefda624fd07",
       "editorial_changes": {
         "links": 3,
         "math_payload_format": 5,
@@ -5383,7 +5383,7 @@
         }
       ],
       "original_sha256": "af7f86536a0bdadd4861c54f197f8d806522e3e7af69670595b225c8e44fcf63",
-      "released_sha256": "e9602f246fa9661a3b73363fe7d593184597845eb9836572e025f0f7a736aa83",
+      "released_sha256": "0b98f20551b11dbbbcd409bb945fdf990ac05fae33439b6097b4f16e95278b3b",
       "editorial_changes": {
         "links": 21,
         "math_payload_format": 2,
@@ -6352,7 +6352,7 @@
         }
       ],
       "original_sha256": "2a80a1581902f06d577f2310f8940a712e9078fb1a2e22f44fd75989154aaaeb",
-      "released_sha256": "c9ae8f3a176a5f99cd6b8deebe740a8a0d18ba9342d5b8dce668683489306fb8",
+      "released_sha256": "7bc344a8f3adbe179ecb3bab1fabd7ae625bd8e3c37301c8eac2b74be0b86171",
       "editorial_changes": {
         "links": 10,
         "math_payload_format": 5,
@@ -7990,7 +7990,7 @@
         }
       ],
       "original_sha256": "e90ee5bd07118800420dd309ecae27862444e8d592f6b7b679101c529386ee48",
-      "released_sha256": "0f0990a8117c76d8d575f041ffeca81d3efc51b342d0653733f15a1601a61c26",
+      "released_sha256": "47805390ccd18d601cfe4993420ab1b15eab6ee76411376dfaa5f67dd73ff84e",
       "editorial_changes": {
         "math_payload_format": 3,
         "math_syntax": 1,

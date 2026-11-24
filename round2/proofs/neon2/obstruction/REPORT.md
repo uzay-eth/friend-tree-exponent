@@ -1,7 +1,7 @@
 # Exact audit: local eigenfunctions and response transcendence
 
 **Pinned claim commit:** `dd711c233c59f86d9c7249a84b47fa1526ed7205`.  
-**Review and dependencies:** Gemini audited the response proofs; Claude independently checked the scalar response, and GPT-family audits cover the physical trigger and kernel entries. See [Claim 4 dependencies](../README.md#inherited-proof-inputs).
+**Review and dependencies:** The lead reported a Gemini proof audit without a separately archived verdict. Claude independently checked the scalar response, and GPT-family audits cover the physical trigger and kernel entries. See [Claim 4 dependencies](../README.md#inherited-proof-inputs).
 
 [Release replay and dependencies](../README.md) · [Astra review](../../../reviews/attacks/astra-on-neon2-4.md) and [Fable review](../../../reviews/attacks/fable-on-neon2-4.md).
 

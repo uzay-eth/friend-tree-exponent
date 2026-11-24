@@ -55,8 +55,7 @@ Here is the local inequality after these cancellations. Write $`\rho_u=\sum_{w\s
 \begin{aligned}
 & L_u U_u+
   \sum_{w\sim_K u}\frac{U_u-a(u){\bf1}_{D_w\ge T}}{D_w}
-  +b_u\big(\Delta_u^b z_u+z_{\rm new}(u)\big)\\
-&+\sum_{w\in S_u}\left[a_w(\Delta_w^+ z_u-g_{uw})
+  +b_u\big(\Delta_u^b z_u+z_{\rm new}(u)\big)\\ &+\sum_{w\in S_u}\left[a_w(\Delta_w^+ z_u-g_{uw})
                               +b_w\Delta_w^b z_u\right]
   +\sum_{x\in J_u}(a_x\Delta_x^+z_u+b_x\Delta_x^b z_u)
   +\frac{{\bf1}_{D_u\ge T}}{D_u}\sum_{w\sim_K u}a(w).

@@ -24,7 +24,7 @@ Notation used throughout:
 
 - In a tree, $`D_x`$ is the degree of $`x`$.
 - For a core vertex $`x`$, $`c_x`$ is its number of core neighbours and $`L_x`$ its number of leaf neighbours, so $`D_x=c_x+L_x`$.
-- For an edge $`xy`$ of a tree, the *far side of $`xy`$ beyond $`y`$* is the vertex set of the component containing $`y`$ after the edge $`xy`$ is deleted.
+- For an edge $`xy`$ of a tree, the *far side* of $`xy`$ beyond $`y`$ is the vertex set of the component containing $`y`$ after the edge $`xy`$ is deleted.
 - Every $`\log`$ is natural, and $`\mathrm{Pois}(\lambda)`$ is a Poisson variable with mean $`\lambda`$.
 
 ## 1. Continuous time

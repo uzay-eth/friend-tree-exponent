@@ -6,9 +6,13 @@ Locations below are in `ASTRA_REPO/round2/hub-mass.md`. This claim has two route
 
 1. **Inputs and one-vertex supermartingale (lines 5, 14–16).** Inputs: Addario-Berry et al. Proposition 3.1 as cited here gives the fixed-label limits $`D_v(n)/n, L_v(n)/n\to Z_v`$ almost surely; `proofs/bracket-motifs.md` Theorem 1 gives $`a_n=\mathbb E C_n\le K n^\lambda`$ for some $`K<\infty`$, with the available $`\lambda=1133/2000<1`$. Quote: “a particular core of degree $`D`$ gains a leaf with probability at most $`D/j`$” (line 16). Therefore $`\mathbb E[D_v(j+1)/(j+1)\mid\mathcal F_j]\le D_v(j)/j`$ after its promotion; at promotion size $`r`$ it starts at $`2/r`$. **Elementary.**
 
-2. **Tail mass in expectation (lines 16–24, (2)).** Inputs: step 1, at most one promotion per step, and conditional promotion probability $`j^{-1}\sum_{x\ {\rm core}}L_x/D_x\le C_j/j`$. All late-labelled cores present at $`n`$ were promoted at $`r>m`$; bounding by all promotions there and conditioning just after each promotion gives the leading sum in the quote:
-   $`\displaystyle \mathbb E\sum_{v>m, \ D_v(n)\ge2} D_v(n)/n\le 2\sum_{r=m+1}^n(a_r-a_{r-1})/r\le 2K\sum_{j=m}^\infty j^{\lambda-1}/(j+1)\le 2K\left(m^{\lambda-2}+\frac{m^{\lambda-1}}{1-\lambda}\right).`$
-   The last bound uses $`j+1\ge j`$ and the decreasing integral comparison for $`j^{\lambda-2}`$. **Standard.**
+2\. **Tail mass in expectation (lines 16–24, (2)).** Inputs: step 1, at most one promotion per step, and conditional promotion probability $`j^{-1}\sum_{x\ {\rm core}}L_x/D_x\le C_j/j`$. All late-labelled cores present at $`n`$ were promoted at $`r>m`$; bounding by all promotions there and conditioning just after each promotion gives the leading sum in the quote:
+
+```math
+\mathbb E\sum_{v>m, \ D_v(n)\ge2} D_v(n)/n\le 2\sum_{r=m+1}^n(a_r-a_{r-1})/r\le 2K\sum_{j=m}^\infty j^{\lambda-1}/(j+1)\le 2K\left(m^{\lambda-2}+\frac{m^{\lambda-1}}{1-\lambda}\right).
+```
+
+The last bound uses $`j+1\ge j`$ and the decreasing integral comparison for $`j^{\lambda-2}`$. **Standard.**
 
 3. **Total limiting mass (line 26 and (1)).** Inputs: steps 1–2, the degree sum over a tree, dominated convergence for each of the first $`m`$ terms bounded by one, and monotone convergence in $`m`$. Quote: “the degree sum over cores is $`2(n-1)-(n-C_n)=n+C_n-2`$”; its normalized expectation tends to 1. Thus “$`\mathbb E\sum_{v\le m} Z_v\ge1-O(m^{\lambda-1})`$” with deficit bounded by (2). For the pointwise upper bound use $`\sum_v L_v(n)/n\le1`$ for $`n\ge3`$ and Fatou for the countable label sum (or the core degree sum plus $`C_n/n\to0`$ a.s.). Hence $`\sum_v Z_v=1`$ a.s. Absent the cited leaf limits, the available mean power bound also implies $`C_n/n\to0`$ a.s. by dyadic Markov/Borel–Cantelli and monotonicity. **Standard.**
 

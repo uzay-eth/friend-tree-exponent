@@ -34,20 +34,40 @@ Each of the 16 snapshots (`obs{1..8}_{lower,upper}.bin`, stored gitignored in `r
 
 ## Certified Corollaries (`PROOF.md` §§4–5 & `certificates_all.json`)
 
-1. **Strict monotonicity of the stationary core degree law ($`2 \le k \le 6`$):**
-   $`\displaystyle p_2 > p_3 > p_4 > p_5 > p_6,`$
-   with certified positive rational lower gaps $`p_2 - p_3 \ge 0.23809133`$, $`p_3 - p_4 \ge 0.06475725`$, $`p_4 - p_5 \ge 0.02804779`$, and $`p_5 - p_6 \ge 0.01501606`$.
+1\. **Strict monotonicity of the stationary core degree law ($`2 \le k \le 6`$):**
+
+```math
+p_2 > p_3 > p_4 > p_5 > p_6,
+```
+
+with certified positive rational lower gaps $`p_2 - p_3 \ge 0.23809133`$, $`p_3 - p_4 \ge 0.06475725`$, $`p_4 - p_5 \ge 0.02804779`$, and $`p_5 - p_6 \ge 0.01501606`$.
 2. **Independent 3-way degree-2 consistency:**
    $`\pi(J) + \pi(2, 2) \in [0.38336404, 0.38352731]`$ contains $`p_2 \in [0.38337348, 0.38351583]`$ (consistent with $`\pi(2, 0) = 0`$ from `PROOF.md` Theorem 4(1) across six independent `413 MB` certificates).
-3. **High-degree stationary core tail mass:**
-   $`\displaystyle \pi(D_o \ge 7) \;=\; 1 - \sum_{k=2}^6 p_k \;\in\; [0.30130165,\; 0.30174603].`$
-4. **Dormant / bare cores of degree $`\ge 3`$:**
-   $`\displaystyle \pi(L_o = 0,\, D_o \ge 3) \;=\; \pi(L_o = 0) - \pi(2, 2) \;\in\; [0.01397965,\; 0.01431408],`$
-   certifying that over **90.15%** (and at most 90.38%) of all bare/dormant cores have degree $`2`$.
-5. **Exact conditional neighbor-reciprocal expectations (`PROOF.md` Theorem 4):**
-   Using the exact stationary balance identities at $`J = (2, 1)`$ and $`(2, 2)`$,
-   $`\displaystyle \mathbb E_\pi\!\left[\frac{1}{D_{\mathrm{parent}}} \;\Big|\; J\right] \;=\; \frac{\mu}{\pi(J)} - \mu - \frac{3}{2} \;\in\; [0.17650729,\; 0.17678896],`$
-   $`\displaystyle \mathbb E_\pi\!\left[\frac{1}{D_{v_1}} + \frac{1}{D_{v_2}} \;\Big|\; (2, 2)\right] \;=\; \frac{\pi(J)}{2\,\pi(2, 2)} - \mu \;\in\; [0.39548710,\; 0.39662379].`$
+
+3\. **High-degree stationary core tail mass:**
+
+```math
+\pi(D_o \ge 7) \;=\; 1 - \sum_{k=2}^6 p_k \;\in\; [0.30130165,\; 0.30174603].
+```
+
+4\. **Dormant / bare cores of degree $`\ge 3`$:**
+
+```math
+\pi(L_o = 0,\, D_o \ge 3) \;=\; \pi(L_o = 0) - \pi(2, 2) \;\in\; [0.01397965,\; 0.01431408],
+```
+
+certifying that over **90.15%** (and at most 90.38%) of all bare/dormant cores have degree $`2`$.
+
+5\. **Exact conditional neighbor-reciprocal expectations (`PROOF.md` Theorem 4):**
+Using the exact stationary balance identities at $`J = (2, 1)`$ and $`(2, 2)`$,
+
+```math
+\mathbb E_\pi\!\left[\frac{1}{D_{\mathrm{parent}}} \;\Big|\; J\right] \;=\; \frac{\mu}{\pi(J)} - \mu - \frac{3}{2} \;\in\; [0.17650729,\; 0.17678896],
+```
+
+```math
+\mathbb E_\pi\!\left[\frac{1}{D_{v_1}} + \frac{1}{D_{v_2}} \;\Big|\; (2, 2)\right] \;=\; \frac{\pi(J)}{2\,\pi(2, 2)} - \mu \;\in\; [0.39548710,\; 0.39662379].
+```
 
 ---
 

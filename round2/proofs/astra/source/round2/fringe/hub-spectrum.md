@@ -23,9 +23,7 @@ Work in continuous time from $`T_3`$. Use $`d_k=d(\mathbf1_{D\ge k})`$, the phys
 ```math
  \begin{aligned}
  |\mathbb E[U_k(u+h)\mid\mathcal F_u]-e^{\mu h}\Psi(T_u)d_k|
-     &\le K C(T_u)e^{\sigma h},\quad \sigma<\mu,\\
- \mathop{\mathrm{Var}}\nolimits (U_k(u+h)\mid\mathcal F_u)&\le K n(T_u)e^{4h},\\
- \mathbb E n(T_u)&=3e^u .
+     &\le K C(T_u)e^{\sigma h},\quad \sigma<\mu,\\ \mathop{\mathrm{Var}}\nolimits (U_k(u+h)\mid\mathcal F_u)&\le K n(T_u)e^{4h},\\ \mathbb E n(T_u)&=3e^u .
  \end{aligned}                                                     \qquad\text{(3)}
 ```
 Also $`e^{-\mu u}C(T_u)`$ stays bounded almost surely. The uniformity in (3) follows from the weighted supremum estimate for bounded fringe scores and the single-leaf coupling for all degree thresholds.
@@ -53,8 +51,7 @@ For a current core having $`L=D-c`$ adjacent leaves, there is also a coupling wi
 For every fixed $`0<\epsilon<1/4`$ and integer threshold $`k`$ sufficiently large, these comparisons have the following conditional consequences with constants depending only on $`\epsilon`$:
 ```math
  \begin{aligned}
- D\le(1-\epsilon)k &\implies \Pr(M_v\ge k\mid\mathcal F_t)\le K e^{-c_\epsilon k},\\
- D\ge(1+\epsilon)k,\ c\le\epsilon k/4
+ D\le(1-\epsilon)k &\implies \Pr(M_v\ge k\mid\mathcal F_t)\le K e^{-c_\epsilon k},\\ D\ge(1+\epsilon)k,\ c\le\epsilon k/4
    &\implies \Pr(M_v< k\mid\mathcal F_t)\le K e^{-c_\epsilon k}.
  \end{aligned}                                                       \qquad\text{(5)}
 ```
