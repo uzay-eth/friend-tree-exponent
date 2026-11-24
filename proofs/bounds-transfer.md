@@ -2,7 +2,7 @@
 
 # Transferring an observed neighbour's leaf-gain term
 
-This separate certificate uses the process, degree cutoffs, pooled marks and hub potentials in [the baseline derivation](BOUNDS.md). It adds one conditional neighbour descriptor and redistributes terms of the exact drift along observed core edges. The baseline source and reproduction are frozen separately.
+This separate certificate uses the process, degree cutoffs, pooled marks and hub potentials in [the baseline derivation](bounds-hub.md). It adds one conditional neighbour descriptor and redistributes terms of the exact drift along observed core edges. The baseline source and reproduction are frozen separately.
 
 For every $`n\ge3`$ the resulting bounds on the mean core size are
 
@@ -13,7 +13,7 @@ E[C_n] <= (15361771189/640204837) product_{m=3}^{n-1} (1+0.568/m).
 
 Thus the liminf and limsup of the mean log-growth exponent lie in **[0.563, 0.568]**. The previous width of 0.043 is reduced to 0.005.
 
-Run `./reproduce-transfer.sh` from this directory, or add `--screen-17` to rebuild the proposals at 17/30 as well. Each side verifies 9,639,742 finite states, 6,445 ordered endpoint pairs and every degree at least 208 by the analytic tail. Both certificates use neighbour cutoffs 128, 26, 10, 6, 5, 4, 4, 3, 3, 3, then 2 thereafter. The script uses a single low-priority CPU and the undefined-behaviour sanitizer. See [the replay output](transfer.log).
+Run `./reproduce-transfer.sh` from this directory, or add `--screen-17` to rebuild the proposals at 17/30 as well. Each side verifies 9,639,742 finite states, 6,445 ordered endpoint pairs and every degree at least 208 by the analytic tail. Both certificates use neighbour cutoffs 128, 26, 10, 6, 5, 4, 4, 3, 3, 3, then 2 thereafter. The script uses a single low-priority CPU and the undefined-behaviour sanitizer. See [the archived audit’s replay results](../reviews/review-bounds-transfer-gemini.md#21-live-ubsan-reproduction-of-reproduce-transfersh---screen-17).
 
 | Exact weight data | Lower | Upper |
 |---|---:|---:|

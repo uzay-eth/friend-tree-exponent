@@ -1,0 +1,67 @@
+# Cold reader: first-year probability graduate student, arriving from a tweet
+
+*Editorial simulation, not a statement by any real person. Inputs used: the draft PDF (35 pages), the draft README, and the public repository at commit `a0972085`, plus the arXiv HTML of* Random friend trees *§7 so I could check the question wording.*
+
+## Quick check I actually ran
+
+I cloned the repo fresh into a temporary directory (commit `a0972085ad72ad5685ae7b424988648d1965e73c`) and ran from its root. Toolchain: GCC 13.3, CPython 3.12.3, GMP headers present. I timed it with GNU `time -v`:
+
+```
+$ bash round2/verify/run_all.sh
+...
+=== astra: 16 results in 47s ===
+=== astra-late: 5 results in 37s ===
+=== neon: 3 results in 47s ===
+=== neon2: 12 results in 189s ===
+=== fable: 6 results in 76s ===
+ALL 42 SELECTED RESULTS PASSED (396s)
+exit status: 0
+wall clock 6:36, peak RSS about 0.6 GB
+```
+
+That matches the README's advertised final line (`ALL 42 SELECTED RESULTS PASSED (390s)`), within 6 s. The run says plainly what it does not cover: `neon2-quintet-tiny: tiny builder, exact checker and controls; neither gold receipt replayed`. So the quick check does **not** check the headline Theorem 2 interval. The README says the same ("tests finite fixtures, not the full enclosure"). I did not run the full rebuild, which needs 10–20 GiB of RAM and about 20 minutes.
+
+I also redid the endpoint arithmetic of Theorem 2 myself from the paper's table, with exact rationals:
+
+- λ₋ − e₋/m₋ = 7071421/12500000 − 19217/99227205820 = 35083855339718511/62017003637500000 ✓
+- λ₊ + e₊/m₊ = 28286843/50000000 + 20062/158369484035 = 127993535256830043/226242120050000000 ✓
+- In decimals: 0.5657134863333554… and 0.5657369866784451…, so the printed outward rounding is correct. 17/30 − a₊ ≈ 9.3·10⁻⁴.
+
+## 1. Gut reaction (one minute)
+
+"Huh, Strogatz's 17/30 is dead, and the bound is tight enough to actually mean it." The title and opening paragraph tell me the model and the answer in three sentences, which is great. Then I hit thirteen theorems, "Tier B/C", "Gold2", "astra/neon/fable", and a list of AI model families doing review. I come away sure the *number* is solid as arithmetic. I'm much less sure what I would need to trust to believe the *inequality on every tree*. The honesty is reassuring: the paper says outright that no human referee has read it and the quick check doesn't replay the certificate. But that honesty also tells me the headline rests on a C++ scan I can't run on my laptop.
+
+## 2. What I would do next
+
+1. Read the Theorem 2 proof sketch (half a page) and try to derive the "remove the new core vertex" bookkeeping myself on configurations of ≤2 core vertices, to see why the generator reduces to local inequalities.
+2. Run the small/tiny builder by hand (`neon2-quintet-tiny`) and look at what one "row" is, to connect the 767,588,844 rows to the formula LΦ.
+3. Ask my advisor whether a 20 GiB box is around to do the strict Gold2 replay. The README's 17 + 2 minutes sounds doable.
+4. Skip §4–5 on a first pass. They're interesting, but they aren't why I clicked.
+
+## 3. Sentences that overclaim, confuse or misattribute
+
+1. **README:** "with an independent exact hub-probability certificate through label 8." In the paper, Theorem 12 is "a finite size-nine calculation with rigorous continuation bounds". "Exact" oversells a calculation that has continuation bounds. And "independent" means independent *of the all-tree certificates*, not independent authorship, but a reader of the README will take it as the second meaning.
+2. **README, item 3:** "a spatial operator has a probability eigenmeasure and, under the stated comparisons, has spectral growth rate μ". In the paper, Theorem 6 is titled "conditional" and puts "Assume the finite-exterior planting and one-edge hypotheses of Lemma B.4" *before* "There is a Borel probability π". So the paper's statement makes the eigenmeasure conditional too. Only the proof line ("Construction and eigenmeasure existence are in Lemma B.3") suggests otherwise. The README and the theorem statement disagree on what is conditional. One of them should change.
+3. **Paper, Theorem 1 discussion:** "The finite-size prefactors and an independent degree-band upper bound 5657/9983 appear in the original paper, Theorem 1.2." *Which* original paper? It's not a citation, and there is no earlier paper by this author in the references. A cold reader can't follow this. The same problem appears in "The exhaustive scan uses the original verifier."
+4. **Paper, §5 Tier C:** "The original Gold2 interval contains 99/175; reproducing its bytes does not check the new prices." Neither Theorem 2 nor its proof ever says that Theorem 2 *is* Gold2. I had to grep the repo (`certificate_gold2.json`) to find out that the headline numbers come from Gold2. Read cold, this sentence sounds as if the headline interval might be under-audited. (It isn't: 99/175 ≈ 0.5657143 does lie inside [a₋, a₊]. The "narrower corrected repricing" is a different, GPT-only object.) Name the snapshot in Theorem 2.
+5. **README, item 4** says the result is "answering the Krapivsky–Redner conjecture". **Paper, §6** says "The fixed-degree law and intermediate cumulative law do not settle the pointwise growing-degree law of Krapivsky–Redner [2] throughout the intermediate range." I checked [4, §7(2)]: the conjecture as recorded there is the fixed-k a.s. limit being Θ(k^{-(1+μ)}), and the paper does answer that. But without the qualifier "as recorded in [4]" in the abstract, the two sentences read as a contradiction. The README keeps the qualifier; the abstract's "as Krapivsky and Redner conjectured" drops it.
+6. **Abstract and README:** "The limiting degrees divided by n sum to one almost surely." The statement of Theorem 9 begins "On the event Σ_{n≥3} C_n/n² < ∞". That event is almost sure by Theorem 1/4, since C_n = n^{μ+o(1)} and μ < 1. But the paper never says this next to Theorem 9, so a student reading the theorem statement thinks the abstract has dropped a hypothesis.
+7. **Paper, Theorem 3 proof:** "the two-sided mean estimate follows from Theorem 5". The proof of Theorem 5 in turn cites Theorem 4 ("The mean equivalent and coefficient formula were proved in Theorem 4"). Forward references that run 3 → 5 → 4 → Lemma B.2 look circular at first glance. They probably aren't, since everything bottoms out in Lemma B.2, but the paper should say so.
+8. **README, first bullet:** "originally bounded by 0.5650≤μ≤0.5665". "Originally" here hints at a prior publication that the README doesn't link. Same issue as #3.
+9. **README links (fact, not style):** at the current public commit, `docs/proof-map.md` does not exist. `paper/friend-tree-exponent.pdf` is a different 27-page file, not this 35-page draft. If the draft README goes live before those files do, the first two links a reader clicks will be broken or wrong.
+
+Nothing I read misattributes the cited prior work. Krapivsky–Redner (0.566), Strogatz (17/30), Addario-Berry et al. (§7 questions, which I checked against the arXiv text), Hartle et al. (0.569), Long and Sabba are each credited for what the text says they did.
+
+## 4. Which theorem I'd check first, and whether the paper lets me
+
+**Theorem 2.** It's the headline, and it's the only part a tweet would quote.
+
+- **The arithmetic:** yes. The table gives λ, e and m for each side, the rule is a± = λ± ± e±/m±, and I reproduced both fractions exactly (above). The discrete-time iteration step (product of 1 + a/n, with Σ j⁻² < ∞) is standard and clear.
+- **The reduction to local inequalities:** only partly. "Removing it from any new configuration identifies the old configuration to which its contribution belongs. Transfers between configurations cancel in the sum" is two sentences doing the main work. I can't rebuild the bijection from that, and there is no pointer to which appendix or proof file has it. (The README's proof link exists in the live README, but the paper itself only says "the full reduction".)
+- **The certificate:** not on my hardware. The quick check explicitly skips it, and the full replay needs 20 GiB of RAM. So I'd have to trust the reported strict byte-identical replays by two other model families, with no human check. The paper is upfront about that. It does not let me verify it myself.
+
+Net: I can check the deduction from the table to the interval. I can't check the table, and I can only half-check why the table suffices.
+
+## 5. One edit
+
+In Theorem 2, add one sentence that names the snapshot and the command. For example: "These are the Gold2 endpoints; the strict replay is `bash round2/verify/neon2/run.sh gold2-check <pair>` (≈20 GiB RAM), and the quick check does not replay them." This alone fixes my confusion #4, tells a cold reader exactly what to run to check the headline, and stops the quick-check "PASSED" line from being read as a check of the theorem the tweet is about.

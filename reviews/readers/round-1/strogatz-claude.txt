@@ -1,0 +1,81 @@
+# Cold read: a Strogatz-perspective simulation (Claude)
+
+*Editorial simulation. Not a statement by Steven Strogatz. Inputs: the PDF "The non-leaf growth exponent of the random friend tree" (35 pp., dated 24 November 2026), the README that came with it, and the public GitHub repository plus the sources those point to. I also read Krapivsky and Redner's 2017 arXiv paper and Section 7 of Addario-Berry et al. to check the credit sentences.*
+
+---
+
+## 1. Gut reaction (one minute)
+
+Wow, the number really is about 0.5657. And Sid and Paul's simulation turns out to be very good. In §5.1 of their 2017 paper they say the local slope "ranges between 0.5652 and 0.5673" and call 0.566 "accurate to within 0.001". The certified interval [0.565713…, 0.565737…] sits inside that range. That's a lovely vindication, and the paper should say so in exactly those words. Instead it says "agrees … to the reported precision", which undersells it.
+
+The same sentence of theirs explains why my 17/30 question was fair to ask: 17/30 = 0.56667 is also inside their range. Their data could not rule it out. Now it's ruled out. That's the story, and the paper never tells it.
+
+Then I hit page 2 and got lost. The intro bullets are a pleasure to read. After that it turns into a very dense pile of probability: dirty pairs, marked-fringe operators, phase-averaged cut tables. The headline result (Theorem 2) has a proof that mostly says "a machine checked 767,588,844 rows per side". I'm not the audience for most of the appendices, and I'm fine with that. But I want one page I can follow. I want to know why 17/30 fails without trusting a billion lines of code written by AI models that no human has refereed. The paper doesn't give me that page.
+
+Credit is mostly handled with care, and I appreciate it. Two things bother me, though. (a) Long's public drafts apparently already had an upper bound below 17/30. (b) It's unclear how "independent" Sabba's bracket is. Details below.
+
+## 2. What I would do next
+
+1. **Email Sid Redner (and Paul Krapivsky).** I'd send the PDF and ask: "Is this right? Do you believe it? And did you ever *mean* the k^{-(1+µ)} law as a conjecture, or did you think you'd derived it?" Their 2017 paper presents Eq. (1) and Eq. (33) as consequences of a heuristic argument from Gabel–Krapivsky–Redner [their ref. 11]. It's the probabilists (Addario-Berry et al.) who turned it into an almost-sure conjecture.
+2. **Ask a probabilist friend** (say, someone from the Addario-Berry et al. author list) whether Theorems 4, 5 and 9 really settle their Questions 1, 2 and 4. Those answers are the part I can't judge, and the part human experts most need to look at.
+3. **Ask the author for the short proof.** Theorem 1 already gives µ ≤ 1133/2000 = 0.5665 < 17/30, from a *three-vertex* certificate. I'd ask to see its weights and drift inequalities printed in the paper, so a person can check the 17/30 exclusion with pencil plus a small script. The five-vertex certificate isn't needed for that.
+4. **Run the quick verifier** from the README (`bash round2/verify/run_all.sh`). The README itself says it "tests finite fixtures, not the full enclosure", so a pass would tell me the plumbing works, not that the theorem is true.
+5. **Look at Long's repositories** and work out who first had a rigorous bound below 17/30, and on what date.
+
+## 3. Sentences that overclaim, confuse or misattribute
+
+Each item gives the exact quote, then why.
+
+**Credit and attribution**
+
+- PDF abstract: *"agrees with Krapivsky and Redner's estimate of 0.566 to the reported precision."*
+  True, but too thin. KR reported a slope range of 0.5652–0.5673 and claimed accuracy within 0.001. The certified interval lies inside both. Say that; it's their win.
+- PDF abstract: *"as Krapivsky and Redner conjectured."*, and README: *"answering the Krapivsky–Redner conjecture recorded in Random friend trees, §7(2)."*
+  KR didn't phrase it as a conjecture. They stated N_k ∼ N^µ/k^{1+µ} (their Eq. 1) and said "it is possible to generally show [11]" that c_k ∼ k^{-(1+µ)}, citing Gabel, Krapivsky and Redner (PRE 88, 050802, 2013). The "conjecture" label, and the "almost surely" form, come from Addario-Berry et al. §4 and §7(2). Credit both: KR (via GKR 2013) for the law, Addario-Berry et al. for the rigorous formulation. Gabel–Krapivsky–Redner isn't cited at all.
+- PDF §3: *"Krapivsky and Redner's prediction [2] in this notation is X^k_n/X^{≥2}_n → p_k almost surely for each fixed k ≥ 2, p_k = Θ(k^{-(1+µ)})."*
+  This attributes the probabilists' almost-sure statement to the physicists. KR wrote mean-field asymptotics, not almost-sure limits. Cite [4, §4] for this form.
+- PDF §1: *"In 2022 Strogatz brought their question to a wider audience and asked whether the exponent could be 17/30 [3]."*
+  "Their question" is vague. KR asked what µ is; 17/30 came later, in the tweet. The public repo README says the tweet came "after speaking with Redner". If Sid suggested or discussed 17/30, the paper should say so, because the credit (or blame) for the guess may not be mine alone. I couldn't open the cited post (X wanted a login), so I can't confirm the wording or the date "20 September 2022" in ref. [3].
+- README title, *"The random friend tree exponent is not 17/30"*, and PDF abstract *"This rules out 17/30."*
+  A casual guess in a tweet shouldn't be the headline of a mathematics paper. It frames the work as refuting a straw man, and it buries the real result: a 10⁻⁵-wide certified enclosure and answers to four open questions. The PDF title is better; the repo title should match it.
+- PDF §1: *"Christopher D. Long first gave a critical equation in discounted generation sums and an effective search and then constant-factor bounds on the mean."*
+  The repo's own credit record (round2/who-did-what.md, pinned commit) says more. Long's public drafts of 23–24 November also give "the upper bound 2832242711/5000000000 = 0.5664485422", which is below 17/30. It adds: "His public work takes priority for the common statements." If that bound is rigorous, Long excluded 17/30 first, and the paper should say so in the intro and the abstract. Leaving it out of the PDF is the most serious credit problem I found.
+- PDF §1: *"Mohamed Sabba independently reported the interval [0.565615, 0.565809] and the estimate 0.5657237 (attribution record)."*
+  Confusing on two counts. (a) "Independently": the credit record says Sabba got the bracket "with GPT-6.2 Astra", and an Astra lane also worked on this paper. Independent of what, exactly? (b) Is his interval a rigorous enclosure or a numerical one? A reader needs to know, because a rigorous interval would also exclude 17/30.
+- PDF references list: neither Long nor Sabba appears. They're credited only through a hyperlinked phrase ("attribution record"), which is lost in print. Give each a numbered reference with a date.
+- PDF §1: *"Krapivsky and Redner studied this growth rule as isotropic redirection."*
+  Correct: KR 2017 does use "isotropic redirection (IR)". But the README credits line says *"studied complete redirection"*. Pick one term, or explain that it's IR with redirection probability r = 1. Also, redirection itself goes back to Kleinberg et al. (1999) and Krapivsky–Redner, PRE 63, 066123 (2001), as KR 2017 says. One sentence citing them would be fair to Sid's longer line of work.
+
+**Overclaims and confusions**
+
+- PDF §1: *"Their Section 7 asks for a random amplitude (Question 1)."*
+  Wrong. Their Question 1 asks whether the gap δ < λ in n^δ ≪ X_n^{≥2} ≪ n^λ can be closed. It's about the exponent, and it mentions KR's µ ≈ 0.566. It doesn't ask for a random amplitude. Theorem 1 answers Q1. Theorem 4 goes beyond it.
+- PDF Theorem 1 discussion: *"The finite-size prefactors and an independent degree-band upper bound 5657/9983 appear in the original paper, Theorem 1.2."*
+  What original paper? No reference is given. A cold reader can't tell if it's Addario-Berry et al., an earlier version of this paper, or a repo file. Also 5657/9983 = 0.566663…, which beats 17/30 by only 3×10⁻⁶. Worth saying, if that's the point.
+- PDF Theorem 2 proof: *"Transfers between configurations cancel in the sum. This reduces the bound on every finite tree to local inequalities."*
+  This is the step I care about most, and it's asserted in two sentences. A short worked example on a tiny tree would let me believe it.
+- PDF Theorem 2: *"The exhaustive scan uses the original verifier."* Unclear. Original relative to what? Which scan, and how is it different from "the finite verifier"?
+- PDF abstract and §1 bullet 2: *"certified interval"*, *"Exact certificates put that exponent between …"*.
+  Neither place mentions that the certificate's code was written and reviewed only by AI models, with no human referee. That fact appears only on p. 16 ("No human referee has reviewed the proofs") and in the README. The abstract should say "computer-assisted" and "not yet refereed". As written it reads like a settled result.
+- PDF §5: *"Tier B: one outside family checked the stated scope."*
+  "Family" means *AI model family*. Without the README, a mathematician will read it as a research group. Also, "Gemini reviewed…", "Claude checked…", "GPT audited…" are not peer review, and the paper should say so right there, not ten lines later.
+- PDF §5, Tier B vs Tier C: *"Given the original Gold2 certificate and four physical reward floors, the stationary drift reduction yields 99/175 < µ < 142/251"* versus *"The original Gold2 interval contains 99/175."*
+  These read as contradictory. If the original Gold2 interval contains 99/175, how does Gold2 give a strict lower bound 99/175 < µ? "Gold2" is never defined in the PDF. Also note 99/175 = 0.56571429 is *above* Theorem 2's lower end a₋ = 0.56571349. So this Tier B claim would sharpen the main theorem. Its status deserves a clear sentence.
+- PDF Theorem 8 proof: *"(ii) on the event Z_v > 0, each fixed focal vertex v promotes infinitely many leaves that themselves have positive limiting shares, by hub children, Sections 1 and 3."*
+  Sections 1 and 3 of what? This external input carries the absolute-continuity theorem, and its source can't be traced from the PDF.
+- README: *"[Proof and checker map](docs/proof-map.md)"*. On the public repository today, `docs/` doesn't exist (GitHub API returns 404). The main roadmap link is dead.
+- PDF Theorem 13 is labelled *"Conditional breakdown"* and assumes (3) "as external inputs". Fine and honest. But the abstract's list of answers ("Questions 1, 2, 4 and the first part of Question 3") is correct only because Q5 is left out. Good. No overclaim there.
+
+Not wrong, but checked: the endpoint arithmetic of Theorem 2. λ₋ − e₋/m₋ and λ₊ + e₊/m₊ reproduce the displayed fractions exactly, and their decimals are 0.5657134863… and 0.5657369866…. I checked this with Python `fractions`.
+
+## 4. Which theorem I would check first, and does the paper let me?
+
+**Theorem 1's upper bound, µ ≤ 1133/2000 < 17/30.** This is the smallest statement that answers my question. It comes from a "three-vertex" potential (vertex, edge and triple weights) plus an analytic tail. In principle a careful person could check that by hand plus a short script.
+
+**Does the paper let me? No.** The PDF gives the logic: potentials comparable to C_n, a one-step drift inequality n·E[ΔΦ⁺ | T_n] ≤ (1133/2000)Φ⁺, then the product over steps. It doesn't print the weights, the list of local inequalities, or the tail bound. It also points to an undefined "original paper, Theorem 1.2". The proof-map link in the README is dead. The repo is a 2,500-file tree with names like `occupation-quintet-gold2`, which a cold reader can't navigate.
+
+Theorem 2 is even less checkable from the paper. The only route is to rerun 767 million rows per side, about 20 minutes and 20 GiB, on code reviewed only by models. The final combining step is the one piece I *could* check, and it holds (see above).
+
+## 5. One edit
+
+Add a one-page **"Why 17/30 fails, by hand"** box to §2. Print the three-vertex weight table and the handful of local drift inequalities behind µ ≤ 1133/2000, with a script short enough to fit in the appendix. In the same box, say plainly that Krapivsky and Redner's own 2017 range, 0.5652–0.5673, contained both 17/30 and the true value, and that Long's public drafts of 23–24 November reached an upper bound of 0.56645 first. That one box turns the headline from "trust the machine" into something a reader can check, and it gives the right people credit at the moment it matters.

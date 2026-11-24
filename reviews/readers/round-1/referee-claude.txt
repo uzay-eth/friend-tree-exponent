@@ -1,0 +1,115 @@
+# Cold read — probabilist referee (simulated, in the style of Addario-Berry and Lugosi)
+
+*Editorial simulation. This is not a statement by any real person.*
+
+Inputs read: the supplied PDF (35 pp., "The non-leaf growth exponent of the random friend tree", dated 24 November 2026), the supplied README, and the public repository at the commit the PDF pins (`a0972085`). To check the Section 7 mapping I also read Sections 3 and 7, Theorem 3.2 and Proposition 6.22 of *Random friend trees* (arXiv:2403.20185v1). I did not run the verifier.
+
+Provenance note before anything else: the supplied PDF is **not** byte-identical to `paper/friend-tree-exponent.pdf` in the repository, and the repository's README is a different (older) version of the supplied README. The supplied README links `docs/proof-map.md`, which does not exist in the repository. All 78 pinned links inside the PDF do resolve.
+
+---
+
+## 1. Gut reaction (one minute)
+
+This is serious work, but it is several papers packed into one, and the parts are not equally checkable. The best part is Theorem 9 (hub mass sums to one). It is short and elementary, it is correct as far as I can tell, and it answers our Question 4 together with the Prokhorov conjecture of our Section 3. The almost-sure amplitude (Theorem 4) has a sound L² skeleton. But the skeleton rests on Lemma B.2, a uniform-in-seed exponential remainder obtained by a contour argument for a 19-mark renewal matrix. Lemma B.2 is written as a dense two-page sketch, and I could not sign it off from the PDF. The mapping to our Section 7 is accurate and, to its credit, careful. It does not claim the stochastic-order half of Question 3 or Question 5. The abstract still sells two things more strongly than the body supports:
+- absolute continuity of X, which needs an input proved only in a linked repository note;
+- the "Further results" section, which mixes lightly reviewed claims into a research paper.
+
+The compression is extreme. Many sentences are one-line summaries of a lemma that lives behind a "Source:" hyperlink. A journal referee has to referee the PDF, not the repository.
+
+## 2. What I would do next
+
+1. **Check Theorem 9 line by line.** It is the only headline result I can verify from the PDF alone. Done; verdict in Part 4.
+2. **Write out the "dirty pair" coupling in the proof of Theorem 4.** The paper states the one-leaf perturbation bound E(dirty) ≤ 3e^{2t} in one sentence. Every variance estimate in Theorem 4, and the auxiliary coupling in Theorem 7, uses it. I want it as a stated lemma with its rate accounting: which events create dirt, at what rate, and why clean pairs next to dirt stay matched.
+3. **Read Lemma B.2 against the linked renewal note.** I would check uniformity of the O(C(T)e^{σt}) remainder over all finite seeds, and the claim that Ψ is intrinsic even though it is defined through marks and a chosen founder. The paper's sentence on this is "The normalized mean at k = 2 identifies Ψ intrinsically".
+4. **Map every input from outside the PDF.** Theorem 8 needs input (ii), "hub children", from a repository note. Theorem 6 is conditional on Lemma B.4's hypotheses. Theorem 13 is conditional on (3). Theorem 2's reduction to local rows is only described. I would ask for one table in the paper listing, for each numbered theorem, which inputs are proved in the PDF, which are cited from [4], and which are repository-only.
+5. **Only then run `round2/verify/run_all.sh`.** By the README's own account, it tests finite fixtures, not the full enclosure.
+
+## 3. Sentences that overclaim, confuse or misattribute
+
+Quotes are taken from the supplied PDF unless marked README.
+
+1. Abstract: "From a single edge, Cn/nµ converges almost surely to a finite, strictly positive random variable with an absolutely continuous law."
+   **Overclaim.** The a.s. limit and its positivity are Theorem 4. Absolute continuity is Theorem 8, whose proof uses an external input: "(ii) on the event Zv > 0, each fixed focal vertex v promotes infinitely many leaves that themselves have positive limiting shares, by hub children, Sections 1 and 3." That input is proved neither in the paper nor in [4]. It lives in `round2/proofs/astra/source/round2/fringe/hub-children.md`, and that note's own header records a mixed review scope. The abstract states the result unconditionally.
+
+2. Section 1 bullet: "Individual trees differ by a random factor that survives at large sizes and has a density (Theorems 4 and 8)."
+   Same issue as item 1.
+
+3. Theorem 3: "In particular ECn ≍nµ."
+   **Confusing logical order.** The proof says "the two-sided mean estimate follows from Theorem 5", which comes later. Theorem 5 in turn relies on Theorem 4 and Lemma B.2. So the bound is not a consequence of the spectral statement, despite "In particular". Theorem 3 also uses Theorem 1 to place the crossing at μ ("Its abscissa is µ > ρ by the earlier logarithmic exponent"). It characterises μ; it does not determine it independently. Say so.
+
+4. After Theorem 1: "The finite-size prefactors and an independent degree-band upper bound 5657/9983 appear in the original paper, Theorem 1.2."
+   **Misattribution risk.** The only "paper" in the bibliography near this point is [4]. The link actually points to an earlier version of *this* manuscript, `paper/friend-tree-exponent.tex`, which has the identical title. A reader will think the degree-band bound is due to Addario-Berry et al. Cite it as an earlier version of the present work, and give a version identifier.
+
+5. After Theorem 5: "Theorems 4 and 5 give this limit and its leading coefficient."
+   **Mild overclaim.** They prove that a constant μA exists, with A = E_β W^μ ∈ (0, ∞). They do not compute it. Section 5 even says "Neither constant has been numerically certified" for related constants. Prefer "the limit and an exact power-law tail p_k ∼ µAk^{−1−µ} with an unidentified constant". Also: "The size limit comes first." I could not tell what this sentence means.
+
+6. Section 1: "Each birth after the two founders has a smaller chance of a positive share than the birth before it (Theorem 10)."
+   **Imprecise.** For label 3, "the birth before it" is founder 2, which is not a birth. The statement that is true and proved is h1 = h2 > h3 > h4 > ···. Say that.
+
+7. Proof of Theorem 9: "For the edge seed one can use the external growth input ECn = O(nβ) for some β < 1, from Theorem 1 (only the sublinear mean bound is used)".
+   **Confusing.** Theorem 1 is internal, not external. More importantly, the better input is the one the paper gives second: [4, Prop. 6.22]. I checked v1. It gives n^{−λ}X_n^{≥2} → 0 a.s. for every λ ∈ (1 − γ/2, 1), with γ = 3 − 2√2, so Σ C_n/n² < ∞ a.s. With that citation, Theorem 9 depends on nothing in this paper except its own page and a half. Lead with it.
+
+8. Proof of Theorem 4: "Both error series are summable" and "the logarithmic path exponent implies |T (j)|/Ψ(T (j))2 → 0 a.s."
+   **Unflagged dependence.** Both steps need 2μ > 1. The error term is |T|(j+2)^{4/η}e^{−(2μ−1)j}, and |T(j)| ≈ e^j has to be beaten by Ψ² ≈ e^{2μj}. The proof works only because Theorem 1 gives μ ≥ 113/200 > 1/2. This matters for a reader who wants to adapt the method to variants with μ ≤ 1/2. Note it explicitly.
+
+9. Section 5, Tier B: "These are Farey neighbours, so any rational strictly between them has reduced denominator at least 426."
+   **Overclaim by placement.** The interval 99/175 < μ < 142/251 is "given the original Gold2 certificate and four physical reward floors". The Tier C paragraph then says those floors "were audited only within GPT". Theorem 2's certified interval itself contains 99/175: I checked a− < 99/175 < a+ in exact arithmetic. So nothing certified in the paper excludes the denominator 175. A skimming reader will think it does. Move the denominator claim to Tier C, or add: "Theorem 2 alone does not exclude 99/175."
+
+10. Section 5: "The original Gold2 interval contains 99/175; reproducing its bytes does not check the new prices."
+    **Undefined jargon.** "Gold2", "prices" and "physical trigger" are repository terms the paper never defines.
+
+11. Theorem 13: "As external inputs for this sequence, assume that for 0 < µ < 1 and 0 < K < ∞ a.s. (possibly random), almost surely"
+    **Confusing.** μ is already the exponent, and µN is also used for the reference law. This sentence reads as if μ were a free parameter of the hypothesis. Write "assume that, for some a.s. finite positive random K, almost surely …" and rename the reference law (for example ρN).
+
+12. Theorem 8: "(Addario-Berry et al. [4, Theorem 3.2 at the founder edge, arXiv v1; see Theorem 3.1 for the degree limits])"
+    **Nit, version mixing.** The bibliography cites the RSA 2026 version, but theorem numbers are taken from arXiv v1. The content is right: v1 Theorem 3.2 says every edge has a hub endpoint. Use one version, or give both numberings.
+
+13. README: "[Proof and checker map](docs/proof-map.md)"
+    **Dead link.** The file is not in the repository. The README also links "Read the paper (PDF)" to a repository PDF that is a different build from the one supplied. A referee cannot tell which text is under review.
+
+Checked and **not** overclaims:
+- "These results answer Questions 1, 2, 4 and the first part of Question 3 in Section 7 of Addario-Berry et al." is accurate against v1 Section 7:
+  - Q1 (closing the gap, and an a.s. limit with non-trivial support): Theorems 1 and 4, with both support assertions.
+  - Q2 (same order of consecutive degree counts, the limsup tending to zero, and the Krapivsky–Redner Θ(k^{−(1+μ)}) conjecture): Theorems 4 and 5.
+  - Q3 first part (P{Z_u > 0} decreasing): Theorem 10.
+  - Q4 (Σ Z_i = 1): Theorem 9.
+- "We answer Question 4 (including the conjecture about the next recipient in [4, Sec. 3])" is also accurate. Section 3 of [4] conjectures a.s. Prokhorov convergence of the conditional law of D_n(W_n)/n to Σ Z_i δ_{Z_i}, and that is exactly the third display of Theorem 9.
+- The disclaimers on the stochastic-order part of Question 3 and on Question 5 are correctly placed.
+
+## 4. Which theorem I would check first, and whether the paper lets me
+
+**Theorem 9 (unit hub mass).** Yes, the paper lets me. I checked it from the PDF alone:
+- Σ_v q_n(v) = 1 − C_n/n, and P_n − q_n ≥ 0 with mass C_n/n. These are correct for n ≥ 3.
+- C_n/n → 0 on the summability event, using monotonicity of C_n. Correct.
+- |q_n(v) − D_v(n)/n| ≤ C_n/n, and Fatou gives Σ Z ≤ 1. Correct.
+- The supermartingale drift of D_v(n)/n is (nP_n(v) − D_v(n))/(n(n+1)) ≤ 0, since nP_n(v) ≤ D_v(n). Correct.
+- The stopped series bound: the sum up to τ plus the frozen tail is at most K + C_τ/τ ≤ K + 1. Correct.
+- Summation by parts and B_n/n ≤ Σ_{r≥n} B_r/[r(r+1)]. Correct.
+- On {τ = ∞}, Fatou gives E[(1 − Σ_{v≤m} Z_v); τ = ∞] ≤ 2E Σ_{r>m} B_r/[r(r+1)] → 0. Correct.
+- The union over K covers the summability event. The ℓ¹ and Scheffé step gives the TV statement. Correct.
+
+Verdict: correct. Only presentation needs fixing:
+- define Y_n by a formula rather than in words;
+- pin the index convention for "add 2/r for the new promotion";
+- fix the wording of item 7 above.
+
+**Theorem 4 (a.s. amplitude) next.** Only partly. Given Lemma B.2 and the one-leaf coupling bound, I could verify each step of the L² argument:
+- the martingale identity from the mean expansion;
+- the second-moment recursion with h = η^{−1} log(j + 2);
+- positivity, via conditional Paley–Zygmund plus Lévy's 0–1 law;
+- the Chebyshev and Borel–Cantelli step on a mesh with monotone interpolation;
+- the move to size epochs through the independent Gamma clock.
+
+I could not verify Lemma B.2's uniform remainder or the coupling constant from what is printed. The paper defers both to linked notes. A referee would have to ask for them in full, either in the paper or as a supplement that is itself refereed.
+
+## 5. One edit
+
+Make Theorem 8's dependence on the hub-children input explicit wherever absolute continuity is claimed, or prove that input in the paper. Concretely, in the abstract replace
+
+> "From a single edge, Cn/nµ converges almost surely to a finite, strictly positive random variable with an absolutely continuous law."
+
+with
+
+> "From a single edge, Cn/nµ converges almost surely to a finite, strictly positive random variable; its law is absolutely continuous given a hub-children property proved in the companion notes (Theorem 8)."
+
+Make the matching change in the Section 1 bullet. Otherwise, add the hub-children argument as Lemma B.5 and keep the sentence as it is.
