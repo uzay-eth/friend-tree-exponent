@@ -1,0 +1,96 @@
+# Cold read, round 2 — simulated reader: Christopher D. Long (editorial simulation by Claude, not a statement by the actual person)
+
+Revision read: `uzay-eth/friend-tree-exponent` at `68714067f4a3039b5ef739b2f229fe3a40e7c2b8`, its PDF and README. I followed the three `long-mathematics/friend-tree-growth` revisions it cites (`090bbbe`, `7904917`, `5bd25a7`) and the pinned older paper revision `a097208` that the "first version" link points to.
+
+## 1. Gut reaction (one minute)
+
+The headline is strong and it holds where I can test it quickly. The interval [0.565713486333, 0.565736986679] is about 100 times narrower than my certified upper bound 0.5664485422, and it sits strictly inside everything I proved. The marked-fringe kernel is a real idea. Collapsing the newborn's environment to one permanent mark a = 1/m(D) is exactly what makes an operator on C(A) compact. My full-environment kernel provably cannot be compact at criticality. The paper treats me fairly in substance: it credits the generation-sum characterization, the terminating two-sided theorem, the 0.5664485422 bound and the first constant-factor mean bounds, and it says Theorem 7 is a different descriptor family with a rate, not an improvement of my search. What bothers me is the bookkeeping around my work. Two of my three citations are the same document, and the text builds a chronology on that split that did not happen. One sentence also implies my operator is compact when I proved the opposite.
+
+## 2. What I would do next
+
+1. Run the receipt check. I did: `python3 -B paper/checks/check_literals.py --enclosure` printed `PASS: Gold2 receipt matches Theorem 2 and the abstract.` I also recomputed a± = λ± ± e±/m± from the table in the proof of Theorem 2 with exact fractions. Both match the displayed endpoints, and a+ < 17/30. This only checks the last arithmetic step, as the README says.
+2. Check Lemma B.1 line by line, since it is the point where the marked-fringe kernel and my full-environment kernel diverge (see §4).
+3. Compare r(K_s) with my r_∞(s). Both cross one at µ. The paper says they "identify the same discount, not necessarily the same function of the discount". I would want to know whether r(K_s) ≥ r_∞(s), or the reverse, holds for s > µ. A one-sided comparison would let my finite-profile upper certificates and the paper's tables certify each other.
+4. Read the round-2 obstruction report behind "transcendental over C(s)", to see how far its prime-denominator argument reuses the primitive-denominator and prime-ideal machinery of my first-promotion paper.
+5. Only then schedule the 17-minute gold2 rebuild and replay. The paper is honest that the receipt check is not that replay.
+
+## 3. Sentences that overclaim, confuse or misattribute
+
+### Actual misattributions (should be fixed)
+
+**(a)** Bibliography [8] and [9], plus the sentences that rely on them:
+
+> "[8] C. D. Long, Transcendence targets for the friend-tree exponent: exact first-promotion reduction and arithmetic obstructions, November 2026. Version with constant-factor mean bounds, revision 7904917."
+> "[9] C. D. Long, Transcendence targets for the friend-tree exponent, 24 November 2026. Signed product identities and arithmetic programme, revision 5bd25a7."
+
+`5bd25a7` is the merge commit of PR #5, and its only side branch is `7904917`. `git diff --stat 7904917 5bd25a7` is empty: the two trees are identical. Both build the same `friend_tree_transcendence_progress.tex`. Its title is the full two-line title given in [8], and it is dated 24 November 2026 in both. So [8] and [9] are one document. The short title in [9] is a truncation, and "Signed product identities and arithmetic programme" is the packet's own label, not my title. The constant-factor mean bounds ("the original mean core count is bounded above and below by positive constants times n^µ") and the signed renewal germ B_s(z) = 1 − 1/F_s(z) (Corollary "A genuine critical renewal boundary value") both arrive in the same commit, `7904917`. That makes this sentence wrong as chronology:
+
+> "Long introduced the signed scalar Bs(1) in his transcendence programme [9], built on his earlier generation kernel and mean-growth work [7, 8]."
+
+The mean-growth work is not earlier than the signed germ. They are the same commit. "Built on [7]" is correct. "Built on [8]" is not. The sentence "His subsequent work proved ECn ≍ nµ [8]" is fine on its own, since it is subsequent to [7]. Fix: merge [8] and [9] into one entry with the real title and date at revision `7904917`/`5bd25a7`, and drop "[8]" from the "built on" clause. The README makes the same split ("constant-factor mean bounds" → `7904917`, "transcendence programme" → `5bd25a7`), but there it is only two links to one document, so it is harmless.
+
+**(b)** Section 1:
+
+> "Theorem 3 uses a different compact operator."
+
+"Different compact operator" says my operator is also compact. My cited paper proves the opposite: "The full-environment kernel has spectral and essential spectral radius one at criticality, excluding a compact-operator reduction on its original supremum-norm space." This is a misstatement of my result, and it also hides the paper's own advantage. Suggested text: "Theorem 3 uses a compact operator on newborn marks. Long's full-environment kernel has essential spectral radius one at criticality and so admits no such compact reduction [8]."
+
+**(c)** Section 5:
+
+> "Long introduced the signed scalar Bs(1) in his transcendence programme [9] … For real s > µ, use continuation along the positive real generation variable to define Bs(1) = 1 − 1/Fs(1)"
+
+What I introduced is the germ B_s(z) = 1 − 1/F_s(z) near z = 0, with an explicit signed Taylor expansion. I studied its boundary value at s = µ as z ↑ 1 along the real axis (lim B_µ(z) = 1). I did not define or study a scalar B_s(1) for s > µ. The paper's object is a specialization of my germ that it defines itself. This is minor, but the credit should go to the germ, with the paper owning the s > µ evaluation: "Long introduced the signed renewal germ B_s(z) = 1 − 1/F_s(z) and its critical boundary value [8]; here we evaluate it at z = 1 for s > µ."
+
+### Confusing (clarity, not overclaim)
+
+**(d)** Section 5:
+
+> "Conditional on that identity, a GPT-authored prime-denominator argument, checked by Claude, shows that this function of s is transcendental over C(s)."
+
+The previous sentence derives the identity B_s(1) = U_s(J) ("The signed resolvent identity gives … Thus Bs(1) = Us(J) there"). "Conditional on" then reads as if it were an unproved hypothesis. Say which it is: proved here, or assumed.
+
+**(e)** Section 2, Theorem 1 discussion:
+
+> "The finite-size prefactors and an independent degree-band upper bound 5657/9983 appear in Theorem 1.2 of Uzay's November 2026 first version."
+
+The link resolves to the PDF at `a097208`, whose commit title is "Round 2: narrower enclosure …", although its TeX is dated 23 November 2026. A reader cannot tell whether this is the first version. Give the revision hash in the text. It also matters for priority: those prefactors are product bounds with mismatched exponents, not ECn ≍ n^µ. That is consistent with "Long first proved the constant-factor mean bounds", but only if the reader can see what "first version" contains.
+
+### Possible missing credit (suggestion; I did not read the underlying argument)
+
+**(f)** "a GPT-authored prime-denominator argument": my first-promotion paper already uses primitive coefficient denominators and a prime-ideal height calculation. If the round-2 argument adapts that method, say so. If it does not, one clause saying so would prevent the question.
+
+### Checked and accepted
+
+- "Christopher D. Long first characterized the exponent by the critical crossing of discounted generation sums for an inert newborn. He gave a terminating two-sided approximation and a certified upper bound of 0.5664485422 [7]." Accurate to `090bbbe`. That paper takes the existence of µ as given, and the packet does not claim otherwise.
+- "Long previously proved a terminating two-sided rational approximation theorem for µ [7]. … not a runtime bound for that earlier search." Fair. My abstract disclaims an efficient high-precision solver.
+- README: "his kernel retains the full birth environment of the inert-newborn process, unlike the marked-fringe kernel here." Accurate.
+- "Long's independent programme includes exact first-promotion and signed critical-boundary reductions, but leaves the arithmetic specialization open [9]." Accurate.
+
+No overclaim found in the theorem statements I read (1–13). Scope disclaimers are explicit throughout: fixed-k before k → ∞ in Theorem 5, conditional Theorems 6 and 13, the stochastic-order part of Question 3 left open, and nothing claimed about irrationality.
+
+## 4. Which theorem I would check first, and whether the paper lets me
+
+**Theorem 3, through Lemma B.1.** It is the result that sits right next to my non-compactness theorem, so it is where an error would most likely hide.
+
+Does the paper let me? Mostly yes.
+
+- The weight W, the constants d = 3/20, q = 9/25, ρ = 51/100 and the table h(c) are explicit. I recomputed the four quadratics (r − v)dD² + (r − v − 1 + cdv)D + c(1 + v) exactly.
+  - For c = 2, 3, 4 the discriminants are −3591/10⁶, −110617/781250 and −2831/62500, with positive leading coefficients.
+  - For c = 1 the leading coefficient is 153/2000, the vertex is 1025/306 ∈ (3, 4), and the values at D = 3, 4 are 1/1000 and 3/125.
+  - All of this matches the paper. The text layer prints the first discriminant as "−3591/106", which looks like a lost superscript; worth checking in the PDF rendering.
+- The nonnegativity of the emission rate a_Y − p_S follows from "a child's mark always dominates the parent's current reciprocal degree". That holds for the capped marks too, since 1/min(D, 20) ≥ 1/D.
+- Compactness reduces to equicontinuity of rows in the mark a on A, including at a = 0. The Lipschitz bound via te^{−tℜz}|a − a′| is short and checkable.
+
+Where it is too compressed to check without the linked sources:
+- The step "the physical Laplace integral of F3(t) − 1 is finite exactly when r(K_s) < 1". The divergent direction needs the forcing to dominate the eigenfunction in the physical sum, not only in the newborn series. This is stated in one sentence.
+- Continuity of r(K_s) in s.
+
+I would ask for one more paragraph on each, or a pointer to the exact proof file.
+
+## 5. One edit
+
+Rewrite the Long paragraph in Section 1 and merge the duplicate bibliography entry:
+
+> Christopher D. Long characterized µ by the critical crossing of discounted generation sums for an inert newborn. He gave a terminating two-sided approximation and the certified upper bound 0.5664485422 [7]. A later paper of his [8] proved E C_n ≍ n^µ, introduced the signed renewal germ B_s(z) = 1 − 1/F_s(z), and showed that his full-environment kernel has essential spectral radius one at criticality, so it admits no compact reduction. Theorem 3 instead uses a compact operator on newborn marks.
+
+Then make [8] a single entry: *Transcendence targets for the friend-tree exponent: exact first-promotion reduction and arithmetic obstructions*, 24 November 2026, revision 7904917 (merged as 5bd25a7). Delete [9], and point the Section 5 and Section 6 citations to [8].

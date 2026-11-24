@@ -1,0 +1,103 @@
+# Cold read: probabilist referee (simulated)
+
+*Editorial simulation in the style of a probabilist referee (Addario-Berry / Lugosi school). Not a statement by any real person.*
+
+Inputs: the PDF, the README, and the repository at `68714067f4a3039b5ef739b2f229fe3a40e7c2b8` (`docs/proof-map.md`, `paper/checks/check_literals.py`). I also read the cited sources: Section 3 and Section 7 of arXiv:2403.20185v1 and Fig. 6 of arXiv:2604.01540v1. I did not open the repository's review folders.
+
+What I ran: from a clean checkout of the revision, `python3 -B paper/checks/check_literals.py --enclosure` (run in isolated mode). Its last line was `PASS: Gold2 receipt matches Theorem 2 and the abstract.` The packet PDF has the same SHA-256 as `paper/friend-tree-exponent.pdf` at that revision. With exact rationals I recomputed a± = λ± ± e±/m± from the table in the proof of Theorem 2, and both match the displayed fractions. I also confirmed that 142·175 − 99·251 = 1, so 99/175 and 142/251 are Farey neighbours. I did not rerun the row verifier or the motif verifier.
+
+---
+
+## 1. Gut reaction (one minute)
+
+This is a serious paper, and its probabilistic skeleton is the right one. There is an eigenfunction martingale in continuous time, a de-Poissonization through the independent Yule clock, and L² control from a one-leaf coupling. The hub-mass proof is short, clean and, as far as I can tell, correct. The Section 7 bookkeeping is mostly honest: Question 5 and the stochastic-order part of Question 3 are explicitly *not* claimed, and the "fixed k, then k → ∞" order of limits is stated.
+
+My main unease is about what is actually computer-free. The abstract puts the computer only in "the enclosure". But the almost-sure amplitude theorem needs 2µ > 1, and Lemma B.1 needs µ > 51/100. Both come from the computer-checked three-vertex bound 113/200 ≤ µ. So the answers to Questions 1 and 2 are computer-assisted too. That is fine mathematically, but it has to be said up front. Second, the paper is long on compressed one-sentence couplings. Theorem 9 I could check from the page; Theorem 4 I could only check in skeleton.
+
+## 2. What I would do next
+
+1. **Theorem 9, line by line.** Done; see §4. It holds. It is the cleanest new result, and its edge-seed summability input can come from [5, Prop. 6.22] alone. So the answer to Question 4 is independent of every certificate. The paper says this, and it should say it louder.
+2. **Map every use of µ > 1/2.** I found two: the L² recursion and the positivity step in Theorem 4 ("The first enclosure gives 2µ > 1"; |T(j)|/Ψ(T(j))² → 0). The other is the abscissa µ > ρ = 51/100 in Lemma B.1, which Theorem 3, Lemma B.2 and hence Theorems 4, 5, 7 and 8 inherit. I would ask the author to put this dependency in the abstract and the proof map. The map currently says only "Existence is analytic", which is true but invites the wrong inference.
+3. **Read the linked strong-limit note** (`claim-6.md` at the archive revision) for the one-leaf dirty-count coupling. The paper states the bound "at most 3e^{2t}" in a single sentence, and I would check it before signing off on Theorem 4. I would also check that the uniform-in-seed constants of Lemma B.2 really are seed-independent, since the L² recursion applies them at the random tree T(j).
+4. **Replay the motif lower witness**, not just the upper one that the proof map scripts. The lower bound 113/200 is the one carrying the probabilistic theorems.
+5. **Ask for dates on the 17/30 exclusion.** Long's certified upper bound 0.5664485422 [7] is already below 17/30. The paper never says so (see §3).
+
+## 3. Sentences that overclaim, confuse or misattribute
+
+**Actual overclaims or attribution problems**
+
+1. Abstract: *"The enclosure uses computer-assisted drift bounds on configurations of up to five non-leaves."*
+   Why: the sentence is literally true, but read with "This answers Questions 1, 2, 4 and the first part of Question 3" it implies that only the numerical enclosure needs a computer. In fact:
+   - Theorem 4 (Question 1) uses 2µ > 1 from the computer-checked 113/200.
+   - Theorems 3–5 and 7–8 (Question 2 and the density) use µ > 51/100 through Lemma B.1.
+   - Theorems 10–11 (Question 3) rest on the exact rational certificates of Appendix C.
+
+   Only Theorem 9 (Question 4) is computer-free, via [5, Prop. 6.22]. I count this as an overclaim by omission about the nature of the proofs, not about their truth.
+
+2. §6: *"The supplementary hub spectrum gives, on a single probability-one event, N≥k(n) ∼ AX(n/k)^µ for every k → ∞ with k/n → 0."*
+   Why: this is a strong result, stated as fact in the open-problems section without a theorem number, a tier, a review scope or a proof in the paper. It is essentially the joint-scaling form, in cumulative counts, of the Krapivsky–Redner prediction. The README and §3 carefully say they do *not* prove a joint limit. Its quantifier ("for every k → ∞ … on a single event") also needs a precise uniform statement. Either tier it in §5 with its review status, or delete it.
+
+3. §3, "The degree-ratio conjecture": *"Addario-Berry et al. [5, Sec. 7, Question 2] credit that prediction and formulate its almost-sure fixed-degree counterpart."*
+   Why: [5] does not present the almost-sure form as its own formulation. It writes "Krapivsky and Redner [15] conjecture that for each k, X^k_n/X^{≥2}_n has an almost sure limit that is Θ(k^{−(1+µ)})" (Sec. 7(2), repeated after Thm 4.7). The paper's version makes KR's claim a mean-ratio prediction and gives the a.s. version to [5]. That split may be the more accurate reading of [3, Eqs. (32)–(33)], which I did not check. But then the paper should say "[5] state KR's prediction in almost-sure form", not "[5] formulate".
+
+4. §1: *"That fraction is within the range of the fitted slopes. The first certificate in Theorem 1 places the exponent below it."* Read together with *"He gave a terminating two-sided approximation and a certified upper bound of 0.5664485422 [7]."*
+   Why: 0.5664485422 < 17/30 ≈ 0.5666667, so Long's cited bound already excludes 17/30. The paper never says this. A cold reader, helped by the README title ("exponent below 17/30"), will take this paper as the first exclusion. State plainly that [7] also lies below 17/30, and give the relative dates. The only dating offered for the paper's own first certificate is the unreferenced "November 2026 first version", against [7]'s "23 November 2026".
+
+**Confusing, needs clarity (not wrong)**
+
+5. §2: *"The finite-size prefactors and an independent degree-band upper bound 5657/9983 appear in Theorem 1.2 of Uzay's November 2026 first version."*
+   This cites a document that is not in the bibliography and cannot be located from the packet. Note that 5657/9983 ≈ 0.5666633, which is below 17/30 by only about 3·10⁻⁶. Add a reference or remove the sentence.
+
+6. §5 Tier B, "Arithmetic and numerical evidence": *"Given the original Gold2 certificate and four physical reward floors, a stationary reduction gives 99/175 < µ < 142/251."*
+   It is listed under "One other model family checked the stated argument". But Tier C says those floors have "only the author family" audit, and "the exclusion of 99/175 still has that limited review". The header and the sentence together let a skimmer believe 99/175 < µ is checked. Move it to Tier C, or label it conditional in the sentence itself.
+
+7. §4 and abstract: *"This answers Questions 1, 2, 4 and the first part of Question 3 of Section 7."*
+   For Question 3 ("Is P{Z_u > 0} decreasing in u?") the honest answer is "non-increasing, with equality exactly at the founders, strict from label 2 on". The paper does state the tie, so this is not an overclaim. Still, say "answers in the affirmative, weakly at the founders" rather than just "answers".
+
+8. §4: *"We answer Question 4 (including the conjecture about the next recipient in [5, Sec. 3])."*
+   [5, Sec. 3] already observes that the next-recipient conjecture "is in fact equivalent to the conjecture that Σ Z_i = 1". Credit that equivalence, so readers do not count it as a second, separate result.
+
+9. Reference [10]: *"M. Sabba, reported interval and numerical estimate … Dated attribution record."*
+   The only source given for a third party's numbers is the author's own record. Give a primary source, or say that none is public.
+
+10. README: *"Saramäki and Kaski introduced the undirected attachment rule."* The paper itself says more cautiously that the rule "belongs to the random-walk attachment models studied by Saramäki and Kaski". Align the README with the paper.
+
+I checked and found **no problem** with the following attributions:
+- the Hartle–Krapivsky–Redner–Zhang Fig. 6 fit of 0.569 for isotropic redirection;
+- Z₁ + Z₂ > 0 from [5, Thm 3.2] at the founder edge;
+- [5, Prop. 6.22] as an a.s. sublinear power bound;
+- Cannings–Jordan for leaves tending to one;
+- the content of Questions 1, 2, 4 and 5.
+
+## 4. Which theorem I would check first, and whether the paper lets me
+
+**Theorem 9 (unit hub mass): yes, the paper lets me.** I checked it from the page:
+- P_n − q_n ≥ 0 with mass C_n/n.
+- C_n/n → 0 on the summability event, by monotonicity of C.
+- For each fixed v, q_n(v) → Z_v, with error at most C_n/n.
+- The stopped sum Y_n has nonpositive drift on old contributions. Here 1{r ≤ τ} is F_{r−1}-measurable, and new contributions are exactly 2(B_r − B_{r−1})/r.
+- Summation by parts uses B_n/n ≤ Σ_{r≥n} B_r/[r(r+1)], since B is nondecreasing.
+- Fatou on {τ = ∞}, then dominated convergence in m, since the sum is at most K + 1.
+- The union over K covers the summability event; Scheffé then gives the TV statement.
+
+Every step closes. The weak-convergence corollary matches the Prokhorov conjecture of [5, Sec. 3] exactly.
+
+**Theorem 4 (a.s. amplitude) is the one that matters most** (Question 1, Question 2, the density), **and the paper only partly lets me check it.** These parts I can verify from the page:
+- The martingale skeleton.
+- The variance recursion. The exponents match: h = η⁻¹ log(j+2) gives (j+2)^{4/η} and (j+2)^{−2}, and E|T(j)| = |T|e^j gives e^{−(2µ−1)j}.
+- The Cauchy–Schwarz positivity argument with Lévy's 0–1 law.
+- The mesh/Borel–Cantelli step.
+- The identification Y_n → W_size^{−µ} M_∞ through the independent clock, using E e^{−2µτ_n} = ∏ j/(j+2µ).
+- The support assertions via the star and path histories.
+
+What I cannot verify from the page:
+- the one-sentence dirty-count coupling ("at most 3e^{2t} by stopped compensation and Grönwall");
+- the seed-uniformity of the contour remainder in Lemma B.2, which compresses a spectral-gap argument for a 19-mark kernel into about a page.
+
+And the whole argument is conditional on 2µ > 1, supplied only by the computer-checked certificate. The paper flags this in exactly one clause inside the proof.
+
+## 5. One edit
+
+Add one sentence to the abstract, and a matching column to the proof map:
+
+> "Theorems 3–5, 7 and 8, and hence the answers to Questions 1 and 2, use µ ≥ 113/200 > 1/2 from the computer-checked three-vertex certificate of Theorem 1. Theorems 10–11 use exact rational certificates. Theorem 9 (Question 4) uses neither: its summability input follows from [5, Prop. 6.22]."

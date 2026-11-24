@@ -6,10 +6,10 @@
 
 **Affiliation** — University of Nevada, Reno
 
-**Abstract** — Paste the contents of the box as a single paragraph. It has 1155 ASCII characters, including spaces and TeX. [arXiv metadata instructions](https://info.arxiv.org/help/prep.html#abstract-required)
+**Abstract** — Paste the contents of the box as a single paragraph. It has 1301 ASCII characters, including spaces and TeX. [arXiv metadata instructions](https://info.arxiv.org/help/prep.html#abstract-required)
 
 ```text
-In the random friend tree the number $C_n$ of non-leaves has a growth exponent in the certified interval $0.565713486333\le\mu\le0.565736986679$. Every value in this interval rounds to Krapivsky and Redner's estimate of $0.566$ and lies below $17/30$. From one edge, $C_n/n^\mu$ converges almost surely to a finite, strictly positive random variable with a density. For each fixed degree $k\ge2$, the fraction of non-leaves of degree $k$ converges almost surely to a deterministic $p_k$. As $k\to\infty$, these limits satisfy $p_k\sim a k^{-(1+\mu)}$ for some $a>0$. This proves the fixed-degree formulation of Krapivsky and Redner's scaling prediction in Section 7(2) of Addario-Berry et al. For each birth label $v$, let $Z_v$ be the limit of its degree divided by tree size. Almost surely $\sum_v Z_v=1$. The two founders have the same law. From label two onward, both the probability of a positive share and every positive moment of that share decrease strictly with birth order. This answers Questions 1, 2, 4 and the first part of Question 3 of Section 7. The enclosure uses computer-assisted drift bounds on configurations of up to five non-leaves.
+In the random friend tree the number $C_n$ of non-leaves has a growth exponent in the interval $0.565713486333\le\mu\le0.565736986679$. The interval rounds to Krapivsky and Redner's estimate of $0.566$ and excludes $17/30$. The finite drift inequalities for this enclosure were replayed with one exhaustive verifier. From one edge, $C_n/n^\mu$ converges almost surely to a finite, strictly positive random variable with a density. For each fixed $k\ge2$, the fraction of non-leaves of degree $k$ converges almost surely to a deterministic $p_k$. As $k\to\infty$, $p_k\sim a k^{-(1+\mu)}$ for some $a>0$. This proves the almost-sure form of Krapivsky and Redner's degree prediction recorded by Addario-Berry et al. in Section 7(2). For each birth label $v$, let $Z_v$ be the limit of its degree divided by tree size. Almost surely $\sum_v Z_v=1$. The two founders' limiting shares agree in law. From label two onward, both the probability of a positive share and every positive moment of the share decrease strictly with birth order. These results answer Questions 1, 2, 4 and the first part of Question 3 in that section. The growth and fixed-degree limits use a computer-checked lower bound on $\mu$. The birth-order comparisons also use exact finite checks. No human referee has reviewed the proofs.
 ```
 
 | Field | Entry | Reason |
@@ -21,7 +21,7 @@ In the random friend tree the number $C_n$ of non-leaves has a growth exponent i
 **Comments**
 
 ```text
-38 pages. Proofs, exact certificate verifiers and simulation data: https://github.com/uzay-eth/friend-tree-exponent
+40 pages. Proofs, exact certificate verifiers and simulation data: https://github.com/uzay-eth/friend-tree-exponent
 ```
 
 **Licence recommendation.** Choose Creative Commons Attribution 4.0 International (CC BY 4.0) to match the repository’s licence for its text and proofs. It permits commercial reuse and adaptations with attribution, and the grant for this version is irrevocable, so check compatibility with the intended journal. [Repository licence](../LICENSE) · [arXiv licences](https://info.arxiv.org/help/license/index.html)
