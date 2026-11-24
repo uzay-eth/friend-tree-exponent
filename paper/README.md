@@ -1,6 +1,6 @@
 # Building the paper
 
-[Read the paper (PDF)](friend-tree-exponent.pdf) · [LaTeX source](friend-tree-exponent.tex) · [Submission sheet](submission-sheet.md)
+[Read the paper (PDF)](friend-tree-exponent.pdf) · [LaTeX source](friend-tree-exponent.tex) · [Submission sheet](submission-sheet.md) · [Round-one paper (archived PDF)](https://github.com/uzay-eth/friend-tree-exponent/blob/a0972085ad72ad5685ae7b424988648d1965e73c/paper/friend-tree-exponent.pdf)
 
 The paper builds with pdfLaTeX from a single source file. It has an embedded bibliography and needs the standard LaTeX, AMS, Latin Modern, geometry, mathtools, booktabs, xcolor and hyperref packages. No external figures, shell escape or network access are needed for the build.
 

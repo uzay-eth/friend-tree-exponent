@@ -4,8 +4,8 @@ VERDICT: ACCEPT
 
 Reviewer: Claude Opus 5.5 (`claude-opus-5-5`), 23 November 2026. I read the paper cold as an independent reviewer and wrote none of its text, proofs or code.
 
-**Reviewed PDF.** [`paper/friend-tree-exponent.pdf`](../paper/friend-tree-exponent.pdf), 24 pages, SHA-256 `e95e17a2f6aa2c55ac1f73e6e360870083d2fc7253aa08e537a8fef597fad905`.
-**Its source.** [`paper/friend-tree-exponent.tex`](../paper/friend-tree-exponent.tex), SHA-256 `f5140fab890ff03b8dd59f50ec803d6c22216790e6e9b93cfd2077dae2cf096e`.
+**Reviewed PDF.** [`paper/friend-tree-exponent.pdf`](https://github.com/uzay-eth/friend-tree-exponent/blob/1db5264b672cf4942b2278cc7078d4a96285258f/paper/friend-tree-exponent.pdf), 24 pages, SHA-256 `e95e17a2f6aa2c55ac1f73e6e360870083d2fc7253aa08e537a8fef597fad905`.
+**Its source.** [`paper/friend-tree-exponent.tex`](https://github.com/uzay-eth/friend-tree-exponent/blob/1db5264b672cf4942b2278cc7078d4a96285258f/paper/friend-tree-exponent.tex), SHA-256 `f5140fab890ff03b8dd59f50ec803d6c22216790e6e9b93cfd2077dae2cf096e`.
 **Cited supplement.** Revision `c4653036b993bf81799c51b60cdd18a500142147` of this repository. The proofs, simulations and verifiers match that revision byte for byte.
 
 **Note added 23 November 2026.** The byte-for-byte match above held when this review was written. Since then, under `proofs/`, `verify/` and `simulations/`, the only file that differs from the cited revision is `simulations/README.md`. Its replay paragraph and timing table now report full replays of the three batches and their measured times. The proofs and verifiers still match the cited revision byte for byte. The PDF and source digests above are unchanged, and so is the verdict.
@@ -15,7 +15,7 @@ Reviewer: Claude Opus 5.5 (`claude-opus-5-5`), 23 November 2026. I read the pape
 1. **Build: PASS.** Rebuilding from the source and figure with Tectonic 0.17.0 and `SOURCE_DATE_EPOCH=1795392000` gives a byte-identical PDF (the SHA-256 above), 24 pages, with no TeX warnings.
 2. **Cross-references and citations: PASS.** No `??` appears in the PDF text. Every `\ref`/`\eqref` has a label. Every `\cite` has a bibliography entry and every entry is cited.
 3. **Figure: PASS.** The included `simulations/local_slopes.png` passes `sha256sum -c SHA256SUMS`. Its title now reads "Growth of the mean core size at fixed time". The data, panels, sample sizes (912 and 91 trajectories) and the reference line agree with the caption and with `local_slopes.tsv`.
-4. **Existence of the mean exponent: PASS.** Section 2 agrees with [`proofs/existence.md`](../proofs/existence.md): eligible sites at least $`C/4`$; planting probability $`p(M,k)`$ with stage factors $`e^{-2}(1-e^{-1})/2`$, $`e^{-1}\Pr(\mathrm{Pois}(1)\ge M)`$, $`e^{-3}M/(M+2)`$ and $`(e^{-(k+1)}/(k+1))^{k-2}`$; the cut-edge comparison with acceptance weight $`d/(d+1)`$ and exterior rate $`1/M`$; $`b\log(b/\epsilon)-b+\epsilon\ge6`$; $`\eta=b\log2+(A+1)/M`$; the order of limits; and de-Poissonisation.
+4. **Existence of the mean exponent: PASS.** Section 2 agrees with [`proofs/existence.md`](../proofs/existence.md): eligible sites at least $`C/4`$; planting probability $`p(M, k)`$ with stage factors $`e^{-2}(1-e^{-1})/2`$, $`e^{-1}\Pr(\mathrm{Pois}(1)\ge M)`$, $`e^{-3}M/(M+2)`$ and $`(e^{-(k+1)}/(k+1))^{k-2}`$; the cut-edge comparison with acceptance weight $`d/(d+1)`$ and exterior rate $`1/M`$; $`b\log(b/\epsilon)-b+\epsilon\ge6`$; $`\eta=b\log2+(A+1)/M`$; the order of limits; and de-Poissonisation.
 5. **Path-defined $`X_u`$ (first-moment step): PASS.**
    - **Definition.** $`X_u`$ is now a functional of the actual tree path alone. It counts endpoint cores on every side $`w`$ of an edge $`uw`$ whose $`w`$-component at time $`t+h`$ contains no vertex that was core at time $`t`$.
    - **Disjointness.** Each such side is the component of $`w`$ after removing the connected old-core subtree, and later leaf additions keep those components apart. Hence $`\sum_u X_u\le C(t+h+s)`$ on every path.
@@ -47,10 +47,10 @@ Reviewer: Claude Opus 5.5 (`claude-opus-5-5`), 23 November 2026. I read the pape
     - **Statements.** The Section 6 statements match Theorem B with (H1)–(H5), the cross-charging certificates, the polynomial-scale theorem and Theorem D(a)–(d).
     - **Baseline references.** The baseline tables are now pointed to `verify/baseline/certs9.py` (lower), and to `certs6.py` and `find_upper_lin.py` (upper). Their states and rates are in [`proofs/supporting-results-audit.md`](../proofs/supporting-results-audit.md).
     - **Baseline section against the code.** That section matches the verifiers:
-      - creator label $`P=\max(3,\min(D_{\rm creator},20))`$;
+      - creator label $`P=\max(3, \min(D_{\rm creator},20))`$;
       - pendant gain $`i+1/D`$ and pendant conversion $`i/(i+1)`$;
       - class-B gain in $`[1/D,1/D+1/2]`$;
-      - degree growth in $`[0,d]`$;
+      - degree growth in $`[0, d]`$;
       - caps 60 and 10.
     - **Comparison constants.** These are now stated: weight at least one (upper), and $`\sup f`$ (lower).
 11. **Prior work: PASS.** I checked each citation against the public source.
@@ -67,7 +67,7 @@ Reviewer: Claude Opus 5.5 (`claude-opus-5-5`), 23 November 2026. I read the pape
     - the final checkpoint $`0.5657203\pm0.0000038`$ at mean size $`8.117\times10^{13}`$;
     - the pooled estimates $`0.5657230`$ and $`0.5657253\pm0.0000032`$ over $`22{,}223{,}928{,}834`$ firings;
     - the 48-run value $`0.5657242\pm0.0000175`$;
-    - the fit window $`t=4,\ldots,12`$.
+    - the fit window $`t=4, \ldots,12`$.
 
     The text correctly says that these estimates give no bound on $`\mu`$.
 13. **Supplement availability: PASS. This closes required change R1 of my previous review.**
