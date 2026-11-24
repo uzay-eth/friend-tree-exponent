@@ -1,0 +1,83 @@
+L5 Dc=7 buckets=2 mask=3 rows=14215993 file_bytes=11370156264 layout_bytes=1115352 per_worker_cache_bytes=8388608
+B3-FullH builder: mode=1 D0=20 KT=19 LF=16000 KF=200 P4=(12,9) Yt=(11,8) Yb=(12,9) S3=(10,8)
+  npars=481 nchs=253 NHU=228 NCU=432 | tot_entries=1407.03M | expected_bytes=10734.97 MB
+  sweep=1 lambda=0.5657237 L5_wall=11.000s
+  sweep=2 lambda=0.5657237 L5_wall=9.913s
+  sweep=3 lambda=0.5657237 L5_wall=7.573s
+  sweep=4 lambda=0.565741637232 L5_wall=11.321s
+  sweep=5 lambda=0.565749441859 L5_wall=8.466s
+  sweep=6 lambda=0.565753484822 L5_wall=8.633s
+  sweep=7 lambda=0.565755189755 L5_wall=9.581s
+  sweep=8 lambda=0.565755868201 L5_wall=9.030s
+  sweep=9 lambda=0.56575614617 L5_wall=8.902s
+  sweep=10 lambda=0.565756260151 L5_wall=8.919s
+  sweep=11 lambda=0.565756307263 L5_wall=10.333s
+  sweep=12 lambda=0.565756326977 L5_wall=13.939s
+  sweep=13 lambda=0.565756335389 L5_wall=12.175s
+  sweep=14 lambda=0.565756339076 L5_wall=13.819s
+  sweep=15 lambda=0.565756340755 L5_wall=11.027s
+  sweep=16 lambda=0.565756341559 L5_wall=9.625s
+  sweep=17 lambda=0.565756341967 L5_wall=10.616s
+  sweep=18 lambda=0.565756342186 L5_wall=11.379s
+  sweep=19 lambda=0.565756342311 L5_wall=9.441s
+  sweep=20 lambda=0.565756342385 L5_wall=7.604s
+  sweep=21 lambda=0.565756342431 L5_wall=7.658s
+  sweep=22 lambda=0.56575634246 L5_wall=7.909s
+  Converged float lam=0.56575634 -> fixing exact target P/Q = 5657570/10000000 = 0.5657570000
+  sweep=23 lambda=0.565757 L5_wall=6.464s
+  final_it=0 lam=0.5657570000 f[v_nb]=1.0000000000->1.0000000000 (ratio=1.0000000000)
+  sweep=24 lambda=0.565757 L5_wall=7.598s
+  final_it=1 lam=0.5657570000 f[v_nb]=1.0000000000->1.0000000000 (ratio=1.0000000000)
+  sweep=25 lambda=0.565757 L5_wall=7.509s
+  final_it=2 lam=0.5657570000 f[v_nb]=1.0000000000->1.0000000000 (ratio=1.0000000000)
+  sweep=26 lambda=0.565757 L5_wall=6.801s
+  final_it=3 lam=0.5657570000 f[v_nb]=1.0000000000->1.0000000000 (ratio=1.0000000000)
+  sweep=27 lambda=0.565757 L5_wall=7.170s
+  final_it=4 lam=0.5657570000 f[v_nb]=1.0000000000->1.0000000000 (ratio=1.0000000000)
+Wrote b3f20_l5_hi.bin (11370156264 bytes), exact P/Q = 5657570/10000000 (0.5657570000)
+TIME_BUILD wall=1996.79 rss_kib=11193180
+cd4553129c758b2c8f74e3f1686146a613e8b4f01f4f720a6a5b86da09b8d317  b3f20_l5_hi.bin
+Verifying b3f20_l5_hi.bin | mode=UPPER | lambda = 5657570/10000000 | D0=20 KT=19 LF=16000 KF=200 | threads=4
+  [f ] checked 6432404 states: fails = 0
+  [g ] checked 121693 states: fails = 0
+  [hV] checked 27746004 states: fails = 0
+  [hC] checked 13880592 states: fails = 0
+  [P4] checked 354856788 states: fails = 0
+  [Yt] checked 540925385 states: fails = 0
+  [Yb] checked 331822656 states: fails = 0
+  [S3] checked 131094480 states: fails = 0
+  [L5] checked 14215993 states: fails = 0
+  [COMPARISON] 4*S*c0 = 88296060680, S*C0 = 200835990548, S*Phi(T_3) = 146044250013 (S = 100000000000)
+  [TREES] exact-rational GMP drift check on 34 concrete/boundary trees: fails = 0
+=== VERDICT: PASS (total_fails = 0, exact P/Q = 5657570/10000000) ===
+TIME_GMP wall=839.08 rss_kib=11106304
+Python comparison: 4Sc0=88296060680 SC0=200701592409
+Python exact-Fraction tree check (b3f20_l5_hi.bin): 38 trees checked, fails = 0
+TIME_PY wall=61.44 rss_kib=11123348
+=== Impossible-Exponent Override Controls (B3F20-L5) ===
+Verifying b3f20_l5_lo.bin | mode=LOWER | lambda = 566000/1000000 | D0=20 KT=19 LF=16000 KF=200 | threads=4
+  [f ] checked 6432404 states: fails = 11933466
+  [g ] checked 121693 states: fails = 604
+  [hV] checked 27746004 states: fails = 3855290
+  [hC] checked 13880592 states: fails = 635306
+  [P4] checked 354856788 states: fails = 122482696
+  [Yt] checked 540925385 states: fails = 46382852
+  [Yb] checked 331822656 states: fails = 232734820
+  [S3] checked 131094480 states: fails = 3386514
+  [L5] checked 14215993 states: fails = 2280439
+  [COMPARISON] 4*S*c0 = 76840591160, S*C0 = 184481683938, S*Phi(T_3) = 146042051850 (S = 100000000000)
+=== VERDICT: FAIL (total_fails = 423691987, exact P/Q = 566000/1000000) ===
+Verifying b3f20_l5_hi.bin | mode=UPPER | lambda = 565000/1000000 | D0=20 KT=19 LF=16000 KF=200 | threads=4
+  [f ] checked 6432404 states: fails = 12248048
+  [g ] checked 121693 states: fails = 1221
+  [hV] checked 27746004 states: fails = 9550818
+  [hC] checked 13880592 states: fails = 1719000
+  [P4] checked 354856788 states: fails = 194779199
+  [Yt] checked 540925385 states: fails = 104195516
+  [Yb] checked 331822656 states: fails = 282766727
+  [S3] checked 131094480 states: fails = 6009826
+  [L5] checked 14215993 states: fails = 5135533
+  [COMPARISON] 4*S*c0 = 88296060680, S*C0 = 200835990548, S*Phi(T_3) = 146044250013 (S = 100000000000)
+=== VERDICT: FAIL (total_fails = 616405888, exact P/Q = 565000/1000000) ===
+UPPER_OVERRIDE_EXIT=1
+=== ALL B3-FullH-20 + COARSE-L5 (Dc=7, 2-bucket) CHECKS PASSED ===

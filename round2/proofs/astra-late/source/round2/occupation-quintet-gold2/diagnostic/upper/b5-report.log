@@ -1,0 +1,229 @@
+pooled 896887 all B5 132860 1.4514354852890572
+root role (all physical) total 1.45143549
+  (0, 'short tip') 70332 0.943789
+  (0, 'far tip') 25491 0.30317151
+  (0, 'hub') 23651 0.13433353
+  (0, 'interior arm') 13381 0.07014019
+  (1, 'far tip') 3 8.6e-07
+  (1, 'short tip') 2 3.8e-07
+max tip role and degree, max>=19 total 1.06093931
+  ('short tip', 'short parent', 179) 16286 0.24685883
+  ('short tip', 'short parent', 1998) 14709 0.23493381
+  ('short tip', 'short parent', 9999) 7115 0.11997335
+  ('short tip', 'short parent', 37) 7410 0.10004465
+  ('far tip', 'far tip', 179) 6350 0.07966234
+  ('far tip', 'far tip', 1998) 5885 0.07949101
+  ('far tip', 'far tip', 9999) 2830 0.03493157
+  ('far tip', 'far tip', 37) 2657 0.028924
+  ('hub', 'short child', 37) 2083 0.02165915
+  ('hub', 'short child', 179) 1680 0.0186499
+  ('short tip', 'short child', 37) 767 0.01451181
+  ('short tip', 'short child', 179) 590 0.01063584
+  ('interior arm', 'far tip', 37) 780 0.00924947
+  ('hub', 'short child', 1998) 437 0.0082091
+  ('interior arm', 'short child', 37) 556 0.00652922
+  ('short tip', 'far tip', 37) 286 0.00631895
+  ('hub', 'far tip', 179) 226 0.00527355
+  ('far tip', 'short child', 37) 196 0.00493661
+  ('short tip', 'far tip', 179) 154 0.00473863
+  ('interior arm', 'far tip', 179) 594 0.00447227
+  ('hub', 'far tip', 37) 490 0.00425426
+  ('far tip', 'short child', 179) 110 0.00411487
+  ('interior arm', 'short child', 179) 300 0.00398245
+  ('short tip', 'short child', 1998) 173 0.00287042
+old+young (max tip>=19, min tip<=5), root and highest tip total 0.83638489
+  ('short tip', 'short parent') 42160 0.55051526
+  ('far tip', 'far tip') 16612 0.18184348
+  ('hub', 'short child') 3778 0.03886175
+  ('short tip', 'short child') 1316 0.022996
+  ('interior arm', 'far tip') 1431 0.01147517
+  ('short tip', 'far tip') 366 0.00884327
+  ('interior arm', 'short child') 815 0.00880583
+  ('far tip', 'short child') 268 0.00608579
+  ('hub', 'far tip') 671 0.00549295
+  ('short tip', 'tied') 17 0.00111677
+  ('hub', 'tied') 6 0.00032093
+  ('interior arm', 'tied') 4 2.193e-05
+  ('far tip', 'tied') 1 5.75e-06
+old+young internal labels (root, hub degree/arity, arm degree/arity) total 0.83638489
+  ('short tip', (3, 3), (2, 2)) 1060 0.11543535
+  ('short tip', (4, 4), (2, 2)) 522 0.0853605
+  ('short tip', (3, 3), (3, 3)) 277 0.05757752
+  ('far tip', (3, 3), (2, 2)) 455 0.03123061
+  ('short tip', (3, 3), (3, 2)) 603 0.02770129
+  ('far tip', (4, 4), (2, 2)) 178 0.02727411
+  ('short tip', (4, 4), (3, 3)) 106 0.02388772
+  ('short tip', (4, 3), (2, 2)) 894 0.0237293
+  ('far tip', (3, 3), (3, 3)) 144 0.01843496
+  ('short tip', (3, 3), (4, 3)) 249 0.01788935
+  ('short tip', (4, 4), (3, 2)) 240 0.01603888
+  ('short tip', (5, 4), (2, 2)) 527 0.0156194
+  ('short tip', (5, 5), (2, 2)) 133 0.01473081
+  ('short tip', (3, 3), (4, 2)) 400 0.01164887
+  ('far tip', (4, 3), (2, 2)) 496 0.01103005
+  ('hub', (4, 4), (2, 2)) 75 0.01024691
+  ('short tip', (3, 3), (4, 4)) 35 0.00979177
+  ('far tip', (5, 4), (2, 2)) 234 0.00868742
+  ('short tip', (4, 4), (4, 3)) 114 0.00795335
+  ('short tip', (4, 3), (3, 3)) 163 0.00773632
+  ('short tip', (3, 3), (5, 3)) 205 0.0067669
+  ('far tip', (4, 4), (3, 3)) 38 0.00664037
+  ('short tip', (6, 5), (2, 2)) 231 0.00652009
+  ('far tip', (3, 3), (4, 3)) 83 0.00584117
+  ('short tip', (3, 3), (5, 4)) 68 0.00583216
+old+young internal ordinary leaf counts (root, hub, arm) total 0.83638489
+  ('short tip', 0, 0) 2236 0.32068625
+  ('far tip', 0, 0) 891 0.09744724
+  ('short tip', 0, 1) 1440 0.0831227
+  ('short tip', 1, 0) 2061 0.06160167
+  ('far tip', 1, 0) 1113 0.0328301
+  ('short tip', 0, 2) 980 0.02878536
+  ('hub', 0, 0) 186 0.02406982
+  ('far tip', 0, 1) 386 0.02014124
+  ('short tip', 2, 0) 2076 0.01846282
+  ('short tip', 1, 1) 1119 0.01265481
+  ('short tip', 0, 3) 803 0.01262802
+  ('interior arm', 0, 0) 86 0.01173781
+  ('far tip', 2, 0) 1038 0.01000816
+  ('short tip', 0, 4) 675 0.00759666
+  ('short tip', 3, 0) 2004 0.00751388
+  ('hub', 0, 1) 124 0.00574532
+  ('far tip', 0, 2) 278 0.00515046
+  ('hub', 1, 0) 178 0.00496626
+old+two young and exact low internal cut, highest tip role and band total 0.34246233
+  ('short tip', 'short parent', 179) 2320 0.09387407
+  ('short tip', 'short parent', 1998) 1715 0.0676643
+  ('short tip', 'short parent', 37) 1302 0.04981158
+  ('far tip', 'far tip', 179) 1084 0.03165834
+  ('far tip', 'far tip', 1998) 862 0.02702868
+  ('short tip', 'short parent', 9999) 688 0.023414
+  ('far tip', 'far tip', 37) 547 0.01493582
+  ('far tip', 'far tip', 9999) 336 0.0096814
+  ('hub', 'short child', 37) 137 0.00670609
+  ('short tip', 'short child', 37) 65 0.00443034
+  ('hub', 'short child', 179) 95 0.00296749
+  ('interior arm', 'far tip', 37) 66 0.00245041
+  ('interior arm', 'short child', 37) 39 0.00156655
+  ('interior arm', 'far tip', 179) 42 0.00150062
+  ('hub', 'far tip', 37) 21 0.00119681
+  ('short tip', 'far tip', 37) 15 0.0007231
+  ('far tip', 'short child', 37) 7 0.00057696
+  ('hub', 'short child', 1998) 15 0.00056622
+  ('short tip', 'short child', 179) 18 0.00052332
+  ('short tip', 'short child', 1998) 7 0.0004504
+  ('interior arm', 'far tip', 1998) 14 0.00027461
+  ('interior arm', 'short child', 179) 11 0.00015737
+  ('hub', 'far tip', 179) 2 0.00013723
+  ('interior arm', 'short child', 1998) 3 6.335e-05
+held-out 235709 all B5 34125 1.4643581168625086
+root role (all physical) total 1.46435812
+  (0, 'short tip') 18088 0.93758682
+  (0, 'far tip') 6686 0.33169348
+  (0, 'hub') 5937 0.12939865
+  (0, 'interior arm') 3410 0.06565276
+  (1, 'short tip') 4 2.64e-05
+max tip role and degree, max>=19 total 1.05417534
+  ('short tip', 'short parent', 179) 4182 0.25814582
+  ('short tip', 'short parent', 1998) 3744 0.20409169
+  ('short tip', 'short parent', 9999) 1861 0.11212338
+  ('short tip', 'short parent', 37) 2009 0.09621878
+  ('far tip', 'far tip', 179) 1594 0.08696166
+  ('far tip', 'far tip', 1998) 1541 0.07547929
+  ('far tip', 'far tip', 9999) 745 0.04406186
+  ('far tip', 'far tip', 37) 709 0.04385255
+  ('hub', 'short child', 37) 495 0.02575275
+  ('hub', 'short child', 179) 491 0.02188982
+  ('short tip', 'short child', 179) 168 0.01986993
+  ('short tip', 'short child', 37) 182 0.01096968
+  ('interior arm', 'far tip', 37) 177 0.00760572
+  ('short tip', 'short child', 1998) 54 0.00703151
+  ('hub', 'short child', 1998) 102 0.00626425
+  ('interior arm', 'far tip', 179) 128 0.0062526
+  ('interior arm', 'short child', 37) 126 0.00621436
+  ('far tip', 'short child', 37) 54 0.00488103
+  ('hub', 'short child', 9999) 23 0.00395543
+  ('short tip', 'far tip', 37) 45 0.00294185
+  ('interior arm', 'short child', 179) 86 0.00268853
+  ('hub', 'far tip', 179) 57 0.00176631
+  ('far tip', 'short child', 179) 22 0.001259
+  ('hub', 'far tip', 37) 87 0.00125346
+old+young (max tip>=19, min tip<=5), root and highest tip total 0.83003872
+  ('short tip', 'short parent') 11008 0.5177871
+  ('far tip', 'far tip') 4321 0.2207066
+  ('hub', 'short child') 1000 0.04189637
+  ('short tip', 'short child') 326 0.02027052
+  ('interior arm', 'far tip') 336 0.0140708
+  ('interior arm', 'short child') 196 0.00621567
+  ('far tip', 'short child') 57 0.00356295
+  ('hub', 'far tip') 139 0.0027554
+  ('short tip', 'far tip') 59 0.00270317
+  ('short tip', 'tied') 5 6.346e-05
+  ('hub', 'tied') 1 6.69e-06
+old+young internal labels (root, hub degree/arity, arm degree/arity) total 0.83003872
+  ('short tip', (3, 3), (2, 2)) 281 0.11187744
+  ('short tip', (4, 4), (2, 2)) 102 0.06173023
+  ('far tip', (3, 3), (2, 2)) 151 0.05908059
+  ('short tip', (3, 3), (3, 3)) 64 0.04914968
+  ('short tip', (3, 3), (3, 2)) 177 0.02774886
+  ('far tip', (5, 5), (2, 2)) 24 0.02268705
+  ('far tip', (4, 4), (2, 2)) 42 0.02261549
+  ('short tip', (4, 3), (2, 2)) 247 0.02110702
+  ('short tip', (5, 4), (2, 2)) 162 0.02110167
+  ('short tip', (4, 4), (3, 3)) 26 0.01902609
+  ('far tip', (3, 3), (3, 3)) 33 0.01702962
+  ('short tip', (4, 4), (3, 2)) 51 0.01620155
+  ('short tip', (3, 3), (4, 3)) 65 0.01605642
+  ('far tip', (4, 4), (3, 3)) 22 0.01461116
+  ('short tip', (5, 5), (2, 2)) 30 0.01395768
+  ('short tip', (3, 3), (4, 4)) 22 0.01230471
+  ('short tip', (3, 3), (4, 2)) 110 0.00958645
+  ('hub', (4, 4), (2, 2)) 18 0.00945597
+  ('far tip', (4, 3), (2, 2)) 126 0.00914813
+  ('far tip', (5, 4), (2, 2)) 58 0.00766819
+  ('short tip', (6, 6), (2, 2)) 11 0.00751568
+  ('far tip', (3, 3), (4, 4)) 7 0.00649822
+  ('short tip', (6, 5), (2, 2)) 53 0.0064972
+  ('short tip', (4, 4), (4, 3)) 23 0.00574399
+  ('short tip', (4, 4), (4, 4)) 6 0.00559043
+old+young internal ordinary leaf counts (root, hub, arm) total 0.83003872
+  ('short tip', 0, 0) 554 0.28895731
+  ('far tip', 0, 0) 286 0.14641781
+  ('short tip', 0, 1) 369 0.07665418
+  ('short tip', 1, 0) 549 0.05937571
+  ('short tip', 0, 2) 281 0.02960452
+  ('far tip', 1, 0) 275 0.02799119
+  ('hub', 0, 0) 49 0.02396154
+  ('short tip', 2, 0) 511 0.01714827
+  ('short tip', 0, 3) 221 0.0147236
+  ('far tip', 0, 1) 84 0.01365809
+  ('interior arm', 0, 0) 28 0.01356623
+  ('short tip', 1, 1) 285 0.01230622
+  ('far tip', 2, 0) 257 0.00991304
+  ('short tip', 3, 0) 539 0.00714179
+  ('short tip', 0, 4) 152 0.00611204
+  ('far tip', 3, 0) 255 0.00511066
+  ('hub', 0, 1) 23 0.00481877
+  ('far tip', 0, 2) 64 0.00452384
+old+two young and exact low internal cut, highest tip role and band total 0.36268513
+  ('short tip', 'short parent', 179) 637 0.10672842
+  ('short tip', 'short parent', 1998) 460 0.05802424
+  ('far tip', 'far tip', 179) 288 0.04489495
+  ('short tip', 'short parent', 37) 366 0.04410686
+  ('far tip', 'far tip', 1998) 221 0.03624448
+  ('far tip', 'far tip', 37) 123 0.02110359
+  ('short tip', 'short parent', 9999) 167 0.01826343
+  ('far tip', 'far tip', 9999) 99 0.01301032
+  ('hub', 'short child', 179) 20 0.00489819
+  ('hub', 'short child', 37) 28 0.00417042
+  ('interior arm', 'far tip', 37) 18 0.00301929
+  ('short tip', 'short child', 37) 10 0.00254855
+  ('interior arm', 'short child', 37) 9 0.00198085
+  ('short tip', 'short child', 179) 7 0.00170287
+  ('far tip', 'short child', 37) 2 0.00058515
+  ('interior arm', 'far tip', 179) 7 0.00056758
+  ('short tip', 'short child', 1998) 1 0.00038126
+  ('interior arm', 'short child', 179) 6 0.00019457
+  ('hub', 'far tip', 37) 3 9.369e-05
+  ('hub', 'short child', 1998) 2 8.314e-05
+  ('hub', 'far tip', 179) 3 8.095e-05
+  ('interior arm', 'far tip', 1998) 1 2.33e-06

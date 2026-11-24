@@ -1,0 +1,50 @@
+=== B3-FullH-18 PRODUCTION BUILD & PURE-GMP VERIFICATION ===
+Tue Nov 24 08:40:05 UTC 2026
+B3-FullH builder: mode=2 D0=18 KT=17 LF=14000 KF=180 P4=(10,7) Yt=(9,6) Yb=(10,7) S3=(8,6)
+  npars=397 nchs=210 NHU=187 NCU=352 | tot_entries=436.87M | expected_bytes=3333.18 MB
+  Converged float lam=0.56567568 -> fixing exact target P/Q = 565673/1000000 = 0.5656730000
+  final_it=0 lam=0.5656730000 f[v_nb]=1.0000000000->1.0000000000 (ratio=1.0000000000)
+  final_it=1 lam=0.5656730000 f[v_nb]=1.0000000000->1.0000000000 (ratio=1.0000000000)
+  final_it=2 lam=0.5656730000 f[v_nb]=1.0000000000->1.0000000000 (ratio=1.0000000000)
+  final_it=3 lam=0.5656730000 f[v_nb]=1.0000000000->1.0000000000 (ratio=1.0000000000)
+  final_it=4 lam=0.5656730000 f[v_nb]=1.0000000000->1.0000000000 (ratio=1.0000000000)
+Wrote b3f18_lo.bin (3495091968 bytes), exact P/Q = 565673/1000000 (0.5656730000)
+9921eee052c489f07e8eba63d65c1dac5e85e4e495d8427e3d67a1a0642025ec  b3f18_lo.bin
+Verifying b3f18_lo.bin | mode=LOWER | lambda = 565673/1000000 | D0=18 KT=17 LF=14000 KF=180 | threads=4
+  [f ] checked 5068364 states: fails = 0
+  [g ] checked 83370 states: fails = 0
+  [hV] checked 15590190 states: fails = 0
+  [hC] checked 7798560 states: fails = 0
+  [P4] checked 102128250 states: fails = 0
+  [Yt] checked 175910700 states: fails = 0
+  [Yb] checked 92610000 states: fails = 0
+  [S3] checked 37574880 states: fails = 0
+  [COMPARISON] S*c0 = -51708025138, S*C0 = 184124847315, S*Phi(T_3) = 146042017510 (S = 100000000000)
+  [NOTE] LOWER cert has c0 <= 0 at VSTAR=0; valid because lower bound uses ONLY Phi(T) <= C0*C(T) with C0 > 0 and Phi(T_3) > 0.
+  [TREES] exact-rational GMP drift check on 34 concrete/boundary trees: fails = 0
+=== VERDICT: PASS (total_fails = 0, exact P/Q = 565673/1000000) ===
+Python exact-Fraction tree check (b3f18_lo.bin): 21 trees checked, fails = 0
+B3-FullH builder: mode=1 D0=18 KT=17 LF=14000 KF=180 P4=(10,7) Yt=(9,6) Yb=(10,7) S3=(8,6)
+  npars=397 nchs=210 NHU=187 NCU=352 | tot_entries=436.87M | expected_bytes=3333.18 MB
+  Converged float lam=0.56577284 -> fixing exact target P/Q = 565775/1000000 = 0.5657750000
+  final_it=0 lam=0.5657750000 f[v_nb]=1.0000000000->1.0000000000 (ratio=1.0000000000)
+  final_it=1 lam=0.5657750000 f[v_nb]=1.0000000000->1.0000000000 (ratio=1.0000000000)
+  final_it=2 lam=0.5657750000 f[v_nb]=1.0000000000->1.0000000000 (ratio=1.0000000000)
+  final_it=3 lam=0.5657750000 f[v_nb]=1.0000000000->1.0000000000 (ratio=1.0000000000)
+  final_it=4 lam=0.5657750000 f[v_nb]=1.0000000000->1.0000000000 (ratio=1.0000000000)
+Wrote b3f18_hi.bin (3495091968 bytes), exact P/Q = 565775/1000000 (0.5657750000)
+1c4dec226208b02e2126dac5dcd911cfd714635bdaf322eac01e5ef0735fda41  b3f18_hi.bin
+Verifying b3f18_hi.bin | mode=UPPER | lambda = 565775/1000000 | D0=18 KT=17 LF=14000 KF=180 | threads=4
+  [f ] checked 5068364 states: fails = 0
+  [g ] checked 83370 states: fails = 0
+  [hV] checked 15590190 states: fails = 0
+  [hC] checked 7798560 states: fails = 0
+  [P4] checked 102128250 states: fails = 0
+  [Yt] checked 175910700 states: fails = 0
+  [Yb] checked 92610000 states: fails = 0
+  [S3] checked 37574880 states: fails = 0
+  FAIL: UPPER cert requires c0 > 0!
+  [COMPARISON] S*c0 = -5994693994, S*C0 = 195820675182, S*Phi(T_3) = 146044806770 (S = 100000000000)
+  [TREES] exact-rational GMP drift check on 34 concrete/boundary trees: fails = 0
+=== VERDICT: FAIL (total_fails = 1, exact P/Q = 565775/1000000) ===
+Tue Nov 24 08:57:01 UTC 2026

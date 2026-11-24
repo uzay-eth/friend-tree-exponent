@@ -1,0 +1,6 @@
+lower floor {'host': 170, 'stock': 12, 'receiver': 5, 'rstock': 5, 'donor': 70, 'tstock': 7, 'bins': [6, 8, 11, 15, 18, 24, 32, 48, 64, 90, 120, 150], 'exact': False, 'side': ['lower'], 'ceiling': False, 'ceiling_only': False, 'fixtures': False, 'hash': True}
+mother pays 3174454265537200909341/109951162777600000000000000000 2.8871493355265566e-08
+mother donates 7677454183749620949919/54975581388800000000000000000 1.3965207806449362e-07
+two children, both orders 31174494262864493176839/54975581388800000000000000000 5.670607472505161e-07
+TOTAL 80878351158765429162857/109951162777600000000000000000 7.355843186702752e-07 states 11819808 band rows 204820 positive/exact degree rewards 1328678 1331330 mean/max conditional bin width (ticks) 231887.34692736904 8695195.877192982 CPU seconds 128.142
+PASS exact corner checks and pinned copy unchanged

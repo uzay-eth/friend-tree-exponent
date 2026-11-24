@@ -1,0 +1,1 @@
+GOLD2 lower 7071421/12500000 d2/K2/M3 252 22 80 10 knots 20 {'host': 250, 'stock': 12, 'donor': 28, 'tstock': 5, 'receiver': 5, 'rstock': 5, 'exclude': 18, 'bins': [6, 8, 11, 15, 18, 24, 32, 48, 64, 90, 120, 150], 'mask': 'both', 'hash': False, 'fixtures': False}

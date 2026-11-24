@@ -1,0 +1,13 @@
+corrected cohort source b82b6768a91ee1ae66f319b078b9076d04878546705a3538795fff73ec06057c executed 1ebfb7d5453a8293e027b40e51c641ef3907accfb3a8c83f13e4cc1696462a76
+upper original Gold2 f1dcd7ad3e6df82a985eb3dd6fd793b5a3e38c78368d94e4b135ab174ab92876 namespace(side='upper', min_mother=80, mother=480, mother_stock=12, middle=2, middle_stock=2, young=12, young_stock=3, sibling=2, upstream=2, outside_threshold=True, exclude_strict=False)
+registrations hmy 10
+registrations hmys 26
+registrations uhmy 2
+literal labelled H3 rows 42
+physical hmy 3 states 166848 positive rewards 141152
+physical hmy 2 states 10428 positive rewards 0
+physical hmy 1 states 5693 positive rewards 0
+order floor physical hmy 9489180385030489020412893039/35750368572477400958998937600000000 2.654288826643254e-07
+corrected upper mother-high ticks/core 9489180385030489020412893039/32514770803097600000000
+PASS corrected original Gold2 upper H3
+wall=72.02 rss=425768 exit=0

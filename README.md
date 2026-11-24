@@ -1,5 +1,43 @@
 # The random friend tree exponent is not 17/30
 
+**Round 2.** Let $`C_n`$ be the number of non-leaves in the random friend tree on $`n`$ vertices. The narrowest enclosure checked by two model families other than its author is
+
+```math
+\frac{35083855339718511}{62017003637500000}
+\;\le\; \mu \;\le\;
+\frac{127993535256830043}{226242120050000000}.
+```
+
+Rounded outwards, $`0.565713486333 \le \mu \le 0.565736986679`$, so $`\mu`$ is not $`17/30`$. The proof bounds the expected change in a sum of weights on connected subtrees of the core with at most five vertices. GPT and Claude both ran the original Gemini verifier. GPT also checked the correspondence between its loops and the proof and audited the high-degree tail. The exact value of $`\mu`$ and its irrationality remain open. [Proof](round2/proofs/neon2/quintet-cert/PROOF.md) · [Certificate and reproduction record](round2/verify/gold/README.md)
+
+**Core growth in one tree.** Starting from one edge, $`C_n/n^\mu`$ converges almost surely to a finite, strictly positive random variable $`X`$. Its law has a density and assigns positive probability to values arbitrarily near zero and to arbitrarily large values. [Strong limit](round2/proofs/astra/source/round2/standalone/claim-6.md) · [Density](round2/proofs/neon2/limit-density/REPORT.md)
+
+**Degrees and the local core.** For each fixed $`k\ge2`$, the expected number of vertices of degree at least $`k`$ is asymptotic to $`c_k n^\mu`$, where $`c_k>c_{k+1}>0`$. The differences give a limiting mean degree distribution among non-leaves whose point probabilities are asymptotically proportional to $`k^{-1-\mu}`$. Under the planting and one-edge estimates, the mean evolution of a rooted core neighbourhood also has a probability eigenmeasure with growth rate $`\mu`$. [Fixed-degree mean asymptotics](round2/proofs/astra/source/round2/standalone/claim-3.md) · [Degree tail](round2/proofs/astra/source/round2/degree-law.md) · [Spatial operator](round2/proofs/astra/source/round2/operator.md)
+
+**Birth order.** Write $`Z_u`$ for the limiting degree of vertex $`u`$ divided by tree size. The founders tie in law. After them, both the probability of a positive share and every positive real moment decrease strictly with birth label. Separate exact calculations prove the hub-probability inequalities through label eight. [Hub probabilities](round2/proofs/astra-late/source/round2/open/age-order/hub-ranking/README.md) · [All positive moments](round2/proofs/astra-late/source/round2/open/age-order/hub-ranking/all-powers/positive/README.md) · [Early hub probabilities](round2/proofs/fable/newground/q3-hub-probability/REPORT.md)
+
+**Where the degree mass goes.** Almost surely, $`\sum_u Z_u=1`$. The conditional distribution of the attachment label converges in total variation to these masses. A separate argument identifies a sufficient pathwise condition, $`\sum_n C_n/n^2<\infty`$. [Mass and attachment](round2/proofs/astra/source/round2/hub-mass.md) · [Summability argument](round2/proofs/neon2/claim14-proofs/README.md)
+
+**Characterizing the exponent.** C. D. Long first published a critical equation for $`\mu`$ and constant-factor bounds on mean growth. Round 2 gives a different equation on a compact kernel and a family of finite drift tests whose best upper and lower exponents converge to $`\mu`$. [Long’s generation equation](https://github.com/long-mathematics/friend-tree-growth/tree/090bbbe5faec83ec4124bd427eb5fda32c79bef1) · [Operator and certificate proofs](round2/proofs/astra/README.md)
+
+**Deleting high-degree vertices.** For a growing sublinear cutoff, the count and log-volume limits imply that the proposed reference distribution eventually misses positive mass in total variation whenever $`\liminf\log N/\log n>\mu/(1+\mu)`$. Two outside families checked this implication. The input count and log-volume theorem has a narrower review. [Forest law and review scope](round2/proofs/neon2/README.md)
+
+### Further results
+
+Astra’s tighter outward bounds $`0.565714467904<\mu<0.565735974375`$ have been checked within the author’s family only at the decisive pricing step (Tier C). Given the gold2 witnesses and four lower bounds on occupation rewards, one other family checked that a rational value must have reduced denominator at least 426. That implication is Tier B. The four reward bounds carry GPT-family checks only. Full stochastic ordering at every threshold and birth label remains open. The round-two guide records the tier and the replay limits for each result. [Claim ledger](round2/LEDGER.md) · [Proofs, checkers and commands](round2/README.md)
+
+Fable’s analytic proof bounds the hub probability for label $`u`$ within constant factors of $`u^{\mu-1}`$, using constant-factor mean growth. One outside family checked this comparison (Tier B). [Birth-label bounds](round2/proofs/fable/newground/q3-hub-probability/REPORT.md)
+
+One other model family checked Neon’s hub characterization (a positive share is equivalent to unbounded degree), independence of the finite-degree vertices, finite-matrix convergence with its two-sided error, and transcendence of a signed response function under its defining identity. Irrationality of the number $`\mu`$ remains open. [Hub proof](round2/proofs/neon/round2/open_questions/REPORT.md) · [Finite matrices](round2/proofs/astra/source/round2/finite/finite-operator.md) · [Response function](round2/proofs/neon2/obstruction/REPORT.md)
+
+One other model family checked logarithmic bounds on tree height and diameter, eight stationary probabilities for the core, and density bounds under their respective assumptions (Tier B). Stronger smoothness and longest-path statements still lack an outside-family check of their full proofs (Tier C). [Height bounds](round2/proofs/neon2/height-diameter/README.md) · [Stationary probabilities](round2/proofs/neon2/stationary-marginals/PROOF.md) · [Density integrability](round2/proofs/neon2/density-lp/README.md) · [Density and path proofs](round2/proofs/fable/README.md)
+
+Mohamed Sabba independently reported $`[0.565615,0.565809]`$ with GPT-6.2 Astra and estimated $`\mu\approx0.5657237`$. The numerical estimates and their standard errors are separate from the rational enclosures. [Credits and chronology](round2/who-did-what.md)
+
+## Round 1
+
+The following sections record the original paper, its bounds and its verification runs. The opening section gives the current results.
+
 ```math
 \frac{113}{200} = 0.5650 \;\le\; \mu \;\le\; \frac{1133}{2000} = 0.5665 \;<\; \frac{17}{30} = 0.5666\overline{6}.
 ```
@@ -10,7 +48,7 @@ Here $`C_n`$ counts the non-leaves in the tree on $`n`$ vertices. The same expon
 
 Start from a single edge $`T_2`$; at each step pick a uniform vertex $`V_n`$, pick a uniform neighbour $`W_n`$ of $`V_n`$, and attach a new leaf to $`W_n`$. Addario-Berry et al. call this model the random friend tree. [Random friend trees](https://arxiv.org/abs/2403.20185)
 
-In Krapivsky and Redner’s paper and in Strogatz’s thread, $`N_k`$ denotes the number of vertices of degree **exactly** $`k`$. Here $`N_k(n)`$ counts vertices of degree **at least** $`k`$, so $`N_2(n)=C_n`$. The exact-degree count is $`N_k(n)-N_{k+1}(n)\le C_n`$ for every $`k\ge2`$. Thus both finite-size mean upper bounds below apply to the expectation of each exact-degree count. The cumulative lower bounds give no matching lower bound for that difference, and its proposed pointwise scaling remains open. [Krapivsky and Redner, §5.1](https://arxiv.org/pdf/1706.01514#page=12) · [Strogatz’s thread](https://x.com/stevenstrogatz/status/1572287647715934210)
+In Krapivsky and Redner’s paper and in Strogatz’s thread, $`N_k`$ denotes the number of vertices of degree **exactly** $`k`$. Here $`N_k(n)`$ counts vertices of degree **at least** $`k`$, so $`N_2(n)=C_n`$. The exact-degree count is $`N_k(n)-N_{k+1}(n)\le C_n`$ for every $`k\ge2`$. Thus both finite-size mean upper bounds below apply to the expectation of each exact-degree count. In round 1 these cumulative lower bounds left the pointwise scaling of that difference open. The round-two fixed-degree result above takes the size limit first. [Krapivsky and Redner, §5.1](https://arxiv.org/pdf/1706.01514#page=12) · [Strogatz’s thread](https://x.com/stevenstrogatz/status/1572287647715934210)
 
 The certified gap below $`17/30`$ is at least $`1/6000`$. For every $`n \ge 3`$,
 
@@ -71,10 +109,12 @@ I chose the question, set up the system that worked on it, and decided what coun
 
 **Earlier work this builds on.** Krapivsky and Redner ([arXiv:1706.01514](https://arxiv.org/abs/1706.01514)) introduced isotropic redirection and measured $`\mu \approx 0.566`$. Addario-Berry, Briend, Devroye, Donderwinkel, Kerriou, and Lugosi ([arXiv:2403.20185](https://arxiv.org/abs/2403.20185)) named the random friend tree, proved $`(\sqrt{13}-3)/6 \le \liminf \log C_n/\log n \le \limsup \log C_n/\log n \le \sqrt{2} - 1/2`$ almost surely (approximately $`[0.1009, 0.9142]`$), and left existence and the value of $`\mu`$ open. Hartle, Krapivsky, Redner, and Zhang ([arXiv:2604.01540](https://arxiv.org/abs/2604.01540)) solved two modified local redirection models analytically while noting that isotropic redirection remains open.
 
-## What is still open
+## Questions at the close of round 1
 
-- **Exact value or closed form of $`\mu`$.** High-precision continuous-time simulations (heuristic, not proof) sit near $`0.565723 \pm 0.000003`$ inside our certified interval $`[0.5650, 0.5665]`$. Whether $`\mu`$ has an exact formula, operator characterization, or closed form is open.
-- **Sharp asymptotics.** Neither $`\mathbb{E}[C_n] \asymp n^\mu`$ nor convergence of $`C_n / \mathbb{E}[C_n]`$ is proved; the existence proof allows subpolynomial factors $`n^{o(1)}`$.
-- **Pointwise degree law and uniform almost-sure degree tail.** The cumulative mean limit for $`\mathbb{E}[N_k(n)]`$ is proved, and fixed-$`k`$ almost-sure convergence $`\log N_k(n)/\log(n/k) \to \mu`$ follows from Astra's sample-path theorem together with Theorem 4.8 of Addario-Berry et al. The [planted-star argument](proofs/degree-tail.md#a-consequence-for-each-fixed-exact-degree) gives an eventual positive fraction of the core almost surely for each fixed exact degree $`k\ge2`$, a positive lower ratio of means, and hence the same two logarithmic exponents. Both an almost-sure limit uniform over growing $`k`$ and the Krapivsky–Redner pointwise scaling $`\mathbb{E}[\#\{v : D_v(n) = k\}] \sim c\,n^\mu k^{-(1+\mu)}`$ remain open.
+The exact value and a closed form are still open. Round 2 now supplies operator characterizations, sharp mean growth, an almost-sure random amplitude and a degree law with the size limit taken first. The original questions below record the starting point for that work. [Current statements and qualifications](round2/LEDGER.md)
 
-Preprint-level work, not peer reviewed. If you find an error, please open an issue.
+- **Exact value or closed form of $`\mu`$.** High-precision continuous-time simulations (heuristic, not proof) sit near $`0.565723 \pm 0.000003`$ inside our certified interval $`[0.5650, 0.5665]`$. Round 1 left a closed form and an operator characterization open. The latter now has a proof.
+- **Sharp asymptotics.** Round 1 left both $`\mathbb{E}[C_n] \asymp n^\mu`$ and convergence of $`C_n / \mathbb{E}[C_n]`$ open; the existence proof allows subpolynomial factors $`n^{o(1)}`$.
+- **Pointwise degree law and uniform almost-sure degree tail.** The cumulative mean limit for $`\mathbb{E}[N_k(n)]`$ is proved, and fixed-$`k`$ almost-sure convergence $`\log N_k(n)/\log(n/k) \to \mu`$ follows from Astra's sample-path theorem together with Theorem 4.8 of Addario-Berry et al. The [planted-star argument](proofs/degree-tail.md#a-consequence-for-each-fixed-exact-degree) gives an eventual positive fraction of the core almost surely for each fixed exact degree $`k\ge2`$, a positive lower ratio of means, and hence the same two logarithmic exponents. Both an almost-sure limit uniform over growing $`k`$ and the Krapivsky–Redner pointwise scaling $`\mathbb{E}[\#\{v : D_v(n) = k\}] \sim c\,n^\mu k^{-(1+\mu)}`$ were open at the end of round 1.
+
+The round-two proofs and checks were produced with AI models and have not been peer reviewed. If you find an error, please open an issue.

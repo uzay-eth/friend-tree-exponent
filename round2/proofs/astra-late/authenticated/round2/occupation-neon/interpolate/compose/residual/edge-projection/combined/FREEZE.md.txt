@@ -1,0 +1,43 @@
+# Reviewed post-EDGE pressure-memory addendum
+
+**Outward enclosure: `[0.565678056632067, 0.565770469400619]`.** This is a separate local addendum to the [signed EDGE freeze](../../../../edge/FREEZE.md), `02d0bd87c64b53a2bda2004a4af65de9142dda13`. The [original 2f74 producer](README.md) and [original receipt](full.log) retain their historical candidate wording. The [7b08 GPT-family cold audit](../../../../../../checks/edge-memory-sol.md) returned **CORRECT in scope** on the pinned source. It reconstructs the physical column lifts and residual contractions, independently repairs the proposed duals in rational arithmetic and independently composes the bounds; it shares the EDGE Bellman solver and the model column builder.
+
+The EDGE trial points, negative margins, reservations and denominator ceilings are unchanged. Memory prices one joint residual on 170 first-body states and 54 existing-edge classes. Every paid old edge is debited for the frozen inner reserve, and the newborn continuation is counted once, through the post-promotion parent. The high-parent mixed payment and all six higher-body charge families remain intact. The flow-only and first-body-only prices are comparisons; neither is added to the joint price. HiGHS proposes the multipliers; the checked price uses rational repair over all 9,674 columns of each model, including the degree and arity tails. The addendum inherits the physical mean and stable-age identities, the original D18 GMP B verifications and input interval `[0.565673570322, 0.565775]`. It does not rerun the exhaustive GMP verifier or certify eight decimals.
+
+| Sign | Exact endpoint |
+|---|---|
+| Lower | `2586244278310822397274177587149/4571936719109803018500000000000` |
+| Upper | `6574835699364880591816419305857/11621030179129551777500000000000` |
+
+## Clean archive and original inputs
+
+The replay used `git archive 02d0bd87c64b53a2bda2004a4af65de9142dda13` with the addendum inputs at their original paths. The [release manifest](release-inputs.sha256) pins the new input files, including the canonical `pressure-memory/marginal/replay.py` at the repository root and its transitive import `round2/occupation-neon/flow/check.py`. That in turn imports the already frozen `round2/occupation-neon/renewal/check.py`. The original [producer manifest](inputs.sha256), the [EDGE input manifest](../../../../edge/inputs.sha256), and the inherited [composition manifest](../../../inputs.txt) authenticate the frozen code and data. No new payload is tracked.
+
+Use the original read-only D18 production witnesses, 3,495,091,968 bytes each. Both replay implementations check their complete digests against the frozen EDGE pins:
+
+| Witness | SHA-256 |
+|---|---|
+| `D18_LOWER`, mode 2 | `9921eee052c489f07e8eba63d65c1dac5e85e4e495d8427e3d67a1a0642025ec` |
+| `D18_UPPER`, mode 1 | `1c4dec226208b02e2126dac5dcd911cfd714635bdaf322eac01e5ef0735fda41` |
+
+The [original Neon proof and GMP receipt locator](../../../../../check/neon-proof-pin.md) pins proof commit `cec3855cc52ab4265ce3e36b8a7a38f1ae257f77` and blob `3bbda54c3cbdbd235a6cf4af8ecf80ca75d16ae7`. The archived receipt is pinned by `de931f5`; Astra’s and Fable’s original full GMP checks are inherited for those two payloads only.
+
+## Replay from the frozen checkout
+
+Set `P` to a Python interpreter with NumPy and SciPy (fresh replay: Python 3.12.3, NumPy 2.3.5, SciPy 1.16.3). Set `D18_LOWER` and `D18_UPPER` to absolute paths. From the checkout root:
+
+```sh
+R=round2/occupation-neon/interpolate/compose/residual/edge-projection/combined
+sha256sum --strict -c "$R/release-inputs.sha256"
+sha256sum --strict -c "$R/inputs.sha256"
+sha256sum --strict -c round2/occupation-neon/interpolate/edge/inputs.sha256
+sha256sum --strict -c round2/occupation-neon/interpolate/compose/inputs.txt
+ulimit -v 10485760
+export OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1
+"$P" -EBu "$R/replay.py" --lower "$D18_LOWER" --upper "$D18_UPPER" --side lower
+"$P" -EBu "$R/replay.py" --lower "$D18_LOWER" --upper "$D18_UPPER" --side upper
+"$P" -EBu round2/checks/edge-memory-sol.py "$D18_LOWER"
+"$P" -EBu round2/checks/edge-memory-sol.py "$D18_UPPER"
+```
+
+The [fresh clean-archive log](clean-replay.log) preserves all four command lines and outputs. Lower/upper producer times were 104.48/165.41 s; lower/upper companion times were 95.47/53.16 s. All exited zero and reproduced both exact historical fractions. An additional rational comparison confirmed strict inward improvement over the exact EDGE fractions and directed rounding at 15 places. The inherited seven-core regression also reproduced `−0.0008223761382507083` on a fresh retry (1.63 s, exit 0; the first attempt timed out under contention).

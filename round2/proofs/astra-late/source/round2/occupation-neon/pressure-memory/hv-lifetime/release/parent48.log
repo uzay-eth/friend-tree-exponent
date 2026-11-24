@@ -1,0 +1,3 @@
+parent D_birth>=3 unconditional floors, outward 1e-16 ticks 590196762 126911006
+(48, 5, 5) [6, 2, 2] old min 8 atom parent degree cap 2 disjoint False ead947b complement True min apex 21 states 49438 outward 1e-16 ticks [(778676907, 5871703564), (167440210, 4790704121), (-3178462535, 5497601473)]
+wall=33.43 rss=180896 exit=0

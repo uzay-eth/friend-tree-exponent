@@ -1,0 +1,40 @@
+# Inherited exact ledger and its manifest roots, from ead947b.
+c9f157f4445e02c60263cbfe266a013744ccf39a3c0e47d6d8e194148f24ccef  round2/occupation-neon/interpolate/compose/residual/edge-projection/combined/clean-replay.log
+73f65bde6b38f624d7ea01f6d410cab88a9a01509735e020e9f70cbe74bb6994  round2/occupation-neon/interpolate/compose/residual/edge-projection/combined/release-inputs.sha256
+6abcfc4bc9dc9811992f1afc425aeecacc3bbb1ea7049b4be55dabe9223b577e  round2/occupation-neon/interpolate/compose/residual/edge-projection/combined/inputs.sha256
+9c70a96ad0bde03cfc6cc756db2499d50cb1448abf7994c6459c7e6b1a26dcc4  round2/occupation-neon/interpolate/compose/residual/edge-projection/combined/FREEZE.md
+a2c8a4cde1a182cca81cdd2a438c379c193339a7b56a7607f11f279e4ef068a2  round2/occupation-neon/interpolate/edge/inputs.sha256
+0c25e700de1ccaa2b775c760ff5a5b72f8c03a80c1cdd4326ca5affdd2f89fda  round2/occupation-neon/interpolate/compose/inputs.txt
+# Root P4 and its independent census and sign-corner audit.
+28ce3034eb096c6ebc53c339a2ee6f2375cd72e26cd85b333e76072b299eaaed  round2/occupation-neon/pressure-memory/path.py
+3bb442ee42b93fa431ae00e8b9cbf0128fbb013c6f2cdca143a6ab49d3c2f642  round2/occupation-neon/pressure-memory/path_band.py
+fe000b87962ff8c624a6b7a75abffde5525476c22861aa50109d86bc1e1e5be9  round2/checks/p4-band-sol.py
+1e50b72027d760ec6a22b88333cafa9c65b2572ba5572664a5ebb2d5d604a4b6  round2/checks/p4-band-sol.md
+7432857b1b9fc05b7850cb9d2a6f22fc8200d22dc77f134bbd75eb69da2f0653  round2/checks/stationary-p4-sol.py
+db3080d0380aea532ea8a58ecc7f919bde4b45c6004d86197d3502b1a6c5d626  round2/checks/stationary-p4-sol.md
+2aa0fdbf3972725a2b4a11e98676f56ecd9cf29636b1f5eb7c0f4d9c287cbabb  round2/occupation-neon/pressure-memory/combined/p4.log
+b9686fbddbe29bebd879582ba193b667201b9296dcd38b4509278f7d25decaf3  round2/occupation-neon/pressure-memory/combined/p4-cold.log
+# Complementary P4 producer and original medium receipt.
+b9423487db066349cdb8bbd7a64380041c65fe2fae14d05907a4932775bd195b  round2/occupation-neon/pressure-memory/donor_lift.py
+5302e1414a632177f1254001854adc6c171aeb2a0df559cd4924d67b01730994  round2/occupation-neon/pressure-memory/p4-donor-medium.log
+b2efb0c935ce4a53a1bcabbaab84c47cfa3b1388907c91664eb6b2c4c0cb1d67  round2/occupation-neon/pressure-memory/PATH.md
+09c26bd7ca5bdad11616a0e58352ecef21cee5349c080bf4ef680acb9c9636ca  round2/checks/p4-lift-sol.py
+0c698cb363e042f5b42e22830ccffcba81669d3250cdf917043daa43413e91d2  round2/checks/p4-lift-sol.md
+a1561153bc9ec3f36905295d74aea094fc333d4e09b13294bb895f67fb5a06f9  round2/occupation-neon/pressure-memory/combined/donor-lift.log
+# Corrected S3 broad cap-five producer and cold review.
+4d2347aa089498d5fc8657222d8de42cb1501d094d2a6c624fdca36338dd7726  round2/occupation-neon/s3-lifetime/replay.py
+43eb7a31225baa164649cc4dfc2a741ccfdf22ec78afbe71152a946b2399d310  round2/occupation-neon/s3-lifetime/README.md
+e9ff423f88cf4289e8a7332b5713d2182b90565691aa9e6478332bd4a99f0b5e  round2/occupation-neon/s3-lifetime/tagged-repair.log
+3e48ab1b1ec5459501b08dbfbf145d0882d873e349a2f9be8c12c3941dec6cbb  round2/occupation-neon/pressure-memory/combined/s3.log
+58f852c66e5a3fab2ccdede65e5a1fadc8865eed8795875d2190073e7fa10570  round2/occupation-neon/s3-lifetime/disjoint.log
+005353789f898d358a3f845f2d175a4930f1bfe0ed3947e5e8feafe4fd8fb89d  round2/checks/s3-lifetime-sol.py
+a49eec07e561c2d3bc3cc28c74baba462e8b029ac43d2e16458b83e73798d02b  round2/checks/s3-lifetime-sol.md
+766b5857cba8f71d6eb23d13e7da1696a601b6960f9b81ca56875f366f679b89  round2/occupation-neon/pressure-memory/combined/s3-cold-lower.log
+8b3304389da06585918d5ac1778dc2e4da3348fe3dddf1e2c48c0f78cb187c51  round2/occupation-neon/pressure-memory/combined/s3-cold-upper.log
+# Yb producer and independent signed Bellman solver.
+02fc26d3272e459a7972607e628fd5aa1bd88d97b1e0220a24449d1a8428ff9e  pressure-memory/yb-lifetime/README.md
+286aa2cc375221ef83c235fccd2d5dca4b0b09056eec926a4dd8eb2861e598f8  pressure-memory/yb-lifetime/replay.py
+93a849d2f7d22c6b8fad8125a5e9a84c9ca4b5561127d83b29365c6428f416de  pressure-memory/yb-lifetime/fixture.py
+92555fbf2822b04f3956cb7168144652dbf270b671ea2e37e180eb1106290494  round2/checks/yb-lifetime-sol.py
+c62025482fb9a5205f7645376fc9e60d33311edde2516785fc5a3ddfe0e1d001  round2/checks/yb-lifetime-sol.md
+08a1e73d4eaab576138e77a17ba923b907a8ed8c187f0e6314b1cd31d1b39d55  round2/occupation-neon/pressure-memory/combined/yb.log

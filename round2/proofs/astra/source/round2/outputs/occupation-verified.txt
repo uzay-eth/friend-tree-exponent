@@ -1,0 +1,28 @@
+upper S=1099511627776 cap=155608 min=258643133503 max=2284398034850 base=2926869074730054199/5172862670060000000 universal arithmetic PASS
+Fraction low corner oracle: vertex=2853 edge=4066 largest rounding excess=167025522587280671/16735272960000000 ticks PASS
+complete physical tree audit {'trees': 206, 'actual events': 2686, 'local rows': 4149, 'FY incidences': 3240, 'nonzero FY incidences': 3226, 'four-motif credit': 438, 'vertex credit': 67} physical types 1190 low probes 360 GMP high corners 719 PASS
+PASS
+upper independent numerical, geometry, and physical mutation controls PASS
+lower S=1099511627776 cap=115075 min=314288655137 max=3157460548145 base=1777757855465649061/3142886551370000000 universal arithmetic PASS
+Fraction low corner oracle: vertex=2853 edge=4066 largest rounding excess=52902607002411941/4781506560000000 ticks PASS
+complete physical tree audit {'trees': 206, 'actual events': 2686, 'local rows': 4149, 'FY incidences': 3240, 'nonzero FY incidences': 3226, 'four-motif credit': 395, 'vertex credit': 67} physical types 1190 low probes 360 GMP high corners 719 PASS
+PASS
+lower independent numerical, geometry, and physical mutation controls PASS
+PASS
+mode 2 degree caps 192 48 16 9 6 core caps 30 14 9 6 5 rows 5325 310254 1832220 6200922 17034500 newborn reserve 7402100/1099511627776 at discount 1133/2000
+mode 2 parent vertex slack degree caps 1399 1024 16 5 4 core caps 48 24 8 5 4 rows 66024 2327700 0 0 0 newborn reserve 11253928/1099511627776 at discount 1133/2000
+mode 2 child vertex slack degree caps 1399 1024 16 5 4 core caps 48 24 8 5 4 rows 66024 2065500 0 0 0 newborn reserve 301604/1099511627776 at discount 1133/2000
+D <= 1399, c <= 60, discount 113/200, newborn lifetime ceiling 2654889165321/1099511627776
+lower fraction 1696971095548923704669/3000024756812730000000
+quartet states 3113 transitions 27084 positive physical sources 360 positive newborn extensions 8655 planted errors 3
+parent states 3113 transitions 27084 positive physical sources 122 positive newborn extensions 8549 planted errors 3
+child states 3113 transitions 27084 positive physical sources 150 positive newborn extensions 8278 planted errors 3
+mode 1 degree caps 192 48 16 9 6 core caps 30 14 9 6 5 rows 5325 310254 1832220 6200922 17034500 newborn reserve 7709975/1099511627776 at discount 1133/2000
+mode 1 parent vertex slack degree caps 1399 1024 16 5 4 core caps 48 24 8 5 4 rows 66024 2327700 0 0 0 newborn reserve 8148713/1099511627776 at discount 1133/2000
+mode 1 child vertex slack degree caps 1399 1024 16 5 4 core caps 48 24 8 5 4 rows 66024 2065500 0 0 0 newborn reserve 3226994/1099511627776 at discount 1133/2000
+D <= 1399, c <= 60, discount 113/200, newborn lifetime ceiling 2655887184018/1099511627776
+upper fraction 1698065802472818376961/3001152517940340000000
+quartet states 3113 transitions 27084 positive physical sources 389 positive newborn extensions 8655 planted errors 3
+parent states 3113 transitions 27084 positive physical sources 116 positive newborn extensions 8549 planted errors 3
+child states 3113 transitions 27084 positive physical sources 144 positive newborn extensions 8655 planted errors 3
+Outward physical interval [0.5656523639, 0.5658045676].

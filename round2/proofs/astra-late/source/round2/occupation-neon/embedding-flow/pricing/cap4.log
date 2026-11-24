@@ -1,0 +1,25 @@
+model source SHA256 aa749e2a8f3b34933540d34dbc625ed1040e88e238ccf8f8cb92629df7b1042d
+authenticated both original D18 payloads; families hV,hC,P4,Yt,Yb,S3 theta 1 unpaid False
+cap/order/share 4 4 0 columns/equalities/inequalities 24802 4899 15011 objective nonzeros 23337 build CPU/wall 2.652/2.903
+pricing lower
+ipm round 1 original columns in master 24802 status 0 iterations 747 crossover 83 solver CPU/wall 5.931/9.882
+priced all 24802 negative 4950 center -1.636631857438313e-05 repair 5.1039054701523746e-15 value -1.6366318579487036e-05 exact pricing CPU 0.396
+certified endpoint -185161488691436971599296285179/11313569865584300000000000000000000 center -1636631857438313/100000000000000000000 repair 360896194524417327/70709811659901875000000000000000 negative columns 4950
+pricing upper
+ipm round 1 original columns in master 24802 status 0 iterations 578 crossover 125 solver CPU/wall 5.558/6.897
+priced all 24802 negative 5207 center -1.667819631006501e-05 repair 4.823493030914333e-15 value -1.6678196314888504e-05 exact pricing CPU 0.391
+certified endpoint 94344969620210844416151457491/5656784932792150000000000000000000 center -1667819631006501/100000000000000000000 repair 54570925401408279639/11313569865584300000000000000000000 negative columns 5207
+stationary contrast per core -20951768720733948672034745296208786637774397/2262713973116860000000000000000000000000000000000 10675513560713464607295026280407964591301413/1131356986558430000000000000000000000000000000000
+decimal -9.259574550588535e-06 9.436025664355694e-06
+cap/order/share 4 4 4 columns/equalities/inequalities 70342 4899 30014 objective nonzeros 23337 build CPU/wall 3.595/4.880
+pricing lower
+ipm round 1 original columns in master 70342 status 1 iterations 5 crossover 0 solver CPU/wall 41.850/62.192
+no floating row multipliers; keeping checked fallback Time limit reached. (HiGHS Status 13: model_status is Time limit reached; primal_status is None)
+certified endpoint -20812526518526659053/707098116599018750 center 0 repair 20812526518526659053/707098116599018750 negative columns 11561
+pricing upper
+ipm round 1 original columns in master 70342 status 1 iterations 6 crossover 0 solver CPU/wall 46.783/62.167
+no floating row multipliers; keeping checked fallback Time limit reached. (HiGHS Status 13: model_status is Time limit reached; primal_status is None)
+certified endpoint 766676646987226858359/28283924663960750000 center 0 repair 766676646987226858359/28283924663960750000 negative columns 11776
+stationary contrast per core -2355021258426935491326505173361179/141419623319803750000000000000000 86752552621959059726341852642735137/5656784932792150000000000000000000
+decimal -16.652719072100293 15.336017482131604
+total CPU/wall 114.646/159.056

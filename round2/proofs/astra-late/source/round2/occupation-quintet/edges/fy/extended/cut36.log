@@ -1,0 +1,6 @@
+START lower bound {'host': 175, 'receiver': 36, 'donor': 5, 'stock': 10, 'rstock': 6, 'bins': [6, 8, 11, 15, 18, 23, 29, 36, 48, 64], 'ceiling': True, 'hash': False}
+mother pays 1513746866559671239807/21990232555520000000000000000 6.883723774806964e-08
+child pays with mother donor 306055447264722948579/21990232555520000000000000000 1.3917790386800468e-08
+child-child, both directed orders 3540121856589321782561/10995116277760000000000000000 3.2197220721985304e-07
+TOTAL 2225011506750759438377/5497558138880000000000000000 4.0472723535472313e-07 path states 4284000 reciprocal bands 238464 CPU seconds 78.624
+START upper bound {'host': 175, 'receiver': 36, 'donor': 5, 'stock': 10, 'rstock': 6, 'bins': [6, 8, 11, 15, 18, 23, 29, 36, 48, 64], 'ceiling': True, 'hash': False}

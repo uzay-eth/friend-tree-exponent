@@ -1,0 +1,32 @@
+# Independent cold review: first-sender threshold bridge
+
+**Holds** at proof (`open/age-order/global-transport/annealed/extension/first-sender/README.md`) blob `786f4fec0dbf88b6bbbe8adafdd98d0afd34a9d9`, checker `5680c8e937ebafdec09c2e193e6b36fe47ac84b1`. In every old tree the strict conditional bands are `b≥20, x≥151/250`; `b≥21, x≥591/1000`; and `b≥30, x≥1/2`, all with `x<1`, where `b=n+1` is the older label (final size `b+1`). The numerical corners include equality at the lower threshold.
+
+## Colour law and conditioning at the first sender
+
+The mark stays blue and the original designated leaf starts red; colour is inherited from the initiator, not the target. The exact beta mixture is for the initiator word. A construction first draws the endpoint and word, then uses fresh uniforms for within-colour senders and their actual neighbours. Given the **entire** word, at blue choice `f` the mark is one of exactly `b+f` eligible senders regardless of previous choices. Thus the first mark-sender index `F` has telescoping survival `(b−1)/(b+k−1)` conditional on the word and on the endpoint. After this first choice no further within-colour drivers are exposed by conditioning on `F=f`. Neither the uncolored tree nor its endpoint `Z` is independent of `F`. No physical holding-clock change or independence between good stock and the future tree is used.
+
+All red leaves remain good up to the forced choice at `f`. At that choice pay **one full** reciprocal `1/R_f`, not `1/[(b+f)R_f]`. Each later blue choice costs at most the latter expression indexed there. Red steps have nonpositive conditional drift of the bad fraction: a good red initiator necessarily makes another good red, and bad red initiators can only improve upon bad-only reproduction. Sum these expected losses at finite horizon then use boundedness of the bad fraction, convergence of the red proportion and Fatou. This gives the positive-part deficit bound under the stated conditioning. The red count `R_j` includes the string **immediately before** choice `j`, explaining the `j+1` geometrics in the reciprocal calculation. For `f≥1` the forced term is at most `u/f` and the remaining positive decreasing sum is at most `(u/b) log(1+b/f)`; `f=0` is assigned the trivial zero success floor.
+
+The variable `t=b(θ−x)/(1−θ)` on `θ>x` has survival `(1+t/b)^(-b)` since its event `t>z` is `1−θ<(1−x)/(1+z/b)` and the beta tail is exactly `(1−x)^b`. It is independent of `F` **in this lower-bound reference calculation**, including after restricting the beta endpoint. Thus Markov bounds failure `Z≤x`, with nonnegative success `(1−a_b(F)/t)_+`. The exponential replacement is valid for this increasing payoff because `(1+t/b)^(-b)≥e^−t`. The uniform quantile uses `F=floor((b−1)(1−q)/q)`; use the unrounded lower bound minus one, not monotonicity of the floor divided by `b`. Its linear-scale ratio grows with `b`, giving the uniform coefficient for each minimal label `B`. No assertion is made about monotonicity of the actual gap in threshold or label.
+
+## Rectangle quadrature and adverse margins
+
+On a lower rectangle, the worst charge is at the right uniform coordinate, worst payoff at the left time, and the exponential bin mass is rounded down. Truncating zero-weight boxes, large charges, or times above 12 lowers the answer. All coefficients of the odd log series are positive; bounding denominators in the omitted series by 17 gives the correct upper remainder. The producer floors the decay factor and increment factor separately and its additional unit subtraction in the payoff bounds rounding in the safe direction. The independent checker instead uses higher-degree Taylor bounds and integer ceiling in the payoff, with a separate rational sixth-root outer bound. Its three margins are strictly positive even using `157/50` below π.
+
+The upper comparison keeps both `b+1/2` and `1−x` in `U`. The smaller-shape to half-shape ratio has a factor `((1−x)/(bx))^(1/6)`; for `b≥20` the remaining factor is at most `(1773/1000)(42/41)/(141077/58240)<3/4`. The inherited one-third cap means the debit is at most `U(4/3+2θ_*/3)` per serial weight. The attenuation and root bound decrease with `b,x` so each corner suffices globally on the specified band. For the obstruction check at `(21,1/2)`, I also upper-enclosed the payoff using the **exact** floor quantile at that label, left uniform endpoints, a log lower bound, right time endpoints, exact conditional endpoint bin masses rounded upwards, and the entire omitted time tail. The coefficient bound is still `<0.18`, while the **chosen** all-tree debit is `>0.19` even with the lower root `3/5` and upper π `22/7`. This is a limitation of these estimates, not an upper bound for the actual serial tail or a sign for the physical difference.
+
+## Splice and evidence scope
+
+The [Fable audit](../attacks/fable5/README.md) gives paired transport receipts at `88e13f36b39162f6ee60561a2b465a982b34af02` for older labels `2,…,19`. With these alone, the new `b≥20` band starts at `(20,21)` from pre-placement size 19, so `[0.604,1)` is all-label. Including the authenticated single `(20,21)` receipt at `a33acbcf8b0476ca6431887acfce7d1445186bb5` allows the `b≥21` band to start at `(21,22)` from pre-placement size 20, giving `[0.591,1)`. The respective anchored transport implies strictness for each fixed positive interior threshold by its strictly positive core/leaf residual forcing. The single receipt is not a second independent computation; the audit did not rerun the networks. At `1/2` the present certificates omit exactly `b=21,…,29` with that receipt, or `b=20,…,29` without it. The label statements are unconditional after averaging the new treewise bounds; the Fable pieces do not imply an early treewise claim. Labels 1 and 2 are equal in law by symmetry, not pathwise; transitivity gives all nonadjacent tail inequalities on each interval, strictly except for that founder pair. At `x=1` all strict tails are zero.
+
+```text
+taskset -c 8 nice -n 10 timeout 12s python3 -IB round2/checks/preplacement-sender-sol.py
+PASS b=20, x=151/250: c >= 163590/10^6; squared margin >= 152/10^6
+PASS b=21, x=591/1000: c >= 164001/10^6; squared margin >= 98/10^6
+PASS b=30, x=1/2: c >= 167036/10^6; squared margin >= 588/10^6
+PASS exact-F ceiling < 0.18 versus chosen debit > 0.19 at b=21, x=1/2
+PASS first-sender survival and older-label splice ledger
+```
+
+The producer replay independently passed all four printed claims. No large tree or transport enumeration was performed.

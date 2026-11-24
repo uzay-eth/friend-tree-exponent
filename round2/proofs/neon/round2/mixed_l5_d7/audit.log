@@ -1,0 +1,14 @@
+D=6, buckets=2: Exact tree inequalities PASS: big_birth_excluded=11525, birth_with_big=1021, birth_with_tail=606, births=3249, credits=45493, crossing_negative=158, crossing_positive=164, crossings=322, gain_crosses_dc=677, inner_stays_inner=415, l5_rates=6045, mixed_credits=858, multiple_deletions=590, overflow_birth_excluded=2708, strict_source=619, tail_stays_tail=453, transfers=1865, trees=320
+planted allow-overflow-birth: rejected (newborn ownership)
+planted drop-crossing: rejected (boundary crossing)
+planted wrong-fiber: rejected (fiber source)
+planted zero-tail-credit: rejected (gain rate interval)
+planted drop-tail-birth: rejected (newborn ownership)
+D=7, buckets=1: Exact tree inequalities PASS: big_birth_excluded=10689, big_stays_big=1649, birth_with_big=2097, birth_with_tail=0, births=4724, credits=45493, gain_crosses_dc=476, l5_rates=8706, mixed_credits=1302, multiple_deletions=860, overflow_birth_excluded=2708, strict_source=1181, transfers=2737, trees=320
+planted allow-overflow-birth: rejected (newborn ownership)
+D=7, buckets=2: Exact tree inequalities PASS: big_birth_excluded=10689, birth_with_big=1353, birth_with_tail=957, births=4724, credits=45493, crossing_negative=239, crossing_positive=252, crossing_zero=9, crossings=500, gain_crosses_dc=476, inner_stays_inner=458, l5_rates=8706, mixed_credits=1302, multiple_deletions=860, overflow_birth_excluded=2708, strict_source=880, tail_stays_tail=691, transfers=2737, trees=320
+planted allow-overflow-birth: rejected (newborn ownership)
+planted drop-crossing: rejected (boundary crossing)
+planted wrong-fiber: rejected (fiber source)
+planted zero-tail-credit: rejected (gain rate interval)
+planted drop-tail-birth: rejected (newborn ownership)

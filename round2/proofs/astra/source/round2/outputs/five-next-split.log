@@ -1,0 +1,74 @@
+lower split pass 0
+ rank 5 rows 2021486872
+ rank 4 rows 56279691
+ rank 3 rows 70491064
+ rank 2 rows 32031570
+ rank 1 rows 1061159
+lower quartet pass 0 newborn 29374764/1099511627776
+lower split pass 1
+ rank 5 rows 7312312
+ rank 4 rows 6449232
+ rank 3 rows 2975049
+ rank 2 rows 976140
+ rank 1 rows 52278
+lower quartet pass 1 newborn 5855805/1099511627776
+lower split pass 2
+ rank 5 rows 1177302
+ rank 4 rows 381038
+ rank 3 rows 2975049
+ rank 2 rows 976140
+ rank 1 rows 52278
+lower quartet pass 2 newborn 890500/1099511627776
+lower split pass 3
+ rank 5 rows 1177302
+ rank 4 rows 381038
+ rank 3 rows 2975049
+ rank 2 rows 976140
+ rank 1 rows 52278
+lower quartet pass 3 newborn 146067/1099511627776
+lower split pass 4
+ rank 5 rows 1177302
+ rank 4 rows 381038
+ rank 3 rows 2975049
+ rank 2 rows 976140
+ rank 1 rows 52278
+lower quartet pass 4 newborn 22982/1099511627776
+lower quartet replacement 36290118/1099511627776
+wall 709.54 s, max RSS 2663540 KiB
+upper split pass 0
+ rank 5 rows 2021486872
+ rank 4 rows 56279691
+ rank 3 rows 70491064
+ rank 2 rows 32031570
+ rank 1 rows 1061159
+upper quartet pass 0 newborn 26942162/1099511627776
+upper split pass 1
+ rank 5 rows 7312312
+ rank 4 rows 6449232
+ rank 3 rows 2975049
+ rank 2 rows 976140
+ rank 1 rows 52278
+upper quartet pass 1 newborn 4889420/1099511627776
+upper split pass 2
+ rank 5 rows 1177302
+ rank 4 rows 381038
+ rank 3 rows 2975049
+ rank 2 rows 976140
+ rank 1 rows 52278
+upper quartet pass 2 newborn 732894/1099511627776
+upper split pass 3
+ rank 5 rows 1177302
+ rank 4 rows 381038
+ rank 3 rows 2975049
+ rank 2 rows 976140
+ rank 1 rows 52278
+upper quartet pass 3 newborn 119891/1099511627776
+upper split pass 4
+ rank 5 rows 1177302
+ rank 4 rows 381038
+ rank 3 rows 2975049
+ rank 2 rows 976140
+ rank 1 rows 52278
+upper quartet pass 4 newborn 18704/1099511627776
+upper quartet replacement 32703071/1099511627776
+wall 754.63 s, max RSS 2866208 KiB

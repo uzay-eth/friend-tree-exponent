@@ -1,0 +1,14 @@
+model source SHA256 aa749e2a8f3b34933540d34dbc625ed1040e88e238ccf8f8cb92629df7b1042d
+authenticated both original D18 payloads; families hV,hC,P4,Yt,Yb,S3 theta 1 unpaid False
+cap/order/share 4 4 4 columns/equalities/inequalities 70342 4899 30014 objective nonzeros 23337 build CPU/wall 4.812/7.965
+pricing lower
+cg round 1 original columns in master 24802 status 1 iterations 31 crossover 0 solver CPU/wall 48.083/62.150
+no floating row multipliers; keeping checked fallback Time limit reached. (HiGHS Status 13: model_status is Time limit reached; primal_status is None)
+certified endpoint -20812526518526659053/707098116599018750 center 0 repair 20812526518526659053/707098116599018750 negative columns 11561
+pricing upper
+cg round 1 original columns in master 24802 status 1 iterations 28 crossover 0 solver CPU/wall 43.834/62.215
+no floating row multipliers; keeping checked fallback Time limit reached. (HiGHS Status 13: model_status is Time limit reached; primal_status is None)
+certified endpoint 766676646987226858359/28283924663960750000 center 0 repair 766676646987226858359/28283924663960750000 negative columns 11776
+stationary contrast per core -2355021258426935491326505173361179/141419623319803750000000000000000 86752552621959059726341852642735137/5656784932792150000000000000000000
+decimal -16.652719072100293 15.336017482131604
+total CPU/wall 102.955/140.262

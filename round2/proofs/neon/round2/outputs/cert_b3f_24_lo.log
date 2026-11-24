@@ -1,0 +1,16 @@
+=== B3-FullH-24-L4 LOWER (5656836/10000000 = 1414209/2500000, exact k=KF polish) ===
+d8611ec831548a77dcab352cdf550253174a406bf68ed550fba7be938d2aea82  b3f24_lo.bin
+Verifying b3f24_lo.bin | mode=LOWER | lambda = 5656836/10000000 | D0=24 KT=23 LF=18000 KF=220 | threads=3
+  [f ] checked 7956444 states: fails = 0
+  [g ] checked 236223 states: fails = 0
+  [hV] checked 76063806 states: fails = 0
+  [hC] checked 38054016 states: fails = 0
+  [P4] checked 714574575 states: fails = 0
+  [Yt] checked 1496708928 states: fails = 0
+  [Yb] checked 670829445 states: fails = 0
+  [S3] checked 348910848 states: fails = 0
+  [COMPARISON] 4*S*c0 = 113472938044, S*C0 = 184431662845, S*Phi(T_3) = 146041455998 (S = 100000000000)
+  [TREES] exact-rational GMP drift check on 34 concrete/boundary trees: fails = 0
+=== VERDICT: PASS (total_fails = 0, exact P/Q = 5656836/10000000) ===
+Python exact-Fraction tree check (b3f24_lo.bin): 16 trees checked, fails = 0
+=== B3-FullH-24-L4 LOWER PURE-GMP VERIFIED ===

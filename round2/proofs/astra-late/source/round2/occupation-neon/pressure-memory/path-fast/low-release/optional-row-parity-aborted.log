@@ -1,0 +1,3 @@
+authenticated both D18 originals degrees [16, 9, 9, 16] arities [4, 4, 4, 3] side 3 mother 3 old included False library_sha256 fd867d34d6f3fc4ec3701bd9c229be0f383e8a3235d23503ebdd32674964d91c auth_cpu=5.891
+Command terminated by signal 15
+wall=300.71 cpu=112.45+3.48 rss=1155360 exit=0

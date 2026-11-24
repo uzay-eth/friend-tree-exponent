@@ -1,0 +1,30 @@
+discount original 282836785161/500000000000 22631/40000
+degree and arity census hashes 0b6c6f207b7a5b0263a136d4425ada3138e89effa0f4068a767e869226a56c01 ba604c1e281f782a249e9fbbde750491ad1b4cdebb94edb562e28e63b9e2ecdc
+lower authenticated 9921eee052c489f07e8eba63d65c1dac5e85e4e495d8427e3d67a1a0642025ec EDGE margin -1175262418391579131304677/500000000000000000000000000000 retained 24185517229389/10000000000000000000 denominator 1357493815758092773/1000000000000000000 ead947b already booked 18402664634233592780094779/178500000000000000000000000000000
+frozen extraction CPU/wall 97.883 122.87
+upper authenticated 1c4dec226208b02e2126dac5dcd911cfd714635bdaf322eac01e5ef0735fda41 EDGE margin -260157326233781321243349/125000000000000000000000000000 retained 22473874537713/10000000000000000000 denominator 273436004214812983/200000000000000000 ead947b already booked 101984612445685206436931/1700000000000000000000000000000
+frozen extraction CPU/wall 44.889 56.266
+H:F:G 9 8 6 box arity/order/slabs 4 0 1 columns/eq/ineq 9291 1320 5203
+ipm round 1 original columns in master 9291 status 0 iterations 117 crossover 49 solver CPU/wall 0.814/0.817
+priced all 9291 negative 324 center 8.997747510239612e-10 repair 2.8752523878073567e-19 value 8.997747507364361e-10 exact pricing CPU 0.034
+lower box joint exact floor 129789592912340178367999/255000000000000000000000000000000 decimal 5.089787957346673e-10 repair before conversion 2.8752523878073567e-19 solver CPU/wall 1.258 1.611
+ipm round 1 original columns in master 9291 status 0 iterations 2224 crossover 57 solver CPU/wall 1.331/1.338
+priced all 9291 negative 343 center 3.68e-18 repair 2.824829982614256e-19 value 3.3975170017385743e-18 exact pricing CPU 0.034
+upper box joint exact floor 76575128283407/39843750000000000000000000000000 decimal 1.921885572603156e-18 repair before conversion 2.824829982614256e-19 solver CPU/wall 1.438 1.473
+H:F:G 9 8 6 share arity/order/slabs 4 0 1 columns/eq/ineq 9291 1320 5293
+ipm round 1 original columns in master 9291 status 0 iterations 1624 crossover 182 solver CPU/wall 4.350/4.510
+priced all 9291 negative 835 center 2.3587799912249e-07 repair 4.969612979561464e-17 value 2.3587799907279387e-07 exact pricing CPU 0.129
+lower share joint exact floor 15010869363290630340082979/112500000000000000000000000000000 decimal 1.3342994989591673e-07 repair before conversion 4.969612979561464e-17 solver CPU/wall 4.565 4.737
+ipm round 1 original columns in master 9291 status 0 iterations 1745 crossover 200 solver CPU/wall 5.374/5.558
+priced all 9291 negative 815 center 1.7517376785995e-07 repair 1.230864828637491e-16 value 1.751737677368635e-07 exact pricing CPU 0.132
+upper share joint exact floor 1061266437366636130807160089/10710000000000000000000000000000000 decimal 9.909117062246836e-08 repair before conversion 1.230864828637491e-16 solver CPU/wall 5.593 5.798
+H:F:G 9 8 6 moments arity/order/slabs 4 1 1 columns/eq/ineq 13333 1665 7573
+ipm round 1 original columns in master 13333 status 0 iterations 393 crossover 637 solver CPU/wall 9.744/10.149
+priced all 13333 negative 2443 center 2.5711433845968e-07 repair 1.2946965893362924e-16 value 2.5711433833021036e-07 exact pricing CPU 1.084
+lower moments joint exact floor 139079663867918732074447943/956250000000000000000000000000000 decimal 1.4544278574422875e-07 repair before conversion 1.2946965893362924e-16 solver CPU/wall 10.963 11.381
+ipm round 1 original columns in master 13333 status 1 iterations 1198 crossover 666 solver CPU/wall 12.066/15.026
+no floating row multipliers; keeping checked fallback Time limit reached. (HiGHS Status 13: model_status is Time limit reached; primal_status is None)
+upper moments joint exact floor 0 decimal 0.0 repair before conversion 2.0274259052411073e-05 solver CPU/wall 12.187 15.148
+lower best 1.4544278574422875e-07 share of ead947b reward 1.410748811183019 exponent-equivalent before legacy debit 1.0714066175174888e-07 gain vs matched boxes 1.4493380694849408e-07 positive difference vs ead947b reward (comparison only) 4.234662532835427e-08 frozen mask exact False
+upper best 9.909117062246836e-08 share of ead947b reward 1.6517686935165017 exponent-equivalent before legacy debit 7.247850984877744e-08 gain vs matched boxes 9.909117062054648e-08 positive difference vs ead947b reward (comparison only) 3.9100222125006476e-08 frozen mask exact False
+total CPU/wall 181.412 221.997

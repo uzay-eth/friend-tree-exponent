@@ -1,0 +1,12 @@
+cap 8, entry D=2,k=0, 560 exact corners: best [-0.00159114605,-0.001054875849]; constant [-0.00159114605,-0.001051236813]
+cap 8, entry D=8,k=3, 560 exact corners: best [+7.385380967e-05,+0.0009359831026]; constant [+7.385380967e-05,+0.001299628886]
+cap 16, entry D=2,k=0, 2160 exact corners: best [-0.001590795805,-0.001054933736]; constant [-0.001590795805,-0.001054730551]
+cap 16, entry D=16,k=3, 2160 exact corners: best [+0.0003935199809,+0.00127935885]; constant [+0.0003935199809,+0.001527070562]
+cap 32, entry D=2,k=0, 8432 exact corners: best [-0.001590779914,-0.001054935884]; constant [-0.001590779914,-0.00105492614]
+cap 32, entry D=32,k=3, 8432 exact corners: best [+0.0005582346502,+0.001446957521]; constant [+0.0005582346502,+0.001590548729]
+crown cap 12: discounted exit mass [0.281051595,0.370359695]
+crown cap 20: discounted exit mass [0.211628006,0.283682329]
+crown cap 64: discounted exit mass [0.110193309,0.150484862]
+crown cap 256: discounted exit mass [0.0503894278,0.0692742455]
+crown cap 1024: discounted exit mass [0.0230098261,0.0316899975]
+two-sided ±.001 terminal-only error: Yule lower obstruction persists through cap 48599, clears at cap 48600 (necessary, not sufficient)

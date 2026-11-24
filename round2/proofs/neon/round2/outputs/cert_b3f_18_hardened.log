@@ -1,0 +1,24 @@
+Verifying b3f18_lo.bin | mode=LOWER | lambda = 565673/1000000 | D0=18 KT=17 LF=14000 KF=180 | threads=2
+  [f ] checked 5068364 states: fails = 0
+  [g ] checked 83370 states: fails = 0
+  [hV] checked 15590190 states: fails = 0
+  [hC] checked 7798560 states: fails = 0
+  [P4] checked 102128250 states: fails = 0
+  [Yt] checked 175910700 states: fails = 0
+  [Yb] checked 92610000 states: fails = 0
+  [S3] checked 37574880 states: fails = 0
+  [COMPARISON] 4*S*c0 = 113465364604, S*C0 = 184124847315, S*Phi(T_3) = 146042017510 (S = 100000000000)
+  [TREES] exact-rational GMP drift check on 34 concrete/boundary trees: fails = 0
+=== VERDICT: PASS (total_fails = 0, exact P/Q = 565673/1000000) ===
+Verifying b3f18_hi.bin | mode=UPPER | lambda = 565775/1000000 | D0=18 KT=17 LF=14000 KF=180 | threads=2
+  [f ] checked 5068364 states: fails = 0
+  [g ] checked 83370 states: fails = 0
+  [hV] checked 15590190 states: fails = 0
+  [hC] checked 7798560 states: fails = 0
+  [P4] checked 102128250 states: fails = 0
+  [Yt] checked 175910700 states: fails = 0
+  [Yb] checked 92610000 states: fails = 0
+  [S3] checked 37574880 states: fails = 0
+  [COMPARISON] 4*S*c0 = 115462837236, S*C0 = 195820675182, S*Phi(T_3) = 146044806770 (S = 100000000000)
+  [TREES] exact-rational GMP drift check on 34 concrete/boundary trees: fails = 0
+=== VERDICT: PASS (total_fails = 0, exact P/Q = 565775/1000000) ===

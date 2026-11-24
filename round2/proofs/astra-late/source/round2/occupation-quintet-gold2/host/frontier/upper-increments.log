@@ -1,0 +1,10 @@
+corrected increment source 1e2071a42f1b39c52c647f6a3b0f0205b4f12309d107aa8874e4b22afd7a9592 executed 9f2affed38297720e194c59817b3e3d39a776a88afb35129c0198b5bcf8f9b54
+corrected upper increment middle3
+literal physical checks {'g outgoing': 74, 'g': 40, 'h3 outgoing': 64, 'h3': 37, 'FY gaps': 4} distinct registered paths 8
+original upper Gold2 {'host': 5, 'stock': 4, 'receiver': 120, 'rstock': 10, 'donor': 7, 'tstock': 3, 'old': 80, 'last': 120, 'mother_min_stock': 2, 'middle_min': 3, 'child_min': 2, 'ceiling': False, 'fixtures': True, 'reserve': False}
+normalized 104761176624656435971061493/6818841661925773803520000000000000 1.536348573829031e-08 ticks 104761176624656435971061493/6201700363750000000000 16892.33121242094 states 176562 paid 50184 CPU seconds 12.795167895
+corrected upper increment stock
+original upper Gold2 {'host': 5, 'stock': 4, 'receiver': 79, 'rstock': 12, 'donor': 7, 'tstock': 3, 'old': 19, 'last': 79, 'mother_min_stock': 9, 'middle_min': 2, 'child_min': 2, 'ceiling': False, 'fixtures': False, 'reserve': False}
+normalized 2219710935763853408742519/272753666477030952140800000000000 8.13815251114426e-09 ticks 2219710935763853408742519/248068014550000000000 8947.993314617568 states 134793 paid 37332 CPU seconds 10.135913879
+PASS corrected original Gold2 upper H3 increments
+wall=28.62 rss=143476 exit=0

@@ -1,0 +1,39 @@
+# Frozen five-pass quartet donor replacement
+
+> **Author/model:** Astra (GPT-6.2). **Pinned source commit:** `2afedb1e25a6b95be30752c67022f792730d6f21` ([original blob](../../../SOURCES.tsv)).
+> **Review and dependencies:** Claim 15: Claude on frozen composition and selected inequalities, HY4 Flash on components, GPT on full production; inputs include Claim 9, the five-pass replacement, and the unsigned K7/144 dual. See the [Astra ledger](../../../../../LEDGER.md#astra) for the exact scopes and dependencies.
+
+> **Release replay:** Use `bash round2/verify/astra/run.sh joint-cold` from the release root. The command below is historical and expects the original source names and both raw witnesses. The authenticated copy of this document is [split-audit.source.txt](split-audit.source.txt).
+
+
+The five-pass newborn totals in the lower and upper four-vertex scores are **36,290,118** and **32,703,071** ticks, respectively, with scale $`2^{40}`$ and discount $`1133/2000`$. They replace the archived quartet outside-donor totals of 7,402,100 and 7,709,975. Their increments over those archived totals are 28,888,018 and 24,993,096. A different-family audit is pending. [Signed integers](split-reference.tsv) · [Original production transcript](../outputs/five-next-split.log)
+
+| Newborn ticks | Lower score | Upper score |
+|---|---:|---:|
+| Original quartet outside donors, pass 0 | 29,374,764 | 26,942,162 |
+| First auxiliary donor pass | 5,855,805 | 4,889,420 |
+| Second auxiliary donor pass | 890,500 | 732,894 |
+| Third auxiliary donor pass | 146,067 | 119,891 |
+| Fourth auxiliary donor pass | 22,982 | 18,704 |
+
+From the repository root, the following command verifies the input manifest, builds fresh binaries, runs the rational small-tree controls, recomputes all 50 rank counts and both signed totals, and checks the transcript against the frozen table. It uses one permitted CPU, one BLAS thread and a 5 GiB virtual memory ceiling. A fresh scratch directory isolates each run. The recorded production wall times were 710 and 755 seconds per side. The frozen lower run predates the addition of the small-degree projection used by the later six-site calculation. That addition copies primary weights to an auxiliary file. The solver and the reported five-pass weights use the same rate and score calculation. [Exact source and data pins](split-inputs.sha256) · [Replay](replay-split.sh)
+
+~~~sh
+bash round2/five-next/replay-split.sh
+~~~
+
+For immediate arithmetic and hash verification of the recorded output, run the same command with the argument `frozen`. The verifier rejects a re-added archived reserve, a one-tick change to the first upper pass, and a removed rank-five row. [Integer verifier](split_integers.py) · [Rational controls](../outputs/five-next-split-physical.log) · [Tail interpolation controls](../outputs/five-next-split-slopes.log)
+
+## Physical comparison
+
+A leaf deletion of an ordinary chronological five-set identifies the older four-vertex score, gain site and unique external ordinary core neighbour. The donor may be the oldest member of the five-set. For its original signed gain change $`a`$ and the donor's true reciprocal degree $`p`$, the available physical source is $`J(a,p)=\max(a,0)/2-pa`$. Any founder donor is omitted. The quartet contact gain may exit the interior support of the table. Endpoint interpolation in the other sites uses the same endpoint before and after the gain. A missing, ambiguous or stopped branch can use zero. Every leaf deletion is charged once. [Canonical quartet mappings and source](quartet.hpp)
+
+Pass 0 uses the maximum of two whole-source five-member candidates and the sum of the per-deletion candidates, taken at the actual state. Each per-deletion candidate receives that deletion's own source. At a state attaining a maximum, the successor under every nonnegative jump kernel is at least the maximizing candidate's successor. At a partially known extension, a lower bound on every compatible child entry suffices. Older prefixes and their new children use the post-promotion core count. The true gain rates on the old finite coordinates have internal neighbour reciprocals and one independently relaxed reciprocal in $`[0,1/2]`$ per exterior slot. Primary and later weights are nonnegative. [Exact mesh cutoffs by pass and deletion](reserve.cpp) · [Integer inequality on every row](flow.hpp)
+
+If the physical old weight of a support changes by $`d`$ at a gain, the difference between the actual and worst exterior rates contributes $`J(-d,p)`$. In passes 1 through 4 each previous pass funds its immediate successor using this exact difference for old supports of sizes one through four. The change is taken after combining candidates into the physical weight. Each pass has a separate auxiliary weight. If $`T_j`$ is its sum over connected ordinary sets and $`v_j`$ its singleton newborn weight, then
+
+```math
+ J_{\rm quartet}\ \ge\ (s-\mathcal L)\sum_{j=0}^4T_j + B\sum_{j=0}^4v_j,\qquad s=1133/2000 .
+```
+
+The ordinary-core moment bound for finite connected shapes makes the normalized integrated terminal terms finite and gives $`[J_{\rm quartet}]\ge\mu\sum_j v_j`$ in ticks per core. This pair uses only the original quartet donor allocation and the resulting auxiliary residuals of supports up to four. A denominator is unnecessary for the newborn numerator. [Growth and localization](../occupation/physical-test.md)

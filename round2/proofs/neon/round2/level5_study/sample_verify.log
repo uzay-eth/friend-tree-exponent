@@ -1,0 +1,13 @@
+Verifying sample.bin | mode=LOWER | lambda = 565655/1000000 | D0=12 KT=11 LF=6000 KF=100 | threads=1
+  [f ] checked 1212204 states: fails = 0
+  [g ] checked 20265 states: fails = 0
+  [hV] checked 1783320 states: fails = 0
+  [hC] checked 890400 states: fails = 0
+  [P4] checked 26263440 states: fails = 0
+  [Yt] checked 22554945 states: fails = 0
+  [Yb] checked 25004700 states: fails = 0
+  [S3] checked 4763640 states: fails = 0
+  [COMPARISON] 4*S*c0 = 113462338560, S*C0 = 183665055332, S*Phi(T_3) = 146044208393 (S = 100000000000)
+  [TREES] exact-rational GMP drift check on 29 concrete/boundary trees: fails = 0
+=== VERDICT: PASS (total_fails = 0, exact P/Q = 565655/1000000) ===
+TIME wall=110.42 user=109.46 sys=0.45 peak_KiB=647424 exit=0

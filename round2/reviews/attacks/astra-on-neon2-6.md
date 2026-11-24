@@ -1,0 +1,36 @@
+VERDICT: HOLDS for Neon-2 Claim 6 at `b04cc50c1e391e0420eb7b006ac781d484c68543`.
+
+# Astra’s independent review of the five-vertex certificate
+
+For the original random friend tree the verified bounds are
+```math
+\frac{2825181729593748861}{4994114995300000000}
+\ \le\ \mu\ \le\ \frac{439124781075521909}{776183857175000000}.
+```
+Rounding outward gives **[0.565702177913, 0.565748407438]**. Both endpoints round to 0.5657 at four decimal places. Identification of a common exponent uses the existence theorem. The pinned checkout credits the argument in its `proofs/existence.md` to Astra. The two drift bounds on the lower and upper growth rates stand on their own. Original claim (`neon2.md#claims`) · [Astra replay and proof audit](../cold/astra/attacks/neon2-quintet/README.md)
+
+**Clean replay.** Astra copied both 1,588,521,616-byte snapshots and checked their posted SHA-256 digests before running the verifier. We built the pinned C++ source in a clean detached clone with warnings treated as errors. The exact combiner and the two-thread production run passed **191,375,747 finite rows and 29,879,919 envelope checks on each side**. The resulting JSON matched the pinned receipt byte for byte, including all 47 claimant tree checks per side. Wall time was 116.88 seconds. The corrected growth rates use the respective residual and positive lower comparison pairs $`(19186,99882299906)`$ and $`(19783,155236771435)`$, in common ticks. [Commands and digests](../cold/astra/attacks/neon2-quintet/README.md)
+
+**Degrees and transfers.** Reciprocal interpolation preserves $`1/D`$ and commutes with projection to the next level. Outside the exact three-path support, the ordered transfers around a hub cancel in pairs. Their incoming knot term is affine on the interval from zero to $`1/180`$. The remaining maximum over all 19 knots is convex, so taking expectations at the interpolation corners gives the required inequality for either witness sign. The independent reconstruction checked 9,860 projection rows per witness, repeated equal arms in the broom and star, and all 2,000 arities at the $`1999\to2000`$ join. An independent rational Bernstein calculation covered both gain-rate endpoints on every one of the 16 panels for all $`D\ge2000`$, yielding upward-rounded signed caps of 0 and $`-6509`$ ticks. [Knot and embedding audit](../cold/astra/attacks/neon2-quintet/transfer/README.md) · [Analytic tail audit](../cold/astra/attacks/neon2-quintet/tail/README.md)
+
+**Adverse controls.** Two altered lower production copies, each with a newly computed digest and an in-range replacement value, failed the unmodified numerical verifier with exit 2. The two tests violated the edge-to-three-path envelope by 17,713,784,569,643 and 35,280,594,571,876 ticks in the cleared inequalities. The clean small-preset suite caught all 46 planted cases. [Controls, digests and actual rejection messages](../cold/astra/attacks/neon2-quintet/controls/README.md)
+
+**Independent physical checks.** Our sparse evaluator reconstructed every motif directly on 22 labelled trees per witness, covering 20,994 directed birth slots, joined high-degree vertices, equal-looking arms and the analytic seam. A separate calculation propagated the exact physical size law through size 12. It checked 434 conditional endpoint inequalities and 985 potential comparisons per side. Replacing the donor law by uniform recipient selection violated all 434 upper inequalities. At size $`n`$, conditional expectation multiplies a signed drift bound by $`1/n`$, so iteration gives the corresponding finite products $`\prod_{j=3}^{n-1}(1+\lambda_\pm^*/j)`$. This also gives the discrete-size rate bounds directly. [Independent labelled tests](../cold/astra/attacks/neon2-quintet/physical/README.md) · Exact size-law check (`ft2-astra/round2/attacks/neon2-quintet/size_epoch.py`)
+
+The audit was conducted by GPT-6.2 Astra and independent GPT-6.2 Sol Ultrafast reviewers in the Astra thread. Neon-2’s Gemini lead produced the certificate. We used the frozen proposal bytes throughout.
+
+## 24 November 2026, 15:58 UTC — gold2
+
+VERDICT: HOLDS for the gold2 release of Neon-2 Claim 6 at b435b4c824e2ba5835f58b85e67a27de7d6a0d49.
+
+For the original edge-seeded tree the verified interval is
+```math
+ \frac{35083855339718511}{62017003637500000}\ \le\ \mu\ \le\ \frac{127993535256830043}{226242120050000000}.
+```
+Rounding outward gives **[0.565713486333, 0.565736986679]**. The upper endpoint is below $`142/251`$ by exactly $`3697635659207/56786772132550000000`$. For the original gold2 interval the only rational with reduced denominator at most 425 inside it is $`99/175`$. Irrationality and transcendence of $`\mu`$ remain open. Neon-2 claim (`neon2.md`) · [Astra gold2 evidence and replay](../cold/astra/attacks/neon2-quintet/gold2/README.md)
+
+Astra used a fresh detached clone and read-only copies of both 6,344,902,168-byte snapshots. **Before compiling or running the verifier**, both SHA-256 checks printed OK. The lower digest was 41565d49c10809eb1f732794822359410af3ed804577476563bef17f27946413 and the upper was f1dcd7ad3e6df82a985eb3dd6fd793b5a3e38c78368d94e4b135ab174ab92876. The verifier compiled with strict warnings. The complete two-thread production check exited zero in 5m22.14s with peak RSS 12,414,080 KiB. Its output matched certificate_gold2.json byte for byte, SHA-256 5e11f9c0b6eb3bd43e880be608c37d6f0b1fdbcc632b91bb5e8037db52e13284. Each sign checked 767,588,844 finite drift rows, 106,953,150 envelope inequalities, all 16 analytic panels at both receive endpoints, and 47 original physical fixtures. The five verification sources are identical to the gold1 versions.
+
+A separate Astra checker used 24 labelled trees per sign, 46,928 directed birth choices, the 20 signed degree-transfer knots, and exact degree-3999/4000 rows. An independent rational tail calculation checked all 4,000 seam arities per witness and both limits of the receive rate at every analytic panel. The largest rounded seam caps were 0 and 9 ticks. The analytic caps were 0 and −1524 ticks. The physical transfer uses the positive promotion rate with a zero potential change at saturated arity. The proof now explains the rate-two first jump from the edge seed. Our exact discrete calculation also checked 434 one-step drift inequalities, 985 tree-potential bounds through size 12 and nine finite-size products per witness. [Labelled trees and knots](../cold/astra/attacks/neon2-quintet/gold2/physical/README.md) · [All-degree audit](../cold/astra/attacks/neon2-quintet/gold2/tail/README.md) · Size-law checker (`ft2-astra/round2/attacks/neon2-quintet/gold2/size_law.py`)
+
+Astra swapped two in-range env23 centres in a separate lower snapshot. The swap preserved their sum, range and multiset. The new file had SHA-256 38f90ddc3940aa131312cc9f7685033bf054a49016501b4580aec28fd8f97e9d. Both zero-radius inequalities failed by 82,239,727,528 ticks. The unmodified executable exited 2 with empty stdout and the numerical error “env23 verification failed”. This independent replay and proof audit is by the GPT family on Neon-2's Gemini-authored certificate. [Planted-error offsets, exact violations and replay](../cold/astra/attacks/neon2-quintet/gold2/controls/README.md)

@@ -1,0 +1,39 @@
+{
+  "degrees": [
+    16,
+    9,
+    9,
+    16
+  ],
+  "arities": [
+    5,
+    5,
+    5,
+    4
+  ],
+  "side_cap": 0,
+  "mother_cap": 0,
+  "include_old_band": false,
+  "grid": 1000000000000000000,
+  "discount": [
+    "565673/1000000",
+    "22631/40000"
+  ],
+  "channels": [
+    "lower_lo",
+    "lower_hi",
+    "upper_lo",
+    "upper_hi"
+  ],
+  "library_sha256": "668ffcad954ff46d2566c57f570d0e0dec8d06bedae28fd782ee52cd64b3c3b6",
+  "conditional": {
+    "envelope": {
+      "overflow": [
+        21999145,
+        7693404373455,
+        21852924,
+        7585441470893
+      ]
+    }
+  }
+}

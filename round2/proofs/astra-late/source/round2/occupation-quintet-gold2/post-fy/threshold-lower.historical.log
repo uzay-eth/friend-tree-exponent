@@ -1,0 +1,4 @@
+original Gold2 {'side': 'lower', 'kind': 'h3', 'ceiling': False, 'limit': 12, 'wing': 32, 'arm': 4, 'host': 5, 'stock': 4, 'receiver': 79, 'rstock': 8, 'donor': 18, 'tstock': 3, 'old': 19, 'young': 18, 'reserve': False}
+H3 normalized orientations [('1084423030952180046412413909/1704710415481443450880000000000000', 6.361332817022285e-07)] total 1084423030952180046412413909/1704710415481443450880000000000000 6.361332817022285e-07 ticks/core 699435.940046906 states 271350 paid rows 187105
+CPU seconds 52.486688093999994
+wall=59.39 rss=232028

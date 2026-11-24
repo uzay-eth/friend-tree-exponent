@@ -1,0 +1,6 @@
+START lower bound {'host': 120, 'receiver': 22, 'donor': 4, 'stock': 8, 'rstock': 5, 'bins': [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22], 'ceiling': False, 'ceiling_only': False, 'hash': False}
+mother pays 2099013157350709155991/54975581388800000000000000000 3.818082691124272e-08
+child pays with mother donor 1237724175122614216561/109951162777600000000000000000 1.1257035795302856e-08
+child-child, both directed orders 13971107375575911291891/54975581388800000000000000000 2.541329627197394e-07
+TOTAL 1335118609639034204493/4398046511104000000000000000 3.03570825426285e-07 path states 723492 reciprocal bands 148155 mean conditional bin width (ticks) 0.0 CPU seconds 13.247
+PASS exact integer Bellman corner checks and pinned copy unchanged

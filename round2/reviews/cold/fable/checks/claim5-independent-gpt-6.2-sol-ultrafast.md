@@ -1,0 +1,90 @@
+RESULT: INDEPENDENT IMPLEMENTATION AGREES
+
+## Comparison with the rival's published number
+
+**Exact agreement.** At `s=565728/1000000`, with `N=8` counting cores and leaves but excluding the external parent slot, the independently verified bracket is
+
+`0.4495942475151464413858 <= r(K^-_8(s)) <= 0.4495942475151464413859`.
+
+It lies wholly within the rival's published `[0.449594247514, 0.449594247516]` relayed by the lead. No cutoff shift or convention change is needed. `kernel.py` and `gmp-solve.cpp` produced the exact rational matrix and state scores. `verify_exact.py` independently rebuilt the arrow graph and checked all 293,740 rational equations by substitution. `verify_perron.py` separately checked the 19 rational Collatz inequalities in both directions for the positive integer vector in `out/exact-8-0.56572800-none.perron.json`. Zero output columns from the cutoff do not affect this two-sided argument: the test vector is strictly positive in every row.
+
+This means agreement with the stated finite construction and compatibility with the supplied MC, not an independent proof identifying its limiting root with the tree exponent. **No verified size cut gives a two-sided enclosure.** At the largest verified cutoff, `N=12`, an exact independent verifier checks `r(K^-_12(0.51)) <= 0.544127`, which excludes *all* candidate lower endpoints in the requested open range by monotonicity of the nonnegative path series. The literal upper certificate is `mu < 2.3850` conditional on the claim; the best tested boundary with one weighted reward improves it to `mu < .9560`. Neither improves the supplied a priori interval.
+
+## Conventions and statement audit
+
+- A fringe is an unordered rooted tree with indistinguishable leaves and sorted multisets of core children, each child carrying its permanent integer label. The external parent is an inert slot contributing one to root total and core degree, never counted in size. All represented cores, including descendants with no leaves, have total degree at least two. Every label at root `2..20` is feasible because each topology is generated intrinsically from each of the nineteen identical newborn topologies and intrinsic evolution never depends on the root label. Copy closure is checked explicitly. In particular no need to encode the external parent's current degree. An unlabelled topology below means one with only the root mark stripped; internal marks remain.
+- `n` includes all actual cores and leaves. At any vertex `D=1+L+#core children` and `c=1+#core children`. At the root `a_S=1/label`, `b_S=L/D`, `p_S=1/D`. Internal promotion converts one leaf to a core with one new leaf and mark `1/min(D,20)` at the **source's pre-promotion** degree (the degree is unchanged by promotion). Leaf-to-parent sends run at total `L`; both directed arrows on each internal core edge are counted at the reciprocal of their respective sender's actual degree. Intrinsic root-to-slot attempts do nothing and their rate is excluded from `r_0=n-p_S`. Independent enumeration adds parallel arrows.
+- Every immediate core child contributes `Y+` at `p_S` and `Y` at `a_Y-p_S`; `Y+` keeps its old root mark. Copy targets are at most the source size: when `Y` is the root's only child, `Y+` can tie the source size (`Y+` adds one leaf where the source adds one root). Thus transitions are not a pure size DAG; the code handles these ties. The diagonal of `R_N` subtracts `a_S+r_0` even on the boundary; it does not subtract copy events. `K^-` and `u` are computed against the nineteen root rewards and an additional exit source, respectively.
+- `W(S)=T(S)/(a_S+3/20)` with `T(S)=h(c_root)+sum_Y [20/(20+3 label_Y)] T(Y)`; `h=(2,1,17/20,39/50,7/10,...)`. Root leaf gain leaves `W` unchanged. Boundary reward weights the **successor** at size `N+1`, not the last retained state. Mark of the boundary successor's root is unchanged. No ambiguity affected the finite calculation. The text's example of a lower test with one strict row needs irreducibility or a separate strictness argument; `K^-_N` omits output labels `j>N` for `N<20`. The supplied lower verifier requires all rows strict so it does not use that shortcut.
+- I reread the final section (lines 74–94) of `finite-kernel.md` only after the initial numbers were final. The available statement ends at line 94 in numbered Section 4 and has no finite-matrix table. The lead subsequently relayed the rival's comparison number explicitly. I opened no other rival file or lead simulation source.
+
+## Certificates and width
+
+The full-size count includes all nineteen labels on every retained topology. The literal upper column is certified by a positive test `g` and a rational state score `X`: `A_N X >= B g + H_N sum(g)`, and `J X <= c g`, with `c<1`. Independent `verify_upper.py` reconstructs arrows by local mutations on vertex paths, checks every integer-scaled row and checks the newborn ratios. `verify_lower.py` is separate from the producer and checks lower certificates via `A_N X<=B g` and `J X>g`; no such certificate was produced. For nonexistence, the upper verifier checks `A_N X>=B g` at `s=0.51` instead, and the same `J X<=c g`. At `0.51` use this as a finite positive-matrix test only, not as an evaluation of formula (3)'s boundary term. Monotonicity and invertibility follow here also directly from the strictly positive checked supersolution (or from `RW<=rho W-h` in the finite set).
+
+| N | states | no-lower `c` at 0.51 (rounded upward) | literal certified upper | improved certified upper | width above external lower 0.565, literal / improved |
+|--:|--:|--:|--:|--:|--:|
+| 2 | 19 | .199204 | 11.1046 | 2.1963 | 10.5396 / 1.6313 |
+| 3 | 57 | .283266 | 6.1832 | 1.6963 | 5.6182 / 1.1313 |
+| 4 | 152 | .339638 | 4.6134 | 1.4745 | 4.0484 / .9095 |
+| 5 | 437 | .382369 | 3.8499 | 1.3465 | 3.2849 / .7815 |
+| 6 | 1,330 | .416806 | 3.3957 | 1.2618 | 2.8307 / .6968 |
+| 7 | 4,332 | .445622 | 3.0923 | 1.2009 | 2.5273 / .6359 |
+| 8 | 14,687 | .470364 | 2.8736 | 1.1545 | 2.3086 / .5895 |
+| 9 | 51,585 | .492013 | 2.7075 | 1.1177 | 2.1425 / .5527 |
+| 10 | 185,611 | .511230 | 2.5763 | 1.0877 | 2.0113 / .5227 |
+| 11 | 681,378 | .528486 | 2.4696 | 1.0627 | 1.9046 / .4977 |
+| 12 | 2,540,186 | .544127 | 2.3850 | 1.0420 | 1.8200 / .4770 |
+
+No cutoff-only width exists at these `N`. Intersecting with both supplied external bounds leaves `[.565,.5665]`, width `.0015`, every time. The upper endpoints and external lower endpoint are consistent with `.56572366`.
+
+## MC matrix comparisons
+
+For `N=12`, all 1,083 supplied MC central values are inside `[L,U]`; thus they are also consistent at 1 or 3 SE. Each of the 361 per-frequency capture percentages and both endpoints are in `out/capture-12-*.csv`. These large-cutoff diagnostics use floating-point scouting (the spectral certificates above use verified exact integer inequalities). At `N=6,7`, rational matrices at `s=.5657237` are in `out/exact-*`; their `max u` agrees with floating calculations to displayed precision. The `N=7` matrix was also verified by exact row substitution (86,640 equations). The far-tail statistical extrapolation uncertainty does not affect the conclusion that these intervals are loose.
+
+| s | r(L) | MC r | r(U) | max u | median positive L/MC | maximum L/MC | zero L entries |
+|--:|--:|--:|--:|--:|--:|--:|--:|
+| .5557 | .52034301 | 1.03444 | 795.004614 | 58.856030 | .674268 | .996817 | 152 |
+| .5657237 | .51536644 | .99950 | 638.950578 | 47.292713 | .679947 | .997022 | 152 |
+| .5757 | .51049505 | .96719 | 531.164439 | 39.306252 | .685385 | .997212 | 152 |
+
+## Rigorous improvement and convergence
+
+The sharper boundary retains the loss term `RW<=rho W-h(c_root)` from renewal (5). For `s>rho`, `(s-R)W >= (s-rho)*(14/13)+7/10` because `W>=14/13` and `h>=7/10`. Hence `W/[(s-rho)*(14/13)+7/10]` dominates the resolvent of any reward bounded by 1; apply to `b*g[label]/max(g)`. `verify_upper.py` independently checks the rational inequalities for all `2<=D<20` and the uniform argument for larger `D`, as well as all actual finite rows using this boundary. At `.5657237` this shrinks the exit correction by about 13.64 before paying it only once for `max(g)` instead of summing nineteen column allowances. The resulting test is for the full `K(s)g`, not a bound on the literal formula (3) matrix.
+
+**Second improvement:** retain the dependence between `W` and `h` rather than taking their minima separately. If the root has `k` immediate core children, each adds at least `(1/4)(7/10)` to the numerator of `W`. Take the boundary `W/m(s)`, where `m(s)=min_{k=0,1,2,3}{h(k+1)+(s-rho)[h(k+1)+(7/40)k]/(13/20)}`. The minimum over `k>=3` occurs at three, since `h` is then constant. This is a global supersolution for the normalized weighted payoff. The separate verifier checked the arity inequality and all 2,540,186 finite rows at `s=.9560`, with `c=.994731`; thus `mu < .9560`, an improvement of `.0860` over `1.0420` and `1.4290` over literal formula (3). At `.9500` the reused positive test vector failed (`max` ratio `1.010808`); no claim about that endpoint. The new width above the external lower bound is `.3910` and the known bracket remains unchanged.
+
+At `s=.5657237`, `max u` for `N=7..12` is `55.06144, 53.06241, 51.34113, 49.83333, 48.49453, 47.29271`. The spectral enclosure width `r(U)-r(L)` at `N=7` is `755.05611`; at `N=12` it is `638.43521`. An exploratory log fit gives `max u ~95.39*N^(-.2822)` and `r_MC-r(L) ~1.049*N^(-.3106)`. Extrapolating to the radius accuracy `3.35e-8` suggested by the sampled MC slope gives `N~3e33` for `max u` alone (the spectral gap has larger constants), `N~1e24` for the empirical lower deficit. These are scale illustrations, not asymptotic predictions: only six small cutoffs were fitted and the MC error itself precludes computing that deficit at eight digits. Formula (7) with the displayed inverse slope gives an illustrative **sufficient** scale `log10 N≈636`, before grid error or a safety factor. This is not a necessary scale. Recent size-layer counts grow by factors around `3.6–3.8`; extrapolating `3.7^N` yields a decimal log of the state count about `.57N`. The literal enumerator cannot go anywhere near eight digits; even its observed lower convergence is too slow, independently of the very loose upper boundary.
+
+**Measured facts from the lead's residual-process simulations (not verified by this program):** the discounted reward per unit time decays approximately as `exp(-(s-alpha)t)`, with `alpha` about `.21` for uncapped marks and about `.31` for the capped marks (the capped estimate was still rising at `t=14`). About 3% of the kernel mass lies beyond `t=14`, where family sizes are of order `exp(.57t)`, already on the order of thousands at `t=14`. The uncapped kernel's measured leading eigenvalues at `s=.30,.35,.40,.45,.50,.55,.5657` are respectively `5.30,3.11,2.13,1.60,1.27,1.05,0.998(5)`. This explains why a small size cut misses even moderate-age reward, while a time cut at 14 would still leave far more error than eight digits permit. These measurements do not supply a rigorous tail exponent.
+
+**What an eight-digit boundary would need.** Use a positive test column `g` near the Perron column and approximate the *actual* continuation value `F_g(S)=E_S∫ exp(-st) b(S_t)g_{min(D_root,20)} dt`, summed over the living residual family, from each exiting fringe. One needs upper and lower continuation functions: at `N=12` the zero lower continuation loses roughly half the radius and cannot be rescued by tightening only the upper boundary. The useful error target is `max_i [J A_N^{-1} T_exit(F_g^+-F_g^-)]_i/g_i` on the order of `3e-8` or smaller (the local MC slope is about `3.35`; a rigorous enclosure needs certified margins at the chosen endpoints). For example, a pointwise boundary width `epsilon W` contributes exactly `epsilon(s-rho)u_N(i)` to newborn `i`; near the target the largest such coefficient is about `2.64` even before division by `g_i`, so with `max g=1` a uniform `epsilon` below `10^-8`, potentially much below, would be needed. A plausible ansatz is a rational sum of local marked configurations that distinguishes root degree and leaf/core balance and the rooted child features controlling both copy gains, with a rigorously controlled remainder. To bound the resolvent, one must establish `(s-R)F_g^+ >= B g >= (s-R)F_g^-` including intrinsic and copy terms on all large fringes (and compatible bounds where their copies reenter the finite set); for the lower bound one also needs a vanishing discounted terminal term, e.g. `W`-domination. Those are exactly pointwise drift inequalities for the candidate local scores. Fitting the continuation accurately on sampled exit fringes cannot certify them on all larger fringes.
+
+## Four planted errors
+
+All were run against the entire supplied MC data at `N=11`; all were also independently targeted by exact local-identity probes (`src/controls.py`).
+
+| Mutation | MC / mu diagnostic | exact local probe |
+|---|---|---|
+| Drop `Y+` | passes MC interval; at central s r(L) drops `.50157015→.44374542` | positive `Y+` rate `1/2` at the smallest bare parent |
+| Omit root killing | 51 lower entries above MC by >3 SE at every s (largest 99–102 SE) | correct newborn diagonal `13/5` at `s=3/5` |
+| Cap at 19 instead of 20 | agrees numerically at these sizes; cannot affect any retained or exiting mark or output | promotion on degree-20 star must give label 20, at `19/20` |
+| Omit boundary term | 347–352 upper entries below MC by >3 SE; false `r(U)<1` already at `.5557`, incompatible with external mu lower bound | exact positive exit source at size two |
+
+## Commands and outputs
+
+Working directory is this report's directory. Python commands used `round2/.venv/bin/python -B`; longer commands were pinned with `taskset -c 12 nice -n 5`, numerical jobs had OpenBLAS and OMP limited to one thread. Commands below use `py` as shorthand for that Python invocation. Certificate files carry their own inputs, full rational test witnesses (common-scale integer rows), and output bound `c`; intermediate floating matrices and entrywise comparisons are separate files under `out/`.
+
+- `taskset -c 12 nice -n 5 py src/kernel.py 13`: sizes `2..13` topology counts `1 2 5 15 47 158 545 1942 7054 26093 97832 371215` by layer. `... src/kernel.py 8 0.5657237` hit shell timeout after 120 seconds (combined with profile), no exact file at 8.
+- `... src/kernel.py 6 0.5657237`, `... src/kernel.py 7 .5657237`: exact output `states 1330 copy targets 43 max u 57.43578207685092` and `states 4332 copy targets 128 max u 55.061438950628265`.
+- `... src/numeric.py N --roots` for `N=2..10`, and `... src/numeric.py 11 --fault F` for `none no-plus no-kill cap19 no-boundary`: completed, e.g. `N 11 states 681378`, baseline `.5657237 rL=0.501570152 rU=656.781696 ... maxu=48.4945336`. `py src/compare.py 11 none no-plus no-kill cap19 no-boundary`: completed with the violations just tabulated, no baseline violations.
+- `... src/certify.py N no-lower upper improved` for `N=2..11`; `... src/verify_upper.py out/cert-*.json.gz`: all 30 passed, e.g. `PASS no-lower N=11 681378 exact rows s=51/100 c=264243/500000`; `PASS upper N=11 681378 exact rows s=3087/1250 c=999791/1000000`; `PASS improved N=11 681378 exact rows s=10627/10000 c=999573/1000000`.
+- `... src/numeric.py 12` and `... src/compare.py 12`: completed, baseline radii above, floating solve ran 84.37 seconds, zero MC violations.
+- `... src/certify.py 12 no-lower`, `... src/certify.py 12 upper --at 2.385`, `... src/certify.py 12 improved --at 1.042`, `... src/verify_upper.py out/cert-*-12.json.gz`: `PASS improved N=12 2540186 exact rows s=521/500 c=124759/125000`, `PASS no-lower N=12 2540186 exact rows s=51/100 c=544127/1000000`, `PASS upper N=12 2540186 exact rows s=477/200 c=992219/1000000`.
+- `py src/controls.py`: `none fails no local probes`; failures respectively `Y+ copy at degree 2`, `newborn diagonal at s=3/5`, `mark at degree 20`, `nonzero exit source at N=2`.
+- `... src/kernel.py 7 .5657237 --scores` and `... src/verify_exact.py out/exact-7-0.56572370-none.json`: `PASS exact 19 offspring columns and boundary N=7 s=5657237/10000000 equations=86640`.
+- `taskset -c 12 nice -n 5 g++ -O3 -std=c++17 src/gmp-solve.cpp -lgmpxx -lgmp -o out/gmp-solve`; `... py src/kernel.py 8 .565728 --scores`: `GMP Schur system dimension 403`, `states 14687 copy targets 403 max u 53.05793523722169`, peak RSS 1,084,356 KiB and elapsed 3:21.20. `... py src/perron.py out/exact-8-0.56572800-none.json` generated the rational test vector. Using the same exact matrix file, `... py src/verify_exact.py` returned `PASS exact 19 offspring columns and boundary N=8 s=17679/31250 equations=293740`; `... py src/verify_perron.py` returned `PASS exact Perron bracket [0.4495942475151464413858, 0.4495942475151464413859], agrees with rival=True`.
+- `... src/certify.py 12 arity --at 1.0180` and verifier: `PASS arity N=12 2540186 exact rows s=509/500 c=849463/1000000`. At `.9500 --warm 12` the proposal failed before writing a certificate. At `.9560 --warm 12` the proposal and verifier passed: `PASS arity N=12 2540186 exact rows s=239/250 c=994731/1000000`. The saved arity certificate is for `.9560`.
+- `... src/certify.py 13 no-lower --warm 12` (exploratory) proposed a score ratio `.556206500..562036145` at `.51` (3,962,628 KiB, 2:19.22). No independent verifier pass was obtained for `N=13`; the certified upper cutoff remains `N=12`.
+
+Not done: positive lower endpoint, tightened known bracket, exact equality of large-cutoff numerical matrix entries (the large-cutoff **spectral parameter inequalities** were rechecked exactly), or eight-digit certification. The rational solver performs topological elimination of intrinsic arrows, then exact Gaussian elimination on the copy-target Schur system; it has no within-run checkpoint. Scouting checkpoints each completed frequency, and certificate runs each cutoff/mode. The earlier Python-only `N=8` timeout was superseded by the successful GMP run at the rival's frequency.

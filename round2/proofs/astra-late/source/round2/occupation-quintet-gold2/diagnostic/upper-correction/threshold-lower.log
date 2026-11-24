@@ -1,0 +1,7 @@
+threshold source d8a9a8a65d6b652151c41de18fa7a0f4e8aec4a6ed8e89395412e4ddd5bc3c23 executed 5bdbeeddf0f617d490c684086b9fa2ed210ab957841d772a041671cd809f44fc
+original Gold2 {'side': 'lower', 'kind': 'threshold', 'ceiling': False, 'limit': 12, 'wing': 32, 'arm': 4, 'host': 5, 'stock': 4, 'receiver': 79, 'rstock': 8, 'donor': 18, 'tstock': 3, 'old': 19, 'young': 18, 'reserve': False, 'fixtures': True}
+literal physical checks {'g outgoing': 74, 'g': 40, 'h3 outgoing': 64, 'h3': 37, 'FY gaps': 4} distinct registered paths 8
+corrected exact ticks/core 10209401903858086701/24225392045898437500
+H3 normalized 10209401903858086701/26636100241897553920000000000000 3.832919162768089e-13 ticks/core 0.42143391877889647 states 271350 paid rows 187105
+CPU seconds 56.795834197000005
+wall=89.58 user=57.65 rss=234428 exit=0

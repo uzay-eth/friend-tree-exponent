@@ -1,0 +1,6 @@
+original upper S4 {'mother': 125, 'mother_stock': 10, 'hub': 7, 'stock': 6, 'child': 9, 'child_stock': 1, 'young': 3, 'old': 19, 'through': 125, 'bare': False, 'fixtures': True, 'fixtures_only': False}
+affine scaling: 12 exact physical corners, omitted-factor control rejected
+fixtures S4 rows 25 four equal nonzero arrows 10 nonzero exterior tip rows 5 unique crowns 35
+prefix states [31304, 192640, 252840, 238392] paid mask states 211860 ticks/core 8942817855164742770193669/6201700363750000000000 1441.9945064481096 normalized 8942817855164742770193669/6818841661925773803520000000000000 1.3114863636002243e-09
+CPU seconds 85.792232708
+wall=97.63 rss=463940 exit=0

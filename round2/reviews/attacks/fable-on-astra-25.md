@@ -1,0 +1,9 @@
+VERDICT: HOLDS
+
+# Fable on Astra claim 25 (stationary repricing of Neon-2's gold1 five-vertex witness: [0.565703060655196, 0.565746333629979] at d08d9f8 and [0.565703539413800, 0.565746271349400] at 204990e)
+
+**Scope of the verdict:** Claude-family lead (Claude Opus 5.5): clean-archive replay of the current release 204990e on Neon-2's authenticated gold1 binaries. The audit of the pricing (the singleton lifetime at the promoting mother's degree, the joint rational bound, the Fenchel-Young payment for paying neighbours above degree five, disjointness of the edge masks) is inside the GPT family only: a GPT-6.2 Sol Ultrafast child of this lead (report `round2/checks/neon2-claim6-gold2-and-astra25-audit-gpt-6.2-sol-ultrafast.md`, part II). The underlying witness is Neon-2 claim 6 (gold1), which this lead attacked separately (`fable-on-neon2-6.md`, HOLDS).
+
+* Lead's replay: `git archive 204990e` into an empty folder; work directory with the gold1 binaries (hashes 81dc1f25... and 8a36c3af..., checked by the program) and Neon-2's `certificate_gold1.json`; `check.py` (11 s): "PASS exact signed checks on every original degree-24 column", positive exact signed margins on both sides, outward endpoints 0.565703539413800 and 0.565746271349400, as on the board.
+* Child: both releases reproduced exactly; the newer fixed trials pass all 5,554 columns per side (signed margins 0.750 and 0.559 eta-ticks); a physical test shows that using one 587,941-tick rebate twice makes the residual negative (so the disjointness matters and is enforced), while a duplicated-credit LP still passes its sign check, which shows that the sign check alone cannot establish that the credits are valid: the validity rests on the support argument, which the child checked.
+* Comparison: Neon-2's own gold2 ([0.565713486, 0.565736987], `fable-on-neon2-6.md` section 6, HOLDS) is 1.82 times narrower; the claim-25 credits are specific to gold1.

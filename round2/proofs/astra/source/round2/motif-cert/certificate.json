@@ -1,0 +1,29 @@
+{
+  "format": "FT2_4V01",
+  "bytes": 611658376,
+  "S": 1099511627776,
+  "S_r": 1073741824,
+  "source_sha256": {
+    "exp_v5.c": "10ca34fe20cdb24e3b2de1c99d1b7c05c9f01949227cff135e6aecccc17b9d0c",
+    "cert4v_format.h": "6c80d4f6c581475363b692939d0542898d359ba6fcd9b29b0ed00680cdcd2fe4"
+  },
+  "rows": {
+    "f_inner": 2555, "f_table": 976744, "g": 6483402,
+    "V": 28329840, "C": 10398780, "P": 9643480, "F": 5467736, "Y": 11332200, "T": 1591659
+  },
+  "envelopes": [2249983, 7418600],
+  "upper": {
+    "sha256": "cae73eb2d4241ace1e566e257c052e4b908a31b9346b624cf63bb38cec4f8f91",
+    "header_trial": [5658147,10000000],
+    "trial": [56581165,100000000],
+    "caps": {"f_inner":1544,"f_table":154457,"f_analytic":-2532,"g":524,"V":167,"C":125,"P":35,"F":31,"Y":64,"T":87},
+    "higher_per_core": 627, "error_per_core": 155608, "min_weight": 258643133503, "max_weight": 2284398034850
+  },
+  "lower": {
+    "sha256": "5030698d2ef127d1f57684b8f570021fa726e19e91199ecee0319b3b3d994c04",
+    "header_trial": [5656423,10000000],
+    "trial": [5656453,10000000],
+    "caps": {"f_inner":93464,"f_table":95343,"f_analytic":95165,"g":10651,"V":5647,"C":904,"P":705,"F":985,"Y":1723,"T":50},
+    "higher_per_core": 9081, "error_per_core": 115075, "min_weight": 314288655137, "max_weight": 3157460548145
+  }
+}

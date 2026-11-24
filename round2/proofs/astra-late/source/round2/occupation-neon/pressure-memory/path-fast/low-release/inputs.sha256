@@ -1,0 +1,32 @@
+# Inherited exact release ledgers and transitive input manifests
+cc128f4c12678524ef719aac243793367c17f9987b9354bb3ebea95a52d7b5b9  round2/occupation-neon/pressure-memory/combined/release.sha256
+8db4750e9957b2a48c2525dadd6f2a033063220d7d864c2e10c8369d5d3bd91d  round2/occupation-neon/pressure-memory/hv-lifetime/release/release.sha256
+# Native solver, conditional inputs and physical birth-law relaxation
+82672f4fc8c5dd0dace54ce87b6db91c75e6058820cefa335e7a52827190faa3  round2/occupation-neon/pressure-memory/path-fast/README.md
+30c8466ce23478b0a135b4838ab098bc36dbb85b66a84ed382b64acd55a6f76a  round2/occupation-neon/pressure-memory/path-fast/medium-entries.json
+ca4d2be94bf6f83275ab38938857b6303e6ebe99f4d83b4e63570ea480e5523e  round2/occupation-neon/pressure-memory/path-fast/wide-head-entries.json
+4b992c7a272d89e6445fa9e41b17b89ed7fe781ce98fced3117c1ef2057cda48  round2/occupation-neon/pressure-memory/path-fast/wide-mother12-entries.json
+fa4caa147b8f8e45e1b85f5a368267437eaec522f07b39019e0ec57e5e191a6a  round2/occupation-neon/pressure-memory/path-fast/wide-tail-entries.json
+af0df8e91f6ea7575ef77a050d8bf55be9745277105c3f75b19227d19ae8abfb  round2/occupation-neon/pressure-memory/path-fast/solver.cc
+f9edec256b6ef4cd07d4a222110265facfa7c8580b49b3b4922dbaa041b281e0  round2/occupation-neon/pressure-memory/path-fast/charges.hh
+ef31abbde283d6b2bcc9dafbf31473c8bf87ea7e07340fce3dec787deafbf8a2  round2/occupation-neon/pressure-memory/path-fast/replay.py
+553fa8b1209a7c0110eab5f360a0c97c13455480765a19df95d1d3ae328bbf66  round2/occupation-neon/pressure-memory/path-fast/pool.py
+92a99ef12d8567798c4ed4dc3beb6535d3f18ef3ad5028aff0ec84e3684a5ba8  round2/occupation-neon/pressure-memory/birth-law/replay.py
+# Independent cold receipts
+a7be74f203e2a8a67f51392ec9d6ffcc8c4adc414d5a5265c32d749ca6c540fb  round2/occupation-neon/pressure-memory/path-fast/low-release/cold-head.log
+5663a40b5d7e854b0c605aeea408a72b22b129dc3d9941f7ad3d868d6fae7cb6  round2/occupation-neon/pressure-memory/path-fast/low-release/cold-mother12.log
+7ccd86037a602ef87e81a914f5079c00a2cec44b6b50cf3a39043f17ea74cb3e  round2/occupation-neon/pressure-memory/path-fast/low-release/cold-tail.log
+296015b8045e83f0ed9725147d813e0357eca4709c291962e3520d02483ee982  round2/occupation-neon/pressure-memory/path-fast/low-release/cold.log
+6cb04c650082ceafd714e0bb89beb15f0030c37b16abbf780fb9f1439e73ebe0  round2/occupation-neon/pressure-memory/path-fast/low-release/cold-medium-ubsan.log
+81512a8c88c5445f01c50d47a3d27f4c61c2a74bd56aedb4c849eb7aeeb1189a  round2/occupation-neon/pressure-memory/path-fast/low-release/cold-wire.log
+# Interrupted optional extraction (not a passing receipt)
+f959331721315ca1ea12f6e91057e313a1d53cb4a558ed519f6b7ad104a6d38c  round2/occupation-neon/pressure-memory/path-fast/low-release/optional-row-parity-aborted.log
+# Fresh isolated f7cc2e1 archive replay receipts
+4ad4e9a0675cf6af910a69e4c90460cc3c19edee62c82b48c4b7d1d0e5078695  round2/occupation-neon/pressure-memory/path-fast/low-release/parity.log
+83977fedd8311dd6a330d4f45ef4e28fd48cc61795e236c81b0ae38ab03e4837  round2/occupation-neon/pressure-memory/path-fast/low-release/overflow.log
+8209d4452b3ff11888200f387a638569a16e2cd8d61fb6d2eec09af6cef0b941  round2/occupation-neon/pressure-memory/path-fast/low-release/medium.log
+8112af5cb3212f0d3f1e953211942aa81644bd6b19795c4cc7e79dfc0d7292f7  round2/occupation-neon/pressure-memory/path-fast/low-release/head.log
+0771ab0a7db8ea1f4f6d978bc0e4ee052948e07f16fd0cb43456abfc97ed2162  round2/occupation-neon/pressure-memory/path-fast/low-release/tail.log
+80cfbe8eb75d1570cae22118ad76f93a807e7d49abb719187a41116168f793bd  round2/occupation-neon/pressure-memory/path-fast/low-release/mother12.log
+ef87dbb650e31ae908832d95d1068c0e84a8962c8b973f19914d8368a4b0c3d0  round2/occupation-neon/pressure-memory/path-fast/low-release/pool.log
+21fe9703969e178a9bd083563e5167538082ae94468f1d096f8bbdd17bdf7be0  round2/occupation-neon/pressure-memory/path-fast/low-release/full.log
