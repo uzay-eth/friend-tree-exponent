@@ -1,0 +1,61 @@
+target 0.5657236606 +- 6.1e-09; window half-width 1.84e-08 (3.0 sigma); 200 control windows at spacing 2.0e-06
+[rat q<=20000] candidates searched ~1.2e+08; hits in target window: 6; control windows: mean 4.25, max 10
+       6219/10993 = 0.5657236423
+       6559/11594 = 0.5657236502
+       6899/12195 = 0.5657236572
+       7239/12796 = 0.5657236636
+       7579/13397 = 0.5657236695
+       7919/13998 = 0.5657236748
+[alg deg 2, |coeff|<=400] candidates searched ~2.57e+08; hits in target window: 4; control windows: mean 2.67, max 6
+       coeffs a0..a2 = (-87, 5, 263)
+       coeffs a0..a2 = (-247, 242, 344)
+       coeffs a0..a2 = (-219, 356, 55)
+       coeffs a0..a2 = (-306, 361, 318)
+[alg deg 3, |coeff|<=60] candidates searched ~1.06e+08; hits in target window: 2; control windows: mean 1.73, max 4
+       coeffs a0..a3 = (-15, 3, 41, 1)
+       coeffs a0..a3 = (-42, 55, 21, 23)
+[alg deg 4, |coeff|<=22] candidates searched ~9.02e+07; hits in target window: 0; control windows: mean 1.43, max 4
+[alg deg 5, |coeff|<=11] candidates searched ~7.08e+07; hits in target window: 0; control windows: mean 1.05, max 4
+[alg deg 6, |coeff|<=7] candidates searched ~7.97e+07; hits in target window: 2; control windows: mean 1.40, max 5
+       coeffs a0..a6 = (-5, 5, 1, 6, 4, 5, 2)
+       coeffs a0..a6 = (7, -7, -6, -6, -5, 6, 4)
+[surd (a+b√2+c√13+d√26)/e, |a..d|<=20, e<=40] candidates searched ~2.76e+06; hits in target window: 0; control windows: mean 0.32, max 2
+[hkrz F(mu)=int_0^1 x^mu e^(x-1)dx: P+Q*T=0, deg<=2, |coeff|<=9] candidates searched ~2.48e+06; hits in target window: 1; control windows: mean 0.34, max 2
+       (p0,p1,p2 | q0,q1,q2) = (3, -8, -3, 2, 8, -3)
+[G_2(mu)=int x^mu e^(2(x-1)): P+Q*T=0, deg<=2, |coeff|<=9] candidates searched ~2.48e+06; hits in target window: 0; control windows: mean 0.12, max 1
+[G_1/2(mu): P+Q*T=0, deg<=2, |coeff|<=9] candidates searched ~2.48e+06; hits in target window: 0; control windows: mean 0.20, max 1
+[G_-1(mu)=int x^mu e^(1-x): P+Q*T=0, deg<=2, |coeff|<=9] candidates searched ~2.48e+06; hits in target window: 0; control windows: mean 0.24, max 2
+[Gamma(1+mu): P+Q*T=0, deg<=2, |coeff|<=9] candidates searched ~2.48e+06; hits in target window: 0; control windows: mean 0.30, max 1
+   F(mu0) = 0.4466530643;  1-mu0 = 0.4342763394 (PAN eq.), 1-mu0^2 = 0.6799567398 (DAN eq.)
+[van] the VAN(omega) model of HKRZ has exponent mu0 for omega = 0.02913711 +- 1.2e-08 (PAN: 0, DAN: 1); nearest rationals with q <= 50:  (none listed = none)
+[a + b mu + c log(mu) + d mu log(mu) = 0, |coeff|<=40] candidates searched ~5.31e+05; hits in target window: 1; control windows: mean 0.42, max 3
+       (5, -34, -38, 23)
+[a + b mu + c e^mu + d mu e^mu = 0, |coeff|<=40] candidates searched ~5.31e+05; hits in target window: 2; control windows: mean 0.12, max 1
+       (20, -17, -24, 32)
+       (38, -8, -6, -23)
+[a + b mu + c e^mu + d e^(-mu) = 0, |coeff|<=40] candidates searched ~5.31e+05; hits in target window: 0; control windows: mean 0.14, max 2
+[a + b mu + c 2^mu + d 3^mu = 0, |coeff|<=40] candidates searched ~5.31e+05; hits in target window: 0; control windows: mean 0.02, max 1
+[a + b cos(pi mu) + c sin(pi mu) + d mu = 0, |coeff|<=40] candidates searched ~5.31e+05; hits in target window: 0; control windows: mean 0.44, max 2
+[a + b mu + c Gamma(mu) + d Gamma(1+mu)^2 = 0, |coeff|<=40] candidates searched ~5.31e+05; hits in target window: 0; control windows: mean 0.22, max 1
+[a + b mu + c psi(mu) + d psi(1+mu) mu = 0, |coeff|<=40] candidates searched ~5.31e+05; hits in target window: 0; control windows: mean 0.30, max 2
+[a + b mu + c M(1,2+mu,1) + d mu M(1,2+mu,1) = 0  (Kummer, z=+1), |coeff|<=40] candidates searched ~5.31e+05; hits in target window: 0; control windows: mean 0.16, max 2
+[a + b mu + c U(1,2+mu,1) + d mu U(1,2+mu,1) = 0  (Tricomi), |coeff|<=40] candidates searched ~5.31e+05; hits in target window: 0; control windows: mean 0.22, max 2
+[(a + b X + c Y)/d with X, Y two of ['pi', 'e', 'log2', 'gamma', 'sqrt2', 'sqrt3', 'sqrt5', 'sqrt13', 'zeta3', '1/pi', '1/e'], |a|,|b|,|c|,d <= 8] candidates searched ~1.53e+05; hits in target window: 0; control windows: mean 0.00, max 0
+[named] distance from mu0 in units of sigma:
+       17/30 (Strogatz 2022)              = 0.5666666667   (+153334.3 sigma)
+       W(1), omega constant               = 0.5671432904   (+230834.1 sigma)
+       1/sqrt(pi)                         = 0.5641895835   (-249443.4 sigma)
+       exp(-gamma)                        = 0.5614594836   (-693362.1 sigma)
+       2 sqrt(2)/5                        = 0.5656854249   (-6217.2 sigma)
+       mu_PAN (HKRZ)                      = 0.5497349725   (-2599786.7 sigma)
+       mu_DAN (HKRZ)                      = 0.7711923024   (+33409535.3 sigma)
+       IR-0 (no core-to-core sends)       = 0.4822669183   (-13570202.0 sigma)
+       (sqrt(13)-3)/6 (AB et al. lower)   = 0.1009252126   (-75576983.4 sigma)
+       sqrt(2)-1/2 (AB et al. upper)      = 0.9142135624   (+56665024.7 sigma)
+       113/200 (certified lower bound)    = 0.5650000000   (-117668.4 sigma)
+       1133/2000 (certified upper bound)  = 0.5665000000   (+126234.0 sigma)
+       13/23                              = 0.5652173913   (-82320.2 sigma)
+       43/76                              = 0.5657894737   (+10701.3 sigma)
+       56/99                              = 0.5656565657   (-10909.7 sigma)
+       log(2)^(3/2)                       = 0.5770828814   (+1847027.8 sigma)
+       pi/sqrt(31)                        = 0.5642466974   (-240156.6 sigma)

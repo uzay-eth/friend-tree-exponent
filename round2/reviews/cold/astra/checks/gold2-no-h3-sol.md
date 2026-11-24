@@ -1,0 +1,64 @@
+# Gold2 lower trial at `99/175`, with no H3 rebate
+
+**Pass.** The original Gold2 lower witness and the independently validated Neon‑2 Claim 10 marginals, with the existing D1750 singleton floors and the disjoint physical edge floors below, imply **`μ > 99/175`**. The simpler certificate omits the optional post-FY residual entirely: the strict margin is still **+848.025169462567663 ticks/core**. No historical, corrected, or compact H3 rebate is included. This is not a new fit or an upper-side result.
+
+## Exact trial margins
+
+These are certified *lower bounds* on the trial margin, not the actual drift or the LP optimum. Negative means this witness does not prove the target without the overlay.
+
+| Constraints | Edges counted | Exact ticks/core | Decimal display |
+|---|---|---:|---:|
+| Gold2 only | All | `-2082494128132779581941690871539042601653654209/224493734113544986910000000000000000000000` | −9276.402017882114412 |
+| Gold2 only | No post-FY residual | `-2100557412295938661684177774369862822157654209/224493734113544986910000000000000000000000` | −9356.864326705500048 |
+| Gold2 + Claim 10 | All | `16829488376591014619190903723661917273507991407784057/18125703114122030210948792320000000000000000000000` | +928.487478285953299 |
+| Gold2 + Claim 10 | No post-FY residual | `15371052454981525088786441833711696221297413999784057/18125703114122030210948792320000000000000000000000` | +848.025169462567663 |
+
+The Claim 10 dual actually needs **only six lower mass constraints**: `D=2,3,4,5,6` and `(D,c)=(2,2)`. The saved dual gives the exact same joint floor on this smaller lift; neither reciprocal ratio, the bare-tail correction, the `J` interval, nor any upper mass endpoint is used in this proof. In particular the target inequality is not being fed back through a Claim 10 ratio derived from `μ`.
+
+## Sign, normalization, and cost ownership
+
+Use the original complete lower potential `Φ` in tick units, with nominal `λ=7071421/12500000`, original `M₀=1808603193693`, `H=18370`, and `E=55+792+H=19217`. The shift at `s=99/175` is `δ=s−λ=53/87500000>0`. Let `U` be the unrecharged original upper host comparison and `h` the cell upper bound on **all** original positive higher-family cap allocations, including the H3 cap of 408 per occurrence. The code reconstructs `U` and `h` from the original payload and independently counts the original higher-cap slots. `H−h` just rewrites the full local cost `−h` relative to `−H`; it does not price any higher-row slack. The H3 weights and transfers remain in `Φ`, in the comparison, and in the charged row identities. This is H3-free **reward accounting**, not a new potential with its H3 weights zeroed.
+
+Write `F=55−P_f` for the unused original outward singleton row, and `B` for the selected stationary edge credit. In the oriented physical per-core law `π`, the original charge identity and stationary balance give
+
+```text
+(μ−λ) · mean(Φ) ≥ B − E + π(F + H − h).
+```
+
+For example, this follows by integrating the charged inequality with `e^(−μt)`, using stopped Dynkin: the potential is `O(C)`, its discounted expected boundary is `O(1)`, and the discounted expected core occupation grows linearly. The physical spatial mean of bounded local host scores, or its equivalent discounted occupation, is the same law as in the occupation lift (see spatial-limit (`fringe/spatial-limit.md`) and the [Claim 10 physical audit](../attacks/neon2-marginals/physical/README.md)). The founder is not assigned a fictitious mother; its bounded normalized terms vanish. In the limiting rooted orientation every core has one older neighbour, `c=k+1`, and each promotion creates one newborn. Hence `η=π/μ` has `η(b)=1` and `η(1)=1/μ`.
+
+The singleton price is `π[b V(D,k+2)]`, a lower bound on `π(F)`: the promotion leaves the mother's degree fixed and updates her physical arity before the child starts at `(2,1)`. The fallback `(0,0)` is the **mother-degree `>5`** lifetime root, not a fictitious census degree. The live process keeps the two newest actual children; after exit from the live box the broad singleton continuation applies. The broad and marked recursions use the same nonnegative `F`; each of the D700 and D1750 floors is valid at the original `HI`, so their pointwise maximum is used once. No earlier `f` floor, no separate degree‑2/3 reward and no singleton residual is added.
+
+Since `mean(Φ)≥m_min>0`, if `μ≤s` then `(μ−λ) mean(Φ) ≤ δ π(U)`. The saved dual prices `π[b V + H−h + δ(M₀−U)]` from below by `P`. Thus `B−E−δM₀+P>0` contradicts `μ≤s`. The lift and lifetime inputs use the *full* original exact Gold2 prior, which lies inside Claim 10's bracket; neither bracket is inferred from the conclusion. There is no need to assume the original nominal lies to one side of the true `μ`.
+
+The D24 lift uses real gain and promotion rates and sided reciprocal incidence, with age rows projected onto exact cells through 24 and one censored degree tail. Each added tag compares the normalized flux of births at a retained maternal degree to discounted production from the same physical newborn pool: a tracked mother can only grow, so `1/D_mother` stays in `[0,1/D_mother_at_birth]`. The lower/upper tag kernels use original `HI`/`LO`, respectively; [the frontier audit](gold2-frontier-sol.md) independently reconstructs these rational kernels. The six mass rows are homogeneous inequalities on `η=π/μ`, not on the birth-tilted law.
+
+For each saved integer dual `n`, the checker recomputes `max(0, max_i(dot(n,A_i) − GRID*score_i/SCALE))` separately for each column class. The `occ` and `edge` masses are each `≤1/LO` (one occurrence and at most one parent edge per core); the only nonzero repairs are these two classes. All other inequalities hold without repair, including the birth-tag, marginal, and overflow columns. With `Aη` equal to the unit birth right hand side, the certified positive joint price is `SCALE*(LO*n_birth−sum(defects))/GRID`. Every column is checked rationally; no SciPy solve is required. The exact prices are `25078844086657002693007343495540961507141791/39286403469870372709250000000000000000` and `6018909882779936856763206595566729763907385597829/9280359994430479468005781667840000000000000` ticks/core, respectively.
+
+## Edge ledger and physical cap
+
+The original D18 and small-payer receipts (`occupation-quintet-gold2/edges/README.md`) and wide-payer receipt (`occupation-quintet-gold2/payer/README.md`) sum to `4478371331693831604075238101/10000000000000000000000` ticks/core. Read D18 in ticks; multiply each of the two original normalized FY floors by `2^40` once. The three new FY floors (`occupation-quintet-gold2/true-drift/lower/README.md`) sum to `118827158977216000412820621/6201700363750000000000` ticks/core. The optional post-FY residual is `6316495315166525735295397/78502536250000000000000`, bringing the new total to `119326162107114155945908957363/6201700363750000000000`. These latter numbers are already in ticks/core. The entire `919076249761939897477242027/65029541606195200000000` (14,133.211261547349229) historical trial H3 credit is zeroed in the new ledger. No H3 result is needed to compute the new prices or signs; the old total is read only to cross-check the accounting difference.
+
+A FY atom is keyed by distinct **ordered** physical `(host, payer, donor)` at payment. Every FY atom is on a paying edge with maximum degree above 18 and host in exact G2 outside M3. The original small lane has payer degree `≤5`; the others have payer degree `>5`. Among these, donor `2..5` is split into original payer `6..34`/host `≤150,c≤10`/payer `c≤7`; the complement within the new wide-host box (a strict violation of at least one of those three inequalities); and the new payer `35..125` sector. The last FY lane has donor `≥6`. It absorbs the donor at degree 9 in the pricing state, not in the physical mask, and uses the worst knot-piece endpoint over `[0,1/9]`. Physical registrations distinguish the mother-payer, mother-donor and both-child cases; the last has both distinct birth orders. Multiple distinct donor atoms on one edge are allowed, not multiple copies of the same atom.
+
+The outward row `G` is the **charged** edge row, with its singleton transfers, centered M3 debits and post-promotion H3 newborn. For each eligible atom, the difference between the signed knot maximum and the actual signed FY port is nonnegative by piecewise affinity. Adding all atoms replaces the signed external donor terms by their knot maxima, leaving the primal spline terms, yielding `G*≤792`. For a mixed edge, put `t=252/D_tail`. The finite jump (including its `251→252` successor) is `(1−t)j_INF+t j_knot`; the signed knot maximum is convex in that jump. The primal spline at the actual `t/252` and the singleton centering transfer are affine in `t`, and projection preserves the original post-promotion H3 newborn. The adjacent send is upper bounded by `(t/252) max(σ j_INF,σ j_knot)` with `σ=−1`; tail gain and promotion use the physical coefficients `t·receive/(D_tail+1)` and `t·(D_tail−c_tail)/D_tail`. G2 arity overflow clamps only the weight, and its promotion jump is zero. These are the operations in the original Gold2 verifier's exact edge loop (`do_end`, `add_tail_end`, `eval_fy_primal`), not an assumption that maximization commutes with interpolation. The authenticated lower payload's entire tail/INF G2 face is zero; at two physical tails there are no G2-centered transfers or FY atoms. Therefore the edge slack dominates the sum of the owned FY atoms plus `792−G*` if desired. The optional finite/mixed/double-tail post-FY payments occupy disjoint paying-edge regions of `max(D)>18` and consume only this latter account, not any FY atom. The recommended sign needs none of those post-FY payments.
+
+## Provenance and executed checks
+
+- Original Gold2 source `b435b4c824e2ba5835f58b85e67a27de7d6a0d49`, production receipt (`attacks/neon2-quintet/gold2/production.json`) SHA-256 `5e11f9c0b6eb3bd43e880be608c37d6f0b1fdbcc632b91bb5e8037db52e13284`, original lower payload `41565d49c10809eb1f732794822359410af3ed804577476563bef17f27946413`. This review authenticated that inode and reran host-cell reduction and mixed-tail fixtures, not the production verifier.
+- Claim 10 source `6c8afec5cd1b7f98bbcd7c6e7848c0d631a50f7d`, raw archived JSON SHA-256 `cc8658e2e6354577716b44ff7f57bf6e3bb9831a1c7a7ac0ecf5c9bf717dbf9c`, independently [replayed byte-identically and physically validated](../attacks/neon2-marginals/README.md). The checker redoes the 16 exact endpoint combinations and bracket joins from these same bytes, without calling the marginal verifier.
+- D1750 receipt (`occupation-quintet-gold2/lifetime/pressure/frontier/repair/D1750-M5-T3-C12.json`) SHA-256 `5ffd94a84339edcaf48984aa3de19e5bbd79decda38bfacfb93db0a7871c0a78`, D700 input (`occupation-quintet-gold2/lifetime/pressure/frontier/marginals/lower-floor.json`) SHA-256 `95b05a81de95b5ef559414d006a23acc82f4790126db69d8509fe488277f979a`, D24 host input (`occupation-quintet-gold2/host/conditioned24.json`) SHA-256 `3f98385e0662b4a5aea71dcfef03cdbd66012de01f0083456e243592007de790`. The marking source, producer options, root grid and root dominance were checked; the Bellman numerical floors are inherited from the completed producer sweeps, not independently regenerated in this pass. `--check-roots` is the optional original-recurrence replay on the authenticated inode; it does not refit either dual.
+- The wide FY and optional post-FY prices are inherited from the documented completed exact sweeps; their mask, cap construction, raw rational amounts and scale were checked here. The mixed-tail fixture is a check of the charged-row and interpolation identities, not an exhaustive rerun of either those lifetime sweeps or the original universal edge verifier.
+
+From `[local path]` (one niced core):
+
+```sh
+taskset -c 8 nice -n 19 env OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 \
+  round2/.work/venv/bin/python -IBu round2/checks/gold2-no-h3-sol.py --check-host
+taskset -c 8 nice -n 19 env OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 \
+  python3 -IBu round2/occupation-quintet-gold2/true-drift/lower/check.py --mode cap
+taskset -c 8 nice -n 19 env OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 \
+  python3 -IBu round2/occupation-quintet-gold2/true-drift/lower/check.py --mode union
+```
+
+All three exited 0. The first printed `PASS all 307 original-payload comparison cells and independent higher cap counts`, `PASS same exact dual price with only the six Claim 10 lower mass rows`, and `PASS two saved D1750 duals, Claim 10 endpoints, disjoint edge ledger and exact signed margins` (623×5,564; 644×5,586; reduced 629×5,570). The cap run printed `{'row and all-FY checks': 4624, 'mixed lifted': 1056}` and `PASS original Gold2 lower pins and exact comparisons`. The union run printed `new union ticks: 119326162107114155945908957363/6201700363750000000000 19240.878325014863` and existing-plus-extension `467078.011494398` ticks/core.

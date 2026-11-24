@@ -1,0 +1,47 @@
+> **Author/model:** Astra (GPT family). **Pinned source commit:** `2afedb1e25a6b95be30752c67022f792730d6f21`. **Review scope and dependencies:** GPT, Claude, and Gemini within their recorded scopes for hubhood, with GPT-only audits of the accepted positive-threshold proof; threshold addenda use Claim 24 or pinned Fable finite transports where stated. See the [release index](../../../../../../README.md#claim-26) for exact scope and citations.
+
+# A size-independent window on the birth scale
+
+**Result.** For every finite old tree of size `n≥2`, the conditional adjacent gap is strictly positive at every
+
+```
+0 ≤ x ≤ 2^(-131400)/(n+2).
+```
+
+The original edge seed also orders labels 2 and 3 on `0≤3x≤2^(-131400)`. Thus this supplies a specified positive **birth-scale** interval for all labels, without a tower cutoff or local convergence input. The constant is very small; this does not reach order-one birth-scale thresholds. Unlike the [common absolute window](../near-zero/README.md), the argument does not pay a uniform loss for *all* eventual hubs. It only pays for successful paths in the existing finite retry certificate.
+
+## 1. A positive-threshold version of the two lower endpoints
+
+At post-placement size `m`, let `W=lim e^(-t)D(t)`, and `S=lim e^(-t)N(t)`. Conditional on the starting tree, the total-size Yule law gives `S~Gamma(m,1)` and the physical identity `W=SZ`. We do not require independence of `W,S`, or of `S` and the following retry events. At `m≥3`, Markov with the exact gamma moment gives
+
+```
+Pr(S>32m) ≤ (2 exp(−16))^m < 2^(-40).
+```
+
+Use the finite decisions in the [hub retry](../hostile/README.md): at positive tracked stock accept tagged births and promotions; at last loss try the specified new core's return until its degree reaches 32 or the tag gains. This implements the scalar lower bound `B(d,l)` with terminal degree 20. A favourable parallel leaf lower `L(p)` has one preliminary return race with sender cap 32 (zero if the initial sender is already at cutoff). The old-neighbour first-arrow improvement to the serial bound uses one additional preliminary race, as in the hub proof. These rules can stop on early failure. A successful path reaching degree 20 with stock `l` receives the original terminal payoff `1−20^(−l)` by the tracked birth–death comparison. The comparison remains valid with any displayed physical exterior.
+
+**Elapsed time.** All monitored positive-stock decisions have intensity at least one until a decision; extra gains at the tag may be included since the next retry payoff only improves. In a last-loss or initial leaf return race, the specified send has intensity at least `1/31` until stop; the sender's degree increases count as separate decisions until it reaches 32. At an initial serial old-neighbour credit race the tagged leaf's birth has intensity one, even for arbitrarily large old-neighbour degree. Unmonitored events can continue and do not lower these floors. The process needs at most 700 decisions: starting with one tag leaf there are at most 19 tag gains to degree 20, at most 20 positive-stock losses (each consumes a leaf), at most 20 return races of at most 32 decisions each, and at most one initial serial race. Dummy zero waits can fill unused slots. For a wait with conditional survival bounded by `exp(−t/31)`, its conditional exponential moment at `1/64` is less than two. Iterating the conditional moment bound shows that successful paths reaching degree 20 later than `2^16` cost at most `2^700 exp(−2^16/64)<2^-40`. The two different preliminary races belong to different lower endpoints; no exterior-dependent number of extra stages is counted.
+
+**Actual positive mass from the terminal stock.** Compare from degree 20 and stock `l≤20` with independent linear families of rates `1,1/20` per member, using tagged-leaf births and covering actual removals by independent proposals. With age 128 from this stop, for one family the conditional positive count is geometric with parameter at most `2 exp(−(19/20)128)`; this is the linear birth–death law used in the [effective low-mass argument](../../fixed-threshold/effective-uniform/README.md#4-low-mass-and-a-positive-threshold-modulus). The probability that any family survives indefinitely but has size less than `D=2^32` at this age is at most `40 D exp(−(19/20)128)`. This bound only uses an unconditional finite-age count; it does not assume independence from eventual survival. If any family survives and this bad event does not occur, physical stock is at least `D`. At age 128, the true remaining degree mass is bounded below by a coupled `Gamma(stock,1)−Exp(1)`. The chance of mass at most `D/4` on stock at least `D` is at most `8/D` by the two marginal bounds, without conditioning on survival or imposing independence. Thus the original terminal payoff is valid for a successful mass exceeding `(D/4)e^(-(2^16+128))`, with the stated stock and mass errors deducted. Since `32·2^(-131400)` is smaller than that mass, remove the two time/size errors by union bound. Each affected endpoint lower loses at most
+
+```
+eta = 2^-27 > 2·2^-40 + 40·2^32·2^-121 + 8·2^-32.
+```
+
+In particular, at `mx≤2^(-131400)`, the frozen serial-gap lower `G(p)` and favourable parallel lower `L(p)` can each be diminished by just `eta`. Adverse tip uppers still apply unchanged since a positive-threshold tail is at most the hub probability. The finite-path argument also applies to the unrounded bounds underlying `G,L`, so downward rounding in the frozen files cannot hurt the comparison.
+
+## 2. Spend the losses in the signed ledger
+
+Use [the frozen complete discharge](../hostile/edge-dual/README.md), including its low-end chain bills. The new checker replays the endpoint credit inequalities with a common surplus `delta=1/200000` at each retained core after purchases, direct transfers and chain bills. For high internal vertices it checks all finite receive/payment corners and the three analytic tail floors; high terminal slack is separate. For low vertices it checks the two high-reciprocal extremes for every degree multiset with the simultaneous bills. The tightest low slack is `0.000005478682…` at a degree-two terminal. Concavity in receive interpolates the rounded rational endpoint inequalities exactly as in the frozen ledger.
+
+Rather than modifying every tariff, apply the old certificate and book perturbations at their physical owners. On a direct core edge at most one orientation pays, and changing the favourable lower by `eta` raises that debit by at most `eta |s_u−s_v|≤eta s_adverse`. The serial losses at a retained core and its old leaves cost at most `eta(w+l/(2d))≤3eta/2`; paired core–leaf differences cost at most another `eta(w+l/(2d))≤3eta/2` by the sum of the two absolute coefficients. Direct core edges cost the adverse owners at most their remaining `eta*d*s≤eta`. These bounds charge at most `4eta` per retained core. They also cover stars without any chain bills.
+
+On a suppressed chain include its two boundary debits in the chain bill, not in the direct charge. Lengths one through three have perturbation at most `6eta`: the sum of serial weights of those sites is at most one, and each of at most four signed edges changes by at most `eta` (use `s≤1` throughout). The frozen worst residual margins for all three pairs of endpoint types exceed `delta>6eta`. At greater length every new homogeneous interior site has `s=1/6`, identical adjacent coefficients, and positive credit `(G(3)−eta)/3`, so no length-dependent loss needs to be charged to a retained core. Thus every chain still pays its single baseline with its original bills. Each retained vertex still has some surplus, and the original terminal census pays all baselines and retains `B+2A>0`. No count or size factor accumulates on the right-hand side of a global loss bound.
+
+For a star of centre degree at least four the old leaf debit is zero in the frozen bound, and its centre serial credit alone exceeds `(4/5)*.16694235`. The same per-core perturbation applies. Degrees two and three use their exact star bounds: the original numerator divided by the sum of serial weights exceeds `.01`, and that sum is at least `1/2`.
+
+At `n=2` the old-edge coefficient vanishes by symmetry and both serial terms have the serial middle with old-neighbour degree two. The numerator is at least `G(2)−eta>0`, since the two weights are `1/2` each. To order labels 2 and 3, start at size three; label 2 is equally likely to be the centre or an exchangeable leaf, and label 3 is always a leaf. Use the [elementary seed comparison](../../early/README.md#a-lower-bound-for-a-core-and-a-direct-proof-for-23): the centre has hub lower `3/4` by two tracked families with per-leaf death rate `1/2`, and the leaf upper is `1−108/305`. For a positive threshold, run the two centre families for age 128 directly (no retry time). The same finite-age law with death rate `1/2` shows that a surviving family has fewer than `2^32` particles only with probability at most `4·2^32·2^(-64)` across the two families. With the same tagged-leaf remaining-mass and gamma size-tail bounds, the centre loses at most `eta`. The gap remains at least `(127/1220−eta)/2>0`. These base comparisons need no estimates of the mass of hubs outside the tracked families.
+
+## 3. Replay
+
+`python3 -IB round2/open/age-order/global-transport/birth-window/check.py` checks exact per-core slack, chain budgets, and the compact time/size inequalities. The code imports frozen comparison functions read-only.

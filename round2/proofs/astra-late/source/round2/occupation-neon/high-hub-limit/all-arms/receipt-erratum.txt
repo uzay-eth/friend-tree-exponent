@@ -1,0 +1,5 @@
+The reviewed frozen receipt is unchanged. Its lower-witness `ceiling old`
+row has a transcription error in the final (sum) field only: replace
+16094889408445993677/20000000000000000000000000
+with the exact component sum 16094889408445993677 / (2 * 10^25),
+about 8.047444704223e-7. The component fields and all floor rows are correct.

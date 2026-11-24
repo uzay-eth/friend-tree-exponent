@@ -1,0 +1,15 @@
+# Exact baseline and reused read-only dependencies
+b004e6df46b8d63f1a6dbe937c2ed01af050130a38584fc3520aec09134eb474  round2/occupation-neon/pressure-memory/path-fast/low-release/release.sha256
+6f2a074e9a695b4969cb58d39376e2a1f8c17ab41b04a3b2ec775a18f05ca02d  round2/occupation-neon/all-contrast/scan.py
+9f40a50a3623756b277243d192f672e76c45b4b9784715ed4d0d8fb27d36131c  round2/occupation-neon/higher/extract.py
+d548a9aafa899ecab2b00a7f6ad0a4e6f828600088780f0a15f08927f17f0bfe  round2/attacks/neon1/audit.py
+59f4ef6f915d6d7d932076dfe9170d7e6e5fa5d819cf3d0c11baf7932baa1277  round2/finite/residual_entries.py
+# Reviewed producer and cold proof/companion
+5012b327fa0ac25af9e9fb9617aa239410d907be4b456b5e92c8dc09976a44a5  round2/occupation-neon/pressure-memory/fork-lifetime/old/README.md
+622a5ac57871d44c4852bab3eb2f616a7354ac977fb16ad594da48e9141b35a3  round2/occupation-neon/pressure-memory/fork-lifetime/old/replay.py
+db0fba60406930918139d59731e6cac545bc877955508aa8f819967def980999  round2/occupation-neon/pressure-memory/fork-lifetime/replay.py
+b2a442cad48da4edd1d33193df3d267029c380858a82b23e37f1b414eeae455b  round2/checks/yt-donor-sol.md
+6d1803e60516bb21b6b92cb08e1207bad75230548ae3d32627bc4d8b96c2f6fd  round2/checks/yt-donor-sol.py
+# Fresh isolated replay receipts
+5191a759498da238913401bcaf18320ced43026219ae6d86a8a495c14df3a0fd  round2/occupation-neon/pressure-memory/fork-lifetime/yt-release/mother-apex.log
+c8ef4e368ad6721a74ad2ab7b128f48de1eb40de490357f0d5dcc6fe971ce56b  round2/occupation-neon/pressure-memory/fork-lifetime/yt-release/trunk-tips.log

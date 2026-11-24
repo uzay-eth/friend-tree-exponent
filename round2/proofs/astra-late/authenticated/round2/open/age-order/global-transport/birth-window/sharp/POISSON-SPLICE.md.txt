@@ -1,0 +1,21 @@
+# Threshold splice using the discrete Poisson-stock lemma
+
+Using the new discrete [Poisson-stock lower](../../../hub-ranking/poisson-tail/) with normalized serial constant `M=.36787<1/e`, the existing symbolic ledger signs on every old tree in its range `b≥21` as soon as **`(b+1)x≥5`**, down from 13. The replay keeps its old tariffs and all 735 chain endpoint types. The `k≥32` price still applies since `5^(1/32)<3/2`; the larger `y` range is covered by monotonicity of the normalized entrance-price envelope. The unchanged tariffs fail their degree-two direct terminal test at integer `Y=4`.
+
+The finite splice signs on **every old tree for `20≤b≤48`, `1/10≤x≤1/2`**. For `b≥49`, `x≥1/10` implies `(b+1)x≥5`. For `20≤b≤48`, the [existing `[1/3,1)` theorem](../../../hub-ranking/beta-tests/physical-tail/band/README.md) provides the upper overlap. Thus for every `b≥20` the conditional comparison holds on **`[1/10,1)`**. The archived rooted transports for earlier labels are separate unconditional comparisons; they give the same threshold range unconditionally for all labels, with equality of the founders.
+
+## Extra first-step serial credit
+
+At completion size `m=b+1`, the serial middle starts at degree two and tracked stock one. The Poisson-stock subharmonic recurrence charges a loss at rate `1/m`; the physical loss probability on the next jump is `1/(2m)`. An extra parent contribution to gains can only help by increasing stock. Thus the one-step drift gives an extra `H(m+1,1;x)/(2m)` beyond `H(m,1;x)`. With `q=1−x`, the normalized coefficient after dividing by `q^b` is at least
+
+```
+M (1 + q/(2m)).
+```
+
+On a threshold box use its smallest `q` for this credit. The favourable parallel bound is still computed with the unboosted postpromotion lower. The physical adverse continuation, opposite-side credits, receive corners, and chain check come from the quarter checker. Its local tariff test uses `(a, base, fee, terminal fee, transfer)=(.004,.004,.005,.009,.002)`. Box subdivision is rational and includes both endpoints of each interval. Portions of a finite box above `5/(b+1)` are automatically covered by the symbolic bound for `b≥21`; for `b=20` they lie in the separately checked unboosted box `[3/20,1/2]`.
+
+## Replay
+
+`python3 -IB round2/open/age-order/global-transport/birth-window/sharp/poisson-splice.py --start 20 --stop 24`, followed by the remaining disjoint ranges up to `--stop 49`. Parallel chunks keep replay manageable. The script also checks the standalone `b=20` box `[3/20,1/2]` with the unboosted lower.
+
+This closes the earlier `x=1/10` finite-label seam. It does not cover the intervening birth-scale region between the small-scale `2^-66` window and the symbolic cutoff 5.

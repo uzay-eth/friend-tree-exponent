@@ -1,0 +1,5 @@
+original Gold2 {'side': 'upper', 'kind': 'threshold', 'ceiling': False, 'limit': 12, 'wing': 32, 'arm': 4, 'host': 5, 'stock': 4, 'receiver': 79, 'rstock': 8, 'donor': 18, 'tstock': 3, 'old': 19, 'young': 18, 'reserve': False, 'fixtures': True}
+literal physical checks {'g outgoing': 74, 'g': 40, 'h3 outgoing': 64, 'h3': 37, 'FY gaps': 4} distinct registered paths 8
+H3 normalized 3304204122287698944634328103/6818841661925773803520000000000000 4.84569709359482e-07 ticks/core 532790.0299087872 states 271350 paid rows 201436
+CPU seconds 56.340768929
+wall=90.36 rss=235588 exit=0

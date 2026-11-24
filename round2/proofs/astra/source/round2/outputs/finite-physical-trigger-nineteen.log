@@ -1,0 +1,12 @@
+$ timeout 5s taskset -c 0 python3 -B round2/finite/gauge/physical_trigger_bounds.py --critical-only --all-labels --iterations 16
+s 14141/25000 original root label-20 lower 22279887682 / 1e12 root total direct lower 405743159170 / 1e12
+s 2829/5000 original root label-20 lower 22267712545 / 1e12 root total direct lower 405690485205 / 1e12
+s 1133/2000 original root label-20 lower 22214534253 / 1e12 root total direct lower 405460197323 / 1e12
+s used in lower tables 1133/2000 upper PF multiplier 1 blocks 2=126364920098 3=171237077935 4=204588777555 5=229937413972 6=249721654600 7=265540573652 8=278454614160 9=289185266585 10=298237050138 11=305971966712 12=312655869888 13=318488089059 14=323620851398 15=328172330861 16=332235615748 17=335884999836 18=339180479449 19=342171023389 20=1000000000000 units 1e-12
+complement Perron-norm contraction <= 970147668298 / 1e12
+one-residence elementary complement anchor at .51, k 0 <= 4504361 / 1e6
+one-residence elementary complement anchor at .51, k 2 <= 4401477 / 1e6
+one-residence elementary complement anchor at .51, k 4 <= 4348792 / 1e6
+one-residence elementary complement anchor at .51, k 6 <= 4315979 / 1e6
+fine bracket: chronological tail factor < 1.275, weight factor < 2800, scalar size-exit factor < 3660
+wall 2.12 user 2.02 peak KiB 36736 exit 0

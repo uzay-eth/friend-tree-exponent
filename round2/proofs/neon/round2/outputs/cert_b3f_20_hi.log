@@ -1,0 +1,49 @@
+B3-FullH builder: mode=1 D0=20 KT=19 LF=16000 KF=200 P4=(12,9) Yt=(11,8) Yb=(12,9) S3=(10,7)
+  npars=481 nchs=253 NHU=228 NCU=432 | tot_entries=1398.84M | expected_bytes=10672.46 MB
+  Converged float lam=0.56576563 -> fixing exact target P/Q = 565768/1000000 = 0.5657680000
+  final_it=0 lam=0.5657680000 f[v_nb]=1.0000000000->1.0000000000 (ratio=1.0000000000)
+  final_it=1 lam=0.5657680000 f[v_nb]=1.0000000000->1.0000000000 (ratio=1.0000000000)
+  final_it=2 lam=0.5657680000 f[v_nb]=1.0000000000->1.0000000000 (ratio=1.0000000000)
+  final_it=3 lam=0.5657680000 f[v_nb]=1.0000000000->1.0000000000 (ratio=1.0000000000)
+  final_it=4 lam=0.5657680000 f[v_nb]=1.0000000000->1.0000000000 (ratio=1.0000000000)
+Wrote b3f20_hi.bin (11190881056 bytes), exact P/Q = 565768/1000000 (0.5657680000)
+55dd6015eca85ca2fba6267d9444ec8807554c456999803d8f9abcc695c090e2  b3f20_hi.bin
+Verifying b3f20_hi.bin | mode=UPPER | lambda = 565768/1000000 | D0=20 KT=19 LF=16000 KF=200 | threads=3
+  [f ] checked 6432404 states: fails = 0
+  [g ] checked 121693 states: fails = 0
+  [hV] checked 27746004 states: fails = 0
+  [hC] checked 13880592 states: fails = 0
+  [P4] checked 354856788 states: fails = 0
+  [Yt] checked 540925385 states: fails = 0
+  [Yb] checked 331822656 states: fails = 0
+  [S3] checked 122901075 states: fails = 0
+  [COMPARISON] 4*S*c0 = 115454594604, S*C0 = 200854054323, S*Phi(T_3) = 146044513514 (S = 100000000000)
+  [TREES] exact-rational GMP drift check on 34 concrete/boundary trees: fails = 0
+=== VERDICT: PASS (total_fails = 0, exact P/Q = 565768/1000000) ===
+=== Python Fraction Tree Checks (B3F20) ===
+Python exact-Fraction tree check (b3f20_lo.bin): 16 trees checked, fails = 0
+Python exact-Fraction tree check (b3f20_hi.bin): 16 trees checked, fails = 0
+=== Impossible-Exponent Override Controls (B3F20) ===
+Verifying b3f20_lo.bin | mode=LOWER | lambda = 566000/1000000 | D0=20 KT=19 LF=16000 KF=200 | threads=3
+  [f ] checked 6432404 states: fails = 11949096
+  [g ] checked 121693 states: fails = 604
+  [hV] checked 27746004 states: fails = 3925095
+  [hC] checked 13880592 states: fails = 642621
+  [P4] checked 354856788 states: fails = 124366032
+  [Yt] checked 540925385 states: fails = 45429989
+  [Yb] checked 331822656 states: fails = 235288675
+  [S3] checked 122901075 states: fails = 3104822
+  [COMPARISON] 4*S*c0 = 113472636536, S*C0 = 184219674916, S*Phi(T_3) = 146041684821 (S = 100000000000)
+=== VERDICT: FAIL (total_fails = 424706934, exact P/Q = 566000/1000000) ===
+Verifying b3f20_hi.bin | mode=UPPER | lambda = 565000/1000000 | D0=20 KT=19 LF=16000 KF=200 | threads=3
+  [f ] checked 6432404 states: fails = 12251952
+  [g ] checked 121693 states: fails = 1221
+  [hV] checked 27746004 states: fails = 9583532
+  [hC] checked 13880592 states: fails = 1727217
+  [P4] checked 354856788 states: fails = 195461395
+  [Yt] checked 540925385 states: fails = 104297804
+  [Yb] checked 331822656 states: fails = 283233679
+  [S3] checked 122901075 states: fails = 5566474
+  [COMPARISON] 4*S*c0 = 115454594604, S*C0 = 200854054323, S*Phi(T_3) = 146044513514 (S = 100000000000)
+=== VERDICT: FAIL (total_fails = 612123274, exact P/Q = 565000/1000000) ===
+=== ALL B3-FullH-20-L4 CHECKS PASSED ===

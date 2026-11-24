@@ -1,0 +1,18 @@
+> **Author/model:** Astra (GPT family). **Pinned source commit:** `2afedb1e25a6b95be30752c67022f792730d6f21`. **Review scope and dependencies:** GPT proof audits and Claude replay of earlier freezes; original Neon-2 Gold1 witnesses and inherited stationary results. See the [release index](../../../../../README.md#claim-25) for exact scope and citations.
+
+# GOLD1 aggregate high-mother port (separate from GOLD2)
+
+This prices `[-P_actual]+ − [-P_mother-box]+` on original GOLD1 H3 chain rows, boxing the high mother's **entire** uncovered exterior port in the second clip only. It covers her own upstream arrow and all other children. The other two receivers are unchanged between clips. Mother arity ≤8, middle degree ≤5 and arity 2–4, young tip degree ≤18 and arity ≤3, with strict degree ordering, nonfounder mother and prior strict-mask exclusion.
+
+| Mother degree | Lower stationary floor | Upper stationary floor |
+|---|---:|---:|
+| 19–37 | `3.034158774045042e−7` | `3.253325017625152e−7` |
+| 66–100 | `1.585329312294587e−8` | `1.824687589951794e−8` |
+
+The low band is a replacement where it overlaps prior sibling credit. The high band is disjoint from earlier 19–65 increment and can accompany an aligned adverse mother-box baseline. Neither achieves several ppm. The all-upstream, same-cut ceiling at 19–37 was `3.090770818515043e−6 / 3.215981247803783e−6`; it does not rule out a better proof. The optional upstream-only mode was not validated.
+
+**Compression.** Use one integer `k` counting all additional children still at degree 2. They send `k/2`; the remaining children send an aggregate in `[0,(n−k)/3]`. Their first exit from degree 2 has aggregate rate in `[k/D_h,k/D_h+k]`. A mother promotion adds one to `k` and to arity; if it also registers a new middle, that new prefix uses the old `k` because the newborn is now an internal arm. A middle promotion advances the current prefix and seeds the third tracked vertex. No per-sibling dimension or selection is needed. Keep mother roots born to an upstream of degree ≥3, hence that reciprocal stays ≤1/3. Lower stationary root flux is the original lower birth intensity minus a robust stationary ceiling on births at parental degree <3, obtained from a singleton promotion reward using the same stable-age law. The optional ceiling at upstream cut 2 uses all nonfounder roots and reverses the Bellman inequalities. The fit clips after combining the whole compressed port: for adverse boxed row `B` and true nonnegative defect `z`, the exact increment is `[z−max(0,B)]_+`. Reward and hazard boxes are relaxed separately, preserving the inequality direction. Exact integer residuals check all Bellman states on the original Gold1 subgrid.
+
+`aggregate.py --side SIDE --low 19 --high 37` exited 0 for both sides (403,200 terminal states each); `--low 66 --high 100` exited 0 for both (1,197,000 terminal states each); `--low 19 --high 37 --upstream 2 --ceiling` exited 0 for both. The 66–100 runs used 50.36 and 49.37 user seconds respectively, one niced core. A developing 65 ceiling was not used.
+
+`bash measure.sh` (from this directory or by full relative path from Astra root) passed on the preserved trees. In the broader mother-high priority slice, with child degree/arity and mother arity unrestricted, the empirical joint port increment is **1.91536 / 1.89544 ppm** pooled. Only **0.18195 / 0.17981 ppm** lies at mother degrees ≥66. The physical H3 negative rows there total **2.52572 / 3.58081 ppm**, leaving **2.34376 / 3.40100 ppm** in the adverse-mother-box baseline rather than pure port recovery. These are observations, not ceilings or stationary credit. See `sample.log`. This work changes no frozen GOLD1 floor and supplies no GOLD2 payment.

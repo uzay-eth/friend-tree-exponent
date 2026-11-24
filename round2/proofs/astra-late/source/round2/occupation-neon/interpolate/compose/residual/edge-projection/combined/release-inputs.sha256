@@ -1,0 +1,13 @@
+# Files overlaid at original paths on 02d0bd87c64b53a2bda2004a4af65de9142dda13.
+# Also verify the original combined, EDGE and parent composition manifests.
+b35c7e4faacd697fd85d5957f33fa27ab0790ff7c111a4cc578328940d684a70  pressure-memory/marginal/replay.py
+47b85054c77348d699d4f4bd0f55e371de009943b126ef49c7cef7b913c07b66  round2/checks/edge-memory-sol.py
+6b7653c0041a9b9e77b0989769dfa892d8ce62cc16e15195367db40b8ba80e41  round2/checks/edge-memory-sol.md
+28365603eafd33eb07901c308cadcc5ac3e0f6cfc39d883a02dbedbda18f4e35  round2/occupation-neon/flow/check.py
+822d0b616394440da3b77d77a967eb994cc17e08af438c0a82039922c0f4bca2  round2/occupation-neon/flow/README.md
+68fa7934b9814098e84d7b0838ab4a2c5630ef019980b144237b162e70c2eefa  round2/occupation-neon/interpolate/compose/residual/replay.py
+65210a3f2d5fa4ae5631b2f57b98e1e6fed44b24b2d73b080288c4c1706748e9  round2/occupation-neon/interpolate/compose/residual/edge-projection/replay.py
+7d536fab426f568f338af51f6d2f6bd104683ddfb9ff17f12315a5561cd14239  round2/occupation-neon/interpolate/compose/residual/edge-projection/combined/replay.py
+b23c1d17ea1b1d172277964df82c991a24ba30d1af16c70adcefb07485b7d7a0  round2/occupation-neon/interpolate/compose/residual/edge-projection/combined/README.md
+6abcfc4bc9dc9811992f1afc425aeecacc3bbb1ea7049b4be55dabe9223b577e  round2/occupation-neon/interpolate/compose/residual/edge-projection/combined/inputs.sha256
+3935d540e0186e4594db1f4e222ba60403dfa59e939f37314d35925efdfecf30  round2/occupation-neon/interpolate/compose/residual/edge-projection/combined/full.log

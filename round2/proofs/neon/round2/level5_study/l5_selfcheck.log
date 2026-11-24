@@ -1,0 +1,7 @@
+B3-FullH builder: mode=1 D0=12 KT=11 LF=6000 KF=100 P4=(10,8) Yt=(9,7) Yb=(10,8) S3=(8,6)
+  npars=193 nchs=105 NHU=88 NCU=160 | tot_entries=82.52M | expected_bytes=629.63 MB
+COUNTS f=1212204 g=47961 hv=1783320 hc=890400 p4=26263440 yt=22554945 yb=25004700 s3=4763640 potential=82520610 file_bytes=660209960
+L5 D5=6 entries=1564220 bytes=12513760
+L5 check mode=1 rows=1564220 nonzero=1083040
+L5 check mode=2 rows=1564220 nonzero=1083040
+TIME wall=4.83 user=4.61 sys=0.11 peak_KiB=220288 exit=0

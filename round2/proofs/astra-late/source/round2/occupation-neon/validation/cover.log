@@ -1,0 +1,2 @@
+four paired sparse full-tail coefficient checks passed
+fixed-policy exact forward/backward telescoping: -0.0011808979003246156 3.0587240273210006e-06 1.6890765037784447e-06 -0.0011761500997935163

@@ -1,0 +1,81 @@
+600000 runs, checkpoints 4..13, reference 0.5657236568
+
+sane:  t -> t+1 : correction b +- SE (b/SE) ; ratio to the previous window
+      4 -> 5     -4.0887e-04 +- 4.6e-06 ( -88.0)
+      5 -> 6     -1.3507e-04 +- 1.7e-06 ( -80.4)   ratio +0.330
+      6 -> 7     -3.9582e-05 +- 6.7e-07 ( -59.1)   ratio +0.293
+      7 -> 8     -1.0744e-05 +- 3.6e-07 ( -30.1)   ratio +0.271
+      8 -> 9     -3.1324e-06 +- 2.4e-07 ( -13.1)   ratio +0.292
+      9 -> 10    -1.0301e-06 +- 1.7e-07 (  -5.9)   ratio +0.329
+     10 -> 11    -3.0468e-07 +- 1.3e-07 (  -2.3)   ratio +0.296
+     11 -> 12    -1.0387e-07 +- 9.8e-08 (  -1.1)   ratio +0.341
+     12 -> 13    +8.7036e-08 +- 7.4e-08 (  +1.2)   ratio -0.838
+   contraction over four time units, b(t+4 -> t+5) / b(t -> t+1)  [premise (C) asks for at most 0.1044 in absolute value, for windows of length 4]:
+     t=4: +0.0077 +- 0.0006   t=5: +0.0076 +- 0.0013   t=6: +0.0077 +- 0.0033   t=7: +0.0097 +- 0.0091   t=8: -0.0278 +- 0.0236
+     window 4 -> 8: -7.3171e-05 +- 5.2e-07     window 5 -> 9: -2.2542e-05 +- 2.0e-07     window 8 -> 12: -5.7051e-07 +- 4.6e-08     window 9 -> 13: -1.2488e-07 +- 3.4e-08
+   single-rate fit on 6 windows of one sign: gamma = 1.188 +- 0.008 per unit time, chi2 = 37.9 on 4 dof;  contraction per 4 time units e^(-4 gamma) = 0.0086 (premise (C) needs <= 0.1044, (C') <= 0.3465)
+   the fitted law predicts: b(12->16) = -5.48e-09, b(16->20) = -4.72e-11, b(16->24) = -4.82e-12, b(24->28) = -3.51e-15
+
+full:  t -> t+1 : correction b +- SE (b/SE) ; ratio to the previous window
+      4 -> 5     +3.8972e-04 +- 1.2e-05 ( +33.7)
+      5 -> 6     +2.0177e-04 +- 4.4e-06 ( +46.0)   ratio +0.518
+      6 -> 7     +8.5707e-05 +- 1.7e-06 ( +49.7)   ratio +0.425
+      7 -> 8     +3.3351e-05 +- 7.1e-07 ( +46.7)   ratio +0.389
+      8 -> 9     +1.1306e-05 +- 3.3e-07 ( +34.0)   ratio +0.339
+      9 -> 10    +3.5269e-06 +- 1.8e-07 ( +19.3)   ratio +0.312
+     10 -> 11    +1.1243e-06 +- 1.2e-07 (  +9.5)   ratio +0.319
+     11 -> 12    +2.6767e-07 +- 8.5e-08 (  +3.1)   ratio +0.238
+     12 -> 13    +1.6160e-07 +- 6.3e-08 (  +2.6)   ratio +0.604
+   contraction over four time units, b(t+4 -> t+5) / b(t -> t+1)  [premise (C) asks for at most 0.1044 in absolute value, for windows of length 4]:
+     t=4: +0.0290 +- 0.0012   t=5: +0.0175 +- 0.0010   t=6: +0.0131 +- 0.0014   t=7: +0.0080 +- 0.0026   t=8: +0.0143 +- 0.0056
+     window 4 -> 8: +1.0536e-04 +- 1.0e-06     window 5 -> 9: +4.5736e-05 +- 4.0e-07     window 8 -> 12: +1.9845e-06 +- 4.5e-08     window 9 -> 13: +6.3772e-07 +- 3.0e-08
+   single-rate fit on 8 windows of one sign: gamma = 0.932 +- 0.007 per unit time, chi2 = 183.4 on 6 dof;  contraction per 4 time units e^(-4 gamma) = 0.0241 (premise (C) needs <= 0.1044, (C') <= 0.3465)
+   the fitted law predicts: b(12->16) = +6.40e-08, b(16->20) = +1.54e-09, b(16->24) = +1.79e-10, b(24->28) = +8.93e-13
+
+AN:  t -> t+1 : correction b +- SE (b/SE) ; ratio to the previous window
+      4 -> 5     +5.7390e-04 +- 1.3e-05 ( +45.2)
+      5 -> 6     +2.9469e-04 +- 6.0e-06 ( +49.5)   ratio +0.513
+      6 -> 7     +1.0550e-04 +- 3.4e-06 ( +30.8)   ratio +0.358
+      7 -> 8     +3.9339e-05 +- 2.3e-06 ( +17.0)   ratio +0.373
+      8 -> 9     +1.0201e-05 +- 1.7e-06 (  +6.1)   ratio +0.259
+      9 -> 10    +3.5298e-06 +- 1.3e-06 (  +2.8)   ratio +0.346
+     10 -> 11    +1.7217e-06 +- 9.4e-07 (  +1.8)   ratio +0.488
+     11 -> 12    +2.7278e-07 +- 7.1e-07 (  +0.4)   ratio +0.158
+     12 -> 13    +8.0388e-09 +- 5.4e-07 (  +0.0)   ratio +0.029
+   contraction over four time units, b(t+4 -> t+5) / b(t -> t+1)  [premise (C) asks for at most 0.1044 in absolute value, for windows of length 4]:
+     t=4: +0.0178 +- 0.0030   t=5: +0.0120 +- 0.0043   t=6: +0.0163 +- 0.0090   t=7: +0.0069 +- 0.0181   t=8: +0.0008 +- 0.0525
+     window 4 -> 8: +1.4438e-04 +- 1.5e-06     window 5 -> 9: +5.8126e-05 +- 9.3e-07     window 8 -> 12: +2.0534e-06 +- 3.6e-07     window 9 -> 13: +6.5825e-07 +- 2.7e-07
+   single-rate fit on 5 windows of one sign: gamma = 0.875 +- 0.015 per unit time, chi2 = 72.2 on 3 dof;  contraction per 4 time units e^(-4 gamma) = 0.0302 (premise (C) needs <= 0.1044, (C') <= 0.3465)
+   the fitted law predicts: b(12->16) = +1.35e-07, b(16->20) = +4.08e-09, b(16->24) = +4.96e-10, b(24->28) = +3.72e-12
+
+ANPQ:  t -> t+1 : correction b +- SE (b/SE) ; ratio to the previous window
+      4 -> 5     +5.6626e-04 +- 1.2e-05 ( +48.1)
+      5 -> 6     +2.7417e-04 +- 4.6e-06 ( +60.0)   ratio +0.484
+      6 -> 7     +1.0791e-04 +- 1.9e-06 ( +56.8)   ratio +0.394
+      7 -> 8     +4.1144e-05 +- 9.1e-07 ( +45.2)   ratio +0.381
+      8 -> 9     +1.2329e-05 +- 5.3e-07 ( +23.1)   ratio +0.300
+      9 -> 10    +4.0218e-06 +- 3.6e-07 ( +11.1)   ratio +0.326
+     10 -> 11    +1.6679e-06 +- 2.6e-07 (  +6.3)   ratio +0.415
+     11 -> 12    +4.3072e-07 +- 2.0e-07 (  +2.2)   ratio +0.258
+     12 -> 13    +1.7776e-07 +- 1.5e-07 (  +1.2)   ratio +0.413
+   contraction over four time units, b(t+4 -> t+5) / b(t -> t+1)  [premise (C) asks for at most 0.1044 in absolute value, for windows of length 4]:
+     t=4: +0.0218 +- 0.0010   t=5: +0.0147 +- 0.0013   t=6: +0.0155 +- 0.0025   t=7: +0.0105 +- 0.0048   t=8: +0.0144 +- 0.0120
+     window 4 -> 8: +1.4205e-04 +- 1.1e-06     window 5 -> 9: +5.8209e-05 +- 4.6e-07     window 8 -> 12: +2.3793e-06 +- 9.5e-08     window 9 -> 13: +8.1843e-07 +- 7.0e-08
+   single-rate fit on 7 windows of one sign: gamma = 0.932 +- 0.008 per unit time, chi2 = 136.4 on 5 dof;  contraction per 4 time units e^(-4 gamma) = 0.0241 (premise (C) needs <= 0.1044, (C') <= 0.3465)
+   the fitted law predicts: b(12->16) = +8.36e-08, b(16->20) = +2.01e-09, b(16->24) = +2.33e-10, b(24->28) = +1.17e-12
+
+AR:  t -> t+1 : correction b +- SE (b/SE) ; ratio to the previous window
+      4 -> 5     -2.8208e-04 +- 5.8e-06 ( -48.3)
+      5 -> 6     -7.5840e-05 +- 3.3e-06 ( -23.3)   ratio +0.269
+      6 -> 7     -2.4695e-05 +- 2.2e-06 ( -11.1)   ratio +0.326
+      7 -> 8     -7.2232e-06 +- 1.6e-06 (  -4.4)   ratio +0.292
+      8 -> 9     -2.6272e-06 +- 1.2e-06 (  -2.1)   ratio +0.364
+      9 -> 10    -8.8361e-07 +- 9.2e-07 (  -1.0)   ratio +0.336
+     10 -> 11    -1.5107e-06 +- 6.9e-07 (  -2.2)   ratio +1.710
+     11 -> 12    +2.8304e-07 +- 5.2e-07 (  +0.5)   ratio -0.187
+     12 -> 13    -3.2573e-07 +- 3.9e-07 (  -0.8)   ratio -1.151
+   contraction over four time units, b(t+4 -> t+5) / b(t -> t+1)  [premise (C) asks for at most 0.1044 in absolute value, for windows of length 4]:
+     t=4: +0.0093 +- 0.0043   t=5: +0.0117 +- 0.0122   t=6: +0.0612 +- 0.0287   t=7: -0.0392 +- 0.0729   t=8: +0.1240 +- 0.1605
+     window 4 -> 8: -4.6973e-05 +- 9.6e-07     window 5 -> 9: -1.3786e-05 +- 6.4e-07     window 8 -> 12: -6.4685e-07 +- 2.7e-07     window 9 -> 13: -3.9263e-07 +- 2.0e-07
+   single-rate fit on 4 windows of one sign: gamma = 1.257 +- 0.032 per unit time, chi2 = 2.6 on 2 dof;  contraction per 4 time units e^(-4 gamma) = 0.0066 (premise (C) needs <= 0.1044, (C') <= 0.3465)
+   the fitted law predicts: b(12->16) = -2.00e-09, b(16->20) = -1.31e-11, b(16->24) = -1.31e-12, b(24->28) = -5.65e-16

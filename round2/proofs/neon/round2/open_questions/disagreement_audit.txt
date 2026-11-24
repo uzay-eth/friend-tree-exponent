@@ -1,0 +1,8 @@
+PASS: 62 exact reproduction rows; maximum 1669075573443141901662377825/1772128093509182310390306279 at d=6
+PASS: 8244 exact coupled rate rows, including degrees 10^60
+REJECTED: truncate the occupation sum at 8 without weakening the bound
+REJECTED: increase reservoir birth rate by one without recertifying
+REJECTED: omit unpaired newborn feedback
+REJECTED: omit repeated outward feedback
+REJECTED: over-strengthen reciprocal bound denominator
+REJECTED: share a source ring across promotion and outward infection

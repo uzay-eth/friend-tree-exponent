@@ -1,0 +1,116 @@
+=== RE-VERIFYING B3-FullH-18 UPPER & LOWER WITH EXACT EDGE RE-CHARGING ===
+Tue Nov 24 08:58:55 UTC 2026
+Verifying b3f18_hi.bin | mode=UPPER | lambda = 565775/1000000 | D0=18 KT=17 LF=14000 KF=180 | threads=4
+  [f ] checked 5068364 states: fails = 0
+  [g ] checked 83370 states: fails = 0
+  [hV] checked 15590190 states: fails = 0
+  [hC] checked 7798560 states: fails = 0
+  [P4] checked 102128250 states: fails = 0
+  [Yt] checked 175910700 states: fails = 0
+  [Yb] checked 92610000 states: fails = 0
+  [S3] checked 37574880 states: fails = 0
+  [COMPARISON] 4*S*c0 = 115462837236, S*C0 = 195820675182, S*Phi(T_3) = 146044806770 (S = 100000000000)
+  [TREES] exact-rational GMP drift check on 34 concrete/boundary trees: fails = 0
+=== VERDICT: PASS (total_fails = 0, exact P/Q = 565775/1000000) ===
+Python exact-Fraction tree check (b3f18_hi.bin): 21 trees checked, fails = 0
+Verifying b3f18_lo.bin | mode=LOWER | lambda = 565673/1000000 | D0=18 KT=17 LF=14000 KF=180 | threads=4
+  [f ] checked 5068364 states: fails = 0
+  [g ] checked 83370 states: fails = 0
+  [hV] checked 15590190 states: fails = 0
+  [hC] checked 7798560 states: fails = 0
+  [P4] checked 102128250 states: fails = 0
+  [Yt] checked 175910700 states: fails = 0
+  [Yb] checked 92610000 states: fails = 0
+  [S3] checked 37574880 states: fails = 0
+  [COMPARISON] 4*S*c0 = 113465364604, S*C0 = 184124847315, S*Phi(T_3) = 146042017510 (S = 100000000000)
+  [TREES] exact-rational GMP drift check on 34 concrete/boundary trees: fails = 0
+=== VERDICT: PASS (total_fails = 0, exact P/Q = 565673/1000000) ===
+=== PRODUCTION IMPOSSIBLE-EXPONENT NEGATIVE CONTROLS ===
+Verifying b3f18_lo.bin | mode=LOWER | lambda = 566000/1000000 | D0=18 KT=17 LF=14000 KF=180 | threads=4
+  [f ] checked 5068364 states: fails = 9401709
+  [g ] checked 83370 states: fails = 584
+  [hV] checked 15590190 states: fails = 2532157
+  [hC] checked 7798560 states: fails = 419302
+  [P4] checked 102128250 states: fails = 51558343
+  [Yt] checked 175910700 states: fails = 19959099
+  [Yb] checked 92610000 states: fails = 79483765
+  [S3] checked 37574880 states: fails = 818627
+  [COMPARISON] 4*S*c0 = 113465364604, S*C0 = 184124847315, S*Phi(T_3) = 146042017510 (S = 100000000000)
+=== VERDICT: FAIL (total_fails = 164173586, exact P/Q = 566000/1000000) ===
+  [REJECTED OK] b3f18_lo override 566000/1000000
+Verifying b3f18_hi.bin | mode=UPPER | lambda = 565000/1000000 | D0=18 KT=17 LF=14000 KF=180 | threads=4
+  [f ] checked 5068364 states: fails = 9640894
+  [g ] checked 83370 states: fails = 1373
+  [hV] checked 15590190 states: fails = 5825446
+  [hC] checked 7798560 states: fails = 1132643
+  [P4] checked 102128250 states: fails = 68546365
+  [Yt] checked 175910700 states: fails = 41222045
+  [Yb] checked 92610000 states: fails = 86421347
+  [S3] checked 37574880 states: fails = 1661227
+  [COMPARISON] 4*S*c0 = 115462837236, S*C0 = 195820675182, S*Phi(T_3) = 146044806770 (S = 100000000000)
+=== VERDICT: FAIL (total_fails = 214451340, exact P/Q = 565000/1000000) ===
+  [REJECTED OK] b3f18_hi override 565000/1000000
+=== FAST D0=10 UBSAN + 36/36 NEGATIVE CONTROLS ===
+Verifying smoke_lo.bin | mode=LOWER | lambda = 565597/1000000 | D0=10 KT=9 LF=4000 KF=80 | threads=4
+  [f ] checked 648164 states: fails = 0
+  [g ] checked 10998 states: fails = 0
+  [hV] checked 692874 states: fails = 0
+  [hC] checked 345072 states: fails = 0
+  [P4] checked 1099800 states: fails = 0
+  [Yt] checked 2606526 states: fails = 0
+  [Yb] checked 912600 states: fails = 0
+  [S3] checked 246480 states: fails = 0
+  [COMPARISON] 4*S*c0 = 113027843780, S*C0 = 183278518595, S*Phi(T_3) = 146044432538 (S = 100000000000)
+  [TREES] exact-rational GMP drift check on 19 concrete/boundary trees: fails = 0
+=== VERDICT: PASS (total_fails = 0, exact P/Q = 565597/1000000) ===
+Verifying smoke_hi.bin | mode=UPPER | lambda = 565859/1000000 | D0=10 KT=9 LF=4000 KF=80 | threads=4
+  [f ] checked 648164 states: fails = 0
+  [g ] checked 10998 states: fails = 0
+  [hV] checked 692874 states: fails = 0
+  [hC] checked 345072 states: fails = 0
+  [P4] checked 1099800 states: fails = 0
+  [Yt] checked 2606526 states: fails = 0
+  [Yb] checked 912600 states: fails = 0
+  [S3] checked 246480 states: fails = 0
+  [COMPARISON] 4*S*c0 = 115564374748, S*C0 = 194851617082, S*Phi(T_3) = 146049008124 (S = 100000000000)
+  [TREES] exact-rational GMP drift check on 19 concrete/boundary trees: fails = 0
+=== VERDICT: PASS (total_fails = 0, exact P/Q = 565859/1000000) ===
+  [REJECTED OK] override-pq impossible (571252/1000000) -> === VERDICT: FAIL (total_fails = 3427371, exact P/Q = 571252/1000000) ===
+  [REJECTED OK] corrupted magic -> FAIL: invalid header (err=-1)
+  [REJECTED OK] invalid mode=3 -> FAIL: invalid header (err=-2)
+  [REJECTED OK] invalid KT < D0-1 -> FAIL: invalid header (err=-6)
+  [REJECTED OK] truncated file (-8 bytes) -> FAIL: file size 52653144 != expected 52653152
+  [REJECTED OK] nonzero g[INF, INF] = 1 -> === VERDICT: FAIL (total_fails = 1, exact P/Q = 565597/1000000) ===
+  [REJECTED OK] perturb f[2] by +100000000000 -> === VERDICT: FAIL (total_fails = 142, exact P/Q = 565597/1000000) ===
+  [REJECTED OK] perturb g[163] by +100000000000 -> === VERDICT: FAIL (total_fails = 81, exact P/Q = 565597/1000000) ===
+  [REJECTED OK] perturb hV[0] by +100000000000 -> === VERDICT: FAIL (total_fails = 81, exact P/Q = 565597/1000000) ===
+  [REJECTED OK] perturb hC[0] by +100000000000 -> === VERDICT: FAIL (total_fails = 101, exact P/Q = 565597/1000000) ===
+  [REJECTED OK] perturb qP4[0] by +100000000000 -> === VERDICT: FAIL (total_fails = 1, exact P/Q = 565597/1000000) ===
+  [REJECTED OK] perturb qYt[0] by +100000000000 -> === VERDICT: FAIL (total_fails = 1, exact P/Q = 565597/1000000) ===
+  [REJECTED OK] perturb qYb[0] by +100000000000 -> === VERDICT: FAIL (total_fails = 1, exact P/Q = 565597/1000000) ===
+  [REJECTED OK] perturb qS3[0] by +100000000000 -> === VERDICT: FAIL (total_fails = 1, exact P/Q = 565597/1000000) ===
+  [REJECTED OK] perturb c2_f[1] by +1000000000000 -> === VERDICT: FAIL (total_fails = 1416, exact P/Q = 565597/1000000) ===
+  [REJECTED OK] perturb c3_f[1] by +1000000000000 -> === VERDICT: FAIL (total_fails = 262, exact P/Q = 565597/1000000) ===
+  [REJECTED OK] perturb Yp_ref[78] by +1000000000000 -> === VERDICT: FAIL (total_fails = 94, exact P/Q = 565597/1000000) ===
+  [REJECTED OK] perturb Yw_ref[1] by +1000000000000 -> === VERDICT: FAIL (total_fails = 74, exact P/Q = 565597/1000000) ===
+Negative controls summary (smoke_lo.bin): 18/18 rejected cleanly (failures=0)
+  [REJECTED OK] override-pq impossible (560200/1000000) -> === VERDICT: FAIL (total_fails = 4268299, exact P/Q = 560200/1000000) ===
+  [REJECTED OK] corrupted magic -> FAIL: invalid header (err=-1)
+  [REJECTED OK] invalid mode=3 -> FAIL: invalid header (err=-2)
+  [REJECTED OK] invalid KT < D0-1 -> FAIL: invalid header (err=-6)
+  [REJECTED OK] truncated file (-8 bytes) -> FAIL: file size 52653144 != expected 52653152
+  [REJECTED OK] nonzero g[INF, INF] = 1 -> === VERDICT: FAIL (total_fails = 1, exact P/Q = 565859/1000000) ===
+  [REJECTED OK] perturb f[2] by -100000000000 -> === VERDICT: FAIL (total_fails = 143, exact P/Q = 565859/1000000) ===
+  [REJECTED OK] perturb g[163] by -100000000000 -> === VERDICT: FAIL (total_fails = 82, exact P/Q = 565859/1000000) ===
+  [REJECTED OK] perturb hV[0] by -100000000000 -> === VERDICT: FAIL (total_fails = 82, exact P/Q = 565859/1000000) ===
+  [REJECTED OK] perturb hC[0] by -100000000000 -> === VERDICT: FAIL (total_fails = 102, exact P/Q = 565859/1000000) ===
+  [REJECTED OK] perturb qP4[0] by -100000000000 -> === VERDICT: FAIL (total_fails = 2, exact P/Q = 565859/1000000) ===
+  [REJECTED OK] perturb qYt[0] by -100000000000 -> === VERDICT: FAIL (total_fails = 2, exact P/Q = 565859/1000000) ===
+  [REJECTED OK] perturb qYb[0] by -100000000000 -> === VERDICT: FAIL (total_fails = 2, exact P/Q = 565859/1000000) ===
+  [REJECTED OK] perturb qS3[0] by -100000000000 -> === VERDICT: FAIL (total_fails = 2, exact P/Q = 565859/1000000) ===
+  [REJECTED OK] perturb c2_f[1] by +1000000000000 -> === VERDICT: FAIL (total_fails = 1110, exact P/Q = 565859/1000000) ===
+  [REJECTED OK] perturb c3_f[1] by +1000000000000 -> === VERDICT: FAIL (total_fails = 138, exact P/Q = 565859/1000000) ===
+  [REJECTED OK] perturb Yp_ref[78] by +1000000000000 -> === VERDICT: FAIL (total_fails = 49, exact P/Q = 565859/1000000) ===
+  [REJECTED OK] perturb Yw_ref[1] by +1000000000000 -> === VERDICT: FAIL (total_fails = 6, exact P/Q = 565859/1000000) ===
+Negative controls summary (smoke_hi.bin): 18/18 rejected cleanly (failures=0)
+Tue Nov 24 09:10:56 UTC 2026

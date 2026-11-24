@@ -1,0 +1,61 @@
+# A bulk drift test with a newborn occupation correction
+
+Consider the continuous-time undirected tree from its first core. Orient core edges away from this founder. Write $C$ for the core count, $B=\mathcal L C=\sum L_x/D_x$ for the promotion intensity and $l\le\mu\le u$ for a previous interval with $l>0$. The [mean asymptotic](../fringe/asymptotics.md) implies that $I(s)=\int_0^\infty e^{-st}\mathbb E C(t)dt$ tends to infinity as $s\downarrow\mu$. For an integrable score $Z$ write $[Z]_s=I(s)^{-1}\int_0^\infty e^{-st}\mathbb E Z(t)dt$. Then $[C]_s=1$ and $[B]_s\to\mu$ by integration of $d\mathbb E C/dt=\mathbb E B$.
+
+## 1. Ignoring the initial centre
+
+Fix a radius $r$. For each fixed integer $k$ the number $N_r(t)$ of cores within core distance $r$ of the founder satisfies $\mathbb E(1+N_r(t))^k\le A_{r,k}(1+t)^{rk}$. Each core promotes at predictable rate at most one. Extend its promotion process with additional rate to a rate-one Poisson proposal clock, and retain both accepted and unused descendants in a dominating independent birth tree. Ignoring the delay between parent and child only increases the size of the first $r$ generations by time $t$. Given the first Poisson($t$) generation, use independent depth-$(r-1)$ copies for its descendants. The elementary bound $(\sum_{i=1}^m x_i)^k\le m^{k-1}\sum_i x_i^k$ and the moments of the Poisson distribution prove the assertion by induction.
+
+Consequently every error with absolute expected size $O((1+t)^d)$ has $[\,\cdot\,]_s\to0$. This applies to sums of finitely many fixed-shape terms supported within fixed distance of the founder, provided the value of each is bounded polynomially in the core degrees there. Indeed all the core neighbours needed to determine those degrees lie within one further level. The condition concerns each omitted expression. For a leaf-gain drift it requires a bound on $L\,|\Delta^L f|$, not just on $|f|$. A bounded table with linear interpolation in $1/D$ beyond its cutoff has this property, since $D\,|(D+1)^{-1}-D^{-1}|\le1/D$. Any separate analytic vertex tail requires its own increment check. Alternatively, the integral of the generator of an entire omitted score of polynomial expected size vanishes after normalization by integration by parts. This latter statement applies to the complete generator of that score.
+
+These observations permit a test on ordinary noninitial core vertices, provided all omitted boundary errors satisfy one of the two conditions just stated. They also allow ancestral orientations of bounded motifs without a table of founder states.
+
+There is a separate global estimate for sums indexed by connected sets. For any fixed integer $j$, from the three-vertex seed,
+$$
+ \mathbb E\sum_{v\ {\rm core}}(1+c_v(t))^j\le K_j e^{\mu t}.
+$$
+A newborn starts with core degree one and gains one core neighbour per promotion of its own. Its subsequent promotions up to age $a$ are dominated by a rate-one Poisson clock, conditionally on the history at its birth. Thus its expected contribution is at most a polynomial $P_j(a)$. The same argument applies to the initial core. The mean birth intensity at time $s$ is $\mathbb E B(s)\le\mathbb E C(s)\le K e^{\mu s}$. Compensating births bounds the sum above by $P_j(t)+K\int_0^t e^{\mu s}P_j(t-s)\,ds$, as required. For any $r$, the number of connected sets of $r$ cores is at most $A_r\sum_v(1+c_v)^{r-1}$. Assign a set to one of its vertices of maximal physical core degree. For each rooted abstract shape with $r$ vertices, there are at most $c_v^{r-1}$ embeddings with that assigned vertex and all selected degrees at most $c_v$. There are finitely many such shapes and orders. In particular any uniformly bounded score per connected set of bounded size gives an expected total $O(e^{\mu t})$. This estimate covers sets with more than one high-degree intermediate vertex.
+
+## 2. General signed test
+
+Let $\Phi$ be a physical potential with $|\Phi|\le K C$ up to an error of polynomial expected size. Suppose every limit point $m$ of $[\Phi]_s$ as $s\downarrow\mu$ satisfies $0<m_0\le m\le M$. The comparison can be pointwise or can come from another discounted occupation test. Let $\sigma=1$ for an upper test and $-1$ for a lower test. Suppose that physical motif algebra at a trial $\lambda$ gives
+$$
+ \sigma(\lambda\Phi-\mathcal L\Phi)
+     \ \ge\ \sum_{v\ne o} f(S_v,p_{\rm parent(v)})-e C-E(T), \tag{1}
+$$
+where $f\ge0$, $e\ge0$, and $[|E|]_s\to0$. In particular a known sum of worst positive violations of local rows, per core, may supply $e$. A sum of disjoint unsigned surplus terms may supply $f$. When the same rows have both uses one may add their verified per-row deficits to make nonnegative scores and subtract those deficits once in the total.
+
+Let $v_0\ge0$ be a uniform lower bound on the expected discounted lifetime reward at discount $u$ for a single newborn in the physical model with arbitrary exterior. It suffices to have a bounded nonnegative old-vertex score $V$ with initial value $v_0$ and
+$$
+ (u-A)V\le f. \tag{2}
+$$
+Here $A$ is the generator of the old vertex's descriptor, with its actual current external inputs and with no additional newborn score. Summing over all noninitial vertices adds precisely $v_0 B$ to the physical generator of the sum $T=\sum_{v\ne o}V_v$. Thus $\sum f\ge (u-\mathcal L)T+v_0B$. The same conclusion with a limiting discounted integral follows directly by compensating the births if the uniform lifetime bound is given instead. For that version first use $s>\mu$ and its corresponding finite-horizon reward, then let $s\downarrow\mu$ and increase the horizon to infinity. Conditional expectation at the time of birth and the uniform bound at discount $u\ge\mu$ give the inequality even when $u=\mu$.
+
+Localization on finite time intervals followed by integration by parts gives
+$$
+     \sigma(\lambda-\mu)m \ \ge\ \mu v_0-e \ \ge\ l v_0-e .       \tag{3}
+$$
+For the single-vertex construction $0\le T\le\|V\|_\infty C$. More generally the same argument applies to a nonnegative sum $T$ over bounded-size connected sets satisfying the displayed summed drift inequality and $\mathbb E T(t)=O(e^{\mu t})$. The global estimate in Section 1 gives the latter bound for bounded scores. In both cases $[T]_s$ stays bounded, by the lower mean comparison $\mathbb E C(t)\ge k e^{\mu t}$ at large $t$. The normalized boundary contribution of $T(0)$ or $\Phi(0)$ tends to zero. Integration by parts can first be carried out up to finite time for the signed generator, so a polynomial bound on jump rates on every finite-size tree suffices there. The integrated endpoint $e^{-s t}\mathbb E|\Phi(T_t)|$ tends to zero for $s>\mu$, as does the analogous endpoint for $T$.
+
+In particular $\sigma(\lambda-\mu)\ge (l v_0-e)/M$ if $l v_0\ge e$, and it is at least $(l v_0-e)/m_0$ otherwise. A positive net credit proves a strict improvement over $\lambda$ even if a few relaxed rows have the wrong sign. Bounds on the signed net credit, its multiplicity and the mean potential are required before applying this to any new numerical witness.
+
+## 3. Exact finite-fringe lifetime test
+
+The code [small_fringe.py](small_fringe.py) applies (2) to the originally shipped motif certificates. A descriptor is the complete unmarked planted fringe $X$ of the focal core, up to $N$ vertices, counting its own root and leaves while excluding the exterior parent. It starts at $J$, one core with one leaf. Every internal event adds exactly one vertex. Their total rate with the parent silenced is $n(X)-1/D_o(X)$. Write $r^0(X,Y)$ for these rates, $X^+$ for adding one root leaf and $p\in[0,1/2]$ for the exterior parent's current reciprocal degree. With boundary $V=0$ past $N$, compute in reverse size order
+$$
+ V(X)=\min_{p\in\{0,1/2\}}
+ \frac{ f(X,p)+\sum_Y r^0(X,Y)V(Y)+p V(X^+)}
+ {u+n(X)-1/D_o(X)+p}.                                     \tag{4}
+$$
+The implementation rounds each result down to a multiple of $10^{-15}$. Each numerator is affine in $p$ for the shipped tables on the specified range $2\le N\le16$. Indeed every edge parent with a child has $D_o<16$ and at most seven children, so its middle vertical table is active, and the nonlinear exterior-parent edge transfer is absent. The remaining dependence on this exterior reciprocal is through the root's true rate in a vertical triple or cherry. The denominator is positive and affine, so endpoints suffice for (2). Predictable variation or dependence of $p$ on the rest of the tree is allowed.
+
+For $n(X)\le N$, $f$ sums the published nonnegative individual surpluses whose motif's shallowest vertex is the focal root. This selects its vertex, every edge to a child, each supported vertical path to a grandchild and each supported cherry of children. All interior states and their needed degree and leaf-count increments are evaluated in rational arithmetic. For $n(X)>N$ set both $f$ and $V$ to zero. Any loss from the discarded future has the favourable sign. Each selected physical motif has a unique shallowest vertex. The [whole-tree comparison](apex_check.py) tests the apex calculation against the independent shipped physical decomposition. Thus (1) has $e=0$ at each original endpoint. A pointwise upper bound for $\Phi/C$ comes from the positive maxima of one vertex, one edge, one vertical path and at most $\binom{K_{cu}}2$ cherry scores after assigning vertical terms to their bottoms and cherry terms to their apices. The lower certificate needs no positive lower comparison in (3) when the original bracket already gives $\sigma(\lambda-\mu)\ge0$ and $e=0$.
+
+With $N=11$, there are 3,046 planted types and the resulting outward endpoints are $0.5650406680$ and $0.5664704151$. This example is weaker than the separate calculation that follows old motifs at unbounded total fringe size. Its purpose is a generator-independent lifetime calculation applicable also to localized surplus of a sharper starting potential. Replay each file from the repository root with Python 3.12 and its standard library.
+
+~~~sh
+python3 -B round2/occupation/small_fringe.py --size 11
+python3 -B round2/occupation/apex_check.py
+~~~
+
+[Full numeric output](../outputs/occupation-small11.txt) · [Apex comparison and forced error](../outputs/occupation-apex.txt)

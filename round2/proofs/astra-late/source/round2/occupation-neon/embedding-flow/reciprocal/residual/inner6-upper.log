@@ -1,0 +1,10 @@
+discount original 282836785161/500000000000 22631/40000
+degree and arity census hashes 0b6c6f207b7a5b0263a136d4425ada3138e89effa0f4068a767e869226a56c01 ba604c1e281f782a249e9fbbde750491ad1b4cdebb94edb562e28e63b9e2ecdc
+upper authenticated 1c4dec226208b02e2126dac5dcd911cfd714635bdaf322eac01e5ef0735fda41 EDGE margin -260157326233781321243349/125000000000000000000000000000 retained 22473874537713/10000000000000000000 denominator 273436004214812983/200000000000000000 ead947b already booked 101984612445685206436931/1700000000000000000000000000000
+frozen extraction CPU/wall 50.678 65.085
+H:F:G 9 8 6 moments arity/order/slabs 4 1 1 columns/eq/ineq 13333 1665 7573
+ipm round 1 original columns in master 13333 status 0 iterations 1720 crossover 666 solver CPU/wall 14.071/14.948
+priced all 13333 negative 2260 center 1.9152096074469e-07 repair 1.6340442525123462e-17 value 1.9152096072834955e-07 exact pricing CPU 0.289
+upper moments joint exact floor 828788344197293584605355477/7650000000000000000000000000000000 decimal 1.0833834564670504e-07 repair before conversion 1.6340442525123462e-17 solver CPU/wall 15.281 16.349
+upper best 1.0833834564670504e-07 share of ead947b reward 1.8059115309918572 exponent-equivalent before legacy debit 7.924219486589176e-08 gain vs matched boxes n/a positive difference vs ead947b reward (comparison only) 4.8347397149243156e-08 frozen mask exact False
+total CPU/wall 67.257 82.933

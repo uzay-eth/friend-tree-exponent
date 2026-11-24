@@ -1,0 +1,48 @@
+# Cold audit: Neon D18 census corrector and all-seven composition
+
+**Withdraw `0.565770220167` and its faulty mixed descendant.** The old upper solve used `861071198001/10^15` at `k=1` instead of the authenticated `861071198001/10^18`. With only that mutation restored, the reconstructed witness at the withdrawn trial has **negative** `(s−ℒ)Φnew` on a physical seven-core tree, even when every original non-first-body row is included. With the true floor the construction's margin at that trial is `−4.15062570350932e−6`. This falsifies the old witness, not the numerical inequality for μ by some other proof.
+
+**Correct in scope after repair.** The repaired pointwise trials are **`0.565675148075` lower** and **`0.565773278615` upper**. Repricing only the disjoint original non-first-body rewards yields **`[0.565676930574, 0.565771634792]`** using a stationary bound on the correction, or **`[0.565676930572, 0.565771634797]`** using its uniform bound. These conclusions use the accepted original full GMP receipts and the inherited stationary/stable-age identities; the pointwise trials themselves do not need stationarity. The separate size-20/high-parent release is unaffected.
+
+## Physical regression and sign
+
+Use parent vector `(-1,0,1,2,1,0,5)` and leaf stocks `(62,63,0,1,4,65,1)`, founder index zero. Direct complete-potential differences at `s=.565770220167`, with the single old floor mutation frozen in the independent fixture (`interpolate_sol.py`), give
+
+```text
+(s−ℒ)Φnew = −902875978288208312083656815181293852064686619898589
+             /1097886886904005745377459200000000000000000000000000000
+```
+
+All physical receive rates use the actual donors. A leaf sending into core `i` increments its stock; a send by `i` into one of its own leaves promotes that leaf at total rate `L_i/D_i`, changes the old core's arity at the same degree, and creates the newborn. The pointwise generator is in continuous physical time, with no extra size, degree, or birth-rate factor. The fixture traces each incoming donor in all eight charged families and compares their sum to the full original generator at the original trial. The repaired witness was checked on this same tree at its **repaired** trial. A separate opposed example at `.56572365` gives both raw residuals negative on a three-core chain with 14,001 leaves per core, and both positive at 1,000,000 leaves per core. Since both potentials are positive, no positive uncorrected mixture has a consistent sign there.
+
+Write `ε=(+1,−1)`, `δ=ε(s−λ)`, `F` for the old signed `f` charge, and `G` for the sum of the seven other old signed charges. Let `E=q+t(k−h)` be the recharged pointwise upper allocation divided into normalized units, `M≥E` its raw pointwise cap in those same normalized units, and `r=F+δ(M−E)`. For the original witness, retaining `G` throughout gives
+
+```text
+ε(ℒ−s)Φ ≥ G − δ M C + Σ_nonfounder r.
+```
+
+Here the founder's charged `F` and nonnegative deficit are omitted. Take `(s−A)z≤r` at every nonfounder census and put `V=z−z(J)` there, zero at the founder. At every birth the added newborn correction is exactly zero, even when the founder promotes. Then `(ℒ−s)ΣV ≥ −Σr+s z(J)(C−1)`. The signed constant `−δ M/s` contributes **`+δ M`** to the signed residual, as the generator kills constants. Consequently `Φnew=Φ+ε(ΣV−δ M/s)` has signed residual at least `G+m(C−1)`, with `m=s z(J)−δ M`. The fixture's founder-only tree fails if the constant sign is reversed. The upper physical witness subtracts `ΣV` and adds the constant `δ M/s`; it does not add the same physical correction as the lower witness. The strict original comparison to `C`, and the verified correction norm less than `.01 C`, give positive comparison for `Φnew`, including the seed. The exact repaired margins are `1.0323286809359529e−12` and `8.9701175021711119e−13` per nonfounder.
+
+## Pointwise allocation, units and saturated states
+
+- The exact cap is obtained from raw integer potential tables divided once by `S=10^11`; transfer centers use their own `Sr=10^9`. The signed first-body rows are already in normalized potential units per unit time. The recharge is `−1/500` lower and `−9/1000` upper in normalized units. Summing `k−h` over cores gives zero, including the founder. The resulting pointwise caps are `1.81673012507` and `1.82969241081`. The older **stationary** denominators are not pointwise caps: even the one-core `T3` violates both if treated that way.
+- For incoming `g` use the full table parent-axis support; for bottom-owned `hV,P4,Yb` maximize over all live compatible ancestors, not an assumed degree or the bottom descriptor as a proxy. There is only one ancestor chain for each bottom, but a bend can have `k_top−1` side choices, so the independent reduction maximizes the multiplicity-weighted slice over top descriptors. Optional terms allow zero. `hC,Yt,S3` use the exact branching-core multiplicities. Only the allocated slot retains its physical Bernstein contraction. The independent reduction agrees with the source on every arity-bin maximum and all 2,079 actual finite nonfounder census states per sign. Bounds apply to both founder flags.
+- At `L=LF` and `L>LF`, the first-body stock index clamps at `LF`; it does not clamp the physical degree or the promotion rate. All ten floors were recomputed from the hashed original payloads, checking finite stocks, the seam, and above-cap Bernstein/rate corners. Higher roles with stricter arity or degree support vanish outside it; the mandatory edge still uses the correct tail controls. At `k≥KF+1=181`, `f` is its overflow entry, and all retained tail control labels have already saturated at `K+1=18`. The negative recharge only decreases for larger true `k`, so the overflow cap is valid without capping actual arity.
+- For `D>64`, gains leave `z` unchanged; promotions use `b=L/D` with `max(0,1−(k+1)/65)≤b≤1` until the arity-overflow bin. The zero lower corner for large arity is necessary, as `L` can really be zero. In the overflow bin both transitions leave `z` unchanged, so the inequality there is `s z≤r`. At `D=64`, gains use the live degree-tail continuation. With that continuation killed, both repaired margins become negative (`−7.11279e−8` and `−6.03576e−8`); the producer's stock-only and deficit-only tail ablations are likewise negative at these trials. These are failures of those constructions, not impossibility results.
+
+## Why the original non-first-body prices transfer
+
+The same physical growth process supplies both the stationary law and the generator. The corrected potential is a new observable of that process, not a change of measure. The exact decomposition retained `G` **at the original blob and original λ**, before paying the entire `−δΦ` through the pointwise allocation. No `f` occupation numerator is left available: the corrector already uses that row, including the promotion terms assigned to it. Conversely, a `g` or higher charged embedding remains available even when the identical physical arrow contributes to `F` on a different charged row. An opposite blob, a raw ancestor substitution, or a repricing of the same table at `s` does not follow from this argument.
+
+The existing [size-20/high-parent audit](neon-high-parent-sol.md) establishes the relevant incidence seams: size-12 and size-13–20 higher are disjoint by the whole owner's planted size; paid `g` edges in the suffix are actual inner→inner; the new mixed edges have a degree-18–191 parent and virgin child; the virgin `hC` pair requires at least five cores, outside the higher suffix. No diagnostic, fringe young-arm, or competing baseline credit is included. The exact physical stationary rewards are unchanged. After taking normalized means of the retained signed inequality, `ε(μ−s)·barΦnew ≥ m+paid`; the factor `(C−1)/C` tends to one. The global constant has zero stationary mean per core. Bound `barΦnew` by the old **stationary** ceiling plus an upper bound on the signed correction `εV`, not by adding its absolute norm or subtracting the wrong sign. The smaller mean cap follows from the nonnegative gap `H−εV`, `H=sup εV`; before the degree cut the physical Bellman subsolution at the upper prior discount prices this gap, multiplied once by the lower prior. Above the cut the gap reward is conservatively discarded. The lower mean offset is negative (`−4.33365768308e−7`); the upper is positive. The producer includes infeasible zero entries in its upper supremum through a zero-rate lookup, yielding a slightly looser valid cap than the feasible-state-only fixture (`+1.07790193289e−6` versus `+1.06213583139e−6` for the mean offset); both give the same outward endpoints.
+
+## Reproduction
+
+From the repository root, with assertions enabled and the two original
+payload paths and interpreter set as in the addendum instructions (`occupation-neon/interpolate/compose/README.md#one-command-archive-replay`):
+
+```sh
+OPENBLAS_NUM_THREADS=1 nice -n 15 taskset -c 8 "$PYTHON" -Bu round2/checks/interpolate_sol.py "$D18_LOWER" "$D18_UPPER"
+```
+
+The independent fixture verified both complete payload hashes, 2,079 first-body rows, five all-stock floors, 4,521 Bellman corners, and 18 exact whole-tree all-eight incidence checks per side, including the frozen negative and repaired positive regression. It replays size-12 higher and retains the exact previously audited size-20/high-parent rewards for its independent composition. The full compose replay re-extracted the denominator and replayed all three retained reward blocks, checked the archived GMP receipts, and printed `PASS composition {'lower': '0.565676930574', 'upper': '0.565771634792'}`. No new exhaustive GMP run is claimed. The repaired optional mixed witness and later motif lifts are outside this verdict.

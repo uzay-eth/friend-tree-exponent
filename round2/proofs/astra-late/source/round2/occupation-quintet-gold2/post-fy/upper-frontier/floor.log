@@ -1,0 +1,4 @@
+literal physical checks {'g outgoing': 74, 'g': 40, 'h3 outgoing': 64, 'h3': 37, 'FY gaps': 4} distinct registered paths 8
+original upper Gold2 {'host': 5, 'stock': 4, 'receiver': 120, 'rstock': 10, 'donor': 7, 'tstock': 3, 'old': 80, 'last': 120, 'mother_min_stock': 2, 'middle_min': 2, 'child_min': 2, 'ceiling': False, 'fixtures': True, 'reserve': False}
+normalized 120607099996138877416354587/1363768332385154760704000000000000 8.843664802305812e-08 ticks 120607099996138877416354587/1240340072750000000000 97237.12282288581 states 176562 paid 56457 CPU seconds 18.186811731
+wall=60.20 rss=106680 exit=0

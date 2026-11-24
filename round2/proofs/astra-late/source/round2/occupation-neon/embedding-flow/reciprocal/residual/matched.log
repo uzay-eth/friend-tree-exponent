@@ -1,0 +1,82 @@
+discount original 282836785161/500000000000 22631/40000
+degree and arity census hashes 0b6c6f207b7a5b0263a136d4425ada3138e89effa0f4068a767e869226a56c01 ba604c1e281f782a249e9fbbde750491ad1b4cdebb94edb562e28e63b9e2ecdc
+lower authenticated 9921eee052c489f07e8eba63d65c1dac5e85e4e495d8427e3d67a1a0642025ec EDGE margin -1175262418391579131304677/500000000000000000000000000000 retained 24185517229389/10000000000000000000 denominator 1357493815758092773/1000000000000000000 ead947b already booked 18402664634233592780094779/178500000000000000000000000000000
+frozen extraction CPU/wall 89.469 115.6
+upper authenticated 1c4dec226208b02e2126dac5dcd911cfd714635bdaf322eac01e5ef0735fda41 EDGE margin -260157326233781321243349/125000000000000000000000000000 retained 22473874537713/10000000000000000000 denominator 273436004214812983/200000000000000000 ead947b already booked 101984612445685206436931/1700000000000000000000000000000
+frozen extraction CPU/wall 41.777 61.448
+H:F:G 5 4 4 box arity/order/slabs 4 0 1 columns/eq/ineq 1999 154 1099
+lower exact frozen objective corner checks 300
+ipm round 1 original columns in master 1999 status 0 iterations 9 crossover 145 solver CPU/wall 0.050/0.051
+priced all 1999 negative 58 center 1.73e-18 repair 1.47300035789228e-19 value 1.582699964210772e-18 exact pricing CPU 0.007
+lower box joint exact floor 2282993425734203/2550000000000000000000000000000000 decimal 8.95291539503609e-19 repair before conversion 1.47300035789228e-19 solver CPU/wall 0.394 0.585
+upper exact frozen objective corner checks 300
+ipm round 1 original columns in master 1999 status 0 iterations 8 crossover 131 solver CPU/wall 0.048/0.048
+priced all 1999 negative 65 center 2.25e-18 repair 7.945047713452041e-20 value 2.1705495228654795e-18 exact pricing CPU 0.006
+upper box joint exact floor 41745964937441/34000000000000000000000000000000 decimal 1.2278224981600294e-18 repair before conversion 7.945047713452041e-20 solver CPU/wall 0.069 0.07
+H:F:G 5 4 4 share arity/order/slabs 4 0 1 columns/eq/ineq 1999 154 1141
+ipm round 1 original columns in master 1999 status 0 iterations 1 crossover 44 solver CPU/wall 0.083/0.083
+priced all 1999 negative 59 center 1.1521662620397e-07 repair 1.3615587727790685e-19 value 1.1521662620383385e-07 exact pricing CPU 0.013
+lower share joint exact floor 55398750259401293139954489/850000000000000000000000000000000 decimal 6.517500030517799e-08 repair before conversion 1.3615587727790685e-19 solver CPU/wall 0.112 0.112
+ipm round 1 original columns in master 1999 status 0 iterations 27 crossover 64 solver CPU/wall 0.080/0.080
+priced all 1999 negative 76 center 6.620902541674e-08 repair 4.983407964454568e-19 value 6.620902541624166e-08 exact pricing CPU 0.013
+upper share joint exact floor 31834791425533642299163689/850000000000000000000000000000000 decimal 3.745269579474546e-08 repair before conversion 4.983407964454568e-19 solver CPU/wall 0.109 0.109
+H:F:G 5 4 4 moments arity/order/slabs 4 1 1 columns/eq/ineq 4069 285 2305
+ipm round 1 original columns in master 4069 status 0 iterations 13 crossover 452 solver CPU/wall 0.452/0.452
+priced all 4069 negative 729 center 1.4627373337835e-07 repair 2.657345244982269e-19 value 1.4627373337808426e-07 exact pricing CPU 0.073
+lower moments joint exact floor 210995121760988532318249821/2550000000000000000000000000000000 decimal 8.274318500430923e-08 repair before conversion 2.657345244982269e-19 solver CPU/wall 0.564 0.564
+ipm round 1 original columns in master 4069 status 0 iterations 185 crossover 526 solver CPU/wall 0.503/0.503
+priced all 4069 negative 688 center 8.497953687461e-08 repair 4.491599456073294e-19 value 8.497953687416084e-08 exact pricing CPU 0.065
+upper moments joint exact floor 7210601704187492103187063/150000000000000000000000000000000 decimal 4.8070678027916615e-08 repair before conversion 4.491599456073294e-19 solver CPU/wall 0.608 0.608
+lower best 8.274318500430923e-08 share of ead947b reward 0.8025826051187126 exponent-equivalent before legacy debit 6.095290014864729e-08 gain vs matched boxes 8.274318500341394e-08 positive difference vs ead947b reward (comparison only) 0.0 frozen mask exact False
+upper best 4.8070678027916615e-08 share of ead947b reward 0.801298849774819 exponent-equivalent before legacy debit 3.5160459695828496e-08 gain vs matched boxes 4.8070678026688795e-08 positive difference vs ead947b reward (comparison only) 0.0 frozen mask exact False
+H:F:G 7 6 4 box arity/order/slabs 4 0 1 columns/eq/ineq 4362 500 2414
+lower exact frozen objective corner checks 1820
+ipm round 1 original columns in master 4362 status 0 iterations 16 crossover 21 solver CPU/wall 0.187/0.189
+priced all 4362 negative 72 center 2.07e-18 repair 2.2999371994828454e-19 value 1.8400062800517154e-18 exact pricing CPU 0.011
+lower box joint exact floor 2654149450721977/2550000000000000000000000000000000 decimal 1.0408429218517557e-18 repair before conversion 2.2999371994828454e-19 solver CPU/wall 0.231 0.282
+upper exact frozen objective corner checks 1820
+ipm round 1 original columns in master 4362 status 0 iterations 7 crossover 20 solver CPU/wall 0.190/0.222
+priced all 4362 negative 77 center 2.76e-18 repair 8.662927358012495e-20 value 2.673370726419875e-18 exact pricing CPU 0.011
+upper box joint exact floor 321354222266753/212500000000000000000000000000000 decimal 1.5122551636082494e-18 repair before conversion 8.662927358012495e-20 solver CPU/wall 0.232 0.282
+H:F:G 7 6 4 share arity/order/slabs 4 0 1 columns/eq/ineq 4362 500 2476
+ipm round 1 original columns in master 4362 status 0 iterations 37 crossover 90 solver CPU/wall 0.446/0.451
+priced all 4362 negative 318 center 1.694610339858718e-07 repair 8.887625522428647e-19 value 1.6946103398498306e-07 exact pricing CPU 0.055
+lower share joint exact floor 33550869843660100299831549/350000000000000000000000000000000 decimal 9.585962812474314e-08 repair before conversion 8.887625522428647e-19 solver CPU/wall 0.536 0.544
+ipm round 1 original columns in master 4362 status 0 iterations 1 crossover 100 solver CPU/wall 0.535/0.535
+priced all 4362 negative 269 center 1.157942039612e-07 repair 3.283941381262055e-19 value 1.157942039608716e-07 exact pricing CPU 0.045
+upper share joint exact floor 245631452914275432280949/3750000000000000000000000000000 decimal 6.550172077714012e-08 repair before conversion 3.283941381262055e-19 solver CPU/wall 0.617 0.619
+H:F:G 7 6 4 moments arity/order/slabs 4 1 1 columns/eq/ineq 7246 720 4098
+ipm round 1 original columns in master 7246 status 0 iterations 47 crossover 462 solver CPU/wall 1.690/1.692
+priced all 7246 negative 1313 center 1.9093161207741e-07 repair 3.84233356455369e-18 value 1.9093161207356767e-07 exact pricing CPU 0.150
+lower moments joint exact floor 37801738341146536258878907/350000000000000000000000000000000 decimal 1.080049666889901e-07 repair before conversion 3.84233356455369e-18 solver CPU/wall 1.912 1.932
+ipm round 1 original columns in master 7246 status 0 iterations 69 crossover 535 solver CPU/wall 1.981/2.042
+priced all 7246 negative 1279 center 1.3082845731959e-07 repair 5.011420842855044e-18 value 1.308284573145786e-07 exact pricing CPU 0.151
+upper moments joint exact floor 440336893265699394977232281/5950000000000000000000000000000000 decimal 7.400620054885704e-08 repair before conversion 5.011420842855044e-18 solver CPU/wall 2.203 2.281
+lower best 1.080049666889901e-07 share of ead947b reward 1.047613861207966 exponent-equivalent before legacy debit 7.956203220614652e-08 gain vs matched boxes 1.0800496668794926e-07 positive difference vs ead947b reward (comparison only) 4.908806273115634e-09 frozen mask exact False
+upper best 7.400620054885704e-08 share of ead947b reward 1.2336227781427413 exponent-equivalent before legacy debit 5.413054565463685e-08 gain vs matched boxes 7.400620054734478e-08 positive difference vs ead947b reward (comparison only) 1.4015252051395154e-08 frozen mask exact False
+H:F:G 9 8 6 box arity/order/slabs 4 0 1 columns/eq/ineq 9291 1320 5203
+lower exact frozen objective corner checks 6300
+ipm round 1 original columns in master 9291 status 0 iterations 117 crossover 49 solver CPU/wall 0.822/0.828
+priced all 9291 negative 324 center 8.997747510239612e-10 repair 2.8752523878073567e-19 value 8.997747507364361e-10 exact pricing CPU 0.036
+lower box joint exact floor 129789592912340178367999/255000000000000000000000000000000 decimal 5.089787957346673e-10 repair before conversion 2.8752523878073567e-19 solver CPU/wall 0.939 0.985
+upper exact frozen objective corner checks 6300
+ipm round 1 original columns in master 9291 status 0 iterations 2224 crossover 57 solver CPU/wall 1.360/1.372
+priced all 9291 negative 343 center 3.68e-18 repair 2.824829982614256e-19 value 3.3975170017385743e-18 exact pricing CPU 0.035
+upper box joint exact floor 76575128283407/39843750000000000000000000000000 decimal 1.921885572603156e-18 repair before conversion 2.824829982614256e-19 solver CPU/wall 1.47 1.487
+H:F:G 9 8 6 share arity/order/slabs 4 0 1 columns/eq/ineq 9291 1320 5293
+ipm round 1 original columns in master 9291 status 0 iterations 1624 crossover 182 solver CPU/wall 4.417/4.443
+priced all 9291 negative 835 center 2.3587799912249e-07 repair 4.969612979561464e-17 value 2.3587799907279387e-07 exact pricing CPU 0.126
+lower share joint exact floor 15010869363290630340082979/112500000000000000000000000000000 decimal 1.3342994989591673e-07 repair before conversion 4.969612979561464e-17 solver CPU/wall 4.635 4.665
+ipm round 1 original columns in master 9291 status 0 iterations 1745 crossover 200 solver CPU/wall 5.397/5.539
+priced all 9291 negative 815 center 1.7517376785995e-07 repair 1.230864828637491e-16 value 1.751737677368635e-07 exact pricing CPU 0.131
+upper share joint exact floor 1061266437366636130807160089/10710000000000000000000000000000000 decimal 9.909117062246836e-08 repair before conversion 1.230864828637491e-16 solver CPU/wall 5.614 5.771
+H:F:G 9 8 6 moments arity/order/slabs 4 1 1 columns/eq/ineq 13333 1665 7573
+ipm round 1 original columns in master 13333 status 0 iterations 393 crossover 637 solver CPU/wall 9.697/14.184
+priced all 13333 negative 2443 center 2.5711433845968e-07 repair 1.2946965893362924e-16 value 2.5711433833021036e-07 exact pricing CPU 0.298
+lower moments joint exact floor 139079663867918732074447943/956250000000000000000000000000000 decimal 1.4544278574422875e-07 repair before conversion 1.2946965893362924e-16 solver CPU/wall 10.132 14.64
+ipm round 1 original columns in master 13333 status 0 iterations 1720 crossover 666 solver CPU/wall 14.193/16.257
+priced all 13333 negative 2260 center 1.9152096074469e-07 repair 1.6340442525123462e-17 value 1.9152096072834955e-07 exact pricing CPU 0.295
+upper moments joint exact floor 828788344197293584605355477/7650000000000000000000000000000000 decimal 1.0833834564670504e-07 repair before conversion 1.6340442525123462e-17 solver CPU/wall 14.624 17.367
+lower best 1.4544278574422875e-07 share of ead947b reward 1.410748811183019 exponent-equivalent before legacy debit 1.0714066175174888e-07 gain vs matched boxes 1.4493380694849408e-07 positive difference vs ead947b reward (comparison only) 4.234662532835427e-08 frozen mask exact False
+upper best 1.0833834564670504e-07 share of ead947b reward 1.8059115309918572 exponent-equivalent before legacy debit 7.924219486589176e-08 gain vs matched boxes 1.0833834564478315e-07 positive difference vs ead947b reward (comparison only) 4.8347397149243156e-08 frozen mask exact False
+total CPU/wall 181.334 235.46

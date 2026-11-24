@@ -1,0 +1,67 @@
+# Neon-2 Claim 12 — adversarial audit
+
+Scope: `README.md` lines 1–166 and `cert_fractional_moments.py` lines 1–716. Read both in full. Claim 9 was consulted for the two cited arguments, not independently recertified. No proof or certificate source was edited; no commit was made.
+
+## Replay
+
+From `[local path]`, ran `python3 -B round2/neon2/fractional-moments-order/cert_fractional_moments.py` and the same command with `-OB`. Both exited 0; `cmp` exited 0. Both stdout files have SHA-256 `f5ddd0f8d2821b834cc67ec781ba0f9093907a47bb5744d27edc7ddb83e9302e`.
+
+| Check | Exact result |
+|---|---:|
+| Contiguous intervals | 14 |
+| Verifier rows | 664,349 |
+| Minimum `c_interval` | `8416841/20000000000 > 1/2500` |
+| Minimum early-gap coefficient | `416160241/1000000000 > 2/5` |
+| Unlabelled trees, sizes 2–7 | 24 |
+| Analytic-tail sample inequalities | 636 |
+| Planted controls rejected | 14/14 |
+
+## Proof audit, in source order
+
+- **README 1–43, hypotheses and headlines.** Given size `m`, the gain probability for `v` is `r_v/m <= D_v/m`, so the bounded degree share is a supermartingale after birth; its almost-sure limit gives convergence of all positive moments by bounded convergence. The union with Claim 9 gives the all-real ordering for `p >= 1/2`; above 1 the coefficient in (1) is Claim 9's `c_*(p)`, not an extension of the fractional-range numerical floor or the early bound (3).
+- **46–53, Lemma 1.** At size `m`, the next holding time is `Exp(m)`, independent of which clock rings and of the neighbor choice; fresh races give independence of the whole holding-time sequence and embedded chain. The Yule process is nonexplosive and `e^-t N(t)` is an L²-bounded martingale. The geometric law gives the stated rising second moment, and its scaled law tends to `Exp(1)`; the independent initial families give `Gamma(N,1)`. Minkowski and the `L^(2/p)` bound give UI of the discounted degree powers. Independence factors the terminal expectation, giving (5). Conditioning the terminal variable at time `t` via the Markov property yields `e^(-pt) M(T_t,v)`, hence a closed UI martingale, including at infinite stopping times.
+- **57–102, Lemma 2 lower bound.** Only an attachment at `v` changes `(D,L)` to `(D+1,L+1)`; only a send from `v` to a leaf changes it to `(D,L-1)`. Rates are `r in [L,(D+L)/2]` and `L/D`. The Gamma recurrence gives (6), and the tail is increasing also at `p=0`. At `L=0` the discounted drift is `r/3`; at `L=1` it is at least `(1+p)/6 - 1/(3D) > 0`. At `L>=2`, dividing by `q_p(L)` and using `r>=L` yields gain net of discount `2(L+p)/((L+2)(L+3))`. The normalized loss has numerator `pL(L+1)+2(L-1)` over the stated denominator (including the factor `L/D`). The derivative of that numerator divided by `L-1+p` is `(L-1)(L²+L-2)/(L-1+p)² > 0`; its value at `p=1` is `L+3-2/L`. Thus it suffices that `(L+3)² <= 2D(L+1)`: for `L>=6` the surplus is at least `(L-2)²-13 >= 3`, and for `2<=L<=5` the two sides are at most 64 and at least 72. This covers the entire continuous `p` range, not just tested samples. The core degree never decreases. Size localization and the integrable fixed-time bound justify the submartingale; the L² Yule maximal bound also supplies UI domination after discount. Core-neighbor count grows only at own rings, hence is `O(t)` a.s. The Gamma sandwich and `L/(L+2) -> 1` on the positive-share event give the stated limit; on zero share the upper bound suffices. Taking expectations gives (9).
+- **102–106, Lemma 2 upper and leaf bounds.** Log-convexity between `x,x+1` gives the upper Gamma-ratio bound; between `x+p-1,x+p` at weights `p,1-p` it gives the lower bound `(x+p-1)^p`, valid for `x>=1,p>0`. Convexity of `log Gamma` also makes the ratio increasing in `x`. For `x=(D+L)/2`, a gain is `x -> x+1`, hence relative increment `p/x` at rate `r<=x`; promotion decreases `x` and the potential. This establishes the cited upper drift directly for fractional `p`; localization, the same squeeze and Fatou give (10). For a leaf, the predictable promotion intensity is `1/D_x(t-)` while unpromoted, at most `1/d`. Integrating the compensator gives `H' >= -H/d`; integrating the survival bound gives `E[e^(-p tau); tau<infinity] = 1-p*integral(e^(-pt)H(t)dt) <= 1/(pd+1)`. The finite exit is `(2,1)` and nonpromotion gives zero terminal share, so UI sampling proves (11). Finiteness of the supremum follows from (10).
+- **110–128, Lemma 3.** Condition at size `n+2` and apply (5); remove `n(n+1)` from birth probabilities. Given first target `x`, the four second-target cases are: `a` with weight `1/(D_x+1)`; `x` (twin leaves, difference zero); a nonadjacent old vertex (reverse order cancels); or adjacent `y`, whose rate changes by `-1/[D_x(D_x+1)]`. Subtracting the reverse weight gives exactly the signed edge coefficient in (12). Its sign changes with orientation along with the payoff. `sum r_T=n` and `D_x+1<=n` prove the weight bound. For `n=2` both rates and degrees are 1 so the edge coefficient is exactly zero, before bounding. For `n>=3`, expanding the edge product and dropping the two positive-or-zero cross terms gives (13). An original leaf's neighbor has degree at least 2; after the path births `x` has two permanent core neighbors. Until the first `x`-gain, `L_x=0` and `r_x=1/D_a+1/D_y` is in the claimed interval.
+- **132–149, Lemma 4 stopping/comparison.** Fix `p`; discounted signed table values are bounded on the pre-exit and immediate post-exit coordinates. Each relevant event has a single attachment target; a leaf's promotion changes its parent's leaf count, and in the pre-promotion layers this is one joint jump to `psi2`, not two independent jumps. Other births do not alter the tracked coordinates. Thus these are full-tree generator inequalities even though the projected coordinates need not be Markov. Size localization and bounded convergence justify the stopped inequalities. On an infinite exit time, the relevant degree(s) stay bounded (an unpromoted leaf stays degree 1), giving zero terminal share(s); the local value also tends to zero because `p>0`. This is a zero *terminal* value, not an assertion that the initial amplitude vanishes on such paths. Optional sampling of the closed UI martingale, or its signed difference, now compares finite-exit values. The handoff order is `bare -> etax -> eta1 -> psi2 -> alpha/beta -> analytic tails`, with the additional `eta1 -> Q -> beta -> analytic tail` and `gamma -> beta -> analytic tail` dependencies. All actual degree exits are one-step, and `K+1` and `DXM+1` are within the required table cutoffs.
+- **135–149, boundary constants and rate boxes.** The lower tail uses the product ratio at `p1` (zero at `L=0`); rounding the upper Gamma argument up and using the decreasing product at `p0` safely dominates `W/q`. `Q` and `gamma` terminal caps use the leaf hazard with `p0` and `D_end`; `gamma` uses monotonicity and the distinguished leaf's rate-1 contribution. `psi2` uses the ratio maximum at `p0` for `Db<Da` and `p1` for `Db>Da`, with nonnegative `beta`; `eta1` uses the corresponding maximum with nonnegative `Q`. For adjacent cores, the known neighbor contributes the exact reciprocal degree, with each remaining core contributing at most `1/2`. `etax` safely uses `1/Da<=rx<=Dx`; bare uses the tighter `1/Da<=rx<=1/Da+1/2`. Separate affinity after positive rescaling makes the corners sufficient even if physical rates are correlated.
+- **150–166, final composition.** After path births `a` is always `(2,1)` adjacent to core `x`; in the edge comparison the distinguished leaf is on degree `D_T(x)+1`. The four cases use respectively `eta1`, bare minus `max Q[2]`, `etax` minus `max Q[d]`, and `eta1` minus the clipped monotone `gamma`. Each verified tick margin is positive before multiplying by `q_p(2)>=1+p0`; the path weights sum to at least 1. (4) follows by conditioning at `u-1`. At size 3, label 2 is center with probability 1/2 and otherwise symmetric with label 3. The normalization is `2/[(p+1)(p+2)]`; that factor of 2 cancels the probability and `q_p(2)` cancels `p+1`, leaving `(alpha[2][2]-Q[2][2])/[S(p+2)]`. Seed exchangeability gives `E[Z_1^p]=E[Z_2^p]`.
+
+## Code audit, in source order
+
+- **1–134.** Exact Fraction specs, runtime `_check`, strict `type(x) is int` for consumed ticks. Positive-denominator floor/ceil work also on signed values. Ratio helpers have the correct endpoints. `_p_common` supplies common positive denominator `h` and numerators `pn`. Reporting decimals are truncated, never used in verification.
+- **135–331.** Backward degree / forward leaf-count recurrences consume already-filled neighbors (including seeded handoffs). At each corner the generator solves the linear inequality in the current tick by floor/min for lower tables and ceil/max for upper tables; the denominator is strictly positive since `p>=1/2`. `gamma` uses exact `Fraction`, not a handwritten integer cross-product. Correctness does not rely on the generator having chosen optimal ticks.
+- **333–515.** Independent derivation of the verifier's scaled drift: write `J=1+p/Da`, `v` for current ticks, `A,B` for gains of `a,b`, `X` for parent gain, `P` for ordinary promotion, `H` for distinguished promotion (all successor/exit ticks). Each expression below is the physical discounted drift divided by the current positive basis and multiplied by `S`. Its listed multiplier gives the verifier's `num-den*v` exactly, or the equivalent Fraction check for `gamma`.
+
+  | Verifier lines | Drift in tick units | Multiplier |
+  |---|---|---|
+  | 347–371, `alpha,beta` | `r(J*A-v)+(L/D)(P-v)-p*v`, with `Da=D` | `2Dh`, `2r=rn` |
+  | 373–389, `Q` | `r(A-v)+((L-1)/D)(P-v)+(beta21-v)/D-p*v` | `2Dh`, `2r=rn` |
+  | 391–399, `gamma` | `r(A-v)+(beta21-v)/d-p*v` | identity in code at `r=1,p=p0`; integer equivalent uses `dh` |
+  | 401–438, `psi2` | `ra(J*A-v)+rb(B-v)+(La/Da)(Pa-v)+(Lb/Db)(Pb-v)-p*v` | `2DaDbh`, `2Db*ra=ra_n`, `2Da*rb=rb_n` |
+  | 440–457, `eta1` | `ra(J*A-v)+((La-1)/Da)(P-v)+(H-v)/Da-p*v` | `2Dah`, `2ra=rn` |
+  | 459–489, `etax` | `eta1`-form plus `rx(X-v)` using parent-specific successors and rates | `2DaDxh`, `2Dx*ra=ra_n`, `Da*rx=rx_n` |
+  | 491–514, `etax2_bare` | `etax`-form with `X=etax[3][Da][La]` | `2Dah`, `2ra=ra_n`, `2Da*rx=rx_n` |
+
+  In particular, only an `a`-gain multiplies the degree-dependent basis by `J`; leaf bounds use constant basis `q_p(2)` even across parent gain. The boundary loops cover all reachable exits, with exact monotonic-ratio comparisons for signed differences. `Q,gamma` are nonnegative, making `p0` worst for their drift; `gamma[d+1]<=gamma[d]` makes rate 1 worst. All other drift signs are checked at every required corner.
+- **516–568.** All initial-margin cases and the early-gap sign are recomputed from validated ticks. Global threshold checks are in `main`. Tiling verifies exact endpoint types, positive widths, contiguity and exterior endpoints; interval verification separately rejects invalid dimensions. The tiling function correctly need not enforce a hardcoded *count* for mathematical validity; this replay has exactly 14 as claimed.
+- **569–716.** Tree generation by adding leaves is exhaustive up to the given sizes because every larger tree has a removable leaf; rooted sorted encodings and minimization over roots deduplicate the unlabelled trees. The built-in identity check tests the adjacent coefficient, not the full signed identity; the latter was checked independently below. The tail sample loop starts at `L=1`, despite its docstring saying it includes `L=0`; `L=0` is covered analytically. The 14 named controls actually fail their checks under optimization. No assertion or floating-point approximation is needed for acceptance (a deliberate float is used solely as a rejection control).
+
+## Independent exact checks
+
+Ran `python3 -OB independent.py` from `[local path]` (temporary script outside the repo). It instrumented verifier comparisons in memory, then compared both sides' difference to a separate `Fraction` sum of physical jump rates times changes in **unrescaled** potentials, including handoffs. It also enumerated every sender/neighbor event directly on 24 small trees and checked the drift sign for all applicable marked configurations. As a separate identity check, it exhaustively enumerated both births on those trees and compared the coefficients of arbitrary rooted-tree payoffs to (12).
+
+```text
+full symbolic two-birth coefficients: 24 trees
+p       cross-product/Fraction equalities  physical generator signs
+1/2                                165303                       461
+5/8                                 88274                       461
+3/4                                 88274                       461
+7/8                                 88274                       461
+adversarial mutations: 25/25 rejected
+replay numbers and thresholds: exact match
+```
+
+For the three interior fractions the in-memory verifier call used the actual containing interval's tables and restricted the checked interval to `[p,p1]` to expose the target `p` in the real cross-products, including the `Q/gamma` low-`p` checks. The 25 extra rejection cases include overlap, gaps, broken exterior endpoints, reversed intervals, malformed arity, float endpoints, boolean dimensions, invalid cutoffs, out-of-range fractions, non-integer ticks, negative upper ticks, and one-tick corruptions on the `gamma`, `psi2`, `eta1`, `etax` and bare boundary faces.
+
+FINAL VERDICT: CORRECT

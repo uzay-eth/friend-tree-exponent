@@ -1,0 +1,126 @@
+SIMULATION DIAGNOSTIC, NOT A BOUND; seed0 20261201
+lo
+n=16384 runs=8 cores=1535 charged/raw exact equality on every tree total_R/phi=5.397584386e-05
+f R/phi 2.920598438414374e-06
+  ('f', 0, 3) hits 392 R/phi 5.82229601e-07 mean 2.56918178e-06 per-tree [4.67624e-07,6.71268e-07]
+  ('f', 0, 4) hits 136 R/phi 2.66410514e-07 mean 3.38843431e-06 per-tree [1.99307e-07,3.76261e-07]
+  ('f', 5, inf) hits 43 R/phi 1.89003494e-07 mean 7.6030526e-06 per-tree [8.73936e-08,2.69399e-07]
+  ('f', 0, 5) hits 66 R/phi 1.40849119e-07 mean 3.69144853e-06 per-tree [6.50843e-08,2.053e-07]
+  ('f', 1, 9) hits 61 R/phi 1.30823442e-07 mean 3.70973044e-06 per-tree [6.96801e-08,1.95201e-07]
+  ('f', 0, 9) hits 55 R/phi 1.2617701e-07 mean 3.96829692e-06 per-tree [2.62904e-08,2.09476e-07]
+  ('f', 1, 3) hits 198 R/phi 1.22265601e-07 mean 1.06813394e-06 per-tree [6.34569e-08,1.82038e-07]
+  ('f', 1, 4) hits 77 R/phi 1.13516518e-07 mean 2.55008676e-06 per-tree [7.57395e-08,1.83227e-07]
+  ('f', 5, 65) hits 9 R/phi 8.71577695e-08 mean 1.67513656e-05 per-tree [0,3.2528e-07]
+  ('f', 1, 13) hits 34 R/phi 7.70090341e-08 mean 3.91786419e-06 per-tree [5.162e-08,1.19329e-07]
+g R/phi 2.964437826247859e-06
+  ('g', 32, 3, True) hits 36 R/phi 6.97223512e-07 mean 3.35008743e-05 per-tree [0,2.30796e-06]
+  ('g', 32, 3, False) hits 22 R/phi 4.63622601e-07 mean 3.64526022e-05 per-tree [0,2.31409e-06]
+  ('g', 3, 32, False) hits 12 R/phi 2.06044499e-07 mean 2.97006802e-05 per-tree [0,8.68096e-07]
+  ('g', 32, 9, False) hits 18 R/phi 1.79456867e-07 mean 1.72454366e-05 per-tree [0,4.62226e-07]
+  ('g', 65, 65, False) hits 12 R/phi 1.19495421e-07 mean 1.72248971e-05 per-tree [0,2.24089e-07]
+  ('g', 65, 3, True) hits 37 R/phi 1.07751053e-07 mean 5.03739976e-06 per-tree [0,3.97284e-07]
+  ('g', 65, 32, False) hits 11 R/phi 1.07512274e-07 mean 1.69064328e-05 per-tree [0,3.36398e-07]
+  ('g', 4, 32, False) hits 5 R/phi 9.72349832e-08 mean 3.36386964e-05 per-tree [0,6.23692e-07]
+  ('g', 32, 32, False) hits 7 R/phi 8.32629096e-08 mean 2.0575015e-05 per-tree [0,2.19174e-07]
+  ('g', 65, 9, False) hits 17 R/phi 7.52847955e-08 mean 7.66028578e-06 per-tree [0,2.3249e-07]
+higher R/phi 4.7824583106220455e-05
+  ('higher', 'Yb', '5core', 0) hits 40 R/phi 9.17682752e-06 mean 0.000396843432 per-tree [2.62159e-09,4.13589e-05]
+  ('higher', 'Yt', '5core', 0) hits 64 R/phi 8.67382593e-06 mean 0.000234432245 per-tree [1.46907e-08,3.75207e-05]
+  ('higher', 'hV', '5core', 0) hits 813 R/phi 8.27857945e-06 mean 1.76137527e-05 per-tree [3.58356e-06,1.59337e-05]
+  ('higher', 'P4', '5core', 0) hits 112 R/phi 5.44907795e-06 mean 8.41572656e-05 per-tree [2.57297e-07,1.0773e-05]
+  ('higher', 'hC', '5core', 1) hits 392 R/phi 3.04175621e-06 mean 1.34222386e-05 per-tree [3.70002e-07,2.51115e-05]
+  ('higher', 'hC', '5core', 0) hits 954 R/phi 1.88581707e-06 mean 3.41930471e-06 per-tree [9.48511e-07,4.18893e-06]
+  ('higher', 'S3', '5core', 0) hits 4 R/phi 1.6673041e-06 mean 0.000721010259 per-tree [0,1.75431e-05]
+  ('higher', 'hC', '5core', 2) hits 40 R/phi 1.34910642e-06 mean 5.83408612e-05 per-tree [3.61002e-11,1.44668e-05]
+  ('higher', 'Yt', '5core', 1) hits 40 R/phi 1.08488666e-06 mean 4.69149218e-05 per-tree [1.53604e-08,5.5068e-06]
+  ('higher', 'Yt', 'size<=12', 0) hits 2 R/phi 8.95633683e-07 mean 0.00077461703 per-tree [0,5.0716e-06]
+founder R/phi 2.6622449227826086e-07
+  ('founder', 'hV') hits 190 R/phi 2.21331566e-07 mean 2.01500614e-06 per-tree [3.46475e-11,9.01562e-07]
+  ('founder', 'f') hits 8 R/phi 1.88778438e-08 mean 4.0817746e-06 per-tree [8.99436e-09,2.64481e-08]
+  ('founder', 'g') hits 61 R/phi 1.65555037e-08 mean 4.69460636e-07 per-tree [1.96185e-10,4.52517e-08]
+  ('founder', 'P4') hits 5 R/phi 9.213709e-09 mean 3.18750669e-06 per-tree [0,5.59492e-08]
+  ('founder', 'Yt') hits 1 R/phi 1.99865931e-10 mean 3.45720705e-07 per-tree [0,1.74793e-09]
+  ('founder', 'hC') hits 240 R/phi 4.60042174e-11 mean 3.31568316e-10 per-tree [2.45922e-12,2.47812e-10]
+disjoint first-body slices R/phi by k and degree 2..17 / 18..64 / 65+:
+  0 1.2411631e-06 4.629998e-08 1.2402572e-08
+  1 5.9111572e-07 9.6450098e-08 1.48956e-08
+  2 1.8373142e-07 9.0595128e-08 2.996355e-08
+  3 5.065392e-08 9.9575035e-08 4.1076083e-08
+  4 6.0333557e-09 6.6396101e-08 4.027011e-08
+  5 1.5172079e-09 1.1945601e-07 1.8900349e-07
+higher 5+ cores / no virgin slots: family, first max-degree slot (0=apex), degree upper-exclusive, min(k,5):
+  ('P4', 0, inf, 5) hits 38 R/phi 2.87760401e-06 mean 0.000130988766
+  ('Yb', 3, 13, 1) hits 3 R/phi 2.42399738e-06 mean 0.00139764704
+  ('Yb', 1, 9, 2) hits 3 R/phi 2.19672582e-06 mean 0.00126660506
+  ('Yt', 0, inf, 4) hits 5 R/phi 1.97038067e-06 mean 0.000681658339
+  ('Yt', 0, inf, 5) hits 28 R/phi 1.84287192e-06 mean 0.000113847564
+  ('S3', 1, 65, 1) hits 1 R/phi 1.66528434e-06 mean 0.00288054733
+  ('Yb', 3, 65, 1) hits 1 R/phi 1.47604941e-06 mean 0.00255321574
+  ('Yt', 0, 65, 3) hits 1 R/phi 1.46361955e-06 mean 0.00253171503
+  ('Yt', 0, 32, 2) hits 3 R/phi 1.32103614e-06 mean 0.000761693173
+  ('Yb', 1, 65, 1) hits 4 R/phi 1.29350096e-06 mean 0.000559362546
+  ('hV', 0, inf, 5) hits 276 R/phi 8.63651867e-07 mean 5.41272861e-06
+  ('hV', 0, 18, 3) hits 8 R/phi 8.62395672e-07 mean 0.000186467522
+hi
+n=16384 runs=8 cores=1535 charged/raw exact equality on every tree total_R/phi=5.079833659e-05
+f R/phi 2.470825326636759e-06
+  ('f', 0, 3) hits 392 R/phi 4.68946538e-07 mean 2.06978844e-06 per-tree [3.76623e-07,5.40662e-07]
+  ('f', 0, 4) hits 136 R/phi 2.14588791e-07 mean 2.72996334e-06 per-tree [1.60536e-07,3.03072e-07]
+  ('f', 5, inf) hits 43 R/phi 1.9145172e-07 mean 7.70334783e-06 per-tree [8.30218e-08,2.74813e-07]
+  ('f', 0, 5) hits 66 R/phi 1.13416119e-07 mean 2.97316859e-06 per-tree [5.24072e-08,1.65307e-07]
+  ('f', 1, 9) hits 61 R/phi 1.0534024e-07 mean 2.98781124e-06 per-tree [5.61112e-08,1.57178e-07]
+  ('f', 0, 9) hits 55 R/phi 1.01573743e-07 mean 3.19526923e-06 per-tree [2.1163e-08,1.68629e-07]
+  ('f', 1, 3) hits 198 R/phi 9.85406818e-08 mean 8.61071198e-07 per-tree [5.1149e-08,1.46717e-07]
+  ('f', 1, 4) hits 77 R/phi 9.1447872e-08 mean 2.05480952e-06 per-tree [6.10214e-08,1.47606e-07]
+  ('f', 5, 65) hits 9 R/phi 7.71588478e-08 mean 1.48330997e-05 per-tree [0,3.36161e-07]
+  ('f', 3, 32) hits 16 R/phi 6.4136979e-08 mean 6.93549092e-06 per-tree [0,1.31129e-07]
+g R/phi 3.057982414207193e-06
+  ('g', 32, 9, False) hits 18 R/phi 5.47777557e-07 mean 5.26526725e-05 per-tree [0,1.11716e-06]
+  ('g', 32, 32, False) hits 7 R/phi 2.64498686e-07 mean 6.53753713e-05 per-tree [0,1.05788e-06]
+  ('g', 32, 3, True) hits 36 R/phi 2.17610072e-07 mean 1.04583984e-05 per-tree [0,7.75094e-07]
+  ('g', 32, 6, False) hits 7 R/phi 1.81935677e-07 mean 4.49685125e-05 per-tree [0,7.19086e-07]
+  ('g', inf, 32, False) hits 26 R/phi 1.5918009e-07 mean 1.0592637e-05 per-tree [0,4.80583e-07]
+  ('g', 65, 3, True) hits 37 R/phi 1.55790184e-07 mean 7.28495807e-06 per-tree [0,5.55498e-07]
+  ('g', 32, 5, False) hits 12 R/phi 1.50561196e-07 mean 2.17080344e-05 per-tree [0,3.74439e-07]
+  ('g', 65, 32, False) hits 11 R/phi 1.39134015e-07 mean 2.18841318e-05 per-tree [0,4.60414e-07]
+  ('g', 32, 18, False) hits 5 R/phi 1.32649119e-07 mean 4.59010962e-05 per-tree [0,4.18413e-07]
+  ('g', 32, 3, False) hits 22 R/phi 1.22244094e-07 mean 9.61377372e-06 per-tree [0,5.61058e-07]
+higher R/phi 4.4921303468119475e-05
+  ('higher', 'hV', '5core', 0) hits 813 R/phi 1.0186089e-05 mean 2.16773211e-05 per-tree [3.89987e-06,2.00395e-05]
+  ('higher', 'Yt', '5core', 0) hits 64 R/phi 9.18452366e-06 mean 0.000248293502 per-tree [8.53038e-08,2.49025e-05]
+  ('higher', 'Yb', '5core', 0) hits 40 R/phi 7.6689229e-06 mean 0.000331713442 per-tree [1.36447e-09,3.52499e-05]
+  ('higher', 'P4', '5core', 0) hits 112 R/phi 5.78731787e-06 mean 8.94021585e-05 per-tree [2.92544e-07,1.93006e-05]
+  ('higher', 'hC', '5core', 0) hits 954 R/phi 2.27970598e-06 mean 4.13446343e-06 per-tree [1.05346e-06,6.30469e-06]
+  ('higher', 'S3', '5core', 0) hits 4 R/phi 1.84526929e-06 mean 0.000798157233 per-tree [0,1.72971e-05]
+  ('higher', 'Yt', 'size<=12', 0) hits 2 R/phi 1.10976576e-06 mean 0.000960041517 per-tree [0,1.14161e-05]
+  ('higher', 'Yt', '5core', 1) hits 40 R/phi 1.07188203e-06 mean 4.6363444e-05 per-tree [7.55697e-10,4.10166e-06]
+  ('higher', 'hV', '5core', 1) hits 267 R/phi 8.22007995e-07 mean 5.32664153e-06 per-tree [2.40402e-07,1.9141e-06]
+  ('higher', 'hC', '5core', 1) hits 392 R/phi 7.34213636e-07 mean 3.24059733e-06 per-tree [1.89896e-07,2.60725e-06]
+founder R/phi 3.4822538299164065e-07
+  ('founder', 'hV') hits 190 R/phi 2.54881208e-07 mean 2.32098806e-06 per-tree [2.33509e-11,1.0294e-06]
+  ('founder', 'g') hits 61 R/phi 5.36736369e-08 mean 1.52236882e-06 per-tree [2.01145e-10,2.24425e-07]
+  ('founder', 'P4') hits 5 R/phi 2.28914596e-08 mean 7.92122174e-06 per-tree [0,1.95168e-07]
+  ('founder', 'f') hits 8 R/phi 1.6628525e-08 mean 3.59627116e-06 per-tree [7.2492e-09,2.66615e-08]
+  ('founder', 'Yt') hits 1 R/phi 1.12484375e-10 mean 1.94617051e-07 per-tree [0,9.83693e-10]
+  ('founder', 'hC') hits 240 R/phi 3.8069111e-11 mean 2.74441752e-10 per-tree [2.43008e-12,1.65484e-10]
+disjoint first-body slices R/phi by k and degree 2..17 / 18..64 / 65+:
+  0 9.9955274e-07 3.731297e-08 1.0002568e-08
+  1 4.7611636e-07 7.9570014e-08 1.2170452e-08
+  2 1.4798272e-07 7.6957939e-08 2.6355704e-08
+  3 4.0800846e-08 9.4385632e-08 3.6272582e-08
+  4 4.8596567e-09 6.3471389e-08 3.3232318e-08
+  5 1.2230453e-09 1.3910666e-07 1.9145172e-07
+higher 5+ cores / no virgin slots: family, first max-degree slot (0=apex), degree upper-exclusive, min(k,5):
+  ('Yb', 1, 65, 1) hits 4 R/phi 2.30266129e-06 mean 0.00099599867
+  ('Yt', 0, 65, 4) hits 5 R/phi 2.00182718e-06 mean 0.000692700129
+  ('hV', 0, 18, 3) hits 8 R/phi 1.94737137e-06 mean 0.000421160356
+  ('Yb', 3, 65, 1) hits 1 R/phi 1.92696815e-06 mean 0.00333398182
+  ('Yt', 0, inf, 4) hits 5 R/phi 1.65026046e-06 mean 0.000571046115
+  ('S3', 1, 65, 1) hits 1 R/phi 1.64233823e-06 mean 0.00284152377
+  ('hV', 0, inf, 5) hits 276 R/phi 1.63981613e-06 mean 1.02795656e-05
+  ('P4', 3, 65, 1) hits 1 R/phi 1.54729704e-06 mean 0.00267708638
+  ('P4', 0, inf, 4) hits 7 R/phi 1.45410276e-06 mean 0.000359406353
+  ('Yb', 1, 65, 5) hits 2 R/phi 1.31125163e-06 mean 0.00113434389
+  ('Yt', 2, 9, 0) hits 1 R/phi 1.28561022e-06 mean 0.00222432379
+  ('Yt', 0, inf, 5) hits 28 R/phi 1.10567696e-06 mean 6.83217404e-05
+wall=22.00 s RSS=236228 KiB

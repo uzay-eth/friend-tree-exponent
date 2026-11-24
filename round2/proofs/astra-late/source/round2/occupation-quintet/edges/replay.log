@@ -1,0 +1,25 @@
+lower cap_g 401 nominal 56570237/100000000
+PASS physical edge allocation, reversal, FY cancellation, cap: 9 trees 49 edges
+mask degree 4 edge classes 45 singleton classes 9 credit ticks/core 709292854196882784891691/10000000000000000000000 70.92928541968828 normalized 6.45098092897463e-11 fraction of original cap 0.17688101102166653
+edge-only endpoint move 7.101286763164282e-10
+mask degree 8 edge classes 630 singleton classes 35 credit ticks/core 1124720663605015391930797/10000000000000000000000 112.47206636050154 normalized 1.0229274845232935e-10 fraction of original cap 0.2804789684800537
+edge-only endpoint move 1.1260460208300157e-09
+mask degree 12 edge classes 3003 singleton classes 77 credit ticks/core 676368562573988272044693/5000000000000000000000 135.27371251479767 normalized 1.2303072482136273e-10 fraction of original cap 0.3373409289645827
+edge-only endpoint move 1.3543311742130966e-09
+mask degree 15 edge classes 7140 singleton classes 119 credit ticks/core 184066851062935126861901/1250000000000000000000 147.2534808503481 normalized 1.3392626065101294e-10 fraction of original cap 0.36721566296844915
+edge-only endpoint move 1.474270025709555e-09
+mask degree 18 edge classes 14535 singleton classes 170 credit ticks/core 1568526522607404053651093/10000000000000000000000 156.8526522607404 normalized 1.426566561901749e-10 fraction of original cap 0.3911537462861357
+edge-only endpoint move 1.5703748552882307e-09
+upper cap_g 946 nominal 14143707/25000000
+PASS physical edge allocation, reversal, FY cancellation, cap: 9 trees 49 edges
+mask degree 4 edge classes 45 singleton classes 9 credit ticks/core 1405281661815784508366747/10000000000000000000000 140.52816618157846 normalized 1.278096225920112e-10 fraction of original cap 0.14854985854289476
+edge-only endpoint move 9.052505078696495e-10
+mask degree 8 edge classes 630 singleton classes 35 credit ticks/core 592518920441822413056029/2500000000000000000000 237.00756817672897 normalized 2.1555712753682107e-10 fraction of original cap 0.2505365414130327
+edge-only endpoint move 1.5267488880749343e-09
+mask degree 12 edge classes 3003 singleton classes 77 credit ticks/core 583702984579363704249879/2000000000000000000000 291.85149228968186 normalized 2.6543738594198827e-10 fraction of original cap 0.3085110912153085
+edge-only endpoint move 1.880040982505775e-09
+mask degree 15 edge classes 7140 singleton classes 119 credit ticks/core 1587416039756592572541733/5000000000000000000000 317.4832079513185 normalized 2.8874929553359697e-10 fraction of original cap 0.3356059280669329
+edge-only endpoint move 2.0451546693255827e-09
+mask degree 18 edge classes 14535 singleton classes 170 credit ticks/core 1687123111883472663645069/5000000000000000000000 337.4246223766945 normalized 3.068859062993347e-10 fraction of original cap 0.35668564733265806
+edge-only endpoint move 2.173612728850003e-09
+PASS both-stage Bellman corners and physical audits

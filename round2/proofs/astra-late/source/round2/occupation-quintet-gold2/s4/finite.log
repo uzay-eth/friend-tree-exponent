@@ -1,0 +1,5 @@
+original upper S4 {'mother': 55, 'mother_stock': 9, 'hub': 8, 'stock': 6, 'child': 3, 'child_stock': 2, 'old': 19, 'fixtures': True}
+fixtures S4 rows 20 four equal nonzero arrows 10 unique crowns 35
+prefix states [14656, 45800, 82440, 109920] paid mask states 79920 ticks/core 469227374299864258599483/387606272734375000000 1210.5773495090568 normalized 469227374299864258599483/426177603870360862720000000000000 1.1010136854648016e-09
+CPU seconds 43.379304651000005
+wall=114.72 rss=193824 exit=0

@@ -1,0 +1,11 @@
+registrations hmy 10
+registrations hmys 26
+registrations uhmy 2
+literal labelled H3 rows 42
+upper original GOLD2 f1dcd7ad3e6df82a985eb3dd6fd793b5a3e38c78368d94e4b135ab174ab92876 Namespace(min_mother=80, mother=480, mother_stock=12, middle=2, middle_stock=2, young=12, young_stock=3, side='upper', sibling=2, upstream=2, outside_threshold=True, exclude_strict=False)
+physical hmy 3 states 166848 positive rewards 141152
+physical hmy 2 states 10428 positive rewards 0
+physical hmy 1 states 5693 positive rewards 0
+order floor physical hmy 8803350896087646439582830411/35750368572477400958998937600000000 2.462450387956266e-07
+EXACT upper physical H3 complement 8803350896087646439582830411/35750368572477400958998937600000000 ticks/core 8803350896087646439582830411/32514770803097600000000 units/core 2.462450387956266e-07
+wall=56.40 user=46.49 rss=426948 exit=0

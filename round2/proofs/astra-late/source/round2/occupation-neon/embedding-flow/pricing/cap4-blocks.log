@@ -1,0 +1,22 @@
+model source SHA256 206b93131081a128c549255070e98896fefab2076fd40f34d2c619536e0cfee0
+authenticated both original D18 payloads; families hV,hC,P4,Yt,Yb,S3 theta 1 unpaid False
+cap/order/share 4 4 4 columns/equalities/inequalities 70342 4899 30014 objective nonzeros 23337 build CPU/wall 5.204/6.362
+pricing lower
+polish depth 4 topology ((), (), ()) free rows 1035 affected columns 4275 status 0 iterations 26 solver CPU/wall 0.132/0.170
+priced all 70342 negative 3403 center -1.428405606735501e-05 repair 6.929233911321386e-15 value -1.4284056074284245e-05
+polish depth 4 topology ((), ((),)) free rows 10692 affected columns 36117 status 1 iterations 42 solver CPU/wall 7.341/8.160
+polish depth 4 topology (((), ()),) free rows 5724 affected columns 22644 status 0 iterations 34 solver CPU/wall 2.269/2.616
+priced all 70342 negative 4779 center -1.428405606735501e-05 repair 2.8969566415961626e-14 value -1.4284056096324577e-05
+polish depth 4 topology ((((),),),) free rows 14256 affected columns 44496 status 1 iterations 24 solver CPU/wall 7.892/8.084
+certified endpoint -80801833172568482918145002379/5656784932792150000000000000000000 center -1428405606735501/100000000000000000000 repair 12638548096672164483/2262713973116860000000000000000000 negative columns 3060
+pricing upper
+polish depth 4 topology ((), (), ()) free rows 1035 affected columns 4275 status 0 iterations 23 solver CPU/wall 0.107/0.107
+priced all 70342 negative 3594 center -1.461420543767047e-05 repair 9.019625655814364e-15 value -1.4614205446690096e-05
+polish depth 4 topology ((), ((),)) free rows 10692 affected columns 36117 status 1 iterations 41 solver CPU/wall 8.045/8.053
+polish depth 4 topology (((), ()),) free rows 5724 affected columns 22644 status 0 iterations 35 solver CPU/wall 1.895/1.917
+priced all 70342 negative 5137 center -1.461420543767047e-05 repair 1.7486829207812086e-14 value -1.46142054551573e-05
+polish depth 4 topology ((((),),),) free rows 14256 affected columns 44496 status 1 iterations 32 solver CPU/wall 8.062/8.080
+certified endpoint 62002062881674128918033684943/4242588699594112500000000000000000 center -1461420543767047/100000000000000000000 repair 306132495055417262681/33940709596752900000000000000000000 negative columns 3594
+stationary contrast per core -9143053087373861257324988266278652062173997/1131356986558430000000000000000000000000000000000 7015783308320936819816465178319197191021449/848517739918822500000000000000000000000000000000
+decimal -8.081492575731452e-06 8.268281237104288e-06
+total CPU/wall 53.822/60.537

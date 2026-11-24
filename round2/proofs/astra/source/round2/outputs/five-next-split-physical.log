@@ -1,0 +1,2 @@
+lower small-split 3572 trees 31935 query configurations {'F': 2338, 'P': 451, 'T': 96, 'Y': 505, 'elementary successors': 34402, 'inflated reserve rejected': 3571, 'outside-current-table': 1403, 'wrong-sign overcharge': 1003}
+upper small-split 3572 trees 31935 query configurations {'F': 2401, 'P': 631, 'T': 102, 'Y': 537, 'elementary successors': 34402, 'inflated reserve rejected': 3571, 'outside-current-table': 1403, 'wrong-sign overcharge': 630}

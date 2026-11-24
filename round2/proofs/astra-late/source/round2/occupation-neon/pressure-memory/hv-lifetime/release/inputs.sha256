@@ -1,0 +1,19 @@
+# Previous exact release and physical dependencies
+cc128f4c12678524ef719aac243793367c17f9987b9354bb3ebea95a52d7b5b9  round2/occupation-neon/pressure-memory/combined/release.sha256
+d730a00a01004eb0714c2b8159615d247822f921ab2f5b7795c7fc0d764d47b9  round2/occupation-neon/high-parent/README.md
+9f40a50a3623756b277243d192f672e76c45b4b9784715ed4d0d8fb27d36131c  round2/occupation-neon/higher/extract.py
+d548a9aafa899ecab2b00a7f6ad0a4e6f828600088780f0a15f08927f17f0bfe  round2/attacks/neon1/audit.py
+59f4ef6f915d6d7d932076dfe9170d7e6e5fa5d819cf3d0c11baf7932baa1277  round2/finite/residual_entries.py
+# hV donor source, support proof and relative imports
+2e600622e108be8791912577adcbb9291e17e3412763abcf5e7ca5c03130fb2f  round2/occupation-neon/higher/older/replay.py
+ee6f532f08e2b7c6800a41af5c30aa71c66a0ad8bba5c3e5f385458286048a53  round2/occupation-neon/pressure-memory/hv-lifetime/README.md
+0c4d5824c88005eba91184a38df28920527f4058ee4a0aa732fd368fbe49666a  round2/occupation-neon/pressure-memory/hv-lifetime/replay.py
+82ce6138fa6bf20f14f3448d1917ae7e78499783d0747af060a49047cc095a2f  round2/occupation-neon/pressure-memory/hv-lifetime/old/README.md
+bc92b36d485a4f3e8249dd670b017f1385296242f22a474fa9ced2de92110b35  round2/occupation-neon/pressure-memory/hv-lifetime/old/replay.py
+e371d3dfd2692960ca15bc1344b65775f858b35e27a1c8cd6374b2c79a150ec7  round2/occupation-neon/pressure-memory/hv-lifetime/old/EAD947B.md
+# Isolated authenticated replay receipts
+f0731f373f334af28fce128ce1e22d6f24073b24c0ad08de421833624d9d4ac2  round2/occupation-neon/pressure-memory/hv-lifetime/release/apex20.log
+9a4e008d839c0c6415763b96bd8139a0becac231fd6a4ec40f143e6d7d662795  round2/occupation-neon/pressure-memory/hv-lifetime/release/apex48.log
+e1e726a748aa2213ea6da64cfc44412d4a91d6b959cde9da2c3a5357fb2f456b  round2/occupation-neon/pressure-memory/hv-lifetime/release/parent20.log
+0a5611854b3ba0a44f29b826156532ace0997137f21d3ced7add2abc5444980c  round2/occupation-neon/pressure-memory/hv-lifetime/release/parent48.log
+2f8c4f13c712f869c0a16dd4edc33dc289da3e42be3e0b6573aeeca1f1243be3  round2/occupation-neon/pressure-memory/hv-lifetime/release/sides.log

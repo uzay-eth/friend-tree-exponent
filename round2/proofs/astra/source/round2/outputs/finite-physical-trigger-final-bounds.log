@@ -1,0 +1,18 @@
+$ timeout 5s taskset -c 0 python3 -B round2/finite/gauge/physical_trigger_bounds.py --iterations 24
+s 14141/25000 original root label-20 lower 22279887682 / 1e12 uniform tail 22244698369 / 1e12 root total direct lower 405743159170 / 1e12
+s 2829/5000 original root label-20 lower 22267712545 / 1e12 uniform tail 22232548403 / 1e12 root total direct lower 405690485205 / 1e12
+s 1133/2000 original root label-20 lower 22214534253 / 1e12 uniform tail 22179480005 / 1e12 root total direct lower 405460197323 / 1e12
+s used in lower tables 1133/2000 upper PF multiplier 1 blocks 2=119101711051 3=162113367936 4=194244491102 6=237887491957 10=284960371762 20=1000000000000 units 1e-12
+complement Perron-norm contraction <= 971863522077 / 1e12
+s used in lower tables 14141/25000 upper PF multiplier 503/500 blocks 2=117936293836 3=160700210824 4=192672048194 6=236125117248 10=283020319312 20=1000000000000 units 1e-12
+complement Perron-norm contraction <= 978127513699 / 1e12
+one-residence elementary complement anchor at .51, k 0 <= 4504361 / 1e6
+one-residence elementary complement anchor at .51, k 2 <= 4401477 / 1e6
+one-residence elementary complement anchor at .51, k 4 <= 4348792 / 1e6
+one-residence elementary complement anchor at .51, k 6 <= 4315979 / 1e6
+old physical bracket: complement contraction at .5649 < .9981
+one-residence complement anchor at .462, k 0 <= 3654953 / 1e6
+one-residence complement anchor at .462, k 4 <= 3488723 / 1e6
+one-residence complement anchor at .462, k 10 <= 3577053 / 1e6
+fine bracket: chronological tail factor < 1.275, weight factor < 2800, scalar size-exit factor < 3660
+wall 0.80 user 0.79 peak KiB 20736 exit 0

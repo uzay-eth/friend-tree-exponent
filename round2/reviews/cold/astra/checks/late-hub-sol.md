@@ -1,0 +1,39 @@
+# Cold audit: ultimate hub probability of a deterministic late birth
+
+**Verdict: holds.** I found no counterexample to the asymptotic or to the stated finite-delay bounds. What is continuous on the rooted marked-core space is the **conditional success probability**, and hence the birth score, not the sample-path indicator of eventual hubhood as a deterministic finite-neighbourhood observation. The continuity proof needs two distinct truncations: a pointwise postpromotion history squeeze, and an environment-uniform truncation of the *finite* promotion delay.
+
+## Deterministic label and local mark
+
+At prebirth size `n`, there is one newly born vertex, even when its attachment promotes an old leaf. Sum its success probability over physical arrows at rates `1/D_source`. Group sources by their associated core: a core contributes its own initiation and each attached leaf contributes one deterministic send to that core. This is the numerator for label `n+1`, divided by `n`. Neither the increment in the core count nor the hub probability of the immediate target is the requested score.
+
+For a fixed placed leaf and finite `T`, let `H_T` be promotion by `T` and unbounded degree. The old-cell cutoff couples the entire relevant histories on bounded time intervals, including the tagged leaf, once the input agrees on a sufficiently large marked ball. Placement is itself a finite modification; if the tag is promoted it remains in the cell of its parent and creates no new old-edge dependency. Endpoint states of the tag and the leaf stocks of all of its neighbours are read from a fixed-radius old neighbourhood of the placement and its cells. In particular the finite-history probabilities used in the squeeze are continuous even when tested using indicators: the coupled histories agree exactly off the small influence event.
+
+For the lower bound, multiply the probability of promotion by `T` and hitting `d` by `h≥T` by `1−1/d`. At a first upward hit a fresh leaf has just arrived; its embedded birth–death family survives with that probability. This family tends to infinity on survival, so the same argument bounds the probability of unbounded degree without diverging leaf stock by `1/d`. In finite physical trees the existing stock-to-positive-mass result identifies unbounded degree with `Z>0`; on infinite initial cores use unbounded degree itself, without positing a global mass fraction.
+
+At time `h`, on promotion by `T`, the upper test caps at one the sum of first-future-send bounds from the current neighbours. For a leaf neighbour use one; for a core neighbour use the bound `b(k)` from the existing age-order work, with the stock excluding the tagged vertex. The next gain, if any, must come from a current neighbour, so conditional expectation gives an upper bound for `P(H_T)`. On a nonhub path the tag eventually has fixed finite degree. Each of its finitely many neighbours then has unbounded degree, since a permanent edge between two eventually bounded degrees supplies an accepted directed send at positive rate. Their leaf stocks therefore diverge. The expected excess of the upper test over `P(H_T)` is bounded by the expectation of the upper charge **on the nonhub event**, which vanishes by bounded convergence. Take `h→∞`, then `d→∞` for the lower test. A supremum of continuous lower bounds and an infimum of continuous upper bounds prove continuity at every input, without a uniform postpromotion degree cutoff or an independent-neighbours assumption.
+
+## Uniform tail, including zero age
+
+Delete only the parent-to-tag direction until first promotion. The tag's own clock must remain active and adds new parent leaves at rate one. The return direction is restored at an independent unit-exponential hazard threshold along the suppressed path; its finite-time density is `E[exp(−A(t))/D(t)]` and its atom at infinity is `E exp(−A(∞))`. Its hub-restricted measure is dominated by the promotion measure. Suppressing both directions gives the wrong law even to second order.
+
+For `k` other parent leaves, track a population with per-capita birth/death rates `1,1/2` and immigration one. A physical loss on a tracked leaf is obtained by thinning its proposal, and every proposal removes the track. Track immigrants are precisely the new leaves from tag initiations. This gives `D(t)≥1+J_t`, with independent branching families and immigrant drivers in `J`, not independent physical parent paths. The one-ancestor mean is `e^(t/2)` and its second moment at most `4e^t`; the chance to exceed half the mean is at least `1/16`. For the binomial number `M` of such initial families, the contribution with `M>0` to `(k+1)E[(1+J_t)^−1]` is at most `64e^(−t/2)` using `1/M≤2/(M+1)`. On `M=0`, `(k+1)Pr(M=0)` is uniformly bounded, and the independent immigrant contribution has reciprocal mean `log(1+b)/b`, `b=2(e^(t/2)−1)`. This is at most a constant times `(1+t)e^(−t/2)` including at zero, where its value is one. Integration gives the advertised uniform tail for finite promotion delays. For every placement the hazard integral has finite expectation, hence is finite a.s. and the infinity atom is strictly positive.
+
+There is an even simpler zero-age estimate: parent degrees never decrease. In the core-initiation term every placed tag has parent degree at least two, so its density is at most `1/2`. In the leaf-initiation term, the multiplier `L_o` is at most the post-placement parent degree, giving density at most one. Thus `B_T≤(3/2)T` uniformly, and there is no atom at zero even in the limiting weighted flux. For the total mass, independently differentiating `f(j)=1/(j+2)` under the dominating process gives `−(j+1)L_J f=(j²+j+2)/(2(j+2)(j+3))≥1/6`; Dynkin gives `E A(∞)≤6/(k+2)`. The core-initiation mass is at most one, the leaf-initiation mass at most six. All of this controls `B`, and hence `F`. The cutoff convergence in promotion age is uniform after the possibly unbounded `L_o` multiplier is paid, so both ultimate scores are bounded continuous.
+
+## Passing to late labels
+
+Multiply the exact flux divided by `n` by `n^(1−μ)`, then apply uniform-core convergence and uniform integrability of `C_n/n^μ`. This gives `E[X]π(F)` at deterministic `v=n+1`; replacing `n` by `v` has no effect on the limit. The discounted promotion balance follows by compensation over actual birth times: the time-`t` core count differs by at most three from the count of new births that have promoted by `t`. The spatial mean limit and `B_s≤7` allow dominated convergence after the change to age `s`. This gives `∫ exp(−μs)π(B^{prom}(ds))=μ`, so `π(F)≥π(B)/2≥μ/2` by the fresh leaf present at promotion. The constant uses undiscounted success at a deterministic birth; it is not the discounted stationary promotion flux.
+
+The physical clock increments at deterministic sizes are independent of the entire discrete graph path, including whether the tagged label is a hub. This justifies the uniform large-size-multiple tail; it does not assert independence of the continuous waiting time to the random promotion index from that index. The variance of the wait to `floor(rv)` is bounded by `1/(v−1)` uniformly in `r`, and the conditioning divides by a positive late-label probability of order `v^(μ−1)`. The event is late **finite** promotion throughout. The adjacent-label ordering question is separate.
+
+## Exact finite controls
+
+`timeout 10s taskset -c 13 nice -n 10 python3 -Bu round2/checks/late_hub_sol.py`
+
+```
+new-label zero-age flux=0; wrong old-target flux=17/12; star weighted density at zero <1
+T3 leaf placement p'(0),p''(0): (Fraction(1, 2), Fraction(-1, 2)); deleting tag initiation: (Fraction(1, 2), Fraction(-1, 3))
+60 exact family/immigration semigroup tests passed
+```
+
+These are falsifying fixtures for wrong birth labels and wrong suppression, plus a check of the family and immigration laws. The continuity and uniform long-time claims use the analytic arguments above.

@@ -1,0 +1,13 @@
+Loaded frozen deterministic B3-FullH midpoint potential from b3f18_lo.bin & b3f18_hi.bin
+  Bracket: [565673/1000000, 565775/1000000] = [0.56567300, 0.56577500] (width = 0.00010200)
+Self-test O(C) eval_phi_Lphi vs brute-force on 50 trees: max_rel(small)=2.362e-13, max_rel(large)=8.222e-12
+
+Completed 2000 independent Lazy-Yule trees to t=24 in 3095.42s (2 cores):
+  t=8 -> 12     : B3-FullH VR = 0.5657235193 +- 0.0000001241  | plain S/C = 0.5656603 +- 0.0002011 (VR gain = 1620.3x)
+  t=12 -> 16    : B3-FullH VR = 0.5657237077 +- 0.0000000408  | plain S/C = 0.5658257 +- 0.0000650 (VR gain = 1593.9x)
+  t=16 -> 20    : B3-FullH VR = 0.5657236480 +- 0.0000000126  | plain S/C = 0.5657341 +- 0.0000211 (VR gain = 1678.2x)
+  t=20 -> 22    : B3-FullH VR = 0.5657236748 +- 0.0000000094  | plain S/C = 0.5657222 +- 0.0000155 (VR gain = 1646.2x)
+  t=22 -> 24    : B3-FullH VR = 0.5657236547 +- 0.0000000054  | plain S/C = 0.5657126 +- 0.0000087 (VR gain = 1614.5x)
+  t=20 -> 24    : B3-FullH VR = 0.5657236596 +- 0.0000000042  | plain S/C = 0.5657149 +- 0.0000068 (VR gain = 1624.8x)
+  t=16 -> 24    : B3-FullH VR = 0.5657236585 +- 0.0000000038  | plain S/C = 0.5657167 +- 0.0000060 (VR gain = 1584.3x)
+  raw t=24      : B3-FullH VR = 0.5657236588 +- 0.0000000037  | plain S/C = 0.5657178 +- 0.0000059 (VR gain = 1581.7x)

@@ -1,0 +1,131 @@
+main: 190 chunks, 19000 runs, checkpoints [np.float64(12.0), np.float64(16.0), np.float64(20.0), np.float64(24.0)], weight vectors 5
+mainA: 55 chunks, 5500 runs, checkpoints [np.float64(12.0), np.float64(16.0), np.float64(20.0), np.float64(24.0)], weight vectors 5
+main1: 30 chunks, 3000 runs, checkpoints [np.float64(12.0), np.float64(16.0), np.float64(20.0), np.float64(24.0)], weight vectors 2
+r1216: 52 chunks, 260000 runs, checkpoints [np.float64(12.0), np.float64(16.0)], weight vectors 5
+r1216p1: 15 chunks, 75000 runs, checkpoints [np.float64(12.0), np.float64(16.0)], weight vectors 2
+r1620: 51 chunks, 25500 runs, checkpoints [np.float64(16.0), np.float64(20.0)], weight vectors 5
+r1620p1: 15 chunks, 7500 runs, checkpoints [np.float64(16.0), np.float64(20.0)], weight vectors 2
+late: 142 chunks, 2840 runs, checkpoints [np.float64(20.0), np.float64(24.0), np.float64(28.0)], weight vectors 5
+b1216: 72 chunks, 360000 runs, checkpoints [np.float64(12.0), np.float64(16.0)], weight vectors 5
+e0408: 200 chunks, 2000000 runs, checkpoints [np.float64(4.0), np.float64(8.0)], weight vectors 2
+e0812: 30 chunks, 300000 runs, checkpoints [np.float64(8.0), np.float64(12.0)], weight vectors 2
+e0408five: 100 chunks, 1000000 runs, checkpoints [np.float64(4.0), np.float64(8.0)], weight vectors 5
+e0812five: 30 chunks, 300000 runs, checkpoints [np.float64(8.0), np.float64(12.0)], weight vectors 5
+ir0early: 40 chunks, 400000 runs, checkpoints [np.float64(6.0), np.float64(10.0), np.float64(14.0)], weight vectors 1
+ir0ladder: 20 chunks, 20000 runs, checkpoints [np.float64(10.0), np.float64(14.0), np.float64(18.0), np.float64(22.0)], weight vectors 1
+wrote data/moments.npz (2.53 MB)
+moments file data/moments.npz; samples: main (19000 runs), mainA (5500 runs), main1 (3000 runs), r1216 (260000 runs), r1216p1 (75000 runs), r1620 (25500 runs), r1620p1 (7500 runs), late (2840 runs), b1216 (360000 runs), e0408 (2000000 runs), e0812 (300000 runs), e0408five (1000000 runs), e0812five (300000 runs), ir0early (400000 runs), ir0ladder (20000 runs)
+contraction factor rounded upward: rho_up = exp(-4*0.565) = 0.1043505
+
+== 1. PRIMARY (fixed at 04:13 UTC): observable full, window 16 -> 24, runs made after all weights were frozen (sample main)
+   R_full(16,24)                  0.5657236606   run SE 6.15e-09   chunk SE 5.95e-09   (runs 19000, chunks 190)
+   R_sane(16,24)                  0.5657236703   run SE 7.46e-09   chunk SE 6.62e-09   (runs 19000, chunks 190)
+   R_AN(16,24)                    0.5657236288   run SE 5.96e-08   chunk SE 6.02e-08   (runs 19000, chunks 190)
+   R_ANPQ(16,24)                  0.5657236331   run SE 1.51e-08   chunk SE 1.41e-08   (runs 19000, chunks 190)
+   R_AR(16,24)                    0.5657236574   run SE 4.50e-08   chunk SE 4.36e-08   (runs 19000, chunks 190)
+   R_plain(16,24)                 0.5657244609   run SE 1.98e-06   chunk SE 2.11e-06   (runs 19000, chunks 190)
+   windows of the same sample, observable full:
+   R_full(12,16)                  0.5657237185   run SE 6.83e-08   chunk SE 6.96e-08   (runs 19000, chunks 190)
+   R_full(16,20)                  0.5657237063   run SE 2.19e-08   chunk SE 1.99e-08   (runs 19000, chunks 190)
+   R_full(20,24)                  0.5657236558   run SE 7.05e-09   chunk SE 6.90e-09   (runs 19000, chunks 190)
+   R_full(12,24)                  0.5657236611   run SE 6.07e-09   chunk SE 5.91e-09   (runs 19000, chunks 190)
+   paired differences on the same runs (run SE; chunk SE):
+      full - sane  at 16->24: -9.677e-09 +- 4.21e-09 (-2.3 sigma; chunk SE 3.90e-09)
+      full - AN    at 16->24: +3.181e-08 +- 5.92e-08 (+0.5 sigma; chunk SE 5.98e-08)
+      full - ANPQ  at 16->24: +2.748e-08 +- 1.36e-08 (+2.0 sigma; chunk SE 1.27e-08)
+      full - AR    at 16->24: +3.149e-09 +- 4.44e-08 (+0.1 sigma; chunk SE 4.28e-08)
+      full - sane  at 20->24: -1.129e-08 +- 4.76e-09 (-2.4 sigma; chunk SE 4.48e-09)
+      full - AN    at 20->24: +9.655e-08 +- 6.71e-08 (+1.4 sigma; chunk SE 6.61e-08)
+      full - ANPQ  at 20->24: +3.880e-08 +- 1.56e-08 (+2.5 sigma; chunk SE 1.45e-08)
+      full - AR    at 20->24: +2.511e-08 +- 4.94e-08 (+0.5 sigma; chunk SE 4.62e-08)
+      full - sane  at 16->20: +5.832e-09 +- 1.47e-08 (+0.4 sigma; chunk SE 1.39e-08)
+      full - AN    at 16->20: -5.903e-07 +- 2.05e-07 (-2.9 sigma; chunk SE 2.00e-07)
+      full - ANPQ  at 16->20: -8.132e-08 +- 4.84e-08 (-1.7 sigma; chunk SE 4.75e-08)
+      full - AR    at 16->20: -2.079e-07 +- 1.52e-07 (-1.4 sigma; chunk SE 1.65e-07)
+      full - sane  at 12->16: -2.571e-08 +- 4.54e-08 (-0.6 sigma; chunk SE 4.58e-08)
+      full - AN    at 12->16: -2.899e-07 +- 6.49e-07 (-0.4 sigma; chunk SE 6.50e-07)
+      full - ANPQ  at 12->16: +1.314e-07 +- 1.49e-07 (+0.9 sigma; chunk SE 1.49e-07)
+      full - AR    at 12->16: -4.082e-07 +- 4.76e-07 (-0.9 sigma; chunk SE 4.89e-07)
+      full(20,24) - full(16,20): -5.049e-08 +- 2.48e-08 (-2.0 sigma)
+   sensitivity: all runs, i.e. including the 3000 phase-1 runs (the first 600 of them prompted the choice of the window; all 3000 predate the three control observables) (samples main1 + main):
+      R_full(16,24) all runs: 0.5657236623 +- 5.71e-09  (runs 22000)
+      R_sane(16,24) all runs: 0.5657236708 +- 6.91e-09  (runs 22000)
+
+== 2. INDEPENDENT RUNGS (phase-2 runs)
+   r1216: R_full(12,16)           0.5657237030   run SE 1.84e-08   chunk SE 1.27e-08   (runs 260000, chunks 52)
+   r1216: R_sane(12,16)           0.5657236614   run SE 2.21e-08   chunk SE 1.64e-08   (runs 260000, chunks 52)
+   r1216: R_AN(12,16)             0.5657239594   run SE 1.75e-07   chunk SE 1.85e-07   (runs 260000, chunks 52)
+   r1216: R_ANPQ(12,16)           0.5657237761   run SE 4.48e-08   chunk SE 5.31e-08   (runs 260000, chunks 52)
+   r1216: R_AR(12,16)             0.5657238196   run SE 1.30e-07   chunk SE 1.21e-07   (runs 260000, chunks 52)
+      full - sane  at 12->16: +4.166e-08 +- 1.24e-08 (+3.4 sigma; chunk SE 1.39e-08)
+      full - AN    at 12->16: -2.563e-07 +- 1.74e-07 (-1.5 sigma; chunk SE 1.83e-07)
+      full - ANPQ  at 12->16: -7.308e-08 +- 4.07e-08 (-1.8 sigma; chunk SE 5.22e-08)
+      full - AR    at 12->16: -1.165e-07 +- 1.29e-07 (-0.9 sigma; chunk SE 1.19e-07)
+   r1620: R_full(16,20)           0.5657236424   run SE 1.88e-08   chunk SE 1.86e-08   (runs 25500, chunks 51)
+   r1620: R_sane(16,20)           0.5657236509   run SE 2.25e-08   chunk SE 2.27e-08   (runs 25500, chunks 51)
+   r1620: R_AN(16,20)             0.5657235671   run SE 1.79e-07   chunk SE 1.78e-07   (runs 25500, chunks 51)
+   r1620: R_ANPQ(16,20)           0.5657235499   run SE 4.62e-08   chunk SE 4.86e-08   (runs 25500, chunks 51)
+   r1620: R_AR(16,20)             0.5657236956   run SE 1.35e-07   chunk SE 1.42e-07   (runs 25500, chunks 51)
+      full - sane  at 16->20: -8.546e-09 +- 1.27e-08 (-0.7 sigma; chunk SE 1.30e-08)
+      full - AN    at 16->20: +7.528e-08 +- 1.78e-07 (+0.4 sigma; chunk SE 1.78e-07)
+      full - ANPQ  at 16->20: +9.246e-08 +- 4.22e-08 (+2.2 sigma; chunk SE 4.55e-08)
+      full - AR    at 16->20: -5.325e-08 +- 1.33e-07 (-0.4 sigma; chunk SE 1.40e-07)
+   fresh 12->16 cohort of the block test (stream 9210; not part of the registered contrast):
+   b1216: R_full(12,16)           0.5657237008   run SE 1.56e-08   chunk SE 1.64e-08   (runs 360000, chunks 72)
+   b1216: R_sane(12,16)           0.5657236684   run SE 1.87e-08   chunk SE 1.84e-08   (runs 360000, chunks 72)
+   b1216: R_ANPQ(12,16)           0.5657236937   run SE 3.80e-08   chunk SE 4.02e-08   (runs 360000, chunks 72)
+      pooled R_full(12,16), r1216 + b1216: 0.5657237017 +- 1.19e-08  (runs 620000)
+      full - ANPQ  at 12->16 (b1216): +7.144e-09 +- 3.45e-08 (+0.2 sigma)
+
+== 3. CONDITIONAL SYSTEMATIC BOUNDS for the primary (each holds only under the premise named on its line; bounds rounded upward)
+   w = D(16,20)/[D(16,20)+D(20,24)] = 0.094244273 +- 1.56e-06;  upper limit used 0.094247339;  growth of the window denominator D(20,24)/D(16,20) = 9.61072
+   premise (C): |b(t+4)| <= rho |b(t)| at t = 12, 16 with rho = exp(-4 mu): factor <= 0.1043505, f <= 0.188764, two-step coefficient f rho/(1 - f rho) <= 0.020094, one-step coefficient f/(1-f) <= 0.232686 (rounded upward)
+      two-step: R_full(12,16)[r1216] - primary = +4.245e-08 +- 1.94e-08;  |primary - mu| <= 0.020094 * (|contrast| + 2.2414 SE) = 1.73e-09
+      one-step: R_full(16,20)[r1620] - primary = -1.822e-08 +- 1.98e-08;  |primary - mu| <= 0.232686 * (|contrast| + 2.2414 SE) = 1.46e-08
+   premise (C'): the same finite-window inequalities with the larger factor rho' = exp(-4(mu - 0.30)): factor <= 0.3464559, f <= 0.408051, two-step coefficient f rho/(1 - f rho) <= 0.164649, one-step coefficient f/(1-f) <= 0.689334 (rounded upward)
+      two-step: R_full(12,16)[r1216] - primary = +4.245e-08 +- 1.94e-08;  |primary - mu| <= 0.164649 * (|contrast| + 2.2414 SE) = 1.42e-08
+      one-step: R_full(16,20)[r1620] - primary = -1.822e-08 +- 1.98e-08;  |primary - mu| <= 0.689334 * (|contrast| + 2.2414 SE) = 4.32e-08
+
+== 4. LATE COHORT (pre-registered 06:00 UTC; checkpoints 20, 24, 28; independent of the samples above)
+   L1 = R_full(24,28)             0.5657236688   run SE 5.98e-09   chunk SE 6.26e-09   (runs 2840, chunks 142)
+   R_sane(24,28)                  0.5657236752   run SE 7.19e-09   chunk SE 7.31e-09   (runs 2840, chunks 142)
+   R_AN(24,28)                    0.5657236214   run SE 5.53e-08   chunk SE 5.02e-08   (runs 2840, chunks 142)
+   R_ANPQ(24,28)                  0.5657236640   run SE 1.43e-08   chunk SE 1.48e-08   (runs 2840, chunks 142)
+   R_AR(24,28)                    0.5657236220   run SE 4.23e-08   chunk SE 4.29e-08   (runs 2840, chunks 142)
+   R_plain(24,28)                 0.5657221002   run SE 1.86e-06   chunk SE 1.86e-06   (runs 2840, chunks 142)
+   R_full(20,24) in the cohort    0.5657236722   run SE 1.83e-08   chunk SE 1.90e-08   (runs 2840, chunks 142)
+   R_full(20,28) in the cohort    0.5657236691   run SE 5.17e-09   chunk SE 5.55e-09   (runs 2840, chunks 142)
+   L2 = R_full(24,28) - R_full(20,24), paired: -3.436e-09 +- 2.09e-08 (-0.2 sigma)
+   L3 = L1 - primary: +8.222e-09 +- 8.58e-09 (+1.0 sigma)   [reading rule: agreement if within 2.5 sigma]
+   bias bound for L1 under one contraction with factor rho at t = 20: |L1 - mu| <= rho/(1-rho) * (|R_full(20,24)[main] - L1| + 2.2414 SE) = 0.11651 * (1.30e-08 + 2.2414*9.25e-09) = 3.93e-09
+   bias bound for L1 under three contractions, premise (C+), factor rho: |L1 - mu| <= r^3/(1-r^3) * (|R_full(12,16)[r1216] - L1| + 2.2414 SE) = 0.001138 * (3.42e-08 + 2.2414*1.93e-08) = 8.83e-11
+   bias bound for L1 under three contractions, premise (C'+), factor rho': |L1 - mu| <= r^3/(1-r^3) * (|R_full(12,16)[r1216] - L1| + 2.2414 SE) = 0.043391 * (3.42e-08 + 2.2414*1.93e-08) = 3.37e-09
+   secondary, inverse-variance mean of primary and L1 (independent samples): 0.5657236648 +- 4.29e-09
+   L4(sane) = full - sane at 24->28: -6.402e-09 +- 3.99e-09 (-1.6 sigma)
+   L4(AN) = full - AN at 24->28: +4.736e-08 +- 5.49e-08 (+0.9 sigma)
+   L4(ANPQ) = full - ANPQ at 24->28: +4.784e-09 +- 1.30e-08 (+0.4 sigma)
+   L4(AR) = full - AR at 24->28: +4.682e-08 +- 4.19e-08 (+1.1 sigma)
+   cohort, full - sane at 20->24: +1.621e-08 +- 1.19e-08 (+1.4 sigma)
+   cohort, full - AN at 20->24: -1.869e-07 +- 1.80e-07 (-1.0 sigma)
+   cohort, full - ANPQ at 20->24: +4.908e-08 +- 4.17e-08 (+1.2 sigma)
+   cohort, full - AR at 20->24: +3.540e-08 +- 1.28e-07 (+0.3 sigma)
+
+== 4b. A-TEST 1 (registered 06:25 UTC): paired full - ANPQ at 20->24 on main chunks numbered >= 550 only
+   full - ANPQ  at 20->24, chunks >= 550: -4.633e-09 +- 2.90e-08 (-0.2 sigma; runs 5500)
+   full - sane  at 20->24, chunks >= 550: -1.815e-08 +- 8.83e-09 (-2.1 sigma; runs 5500)
+   full - AN    at 20->24, chunks >= 550: -2.617e-08 +- 1.25e-07 (-0.2 sigma; runs 5500)
+   full - AR    at 20->24, chunks >= 550: -4.113e-08 +- 9.03e-08 (-0.5 sigma; runs 5500)
+   R_full(16,24), chunks >= 550   0.5657236698   run SE 1.15e-08   chunk SE 1.14e-08   (runs 5500, chunks 55)
+
+== 5. EARLY WINDOWS AND KNOWN-TRUTH LADDERS (offsets are estimate minus reference)
+   friend tree 4->8 (stream 9410), window 4->8, reference 0.5657236606: sane: -7.408e-05 +- 2.9e-07 | full: +1.061e-04 +- 5.5e-07
+   friend tree 8->12 (stream 9420), window 8->12, reference 0.5657236606: sane: -6.235e-07 +- 6.4e-08 | full: +1.959e-06 +- 6.3e-08
+   friend tree 4->8 (stream 9440), window 4->8, reference 0.5657236606: sane: -7.460e-05 +- 4.1e-07 | full: +1.076e-04 +- 7.8e-07 | AN: +1.473e-04 +- 1.2e-06 | ANPQ: +1.438e-04 +- 8.3e-07 | AR: -4.781e-05 +- 7.5e-07
+   friend tree 8->12 (stream 9430), window 8->12, reference 0.5657236606: sane: -4.944e-07 +- 6.5e-08 | full: +2.020e-06 +- 6.3e-08 | AN: +2.126e-06 +- 5.1e-07 | ANPQ: +2.121e-06 +- 1.3e-07 | AR: -9.362e-07 +- 3.8e-07
+   IR-0 (stream 7303), window 6->10, reference 0.4822669183: th1: +1.291e-04 +- 8.3e-07
+   IR-0 (stream 7303), window 10->14, reference 0.4822669183: th1: +1.363e-06 +- 2.6e-08
+   IR-0 (stream 7302), window 10->14, reference 0.4822669183: th1: +1.328e-06 +- 1.2e-07
+   IR-0 (stream 7302), window 14->18, reference 0.4822669183: th1: +7.473e-09 +- 4.7e-09
+   IR-0 (stream 7302), window 18->22, reference 0.4822669183: th1: -6.256e-11 +- 1.4e-09
+
+wrote data/final_value.txt: 0.5657236606 6.15e-09

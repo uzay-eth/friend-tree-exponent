@@ -1,0 +1,3 @@
+original upper Gold2 {'host': 5, 'stock': 4, 'receiver': 79, 'rstock': 12, 'donor': 7, 'tstock': 3, 'old': 19, 'last': 79, 'mother_min_stock': 9, 'middle_min': 2, 'child_min': 2, 'ceiling': False, 'fixtures': False, 'reserve': False}
+normalized 79742914676261637533783559/6818841661925773803520000000000000 1.1694495726674592e-08 ticks 79742914676261637533783559/6201700363750000000000 12858.234032455457 states 134793 paid 37332 CPU seconds 11.451337645
+wall=15.48 rss=110052 exit=0

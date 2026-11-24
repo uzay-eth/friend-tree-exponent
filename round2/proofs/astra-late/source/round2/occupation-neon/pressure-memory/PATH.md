@@ -1,0 +1,88 @@
+> **Author/model:** Astra (GPT family). **Pinned source commit:** `2afedb1e25a6b95be30752c67022f792730d6f21`. **Review scope and dependencies:** GPT physical pricing audits and scoped Claude archive replays and arithmetic; the applicable Neon witness, stationary growth, and physical occupation. See the [release index](../../../../README.md#claim-21) for exact scope and citations.
+
+# Stationary prices for four-core paths with live exterior donors
+
+The Neon D18 witnesses assign a signed drift charge to each physical occurrence of an oriented path $`A\to B\to C\to D`$ of core vertices. Both witness charges are nonnegative after the transfers in the original verification. Here a stationary price means the expected sum of these charges per uniformly sampled core. We compute it by following the real promotions that create the four vertices. The coefficients come from the original lower and upper payloads, at their respective original trial discounts. [D18 inputs and GMP verification](../../../../../../reviews/cold/astra/attacks/neon1/REHEARSAL.md) · [Physical transfers between motifs](../higher/README.md)
+
+## Birth law and path registration
+
+Write $`d_x`$ for degree, $`k_x`$ for number of core children, $`L_x=d_x-k_x-1`$ for leaf stock and $`p_x=1/d_x`$. A nonfounder vertex becomes a core with $`(d,k)=(2,0)`$. A physical promotion leaves its mother's degree fixed and increments her child count. The stationary physical birth law weights a prospective mother by $`b_x=L_x/d_x`$. Its normalization is $`\pi b=\mu`$. For a functional $`G`$ that sums the eligible tagged paths at one apex, the physical age formula is
+```math
+ \pi G=\mu\int_0^\infty e^{-\mu t}
+                 \mathbb E_{\rm birth}[G(A,t)]\,dt .
+```
+The expectation retains the live birth environment. We bound it uniformly over all allowed initial maternal degrees. No calculation here uses the Perron weights of the copied-branch renewal for this physical birth distribution. A founder has unit send rate and gives at most a linear expected number of core births up to time $`t`$. Its direct maternal contributions vanish after normalization by the mean core count, of order $`e^{\mu t}`$. With bounded tag arities each such apex owns a bounded number of paths on the mask. [Birth and occupation identity](../renewal/README.md) · [Audited stationary normalization](../../../../../../reviews/cold/astra/checks/neon-occupation-sol.md)
+
+At the promotion of $`A`$, register the prefix consisting of $`A`$ alone. At each later promotion by the last vertex of a short prefix, keep the prefix with its mother's updated child count and also register its extension by the new virgin. A fixed physical path specifies exactly one choice at each extension. This construction counts all matching paths when a vertex has had several children. The two resulting terms use conditional expectations in the same full physical tree. Linearity suffices when their futures depend on the same clocks.
+
+In the band calculation we retain every side child of $`B`$ from its own promotion. A promotion by $`B`$ that extends $`AB`$ creates a side donor in the continuing short registration and the next spine vertex in the extended registration. One physical event cannot fill two roles of the same path. In the complementary calculation we instead distinguish one side child $`y`$ at one of the four slots. Keeping the old registration and starting each newly eligible registration covers both orders of an off-path birth and a path extension. For $`y`$ attached to $`A,B,C,D`$ respectively, there are $`4,3,2,1`$ linear orders of the five tagged births. The exterior mother of $`A`$ is already present at the actual birth of $`A`$. [Labelled promotion and multiplicity tests](../../../../../../reviews/cold/astra/checks/p4-lift-sol.md)
+
+## Generator and integer comparisons
+
+Any tagged path vertex gains a leaf at rate $`L_x+\sum_{z\ {\rm core}\sim x}p_z`$, and promotes a leaf at rate $`L_x/d_x`$. Internal reciprocals are known exactly. If a tracked side donor has census $`(d_y,k_y)`$, its gain rate lies between $`L_y+p_x`$ and $`L_y+p_x+k_y/2`$, and its promotion rate is $`L_y/d_y`$. A send from $`y`$ to $`x`$ changes $`d_x`$ alone. After the donor passes memory degree $`H`$, its reciprocal is retained in $`[0,1/(H+1)]`$ permanently. A tracked exterior mother at degree $`m`$ gains at rate in $`[p_A,p_A+m-3/2]`$. Apart from $`A`$ she has at least one core neighbour, her own parent. Among the other $`m-2`$ slots each sends at rate at most one. Mother overflow is handled in the same way. At memory cap zero the valid reciprocal interval is $`[0,1/2]`$.
+
+In a projected state let $`a`$ be the running intercept, $`r_j`$ the rate of a recorded event, $`w_j`$ its coefficient in the running score and $`V_j`$ the sum of its successor values. The discounted row at a fixed rate choice has value
+```math
+ \frac{a+\sum_j r_j(V_j+w_j)}{s+\sum_jr_j}.
+```
+In particular the same $`p_y`$ multiplies the charge slope and the gain into its physical recipient. An omitted arrow that changes only the exterior may alter subsequent rates within the certified intervals. The discounted generator inequalities hold at every allowable rate, so the integrated comparisons apply to that adaptive exterior.
+
+The replay scales all rates by a common integer multiple of their denominators. For a lower bound it sorts the optional rate increments by increasing successor plus slope and includes the increments below the current quotient. For the upper bound it sorts in decreasing order. Once the next increment cannot improve the quotient, neither can the remaining increments. Variable discount is an optional rate with successor value zero. The program rounds the quotient outward, then checks the extremal signed generator residual by summing each coefficient times its adverse endpoint. It does so with integer arithmetic on a $`10^{-18}`$ value grid for both larger runs. The earlier single-census comparison uses $`10^{-16}`$ ticks. All steps allow $`0.565673\le s\le0.565775`$. The final multiplication by the true $`\mu`$ tests both ends of that interval, also for signed rewards.
+
+Tagged degrees and child counts increase. On a short prefix reserve one future child at its last tag for the next extension. In the one-donor comparison also reserve one child at the chosen slot until the donor is born. Once current arity plus these outstanding requirements exceeds a cap, that registration can never earn a payment. A zero current reward on a live registration is different. A path still inside a previously paid size or census class can later grow into the new class and must keep its continuation. There are finitely many projected states, all transitions progress in degree, arity, prefix length or registration. Discounted comparison to infinite time follows by finite-time Dynkin comparison and bounded multiplicity of the retained registrations at fixed caps.
+
+## The two disjoint P4 payments
+
+A four-path with $`j=\sum k_i-3`$ off-path core children has at least $`4+j`$ cores and at least
+```math
+                 S_{\min}=\sum_i(d_i-k_i)+2j
+```
+ordinary vertices in the planted apex fringe. Each tag contributes itself and its attached ordinary leaves. Every remaining child branch contains at least its core and one other vertex, and these branches are disjoint. We require $`S_{\min}>20`$, or $`S_{\min}>12`$ and $`j>0`$. This excludes the size-at-most-12 higher rows and the size-13–20 three- and four-core rows in the frozen release. Its remaining edge, cherry and corrected single-vertex payments have different original owners. [Frozen post-EDGE ledger](../interpolate/compose/residual/edge-projection/combined/FREEZE.md)
+
+The first payment requires $`d_i\le(12,8,6,16)`$ and $`k_A=k_C=1,\ k_B\le3,\ k_D=0`$. It evaluates the actual whole P4 row over every physical side-donor pressure at $`B`$, and over the live exterior mother. There were 14,850 supported descriptors, 12,346 passing the unpaid test, 196,460 live states and 2,357,520 signed drift inequalities. The stationary floors are
+```math
+ r_-=\frac{8830984420263341}{200000000000000000000000},\qquad
+ r_+=\frac{6793831153142289}{200000000000000000000000}.
+```
+The separate signed contrast on a single census uses these same physical ports. For $`(d,k)=(2,1),(4,3),(2,1),(4,0)`$ the constrained maternal law certifies $`\pi\delta_->1.4\,\pi\delta_+`$ on that census. This local ratio earns no additional payment here. [Wide-band cold audit](../../../../../../reviews/cold/astra/checks/p4-band-sol.md) · [Single-census comparison](../../../../../../reviews/cold/astra/checks/stationary-p4-sol.md)
+
+The second payment excludes the **entire first census band** at the observation time. For each other eligible path its original affine row has the exact decomposition
+```math
+ a+\sum_y w_yp_y=m+\sum_y h_y,\qquad
+ m=a+\tfrac12\sum_y\min(w_y,0),\qquad
+ h_y=w_yp_y-\tfrac12\min(w_y,0).
+```
+Here $`y`$ ranges over the actual exterior mother and all off-path core children of the four vertices. The replay checks $`m\ge0`$ exactly in the original tables for each witness. Each $`h_y`$ is nonnegative for $`0\le p_y\le1/2`$. Pay $`m`$ once per path, then pay $`h_y`$ once per actual donor incidence. The separate computations can count the same vertex in different physical path occurrences because the original D18 drift sums over occurrences. They never use the same term twice on one path. Partial sums of these nonnegative terms give legitimate lower bounds.
+
+With caps $`(6,5,4,6)`$, arities $`(2,3,2,1)`$, and side and mother memory three, the independently replayed floors on this complementary support are
+```math
+ r_-^{\rm comp}=\frac{8878929713164459}{125000000000000000000000},\qquad
+ r_+^{\rm comp}=\frac{54446048547132641}{10^{24}}.
+```
+Larger tagged caps contain this support. A new calculation at larger caps replaces the smaller payment throughout. [Complementary-path cold audit](../../../../../../reviews/cold/astra/checks/p4-lift-sol.md)
+
+The larger replay used degree caps $`(9,7,6,10)`$, arities $`(3,3,3,2)`$, and memory degree three on both exterior roles. Its six component sums give the stronger complementary floors
+```math
+ r_-^{\rm comp}=\frac{359297001126132137}{10^{24}},\qquad
+ r_+^{\rm comp}=\frac{6963149521191559}{25000000000000000000000}.
+```
+The producer also bounds their respective stationary totals above by $`1.757708\times10^{-6}`$ and $`1.618687\times10^{-6}`$. These upper bounds concern this support alone. The first complete run used 366.32 user and 12.34 system seconds with peak RSS 1,757,476 KiB. The per-component log identifies which donor supplies each price. [Exact producer receipt](p4-donor-medium.log)
+
+## Reproduction
+
+From the repository root, supply the paths to the two original D18 binaries in D18_LOWER and D18_UPPER. Each program verifies the complete SHA-256 digest before it reads the tables. The higher-family extractor uses NumPy. The single-census calculation uses just the Python standard library.
+
+~~~sh
+python3 -B round2/occupation-neon/pressure-memory/path.py --donor 4 --mother 6
+OPENBLAS_NUM_THREADS=1 python3 -Bu round2/occupation-neon/pressure-memory/path_band.py \
+  --lower "$D18_LOWER" --upper "$D18_UPPER" --degrees 12 8 6 16 \
+  --middle-arity 3 --donor 2 --mother 4
+OPENBLAS_NUM_THREADS=1 python3 -Bu round2/occupation-neon/pressure-memory/donor_lift.py \
+  --lower "$D18_LOWER" --upper "$D18_UPPER" --degrees 6 5 4 6 \
+  --arities 2 3 2 1 --side-cap 3 --mother-cap 3
+OPENBLAS_NUM_THREADS=1 python3 -Bu round2/occupation-neon/pressure-memory/donor_lift.py \
+  --lower "$D18_LOWER" --upper "$D18_UPPER" --degrees 9 7 6 10 \
+  --arities 3 3 3 2 --side-cap 3 --mother-cap 3 --budget 3000000
+~~~
+
+The two positive lower prices for a given witness can be added to its stationary numerator. Converting this addition to an exponent interval uses the corrected stationary denominator of the same witness. The original GMP verification, the physical growth and Palm identities, and the frozen reserve are inputs to that step.
