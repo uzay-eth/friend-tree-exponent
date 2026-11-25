@@ -70,7 +70,7 @@ def receipt(path):
 # identifiers or typesetting, not numerical assertions. The second argument of
 # proofsrc/href remains visible and is scanned.
 IGNORE = re.compile(
-    r'\\(?P<cmd>proofsrc|href|url|path|label|(?:eq|auto|page)?ref|(?:text|paren)?cite|bibitem|'
+    r'\\(?P<cmd>proofsrc|roundsrc|href|url|path|label|(?:eq|auto|page)?ref|(?:text|paren)?cite|bibitem|'
     r'verb|includegraphics|setlength|addtolength|hspace|vspace)\*?(?![A-Za-z])')
 
 

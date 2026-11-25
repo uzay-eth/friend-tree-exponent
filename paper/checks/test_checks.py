@@ -124,6 +124,39 @@ class LinkTests(unittest.TestCase):
         issues, _ = links.paper_links(text + '\n' + r'\\proofsrc{paper/README.md}{bad escape}', {'paper/README.md'}, {})
         self.assertTrue(any('single backslash' in row[-1] for row in issues))
 
+    def test_round3_macro_paths(self):
+        base = (r'\newcommand{\proofsrc}[2]{\href{' + links.REPO_URL + 'blob/' + links.PIN + '/#1}{#2}}' '\n'
+                r'\proofsrc{paper/README.md}{A pinned source}' '\n')
+        macro = r'\newcommand{\roundsrc}[2]{\href{' + links.REPO_URL + 'blob/' + links.ROUND3_PIN + '/#1}{#2}}'
+        calls = '\n' + r'\roundsrc{round3/README.md}{good}' '\n' + r'\roundsrc{round3/absent.md}{bad}'
+        extra = {'roundsrc': (links.ROUND3_PIN, {'round3/README.md'}, {})}
+        issues, count = links.paper_links(base + macro + calls, {'paper/README.md'}, {}, extra)
+        self.assertEqual(count, 3)
+        self.assertEqual([row[2] for row in issues], ['round3/absent.md'])
+        # A Round 3 path is not accepted against the older pin.
+        issues, _ = links.paper_links(base + r'\proofsrc{round3/README.md}{wrong pin}', {'paper/README.md'}, {}, extra)
+        self.assertEqual([row[2] for row in issues], ['round3/README.md'])
+        # The macro must expand to its own pinned commit.
+        issues, _ = links.paper_links(base + macro.replace(links.ROUND3_PIN, 'main') + calls,
+                                      {'paper/README.md'}, {}, extra)
+        self.assertTrue(any('roundsrc must expand' in row[-1] for row in issues))
+        # Without the Round 3 pin configured, its expansion is an unpinned repository link.
+        issues, _ = links.paper_links(base + macro + calls, {'paper/README.md'}, {})
+        self.assertTrue(any('must use proofsrc or roundsrc' in row[-1] for row in issues))
+
+    def test_other_pinned_markdown_links(self):
+        good = links.REPO_URL + 'blob/' + links.ROUND3_PIN + '/round3/README.md'
+        bad = links.REPO_URL + 'blob/' + links.ROUND3_PIN + '/round3/absent.md'
+        unknown = links.REPO_URL + 'blob/' + '0' * 40 + '/anything.md'
+        docs = {'a.md': f'[good]({good}) [bad]({bad}) [unknown]({unknown})'}
+        others = {links.ROUND3_PIN: ({'round3/README.md'}, {})}
+        issues, _, _ = links.scan({'a.md'}, docs.items(), set(), {}, others)
+        self.assertEqual([row[2] for row in issues], [bad])
+
+    def test_round3_macro_is_masked_for_literals(self):
+        literals = list(numbers.lex(numbers.mask_tex(r'\roundsrc{round3/q2-a/1.50.md}{Visible 1/2}')))
+        self.assertEqual([lit.value for lit in literals], [Q('1/2')])
+
 
 if __name__ == '__main__':
     unittest.main()
