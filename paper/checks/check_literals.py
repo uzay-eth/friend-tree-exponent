@@ -13,6 +13,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 PAPER = 'paper/friend-tree-exponent.tex'
+SUPPLEMENT = 'paper/friend-tree-exponent-supplement.tex'
 PIN = 'a0972085ad72ad5685ae7b424988648d1965e73c'
 EARLY = 'round2/proofs/astra/source/round2/'
 LATE = 'round2/proofs/astra-late/source/round2/'
@@ -111,6 +112,18 @@ def refined_endpoint():
 IGNORE = re.compile(
     r'\\(?P<cmd>proofsrc|ordersrc|href|url|path|label|(?:eq|auto|page)?ref|(?:text|paren)?cite|bibitem|'
     r'verb|includegraphics|setlength|addtolength|hspace|vspace)\*?(?![A-Za-z])')
+
+
+def premask(text):
+    """Blank, keeping line numbers, what is checked elsewhere or is not claim text: the proofs
+    transcribed into the supplement (checked formula by formula by check_transcriptions.py), the
+    coordinates of picture environments, and tabular column widths."""
+    def blank(m):
+        return re.sub(r'[^\n]', ' ', m[0])
+    text = re.sub(r'(?ms)^% BEGIN TRANSCRIPTION .*?^% END TRANSCRIPTION[^\n]*$', blank, text)
+    text = re.sub(r'(?s)\\begin\{picture\}.*?\\end\{picture\}', blank, text)
+    text = re.sub(r'(?<![A-Za-z])p\{[0-9.]+(?:cm|em|pt|in|\\linewidth)\}', blank, text)
+    return text
 
 
 def mask_tex(text):
@@ -321,6 +334,18 @@ def nearstar_constants():
         yield value, src
 
 
+def figure_constants():
+    """Promotion probabilities of the two six-vertex trees in Figure 1 of the paper, recomputed:
+    (1/n) * sum over non-leaves of L_v/D_v with n = 6."""
+    F = Fraction
+    left, right = (F(1, 2) + F(3, 4)) / 6, (F(2, 3) + F(2, 3)) / 6
+    if (left, right) != (F(5, 24), F(2, 9)):
+        raise ValueError('Figure 1 promotion probabilities do not recompute')
+    src = 'Figure 1 promotion probabilities (exact recomputation)'
+    for value in (left, right, F(1, 2), F(3, 4), F(2, 3)):
+        yield value, src
+
+
 def derived_receipts():
     source = EARLY + 'fringe/renewal.md'
     text = receipt(source)
@@ -421,6 +446,8 @@ def index_receipts():
                 index[value].append(f'{path}:{text.count(chr(10), 0, m.start()) + 1} (exact Fraction constructor)')
     for value, source in derived_receipts():
         index[value].insert(0, source)
+    for value, source in figure_constants():
+        index[value].insert(0, source)
     return index
 
 
@@ -459,7 +486,7 @@ def check_enclosure(tex_path):
         if (not re.fullmatch(r'\d+\.\d{12}', shown) or Fraction(shown) != outward(endpoint, 12, side)
                 or shown != gold[side]['certified_dec']):
             raise ValueError(f'Gold2 receipt: incorrect outward {side} decimal endpoint')
-    # Theorem 2 prints the refined lower endpoint and the Gold2 upper endpoint.
+    # Theorem ENC (label th:gold2) prints the refined lower endpoint and the Gold2 upper endpoint.
     lower, _, _ = refined_endpoint()
     if not lower > exact[0]:
         raise ValueError('refined lower endpoint does not improve the Gold2 lower endpoint')
@@ -468,7 +495,7 @@ def check_enclosure(tex_path):
     decimals = [f'{low_dec.numerator // 10**12}.{low_dec.numerator % 10**12:012d}', gold_decimals[1]]
 
     tex = re.sub(r'(?<!\\)(?:\\\\)*(%[^\n]*)', lambda m: m[0][:m.start(1) - m.start()],
-                 tex_path.read_text(encoding='utf-8'))
+                 premask(tex_path.read_text(encoding='utf-8')))
     theorem = re.findall(r'\\begin\{theorem\}(?:\[[^\]]*\])?\s*\\label\{th:gold2\}(.*?)\\end\{theorem\}', tex, re.S)
     abstract = re.findall(r'\\begin\{abstract\}(.*?)\\end\{abstract\}', tex, re.S)
     if len(theorem) != 1 or len(abstract) != 1:
@@ -484,52 +511,44 @@ def check_enclosure(tex_path):
 
     fractions = pair(theorem, 'fraction', chain)
     if len(fractions) != 1 or [lit.value for lit in fractions[0]] != exact:
-        raise ValueError('Theorem 2 exact endpoints do not match the recomputed enclosure')
+        raise ValueError('Theorem ENC (th:gold2) exact endpoints do not match the recomputed enclosure')
     interval = [(a, b) for a, b in pair(theorem, 'decimal', GAP + ',' + GAP)
                 if re.search(r'\[' + GAP + '$', theorem[:a.start]) and re.match(GAP + r'\]', theorem[b.end:])]
-    for name, pairs in (('Theorem 2', interval), ('abstract', pair(abstract, 'decimal', chain))):
+    for name, pairs in (('Theorem ENC (th:gold2)', interval), ('abstract', pair(abstract, 'decimal', chain))):
         if len(pairs) != 1 or [lit.spelling for lit in pairs[0]] != decimals:
             raise ValueError(f'{name} outward decimal endpoints do not match the recomputed enclosure')
 
+    supplement = ROOT / SUPPLEMENT
+    if tex_path.resolve() == (ROOT / PAPER).resolve() and supplement.exists():
+        stmt = r'\\begin\{theorem\}\[[^\]]*\]\\label\{th:gold2\}.*?\\end\{theorem\}'
+        mine = re.findall(stmt, tex_path.read_text(encoding='utf-8'), re.S)
+        theirs = re.findall(stmt, supplement.read_text(encoding='utf-8'), re.S)
+        if len(theirs) != 1 or theirs != mine:
+            raise ValueError('the supplement does not restate the enclosure theorem exactly as the paper')
     print(f'Exact enclosure: [{exact[0]}, {exact[1]}]')
     print(f'Outward decimal enclosure: [{decimals[0]}, {decimals[1]}]')
-    print('PASS: refined lower and Gold2 upper receipts match Theorem 2 and the abstract.')
+    print('PASS: refined lower and Gold2 upper receipts match Theorem ENC, its restatement in the supplement, and the abstract.')
 
 
-def main():
-    ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument('--tex', type=Path, default=ROOT / PAPER, help='audit another TeX input (e.g. writer fragment)')
-    mode = ap.add_mutually_exclusive_group()
-    mode.add_argument('--all', action='store_true', help='list every matched occurrence and a pinned source location')
-    mode.add_argument('--enclosure', action='store_true', help='check the printed enclosure offline without Git history')
-    args = ap.parse_args()
-    if args.enclosure:
-        try:
-            check_enclosure(args.tex)
-        except (OSError, ValueError) as error:
-            print(f'FAIL: {error}')
-            return 1
-        return 0
-    text = mask_tex(args.tex.read_text(encoding='utf-8'))
+def audit(tex_path, index, show_all):
+    raw = tex_path.read_text(encoding='utf-8')
+    text = mask_tex(premask(raw))
     literals = list(lex(text))
-    index = index_receipts()
     counts = Counter()
     missing = 0
     for lit in literals:
         if provenance := index.get(lit.value):
             counts[lit.kind] += 1
-            if args.all:
+            if show_all:
                 display = (lit.comparison + ' ' if lit.comparison else '') + lit.spelling
-                print(f'{args.tex}:{lit.line}: {display} [{lit.value}] <- {provenance[0]}')
+                print(f'{tex_path}:{lit.line}: {display} [{lit.value}] <- {provenance[0]}')
         else:
             missing += 1
-            print(f'{args.tex}:{lit.line}: UNMATCHED {lit.kind} {lit.comparison} {lit.spelling} [{lit.value}]')
+            print(f'{tex_path}:{lit.line}: UNMATCHED {lit.kind} {lit.comparison} {lit.spelling} [{lit.value}]')
     reversals = list(reversed_bounds(text, literals))
-    # The canonical manuscript's headline theorem must print both exact
-    # endpoints. This catches deletion or replacement by a different known
-    # bound, which a value-membership test alone cannot catch.
-    gold_theorem = re.search(r'\\begin\{theorem\}[^\n]*(?:\n\s*)?\\label\{th:gold2\}(.*?)\\end\{theorem\}',
-                             args.tex.read_text(encoding='utf-8'), re.S)
+    # The headline theorem must print both exact endpoints. This catches deletion or replacement
+    # by a different known bound, which a value-membership test alone cannot catch.
+    gold_theorem = re.search(r'\\begin\{theorem\}[^\n]*(?:\n\s*)?\\label\{th:gold2\}(.*?)\\end\{theorem\}', raw, re.S)
     gold_error = False
     if gold_theorem:
         exact = json.loads(receipt(GOLD))
@@ -537,14 +556,34 @@ def main():
         theorem_values = [lit.value for lit in lex(mask_tex(gold_theorem[1]))]
         gold_error = not all(v in theorem_values for v in pair)
         if gold_error:
-            print(f'{args.tex}: th:gold2 must include the refined lower and the Gold2 upper endpoint')
+            print(f'{tex_path}: th:gold2 must include the refined lower and the Gold2 upper endpoint')
     for a, b in reversals:
-        print(f'{args.tex}:{a.line}: REVERSED bound: {a.spelling} > {b.spelling}')
+        print(f'{tex_path}:{a.line}: REVERSED bound: {a.spelling} > {b.spelling}')
     checked = sum(counts.values())
-    print(f'{checked}/{checked + missing} occurrences matched ({counts["fraction"]} fractions, '
+    print(f'{tex_path.name}: {checked}/{checked + missing} occurrences matched ({counts["fraction"]} fractions, '
           f'{counts["decimal"]} decimals); {missing} unmatched; {len(reversals)} reversed bounds; '
           f'pinned receipts at {PIN}')
-    return int(bool(missing or reversals or gold_error or not checked))
+    return bool(missing or reversals or gold_error or not checked)
+
+
+def main():
+    ap = argparse.ArgumentParser(description=__doc__)
+    ap.add_argument('--tex', type=Path, action='append',
+                    help='audit this TeX input instead of the paper and supplement (repeatable)')
+    mode = ap.add_mutually_exclusive_group()
+    mode.add_argument('--all', action='store_true', help='list every matched occurrence and a pinned source location')
+    mode.add_argument('--enclosure', action='store_true', help='check the printed enclosure offline without Git history')
+    args = ap.parse_args()
+    if args.enclosure:
+        try:
+            check_enclosure((args.tex or [ROOT / PAPER])[0])
+        except (OSError, ValueError) as error:
+            print(f'FAIL: {error}')
+            return 1
+        return 0
+    index = index_receipts()
+    failed = [audit(tex, index, args.all) for tex in (args.tex or [ROOT / PAPER, ROOT / SUPPLEMENT])]
+    return int(any(failed))
 
 
 if __name__ == '__main__':

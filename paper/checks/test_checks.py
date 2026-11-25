@@ -63,7 +63,7 @@ class EnclosureTests(unittest.TestCase):
         with TemporaryDirectory() as work:
             root = Path(work)
             script = root / 'paper/checks/check_literals.py'
-            for rel in ('paper/checks/check_literals.py', numbers.PAPER, numbers.GOLD, numbers.REFINED_CHECK,
+            for rel in ('paper/checks/check_literals.py', numbers.PAPER, numbers.SUPPLEMENT, numbers.GOLD, numbers.REFINED_CHECK,
                         numbers.REFINED_RECEIPT, numbers.REFINED_CLASSES):
                 dest = root / rel
                 dest.parent.mkdir(parents=True, exist_ok=True)
@@ -83,22 +83,50 @@ class EnclosureTests(unittest.TestCase):
             numerator, denominator = exact_lower.split('/')
             printed = rf'\frac{{{numerator}}}{{{denominator}}}'
             changed = rf'\frac{{{int(numerator) + 1}}}{{{denominator}}}'
-            # The first occurrence is the statement of Theorem 2.
+            # The first occurrence is the statement of Theorem ENC (th:gold2).
             self.assertLess(original.index(printed), original.index(r'\end{theorem}', original.index(r'\label{th:gold2}')))
             paper.write_text(original.replace(printed, changed, 1), encoding='utf-8')
             result = subprocess.run(command, **options)
             self.assertEqual(result.returncode, 1, result.stdout + result.stderr)
-            self.assertIn('Theorem 2 exact endpoints do not match', result.stdout)
+            self.assertIn('Theorem ENC (th:gold2) exact endpoints do not match', result.stdout)
             self.assertNotIn('PASS:', result.stdout)
 
-            # A changed per-class file must also fail, even with the manuscript restored.
+            # A supplement whose restated theorem differs from the paper's must fail.
             paper.write_text(original, encoding='utf-8')
+            supplement = root / numbers.SUPPLEMENT
+            supp_original = supplement.read_text(encoding='utf-8')
+            supplement.write_text(supp_original.replace(printed, changed, 1), encoding='utf-8')
+            result = subprocess.run(command, **options)
+            self.assertEqual(result.returncode, 1, result.stdout + result.stderr)
+            self.assertIn('does not restate the enclosure theorem', result.stdout)
+            supplement.write_text(supp_original, encoding='utf-8')
+
+            # A changed per-class file must also fail, even with the manuscript restored.
             classes = root / numbers.REFINED_CLASSES
             rows = classes.read_bytes()
             classes.write_bytes(rows.replace(b'\n2 135889307074 1941\n', b'\n2 135889307074 1940\n', 1))
             result = subprocess.run(command, **options)
             self.assertEqual(result.returncode, 1, result.stdout + result.stderr)
             self.assertIn('refined lower endpoint', result.stdout)
+
+
+class TranscriptionTests(unittest.TestCase):
+    def test_changed_formula_or_word_fails(self):
+        script = numbers.ROOT / 'paper/checks/check_transcriptions.py'
+        original = (numbers.ROOT / numbers.SUPPLEMENT).read_text(encoding='utf-8')
+        ok = subprocess.run([sys.executable, '-B', str(script)], capture_output=True, text=True)
+        self.assertEqual(ok.returncode, 0, ok.stdout)
+        start = original.index('% BEGIN TRANSCRIPTION round3/q3-birth-order/PROOF.md')
+        formula = original.index('\\frac{1}{d(u)', start)
+        word = original.index('symmetric leaves', start)
+        for mutated, message in ((original[:formula] + '\\frac{2}{d(u)' + original[formula + len('\\frac{1}{d(u)'):], 'formulas differ'),
+                                 (original[:word] + 'symmetrical leaves' + original[word + len('symmetric leaves'):], 'prose differs')):
+            with TemporaryDirectory() as work:
+                tex = Path(work) / 'supplement.tex'
+                tex.write_text(mutated, encoding='utf-8')
+                result = subprocess.run([sys.executable, '-B', str(script), '--tex', str(tex)], capture_output=True, text=True)
+                self.assertEqual(result.returncode, 1, result.stdout)
+                self.assertIn(message, result.stdout)
 
 
 class LinkTests(unittest.TestCase):

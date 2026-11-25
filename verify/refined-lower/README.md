@@ -1,10 +1,10 @@
 # Refined lower endpoint of the exponent
 
-This folder checks the lower endpoint of Theorem 2 of the [paper](../../paper/friend-tree-exponent.pdf):
+This folder checks the lower endpoint of Theorem ENC of the [paper](../../paper/friend-tree-exponent.pdf):
 
 $$\frac{3843726496355222669}{6794465353700000000}\le\mu\le\frac{127993535256830043}{226242120050000000},$$
 
-or $0.565714341933\le\mu\le0.565736986679$ rounded outwards. The upper endpoint is the unchanged five-vertex (Gold2) upper endpoint. The lower endpoint comes from a larger lower table of the same format, accepted by the unmodified verifier and combined class by class (Lemma F.1 in Appendix F of the paper). The unmodified combiner on the same table certifies only $3843725577155222669/6794465353700000000<99/175$.
+or $0.565714341933\le\mu\le0.565736986679$ rounded outwards. The upper endpoint is the unchanged five-vertex (Gold2) upper endpoint. The lower endpoint comes from a larger lower table of the same format, accepted by the unmodified verifier and combined class by class (Lemma ENC.1 in §ENC.d of the [supplement](../../paper/friend-tree-exponent-supplement.pdf)). The unmodified combiner on the same table certifies only $3843725577155222669/6794465353700000000<99/175$.
 
 Consequences, checked in exact arithmetic: $99/175<\mu<142/251$; since these are Farey neighbours, a rational $\mu$ has reduced denominator at least 426. The fraction $241/426$ lies inside the interval and is not excluded.
 
@@ -54,4 +54,6 @@ Before the header patch the file has SHA-256 `62d4823d592422dbc586d6f475b15d43e9
 
 ## Provenance
 
-The classwise aggregation and its application were first written as a research note (SHA-256 `9e08e866a13156df08909faa37277b1c0b99415d870b1c191955c6e2ae169f70`), not part of the repository. Appendix F of the paper is a write-up of that note with the same scope. A GPT-family referee found the classwise lemma, the host allocation, the tail classes, the exact endpoint and the Farey bound all hold; a separate Claude review also passed. No human has refereed it.
+The classwise aggregation and its application were first written as a research note (SHA-256 `9e08e866a13156df08909faa37277b1c0b99415d870b1c191955c6e2ae169f70`), not part of the repository. Supplement §ENC.d is a write-up of that note with the same scope. A GPT-family referee found the classwise lemma, the host allocation, the tail classes, the exact endpoint and the Farey bound all hold; a separate Claude review also passed. No human has refereed it.
+
+**Numbering.** Comments and output of the scripts here use the numbering of the earlier single-file manuscript (commit `6fee4c4`): Theorem 2 is now Theorem ENC, Appendix F is supplement §ENC.d, and Lemma F.1 is Lemma ENC.1. The scripts are unchanged and still match `MANIFEST.sha256`.

@@ -20,6 +20,7 @@ ORDER_PIN = '62081cad01112c42c2011ac3eed11aa3aa665e09'
 ARCHIVE_PIN = 'c250a1f2fdd53ced91b7b485e94ac8a16106b9c7'
 BASE_PIN = '56f2d807ba63d19e9cb0e56d7678ae50843d3f6a'
 PAPER = 'paper/friend-tree-exponent.tex'
+SUPPLEMENT = 'paper/friend-tree-exponent-supplement.tex'
 REPO_URL = 'https://github.com/uzay-eth/friend-tree-exponent/'
 PINNED_URL = re.compile(re.escape(REPO_URL) + r'(blob|tree)/' + PIN + r'/(.+)\Z')
 OTHER_PINNED_URL = re.compile(re.escape(REPO_URL) + r'(blob|tree)/([0-9a-f]{40})/(.+)\Z')
@@ -164,7 +165,7 @@ def scan(files, docs, pinned=None, pinned_anchors=None, others=None):
     return errors, len(anchors), local
 
 
-def paper_links(text, pinned, pinned_anchors, extra=None):
+def paper_links(text, pinned, pinned_anchors, extra=None, name=PAPER):
     r"""Check \proofsrc calls against PIN and each extra macro's calls against its own pin.
 
     ``extra`` maps a macro name to ``(pin, manifest, anchors)``.
@@ -182,11 +183,11 @@ def paper_links(text, pinned, pinned_anchors, extra=None):
         for match in re.finditer(r'(?<!\\)(\\+)' + name + r'\b(?!\s*\})', text):
             line = text.count('\n', 0, match.start()) + 1
             if match[1] != '\\':
-                errors.append((PAPER, line, '', 'pinned source', f'{name} must start with a single backslash'))
+                errors.append((name, line, '', 'pinned source', f'{name} must start with a single backslash'))
                 continue
             args = re.match(r'\s*\{([^{}\s]+)\}\s*\{', text[match.end():])
             if not args:
-                errors.append((PAPER, line, '', 'pinned source', 'malformed source link'))
+                errors.append((name, line, '', 'pinned source', 'malformed source link'))
                 continue
             calls += 1
             dest = args[1].replace(r'\#', '#').replace(r'\_', '_')
@@ -197,9 +198,9 @@ def paper_links(text, pinned, pinned_anchors, extra=None):
             else:
                 problem = check(PAPER, dest, files, set(), anchors, roots=True)
             if problem:
-                errors.append((PAPER, line, dest, 'pinned source', problem))
+                errors.append((name, line, dest, 'pinned source', problem))
         if calls and (len(macro) != 1 or len(re.findall(definition, text)) != 1):
-            errors.append((PAPER, 1, '', 'pinned source', f'{name} must expand to the pinned GitHub blob URL'))
+            errors.append((name, 1, '', 'pinned source', f'{name} must expand to the pinned GitHub blob URL'))
         if calls or name == 'proofsrc':
             allowed.add(REPO_URL + 'blob/' + pin + '/#1')
         count += calls
@@ -207,7 +208,7 @@ def paper_links(text, pinned, pinned_anchors, extra=None):
         for m in re.finditer(r'\\href\s*\{(' + re.escape(REPO_URL) + r'[^{}]*)\}', text):
             if m[1] not in allowed:
                 line = text.count('\n', 0, m.start()) + 1
-                errors.append((PAPER, line, m[1], 'pinned source', 'repository sources must use proofsrc or ordersrc'))
+                errors.append((name, line, m[1], 'pinned source', 'repository sources must use proofsrc or ordersrc'))
     return errors, count
 
 
@@ -215,7 +216,7 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument('--allow-existing', action='store_true', help='report pinned Markdown defects but fail only on regressions')
     ap.add_argument('--include', action='append', default=[], metavar='PATH', help='also check a newly written, unstaged Markdown document')
-    ap.add_argument('--tex', type=Path, default=ROOT / PAPER, help='check links in another TeX input')
+    ap.add_argument('--tex', type=Path, action='append', help='check links in this TeX input instead of the paper and supplement (repeatable)')
     args = ap.parse_args()
     files, pinned = manifest(), manifest(PIN)
     for p in args.include:
@@ -237,10 +238,18 @@ def main():
     issues, docs, local = scan(working, ((p, (ROOT / p).read_text(encoding='utf-8-sig')) for p in paths),
                                pinned, pinned_anchors, others)
     order_tree, order_anchors = others[ORDER_PIN]
-    tex_issues, sources = paper_links(args.tex.read_text(encoding='utf-8'), pinned, pinned_anchors,
-                                      {'ordersrc': (ORDER_PIN, order_tree, order_anchors)})
-    if not sources:
-        tex_issues.append((PAPER, 1, '', 'pinned source', 'no pinned proofsrc or ordersrc calls found'))
+    tex_issues, sources = [], 0
+    for tex in (args.tex or [ROOT / PAPER, ROOT / SUPPLEMENT]):
+        text = tex.read_text(encoding='utf-8')
+        found, count = paper_links(text, pinned, pinned_anchors, {'ordersrc': (ORDER_PIN, order_tree, order_anchors)}, tex.name)
+        tex_issues += found
+        sources += count
+        if not count:
+            tex_issues.append((tex.name, 1, '', 'pinned source', 'no pinned proofsrc or ordersrc calls found'))
+        # Relative links (the paper and the supplement link to each other) must name a file next to the TeX source.
+        for m in re.finditer(r'\\(?:href|externaldocument\[[^\]]*\]\{[^{}]*\})\s*[\[{]([^{}\[\]]+\.pdf)[\]}]', text):
+            if not re.match(r'^[A-Za-z][A-Za-z0-9+.-]*:', m[1]) and not (tex.parent / m[1]).is_file():
+                tex_issues.append((tex.name, text.count('\n', 0, m.start()) + 1, m[1], 'relative file', 'missing next to the TeX source'))
     prior = new = 0
     for p, n, d, k, e in issues + tex_issues:
         key = p, d, k, e
