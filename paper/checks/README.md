@@ -76,13 +76,14 @@ The supplement reproduces four reviewed Markdown proofs between `% BEGIN TRANSCR
 For each region the script does three things:
 
 - it checks the source digest;
-- it requires every formula of the source lines to appear in the TeX region in order and byte for byte;
+- it requires every formula of the source lines to appear in the TeX region in order and byte for byte, once the layout-only commands `\ftbreak` and the `multlined` wrapper are removed, including formulas nested in list items;
+- it requires the printed list numbers to match the source;
 - it requires the words of the prose to agree once markup is removed.
 
-A negative control in the test suite changes one formula and one word.
+Framed `\reviewnote` additions are reported and excluded. Negative controls in the test suite reverse an inequality in a nested formula, drop a list number, and change one formula and one word.
 
 ### Proof parity (`check_proof_parity.py`)
 
-This check needs Git history. It reads the earlier single-file manuscript at commit `6fee4c4d2464878ad06fff03c749c6fbede9baad`. It then requires every non-blank line to appear verbatim in the paper or the supplement, after the listed reference renames. The only exceptions are the documented ranges of rewritten front matter, introduction, open questions and headings. `--list` prints every exception with its reason.
+This check needs Git history. It reads the earlier single-file manuscript at commit `6fee4c4d2464878ad06fff03c749c6fbede9baad`. It then requires every non-blank line to appear verbatim in the paper or the supplement, after the listed reference renames and documented wording edits (`SUPP_EDITS`), which it counts separately. The only exceptions are the documented ranges of rewritten front matter, introduction, open questions and headings. `--list` prints every exception with its reason.
 
 The pins are `a0972085ad72ad5685ae7b424988648d1965e73c` for `\proofsrc` and `62081cad01112c42c2011ac3eed11aa3aa665e09` for `\ordersrc`. See the [supporting-results verifier guide](../../round2/verify/README.md) for replay requirements and scope.
