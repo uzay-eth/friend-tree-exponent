@@ -23,7 +23,7 @@ The random friend tree starts from one edge. At each step a uniformly chosen ver
 **Comments**
 
 ```text
-18 pages, with a 80-page supplement of complete proofs. Proofs, exact certificate verifiers and simulation data: https://github.com/uzay-eth/friend-tree-exponent
+18 pages, with an 80-page supplement of complete proofs. Proofs, exact certificate verifiers and simulation data: https://github.com/uzay-eth/friend-tree-exponent
 ```
 
 **Licence recommendation.** Choose Creative Commons Attribution 4.0 International (CC BY 4.0) to match the repository’s licence for its text and proofs. It permits commercial reuse and adaptations with attribution, and the grant is irrevocable, so check compatibility with the intended journal. [Repository licence](../LICENSE) · [arXiv licences](https://info.arxiv.org/help/license/index.html)

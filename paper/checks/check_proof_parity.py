@@ -35,6 +35,7 @@ SUPP_EDITS = [
     ('research repository, revision 5bd25a7, November 2026', 'research repository at commit 5bd25a7, November 2026'),
     ('{GitHub README, revision 5bd25a7}', '{README on GitHub}'),
     ('repository, revision 5bd25a7, November 2026.', 'repository at commit 5bd25a7, November 2026.'),
+    ('\\proofsrc{paper/friend-tree-exponent.pdf}{Archived PDF at commit a097208}', '\\proofsrc{paper/friend-tree-exponent.pdf}{archived PDF}, commit a097208'),
 ]
 
 

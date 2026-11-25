@@ -73,7 +73,7 @@ It checks relative paths, Markdown headings and explicit anchors in tracked Mark
 
 The supplement reproduces four reviewed Markdown proofs between `% BEGIN TRANSCRIPTION` and `% END TRANSCRIPTION` markers. Each marker records the source path, line range, SHA-256 and commit.
 
-For each region the script does three things:
+For each region the script does four things:
 
 - it checks the source digest;
 - it requires every formula of the source lines to appear in the TeX region in order and byte for byte, once the layout-only commands `\ftbreak` and the `multlined` wrapper are removed, including formulas nested in list items;
