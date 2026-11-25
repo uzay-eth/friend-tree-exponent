@@ -1,6 +1,6 @@
 # The random friend tree exponent is not 17/30
 
-**Can Uzay** · [Read the Round 3 paper (PDF)](paper/friend-tree-exponent.pdf) · [LaTeX source](paper/friend-tree-exponent.tex) · [Proof and checker map](docs/proof-map.md) · [Round 3 checkpoint, all eight questions](round3/README.md)
+**Can Uzay** · [Read the Round 3 paper (PDF)](paper/friend-tree-exponent.pdf) · [LaTeX source](paper/friend-tree-exponent.tex) · [Proof and checker map](docs/proof-map.md) · [Round 3 checkpoint (scoped status by question)](round3/README.md)
 
 The exponent $`\mu`$ lies in the exact interval $`\frac{35083855339718511}{62017003637500000}\le\mu\le\frac{127993535256830043}{226242120050000000}`$, or $`0.565713486333\le\mu\le0.565736986679`$ rounded outwards (Theorem 2).
 
@@ -38,7 +38,7 @@ Krapivsky and Redner predicted the scaling of the normalized mean counts. Addari
 - What is the exact value of $`\mu`$, and does it have a closed form?
 - Is $`\mu`$ irrational?
 - Do exact-degree counts follow the predicted scaling on individual trees, not just in mean, when the degree grows with the tree?
-- Questions 4–8 of Addario-Berry et al.: see the scoped status and open gaps in the [Round 3 checkpoint](round3/README.md#2-status-across-all-eight-questions-of-7).
+- Remaining parts of Questions 4–8 of Addario-Berry et al.: see the scoped status and open gaps in the [Round 3 checkpoint](round3/README.md#2-status-across-all-eight-questions-of-7).
 
 Earlier versions: [Round 2 paper (PDF)](https://github.com/uzay-eth/friend-tree-exponent/blob/c250a1f2fdd53ced91b7b485e94ac8a16106b9c7/paper/friend-tree-exponent.pdf) · [Round 1 paper (PDF)](https://github.com/uzay-eth/friend-tree-exponent/blob/a0972085ad72ad5685ae7b424988648d1965e73c/paper/friend-tree-exponent.pdf)
 

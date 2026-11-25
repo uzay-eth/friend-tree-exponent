@@ -6,7 +6,7 @@ The [complete historical report](https://github.com/uzay-eth/friend-tree-exponen
 
 ## Round 3, 25 November 2026
 
-The [Round 3 paper](paper/friend-tree-exponent.pdf) adds Theorem 12: the limiting degree shares are strictly ordered by birth label in first-order stochastic order, at every threshold, and the earlier of the next two labels already has the larger conditional tail before either is placed. It also adds a supplementary mean result for exact degrees that grow with the tree. [Round 3 checkpoint across all eight questions](round3/README.md) · [Provenance and digests](round3/PROVENANCE.md) · [Round 2 paper (archived PDF)](https://github.com/uzay-eth/friend-tree-exponent/blob/c250a1f2fdd53ced91b7b485e94ac8a16106b9c7/paper/friend-tree-exponent.pdf)
+The [Round 3 paper](paper/friend-tree-exponent.pdf) adds Theorem 12: the limiting degree shares are strictly ordered by birth label in first-order stochastic order, at every threshold, and the earlier of the next two labels already has the larger conditional tail before either is placed. It also adds a supplementary mean result for exact degrees that grow with the tree. [Round 3 checkpoint (scoped status by question)](round3/README.md) · [Provenance and digests](round3/PROVENANCE.md) · [Round 2 paper (archived PDF)](https://github.com/uzay-eth/friend-tree-exponent/blob/c250a1f2fdd53ced91b7b485e94ac8a16106b9c7/paper/friend-tree-exponent.pdf)
 
 ## Round 2, 24 November 2026
 

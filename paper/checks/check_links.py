@@ -16,9 +16,12 @@ ROOT = Path(__file__).resolve().parents[2]
 PIN = 'a0972085ad72ad5685ae7b424988648d1965e73c'
 # Round 3 sources are cited through \\roundsrc at the public checkpoint commit.
 ROUND3_PIN = '62081cad01112c42c2011ac3eed11aa3aa665e09'
+# Markdown may also link the archived Round 2 release; such links are checked against that tree.
+ROUND2_PIN = 'c250a1f2fdd53ced91b7b485e94ac8a16106b9c7'
 PAPER = 'paper/friend-tree-exponent.tex'
 REPO_URL = 'https://github.com/uzay-eth/friend-tree-exponent/'
 PINNED_URL = re.compile(re.escape(REPO_URL) + r'(blob|tree)/' + PIN + r'/(.+)\Z')
+OTHER_PINNED_URL = re.compile(re.escape(REPO_URL) + r'(blob|tree)/([0-9a-f]{40})/(.+)\Z')
 MD = MarkdownIt('commonmark', {'inline_definitions': True, 'store_labels': True}).enable(['table', 'strikethrough'])
 
 
@@ -128,7 +131,8 @@ def check(path, dest, files, directories, anchors, roots=False):
     return None
 
 
-def scan(files, docs, pinned=None, pinned_anchors=None):
+def scan(files, docs, pinned=None, pinned_anchors=None, others=None):
+    # ``others`` maps further pinned commits to (manifest, anchors) for Markdown links.
     anchors, entries, errors = {}, [], []
     dirs = {str(d) for path in files for d in PurePosixPath(path).parents}
     for path, text in docs:
@@ -140,9 +144,15 @@ def scan(files, docs, pinned=None, pinned_anchors=None):
     pin_dirs = {str(d) for p in (pinned or ()) for d in PurePosixPath(p).parents}
     for path, line, dest, kind in entries:
         match = PINNED_URL.fullmatch(dest) if pinned is not None else None
+        other = OTHER_PINNED_URL.fullmatch(dest) if others and not match else None
         if match:
             problem = check(path, match[2], pinned, pin_dirs if match[1] == 'tree' else set(),
                             pinned_anchors, roots=True)
+            kind = 'pinned Markdown'
+        elif other and other[2] in others:
+            tree, tree_anchors = others[other[2]]
+            tree_dirs = {str(d) for q in tree for d in PurePosixPath(q).parents} if other[1] == 'tree' else set()
+            problem = check(path, other[3], tree, tree_dirs, tree_anchors, roots=True)
             kind = 'pinned Markdown'
         else:
             if not re.match(r'^(?:[A-Za-z][A-Za-z0-9+.-]*:|//)', dest):
@@ -218,14 +228,18 @@ def main():
     old = Counter((p, d, k, e) for p, _, d, k, e in baseline)
     paths = sorted(p for p in files if p.lower().endswith('.md') and (ROOT / p).is_file())
     working = {p for p in files if (ROOT / p).is_file()}
-    issues, docs, local = scan(working, ((p, (ROOT / p).read_text(encoding='utf-8-sig')) for p in paths), pinned, pinned_anchors)
-    round3 = manifest(ROUND3_PIN)
-    round3_docs = dict(blobs(ROUND3_PIN, sorted(p for p in round3 if p.lower().endswith('.md'))))
-    round3_anchors = {p: parse(s)[0] for p, s in round3_docs.items()}
+    others = {}
+    for rev in (ROUND3_PIN, ROUND2_PIN):
+        tree = manifest(rev)
+        docs_at = dict(blobs(rev, sorted(p for p in tree if p.lower().endswith('.md'))))
+        others[rev] = (tree, {p: parse(s)[0] for p, s in docs_at.items()})
+    issues, docs, local = scan(working, ((p, (ROOT / p).read_text(encoding='utf-8-sig')) for p in paths),
+                               pinned, pinned_anchors, others)
+    round3, round3_anchors = others[ROUND3_PIN]
     tex_issues, sources = paper_links(args.tex.read_text(encoding='utf-8'), pinned, pinned_anchors,
                                       {'roundsrc': (ROUND3_PIN, round3, round3_anchors)})
     if not sources:
-        tex_issues.append((PAPER, 1, '', 'pinned source', 'no pinned proofsrc calls found'))
+        tex_issues.append((PAPER, 1, '', 'pinned source', 'no pinned proofsrc or roundsrc calls found'))
     prior = new = 0
     for p, n, d, k, e in issues + tex_issues:
         key = p, d, k, e

@@ -144,6 +144,15 @@ class LinkTests(unittest.TestCase):
         issues, _ = links.paper_links(base + macro + calls, {'paper/README.md'}, {})
         self.assertTrue(any('must use proofsrc or roundsrc' in row[-1] for row in issues))
 
+    def test_other_pinned_markdown_links(self):
+        good = links.REPO_URL + 'blob/' + links.ROUND3_PIN + '/round3/README.md'
+        bad = links.REPO_URL + 'blob/' + links.ROUND3_PIN + '/round3/absent.md'
+        unknown = links.REPO_URL + 'blob/' + '0' * 40 + '/anything.md'
+        docs = {'a.md': f'[good]({good}) [bad]({bad}) [unknown]({unknown})'}
+        others = {links.ROUND3_PIN: ({'round3/README.md'}, {})}
+        issues, _, _ = links.scan({'a.md'}, docs.items(), set(), {}, others)
+        self.assertEqual([row[2] for row in issues], [bad])
+
     def test_round3_macro_is_masked_for_literals(self):
         literals = list(numbers.lex(numbers.mask_tex(r'\roundsrc{round3/q2-a/1.50.md}{Visible 1/2}')))
         self.assertEqual([lit.value for lit in literals], [Q('1/2')])
