@@ -8,7 +8,7 @@ Start with an edge. At each step, pick a vertex uniformly, pick one of its neigh
 
 ## New in Round 3: older vertices win at every threshold
 
-Let $`Z_v`$ be the long-run share of all vertices that end up attached to vertex $`v`$ (its degree divided by the tree size). Addario-Berry et al. asked whether these shares are [stochastically ordered by birth label](https://arxiv.org/html/2403.20185v1#S7). They are. Apart from the two founders, whose shares have the same law, an older vertex is strictly more likely than a younger one to keep a share above any threshold:
+For each vertex $`v`$, let $`Z_v`$ be the limit of its degree divided by the tree size. Addario-Berry et al. asked whether these shares are [stochastically ordered by birth label](https://arxiv.org/html/2403.20185v1#S7). They are. Apart from the two founders, whose shares have the same law, an older vertex is strictly more likely than a younger one to keep a share above any threshold:
 
 ```math
 \mathbb P(Z_u > x) > \mathbb P(Z_v > x) \qquad \text{for all } 2 \le u < v \text{ and } 0 \le x < 1.

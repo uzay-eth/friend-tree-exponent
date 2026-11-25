@@ -27,6 +27,6 @@ cp paper/friend-tree-exponent.tex "$src/"
   --mode='u=rw,go=r' -cf - friend-tree-exponent.tex | gzip -n -6) > paper/friend-tree-exponent-arxiv.tar.gz
 ```
 
-The checked-in files were built this way with pdfTeX 1.40.25 (TeX Live 2023/Debian), three passes from the unpacked bundle in an empty directory. Two clean builds gave identical bytes. SHA-256: TeX `a20af9ce2b43487981eb02a2e5ea341113fac6aa5f1528ca80620b9390ba8460`, bundle `29d352135648ec92ba37255e076ebdacdb0dd4110148df18105fc83cf3efa9f9`, PDF `cafbf6497587d30b6385dd7f1e5aca15db2f056d95faa799670721b21af7a19e` (44 pages). Another TeX distribution can produce a different but equivalent PDF.
+The checked-in files were built this way with pdfTeX 1.40.25 (TeX Live 2023/Debian), three passes from the unpacked bundle in an empty directory. Two clean builds gave identical bytes. SHA-256: TeX `fd2407e1eb4f16ae1380b5e62f0c7c10584e2833f486bef717d910ec0245fcc2`, bundle `9b147d0caf2ac9d2d4c754481448af33c41606f5af87f926c866742ab7456da6`, PDF `e9a53d556f4145893ce603c1a892b787a28219c53e1e27110fdecb8fe73b4125` (44 pages). Another TeX distribution can produce a different but equivalent PDF.
 
 The [theorem map](../docs/proof-map.md) links each result to its argument and checker. The [editorial checks](checks/README.md) compare the printed numbers with pinned records and validate repository links.
