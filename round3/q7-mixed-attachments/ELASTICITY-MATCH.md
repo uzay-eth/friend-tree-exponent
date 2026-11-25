@@ -5,7 +5,7 @@
 For the actual tree, $`\beta(p)=0`$ for every fixed $`927/1000\le p<1`$. The earlier reviewed upper interval began at $`187/200`$. The lower interval $`\beta(p)>0`$ for $`p/q<R`$, $`q=1-p`$, remains as in CRITICAL.md, where
 
 ```math
-B(a)=\pi(1+a)/\sin(\pi a),\qquad R=\min_{0<a<1} B(a).
+B(a)=\pi(1+a)/\sin(\pi a),\qquad R=\min_{0 < a < 1} B(a).
 ```
 
 The same function $`B`$ appears on the upper side by preserving the age distribution in the stopped convolution. At five sixths, strict physical supercriticality requires the finite-age ratio $`y(t)k(t)/q`$ to exceed $`5/R`$ somewhere. A sign at five sixths still requires physical input. These bounds hold pointwise on their stated parameter intervals.
@@ -54,11 +54,7 @@ The constants $`i,C_2`$ are fixed at the certificate parameters. We use this alr
 Let $`C=\max((1-a)/(1-i),C_2)`$ and abbreviate $`t_1=t_1(p)`$. Define the decreasing majorant in $`s`$ by
 
 ```math
-w(s)=
-\begin{cases}
-C t_1^{-a}/(1-a), &0<s\le t_1,\\
-C s^{-a}, &t_1<s\le T .
-\end{cases}
+w(s)=\begin{cases} C t_1^{-a}/(1-a), & 0 < s \le t_1, \\ C s^{-a}, & t_1 < s \le T . \end{cases}
 ```
 
 For $`s\le t_1`$, the decreasing $`Y(r)/r^{1+a}`$ gives $`q/p<A t_1^{-a}/(1-i)`$. For $`s>t_1`$, $`s k(s)<C A s^{-a}`$ as before. Thus $`s k(s)\le A w(s)`$ everywhere, with strict inequality on the positive-length late interval. Apply stochastic order in (1) to $`w(T-r)`$. When integrated against the power density, the early constant costs no more than $`C s^{-a}`$. In fact the decreasing functions $`(T-s)^a`$ and $`s^{-a}`$ on $`[0,t_1]`$ have nonnegative covariance under the uniform law there, and the mean of $`s^{-a}`$ is $`t_1^{-a}/(1-a)`$. Integrating the full power majorant as above again gives
