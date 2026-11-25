@@ -14,6 +14,8 @@ from markdown_it import MarkdownIt
 
 ROOT = Path(__file__).resolve().parents[2]
 PIN = 'a0972085ad72ad5685ae7b424988648d1965e73c'
+# Round 3 sources are cited through \\roundsrc at the public checkpoint commit.
+ROUND3_PIN = '62081cad01112c42c2011ac3eed11aa3aa665e09'
 PAPER = 'paper/friend-tree-exponent.tex'
 REPO_URL = 'https://github.com/uzay-eth/friend-tree-exponent/'
 PINNED_URL = re.compile(re.escape(REPO_URL) + r'(blob|tree)/' + PIN + r'/(.+)\Z')
@@ -151,39 +153,50 @@ def scan(files, docs, pinned=None, pinned_anchors=None):
     return errors, len(anchors), local
 
 
-def paper_links(text, pinned, pinned_anchors):
+def paper_links(text, pinned, pinned_anchors, extra=None):
+    r"""Check \proofsrc calls against PIN and each extra macro's calls against its own pin.
+
+    ``extra`` maps a macro name to ``(pin, manifest, anchors)``.
+    """
     errors = []
     count = 0
     text = re.sub(r'(?<!\\)(?:\\\\)*(%[^\n]*)', lambda m: m[0][:m.start(1) - m.start()], text)
-    definition = r'\\(?:newcommand|renewcommand|DeclareRobustCommand)\s*\{\s*\\proofsrc\s*\}\s*\[2\]\s*\{'
-    expected = re.escape(REPO_URL + 'blob/' + PIN + '/#1')
-    macro = re.findall(definition + r'\s*\\href\s*\{' + expected + r'\}\s*\{\s*#2\s*\}\s*\}', text)
-    for match in re.finditer(r'(?<!\\)(\\+)proofsrc\b(?!\s*\})', text):
-        line = text.count('\n', 0, match.start()) + 1
-        if match[1] != '\\':
-            errors.append((PAPER, line, '', 'pinned source', 'proofsrc must start with a single backslash'))
-            continue
-        args = re.match(r'\s*\{([^{}\s]+)\}\s*\{', text[match.end():])
-        if not args:
-            errors.append((PAPER, line, '', 'pinned source', 'malformed source link'))
-            continue
-        count += 1
-        dest = args[1].replace(r'\#', '#').replace(r'\_', '_')
-        url = urlsplit(dest)
-        if (url.scheme or url.netloc or url.query or not url.path or url.path.startswith('/')
-                or posixpath.normpath(url.path) != url.path or url.path.startswith('../')):
-            problem = 'expected repository-relative pinned blob path'
-        else:
-            problem = check(PAPER, dest, pinned, set(), pinned_anchors, roots=True)
-        if problem:
-            errors.append((PAPER, line, dest, 'pinned source', problem))
-    if count and (len(macro) != 1 or len(re.findall(definition, text)) != 1):
-        errors.append((PAPER, 1, '', 'pinned source', 'proofsrc must expand to the pinned GitHub blob URL'))
+    macros = {'proofsrc': (PIN, pinned, pinned_anchors), **(extra or {})}
+    allowed = set()
+    for name, (pin, files, anchors) in macros.items():
+        definition = r'\\(?:newcommand|renewcommand|DeclareRobustCommand)\s*\{\s*\\' + name + r'\s*\}\s*\[2\]\s*\{'
+        expected = re.escape(REPO_URL + 'blob/' + pin + '/#1')
+        macro = re.findall(definition + r'\s*\\href\s*\{' + expected + r'\}\s*\{\s*#2\s*\}\s*\}', text)
+        calls = 0
+        for match in re.finditer(r'(?<!\\)(\\+)' + name + r'\b(?!\s*\})', text):
+            line = text.count('\n', 0, match.start()) + 1
+            if match[1] != '\\':
+                errors.append((PAPER, line, '', 'pinned source', f'{name} must start with a single backslash'))
+                continue
+            args = re.match(r'\s*\{([^{}\s]+)\}\s*\{', text[match.end():])
+            if not args:
+                errors.append((PAPER, line, '', 'pinned source', 'malformed source link'))
+                continue
+            calls += 1
+            dest = args[1].replace(r'\#', '#').replace(r'\_', '_')
+            url = urlsplit(dest)
+            if (url.scheme or url.netloc or url.query or not url.path or url.path.startswith('/')
+                    or posixpath.normpath(url.path) != url.path or url.path.startswith('../')):
+                problem = 'expected repository-relative pinned blob path'
+            else:
+                problem = check(PAPER, dest, files, set(), anchors, roots=True)
+            if problem:
+                errors.append((PAPER, line, dest, 'pinned source', problem))
+        if calls and (len(macro) != 1 or len(re.findall(definition, text)) != 1):
+            errors.append((PAPER, 1, '', 'pinned source', f'{name} must expand to the pinned GitHub blob URL'))
+        if calls or name == 'proofsrc':
+            allowed.add(REPO_URL + 'blob/' + pin + '/#1')
+        count += calls
     if count:
         for m in re.finditer(r'\\href\s*\{(' + re.escape(REPO_URL) + r'[^{}]*)\}', text):
-            if m[1] != REPO_URL + 'blob/' + PIN + '/#1':
+            if m[1] not in allowed:
                 line = text.count('\n', 0, m.start()) + 1
-                errors.append((PAPER, line, m[1], 'pinned source', 'repository sources must use proofsrc'))
+                errors.append((PAPER, line, m[1], 'pinned source', 'repository sources must use proofsrc or roundsrc'))
     return errors, count
 
 
@@ -206,7 +219,11 @@ def main():
     paths = sorted(p for p in files if p.lower().endswith('.md') and (ROOT / p).is_file())
     working = {p for p in files if (ROOT / p).is_file()}
     issues, docs, local = scan(working, ((p, (ROOT / p).read_text(encoding='utf-8-sig')) for p in paths), pinned, pinned_anchors)
-    tex_issues, sources = paper_links(args.tex.read_text(encoding='utf-8'), pinned, pinned_anchors)
+    round3 = manifest(ROUND3_PIN)
+    round3_docs = dict(blobs(ROUND3_PIN, sorted(p for p in round3 if p.lower().endswith('.md'))))
+    round3_anchors = {p: parse(s)[0] for p, s in round3_docs.items()}
+    tex_issues, sources = paper_links(args.tex.read_text(encoding='utf-8'), pinned, pinned_anchors,
+                                      {'roundsrc': (ROUND3_PIN, round3, round3_anchors)})
     if not sources:
         tex_issues.append((PAPER, 1, '', 'pinned source', 'no pinned proofsrc calls found'))
     prior = new = 0

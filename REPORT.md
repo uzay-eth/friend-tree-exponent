@@ -4,6 +4,10 @@ The current account is the [paper (PDF)](paper/friend-tree-exponent.pdf). Start 
 
 The [complete historical report](https://github.com/uzay-eth/friend-tree-exponent/blob/a0972085ad72ad5685ae7b424988648d1965e73c/REPORT.md) preserves the original arguments, exact constants, verification logs, and dated open questions. The entries below keep the old section links working; descriptions of what was open there are historical.
 
+## Round 3, 25 November 2026
+
+The [Round 3 paper](paper/friend-tree-exponent.pdf) adds Theorem 12: the limiting degree shares are strictly ordered by birth label in first-order stochastic order, at every threshold, and the earlier of the next two labels already has the larger conditional tail before either is placed. It also adds a supplementary mean result for exact degrees that grow with the tree. [Round 3 checkpoint across all eight questions](round3/README.md) · [Provenance and digests](round3/PROVENANCE.md) · [Round 2 paper (archived PDF)](https://github.com/uzay-eth/friend-tree-exponent/blob/c250a1f2fdd53ced91b7b485e94ac8a16106b9c7/paper/friend-tree-exponent.pdf)
+
 ## Round 2, 24 November 2026
 
 [Round-two account](https://github.com/uzay-eth/friend-tree-exponent/blob/a0972085ad72ad5685ae7b424988648d1965e73c/REPORT.md#round-2-24-november-2026) · [Claim ledger](https://github.com/uzay-eth/friend-tree-exponent/blob/a0972085ad72ad5685ae7b424988648d1965e73c/round2/LEDGER.md) · [Credits and chronology](https://github.com/uzay-eth/friend-tree-exponent/blob/a0972085ad72ad5685ae7b424988648d1965e73c/round2/who-did-what.md)

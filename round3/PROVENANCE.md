@@ -12,7 +12,7 @@ Cross-family AI audit verdicts recorded in this checkpoint apply to the **origin
 
 - **Pinned public baseline commit:** `c250a1f2fdd53ced91b7b485e94ac8a16106b9c7` (`uzay-eth/friend-tree-exponent`)
 - **Human referee status:** None (all Round 3 proofs, code, and cross-family reviews are AI-assisted under Can Uzay’s direction; awaiting human verification).
-- **Newly authored packaging files (not copied from research board):** [`README.md`](README.md), [`PROVENANCE.md`](PROVENANCE.md), [`verify_checkpoint.sh`](verify_checkpoint.sh), and [`q4-late-hub-mass/TENTATIVE-EX-ENCLOSURE-NOTE.md`](q4-late-hub-mass/TENTATIVE-EX-ENCLOSURE-NOTE.md) (plus the two-line checkpoint pointer added to root [`../README.md`](../README.md)).
+- **Newly authored packaging files (not copied from research board):** [`README.md`](README.md), [`PROVENANCE.md`](PROVENANCE.md), [`verify_checkpoint.sh`](verify_checkpoint.sh), and [`q4-late-hub-mass/TENTATIVE-EX-ENCLOSURE-NOTE.md`](q4-late-hub-mass/TENTATIVE-EX-ENCLOSURE-NOTE.md) (plus the two-line checkpoint pointer added to root [`../README.md`](../README.md)). *Live-main note:* at the Round 3 release the root README, the paper and its build and submission pages were revised to present the Q3 theorem and the Q2 mean result; `round3/README.md` and this manifest then received only navigation notes. No exported proof, review, erratum or checker file changed, and every digest in the tables below is unchanged.
 
 ## Exported Files
 

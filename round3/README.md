@@ -1,6 +1,8 @@
 # Round 3 Public Progress Checkpoint — Addario-Berry et al. §7 Open Questions
 
-> **What this is:** A public, scoped progress checkpoint building on baseline commit `c250a1f2fdd53ced91b7b485e94ac8a16106b9c7` of [`uzay-eth/friend-tree-exponent`](https://github.com/uzay-eth/friend-tree-exponent). **This is a progress report, not a preprint and not a claim that all eight questions in §7 are solved.** The manuscript and PDF under [`paper/`](../paper/) remain unchanged at the baseline commit.
+> **What this is:** A public, scoped progress checkpoint building on baseline commit `c250a1f2fdd53ced91b7b485e94ac8a16106b9c7` of [`uzay-eth/friend-tree-exponent`](https://github.com/uzay-eth/friend-tree-exponent). **This is a progress report, not a preprint and not a claim that all eight questions in §7 are solved.** When this checkpoint was published (commit `62081cad01112c42c2011ac3eed11aa3aa665e09`), the manuscript and PDF under [`paper/`](../paper/) were still the Round 2 version from baseline `c250a1f`; that [Round 2 PDF](https://github.com/uzay-eth/friend-tree-exponent/blob/c250a1f2fdd53ced91b7b485e94ac8a16106b9c7/paper/friend-tree-exponent.pdf) remains available at its commit.
+>
+> **Live-main note (Round 3 release):** The current [paper](../paper/friend-tree-exponent.pdf) is the Round 3 version. It states the Q3 result below as Theorem 12, with a proof outline and pinned sources in its Appendix D, and includes the Q2 discrete mean (§4.2) as a supplementary result for means only. The other rows remain scoped checkpoint progress with their own review status; they are not claims of the paper. Statuses and verdicts below are unchanged from the checkpoint.
 >
 > **AI-assisted / cross-model verification caveat:** Under Can Uzay’s direction, the Round 3 proofs, exact verifiers, and cross-family audits were developed using AI models (primarily Gemini 4 Neon and GPT-6.2 Astra). Cross-family AI auditing (one model family reconstructing proofs and writing independent checkers for another family’s work) caught real errors and narrowed claims, but **it is not human peer review**. Every proof and certificate in this checkpoint awaits independent human mathematical refereeing.
 
@@ -89,6 +91,8 @@ GPT-6.2 Astra independently audited both the mathematics ([`q3-birth-order/REVIE
   - **Long’s $`\gamma`$-positivity conjecture for $`A_n(q)`$:** Inspired by C. D. Long’s public draft ([`5bd25a7`](https://github.com/long-mathematics/friend-tree-growth/tree/5bd25a7d506cb64a8444b86334ab531d295f6c78)), Round 3 constructed minimal obstructions to one-birth Markov closures and exact $`P_z`$-harmonic **modified-process** counterexamples (Double-Star Freeze and Arbitrary-Prefix Core-Freeze models) where $`\gamma`$-positivity fails, plus an exact Sturm-sequence proof that real-rootedness fails at $`n = 12`$ for Long’s comparison process. **These modified-model $`\gamma`$-positivity obstructions are NOT counterexamples for the original random friend tree $`A_n(q)`$**, whose $`\gamma`$-positivity remains **open** (exact rational Sturm checks on the original friend tree confirm real-rootedness and $`\gamma`$-positivity through $`n = 12`$).
 
 ### 4.2 Q2 — Growing Degrees (`round3/q2-growing-degrees/`)
+
+*Live-main note:* the Round 3 paper includes the discrete mean below (Theorem A with Corollary B's cumulative mean) as a supplementary result in its Section 5, for expectations only; the stronger fluctuation and almost-sure statements mentioned at the end of this subsection are not in the paper.
 
 - **Baseline (`c250a1f`):** Fixed-degree a.s. ratios $`p_k \sim \mu A k^{-1-\mu}`$ (Tier A Theorems 4–5) and cumulative intermediate counts (Tier B Claim 11a).
 - **Exported Round 3 result (Cross-model reviewed with erratum/repair):**
