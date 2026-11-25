@@ -14,10 +14,11 @@ from markdown_it import MarkdownIt
 
 ROOT = Path(__file__).resolve().parents[2]
 PIN = 'a0972085ad72ad5685ae7b424988648d1965e73c'
-# Round 3 sources are cited through \\roundsrc at the public checkpoint commit.
-ROUND3_PIN = '62081cad01112c42c2011ac3eed11aa3aa665e09'
-# Markdown may also link the archived Round 2 release; such links are checked against that tree.
-ROUND2_PIN = 'c250a1f2fdd53ced91b7b485e94ac8a16106b9c7'
+# The stochastic-order sources are cited through \\ordersrc at the commit that froze them.
+ORDER_PIN = '62081cad01112c42c2011ac3eed11aa3aa665e09'
+# Markdown may also link two archived trees; such links are checked against those trees.
+ARCHIVE_PIN = 'c250a1f2fdd53ced91b7b485e94ac8a16106b9c7'
+BASE_PIN = '56f2d807ba63d19e9cb0e56d7678ae50843d3f6a'
 PAPER = 'paper/friend-tree-exponent.tex'
 REPO_URL = 'https://github.com/uzay-eth/friend-tree-exponent/'
 PINNED_URL = re.compile(re.escape(REPO_URL) + r'(blob|tree)/' + PIN + r'/(.+)\Z')
@@ -206,7 +207,7 @@ def paper_links(text, pinned, pinned_anchors, extra=None):
         for m in re.finditer(r'\\href\s*\{(' + re.escape(REPO_URL) + r'[^{}]*)\}', text):
             if m[1] not in allowed:
                 line = text.count('\n', 0, m.start()) + 1
-                errors.append((PAPER, line, m[1], 'pinned source', 'repository sources must use proofsrc or roundsrc'))
+                errors.append((PAPER, line, m[1], 'pinned source', 'repository sources must use proofsrc or ordersrc'))
     return errors, count
 
 
@@ -229,17 +230,17 @@ def main():
     paths = sorted(p for p in files if p.lower().endswith('.md') and (ROOT / p).is_file())
     working = {p for p in files if (ROOT / p).is_file()}
     others = {}
-    for rev in (ROUND3_PIN, ROUND2_PIN):
+    for rev in (ORDER_PIN, ARCHIVE_PIN, BASE_PIN):
         tree = manifest(rev)
         docs_at = dict(blobs(rev, sorted(p for p in tree if p.lower().endswith('.md'))))
         others[rev] = (tree, {p: parse(s)[0] for p, s in docs_at.items()})
     issues, docs, local = scan(working, ((p, (ROOT / p).read_text(encoding='utf-8-sig')) for p in paths),
                                pinned, pinned_anchors, others)
-    round3, round3_anchors = others[ROUND3_PIN]
+    order_tree, order_anchors = others[ORDER_PIN]
     tex_issues, sources = paper_links(args.tex.read_text(encoding='utf-8'), pinned, pinned_anchors,
-                                      {'roundsrc': (ROUND3_PIN, round3, round3_anchors)})
+                                      {'ordersrc': (ORDER_PIN, order_tree, order_anchors)})
     if not sources:
-        tex_issues.append((PAPER, 1, '', 'pinned source', 'no pinned proofsrc or roundsrc calls found'))
+        tex_issues.append((PAPER, 1, '', 'pinned source', 'no pinned proofsrc or ordersrc calls found'))
     prior = new = 0
     for p, n, d, k, e in issues + tex_issues:
         key = p, d, k, e

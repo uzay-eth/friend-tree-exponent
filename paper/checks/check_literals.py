@@ -54,8 +54,21 @@ SOURCES = (
     AGE + 'hub-ranking/mean-ledger/real/README.md',
     AGE + 'hub-ranking/mean-ledger/real/check.py',
     AGE + 'hub-ranking/mean-ledger/fractional/star_bound.py',
-    PAPER,  # last fallback: the separately frozen round-one manuscript
+    PAPER,  # last fallback: the separately frozen earlier manuscript
 )
+
+# Sources added with the current manuscript, read from the working tree and
+# authenticated by SHA-256 before any literal is taken from them.
+REFINED = 'verify/refined-lower/'
+WINDOW = 'verify/mean-arithmetic/check_window.py'
+REFINED_CHECK = REFINED + 'check_ratio.py'
+REFINED_RECEIPT = REFINED + 'receipt.json'
+REFINED_CLASSES = REFINED + 'classes.txt'
+WORKING_SOURCES = {
+    WINDOW: '67b694612e01023c00418dcc49514a3b8fb5ad3e283eebaa743cca91a2329b0c',
+    REFINED_CHECK: '1f9bb1afb37745cfea5e4081d0f8b7c844ab0b7c6ab620febfc038680e061892',
+    REFINED_RECEIPT: 'f46b5f8dd7b73bfec3d91fd80c83b9fa4e1d96f326a7f4581175ed41fb44dc17',
+}
 
 
 @lru_cache(maxsize=None)
@@ -65,12 +78,38 @@ def receipt(path):
     return out.stdout
 
 
+def working(path):
+    data = (ROOT / path).read_bytes()
+    digest = sha256(data).hexdigest()
+    if digest != WORKING_SOURCES[path]:
+        raise ValueError(f'{path}: SHA-256 {digest} differs from the pin')
+    return data
+
+
+def refined_endpoint():
+    """Run the authenticated light checker of the refined lower endpoint and return
+    (exact lower endpoint, receipt combiner endpoint, receipt lower record)."""
+    import importlib.util
+    working(REFINED_CHECK)
+    spec = importlib.util.spec_from_file_location('refined_check_ratio', ROOT / REFINED_CHECK)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    receipt_bytes = working(REFINED_RECEIPT)
+    gold_bytes = (ROOT / GOLD).read_bytes()
+    try:
+        lower = module.check(receipt_bytes, (ROOT / REFINED_CLASSES).read_bytes(), gold_bytes, out=lambda *_: None)
+    except module.Reject as error:
+        raise ValueError(f'refined lower endpoint: {error}')
+    record = json.loads(receipt_bytes)['lower']
+    return lower, Fraction(record['certified_exact']), record
+
+
 # Keep offsets stable while removing markup not rendered as claim text. A cite's
 # locator, URL/label/path, source code, bibliography, and layout dimensions are
 # identifiers or typesetting, not numerical assertions. The second argument of
 # proofsrc/href remains visible and is scanned.
 IGNORE = re.compile(
-    r'\\(?P<cmd>proofsrc|roundsrc|href|url|path|label|(?:eq|auto|page)?ref|(?:text|paren)?cite|bibitem|'
+    r'\\(?P<cmd>proofsrc|ordersrc|href|url|path|label|(?:eq|auto|page)?ref|(?:text|paren)?cite|bibitem|'
     r'verb|includegraphics|setlength|addtolength|hspace|vspace)\*?(?![A-Za-z])')
 
 
@@ -238,6 +277,50 @@ def audited_intervals():
                row['certified_interval_exact'], row['certified_interval_dec'])
 
 
+def nearstar_constants():
+    """Recompute the constants of the residue calculation in Appendix E exactly.
+
+    Residues modulo p are represented by the rational numbers they reduce to
+    (every denominator below is built from 2, 3, 5 and 7). The final values are
+    asserted, so a changed intermediate constant cannot be matched silently.
+    """
+    F = Fraction
+    src = 'Appendix E residue arithmetic (exact recomputation)'
+    text = working(WINDOW).decode('utf-8')
+    if 'check(v == [F(1, 3), F(71, 288), F(781, 5184), F(541, 8640), F(23, 360)], "size-7 values")' not in text:
+        raise ValueError(f'{WINDOW}: size-seven values not found')
+    B7, xa7, xb7 = F(71, 288), F(781, 5184), F(541, 8640)
+    K = B7 - F(2, 9)
+    D = F(-1, 720)                      # (p-1)!/720 with Wilson
+    odd = F(-1) / (105 * F(-15))        # odd numbers 9..2p-7 except p
+    hp = F(1, 2) * 128 * odd / D        # h_B(p)/p
+    f1, f2 = F(-5, 2), F(-3, 2)         # factors p-5/2, p-3/2 modulo p
+    beta = F(4, 3) + K * hp * f1 * f2   # B_{p+2} modulo p
+    Bp, Bp1 = F(-4, 3), F(4, 3)         # B_p and [B_{p+1}]
+    Ra = (F(4, 5) / -2, F(-3, 10) / -1) # R_a(p) = 4/(5(p-2)) - 3/(10(p-1))
+    xa, xc = sum(Ra), F(4, 15) / -1
+    rational = F(1, 360) * F(4, 3)      # 4/1080
+    xb = 15 * (xb7 + rational * -28 + K * 60 / 360)
+    c0 = xa7 - (F(4, 25) - F(3, 60))    # x_a(7) - R_a(7), the alternative derivation's constant
+    def three(c, g0, pole1, pole2, x):
+        pi1 = Bp * g0 - c * x
+        pi2 = pole1 + (1 - c) * pi1
+        return pi1, pi2, (pole2 + (2 - c) * pi2) / 2, 1 - c, 2 - c
+    a = three(F(11, 3), F(1, 2), F(0), beta, xa)
+    b = three(F(4), F(3, 2), Bp1 * 2, -beta, xb)
+    cc = three(F(7, 2), F(1, 2), Bp1 / 2, F(0), xc)
+    expected = (hp == F(-1024, 35) and K == F(7, 288) and beta == F(-4, 3) and xa == F(-1, 10)
+                and xb == F(-5, 9) and xc == F(-4, 15) and c0 == F(5269, 129600)
+                and a[2] == b[2] == F(-4, 3) and cc[1:3] == (0, 0) and a[2] + 2 * b[2] + cc[2] == -4)
+    if not expected:
+        raise ValueError('Appendix E residue arithmetic does not reproduce Lambda_p = -4')
+    values = [K, D, odd, hp, f1, f2, beta, Bp, Bp1, *Ra, xa, xc, rational, F(1, 360), rational * -28, xb, c0,
+              Bp * F(1, 2), Bp * F(3, 2), Bp1 * 2, Bp1 / 2, F(-2, 5), F(3, 10), *a, *b, *cc, F(15, 4),
+              hp * f1 * f2, K * F(60, 360), -xb]
+    for value in values:
+        yield value, src
+
+
 def derived_receipts():
     source = EARLY + 'fringe/renewal.md'
     text = receipt(source)
@@ -265,6 +348,17 @@ def derived_receipts():
     if (hi - lo) * 10**6 > width:
         raise ValueError(f'{GOLD}: recorded width rounds inward')
     yield width / 10**6, f'{GOLD}#certified_width_ppm (upper bound on exact width)'
+    yield from nearstar_constants()
+    lower, combiner, record = refined_endpoint()
+    upper = Fraction(json.loads(receipt(GOLD))['upper']['certified_exact'])
+    yield lower, f'{REFINED_CHECK} (classwise endpoint, recomputed)'
+    for places in (6, 7, 8, 9, 10, 11, 12):
+        yield outward(lower, places, 'lower'), f'{REFINED_CHECK} (classwise endpoint, outward to {places} decimals)'
+        yield outward(combiner, places, 'lower'), f'{REFINED_RECEIPT}#lower.certified_exact (outward to {places} decimals)'
+    yield Fraction(record['err_per_core'], record['m_min']), f'{REFINED_RECEIPT}#lower err_per_core/m_min'
+    verify = record['verify']
+    yield Fraction(verify['alpha_ticks'], verify['S']), f'{REFINED_RECEIPT}#lower.verify alpha_ticks/S'
+    yield outward(upper - lower, 7, 'lower'), f'{REFINED_CHECK} (width of the enclosure, rounded down to 7 decimals)'
     real = AGE + 'hub-ranking/mean-ledger/real/check.py'
     cutoff = int(re.search(r'^D = (\d+)$', receipt(real), re.M)[1])
     yield Fraction(1, cutoff + 1), f'{real} (degree-only cap U_p(d+1) <= 1/(d+1) at d = D)'
@@ -317,6 +411,14 @@ def index_receipts():
             for m in re.finditer(r'\bQ\(\s*([+-]?\d+)\s*,\s*(\d+(?:\*\*\d+)?)\s*\)', text):
                 value = Fraction(int(m[1])) / integer_power(m[2].replace('**', '^'))
                 index[value].append(f'{path}:{text.count(chr(10), 0, m.start()) + 1} (exact Fraction constructor)')
+    for path in WORKING_SOURCES:
+        text = working(path).decode('utf-8')
+        for lit in lex(text):
+            index[lit.value].append(f'{path}:{lit.line}')
+        if path.endswith('.py'):
+            for m in re.finditer(r'\b[QF]\(\s*([+-]?\d+)\s*,\s*(\d+(?:\*\*\d+)?)\s*\)', text):
+                value = Fraction(int(m[1])) / integer_power(m[2].replace('**', '^'))
+                index[value].append(f'{path}:{text.count(chr(10), 0, m.start()) + 1} (exact Fraction constructor)')
     for value, source in derived_receipts():
         index[value].insert(0, source)
     return index
@@ -352,11 +454,18 @@ def check_enclosure(tex_path):
         if endpoint != Fraction(row['certified_exact']):
             raise ValueError(f'Gold2 receipt: recomputed {side} endpoint differs from certified_exact')
         exact.append(endpoint)
-    decimals = gold['certified_interval_dec']
-    for side, endpoint, shown in zip(('lower', 'upper'), exact, decimals, strict=True):
+    gold_decimals = gold['certified_interval_dec']
+    for side, endpoint, shown in zip(('lower', 'upper'), exact, gold_decimals, strict=True):
         if (not re.fullmatch(r'\d+\.\d{12}', shown) or Fraction(shown) != outward(endpoint, 12, side)
                 or shown != gold[side]['certified_dec']):
             raise ValueError(f'Gold2 receipt: incorrect outward {side} decimal endpoint')
+    # Theorem 2 prints the refined lower endpoint and the Gold2 upper endpoint.
+    lower, _, _ = refined_endpoint()
+    if not lower > exact[0]:
+        raise ValueError('refined lower endpoint does not improve the Gold2 lower endpoint')
+    exact = [lower, exact[1]]
+    low_dec = outward(lower, 12, 'lower')
+    decimals = [f'{low_dec.numerator // 10**12}.{low_dec.numerator % 10**12:012d}', gold_decimals[1]]
 
     tex = re.sub(r'(?<!\\)(?:\\\\)*(%[^\n]*)', lambda m: m[0][:m.start(1) - m.start()],
                  tex_path.read_text(encoding='utf-8'))
@@ -375,16 +484,16 @@ def check_enclosure(tex_path):
 
     fractions = pair(theorem, 'fraction', chain)
     if len(fractions) != 1 or [lit.value for lit in fractions[0]] != exact:
-        raise ValueError('Theorem 2 exact endpoints do not match the recomputed Gold2 enclosure')
+        raise ValueError('Theorem 2 exact endpoints do not match the recomputed enclosure')
     interval = [(a, b) for a, b in pair(theorem, 'decimal', GAP + ',' + GAP)
                 if re.search(r'\[' + GAP + '$', theorem[:a.start]) and re.match(GAP + r'\]', theorem[b.end:])]
     for name, pairs in (('Theorem 2', interval), ('abstract', pair(abstract, 'decimal', chain))):
         if len(pairs) != 1 or [lit.spelling for lit in pairs[0]] != decimals:
-            raise ValueError(f'{name} outward decimal endpoints do not match the Gold2 enclosure')
+            raise ValueError(f'{name} outward decimal endpoints do not match the recomputed enclosure')
 
     print(f'Exact enclosure: [{exact[0]}, {exact[1]}]')
     print(f'Outward decimal enclosure: [{decimals[0]}, {decimals[1]}]')
-    print('PASS: Gold2 receipt matches Theorem 2 and the abstract.')
+    print('PASS: refined lower and Gold2 upper receipts match Theorem 2 and the abstract.')
 
 
 def main():
@@ -392,7 +501,7 @@ def main():
     ap.add_argument('--tex', type=Path, default=ROOT / PAPER, help='audit another TeX input (e.g. writer fragment)')
     mode = ap.add_mutually_exclusive_group()
     mode.add_argument('--all', action='store_true', help='list every matched occurrence and a pinned source location')
-    mode.add_argument('--enclosure', action='store_true', help='check the Gold2 enclosure offline without Git history')
+    mode.add_argument('--enclosure', action='store_true', help='check the printed enclosure offline without Git history')
     args = ap.parse_args()
     if args.enclosure:
         try:
@@ -424,11 +533,11 @@ def main():
     gold_error = False
     if gold_theorem:
         exact = json.loads(receipt(GOLD))
-        pair = [Fraction(exact[s]['certified_exact']) for s in ('lower', 'upper')]
+        pair = [refined_endpoint()[0], Fraction(exact['upper']['certified_exact'])]
         theorem_values = [lit.value for lit in lex(mask_tex(gold_theorem[1]))]
         gold_error = not all(v in theorem_values for v in pair)
         if gold_error:
-            print(f'{args.tex}: th:gold2 must include both exact archived endpoints')
+            print(f'{args.tex}: th:gold2 must include the refined lower and the Gold2 upper endpoint')
     for a, b in reversals:
         print(f'{args.tex}:{a.line}: REVERSED bound: {a.spelling} > {b.spelling}')
     checked = sum(counts.values())

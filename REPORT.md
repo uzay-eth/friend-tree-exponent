@@ -1,12 +1,12 @@
 # Technical report and archive
 
-The current account is the [paper (PDF)](paper/friend-tree-exponent.pdf). Start with the [front page](README.md) for statements and commands, or the [proof and checker map](docs/proof-map.md) for dependencies and review scope. This is computer-assisted work, not human peer review.
+The current account is the [paper (PDF)](paper/friend-tree-exponent.pdf). Start with the [front page](README.md) for statements and commands, or the [statement map](docs/proof-map.md) for dependencies and review scope. This is computer-assisted work, not human peer review.
 
 The [complete historical report](https://github.com/uzay-eth/friend-tree-exponent/blob/a0972085ad72ad5685ae7b424988648d1965e73c/REPORT.md) preserves the original arguments, exact constants, verification logs, and dated open questions. The entries below keep the old section links working; descriptions of what was open there are historical.
 
 ## Round 3, 25 November 2026
 
-The [Round 3 paper](paper/friend-tree-exponent.pdf) adds Theorem 12: the limiting degree shares are strictly ordered by birth label in first-order stochastic order, at every threshold, and the earlier of the next two labels already has the larger conditional tail before either is placed. It also adds a supplementary mean result for exact degrees that grow with the tree. [Round 3 checkpoint (scoped status by question)](round3/README.md) · [Provenance and digests](round3/PROVENANCE.md) · [Round 2 paper (archived PDF)](https://github.com/uzay-eth/friend-tree-exponent/blob/c250a1f2fdd53ced91b7b485e94ac8a16106b9c7/paper/friend-tree-exponent.pdf)
+The [Round 3 paper](https://github.com/uzay-eth/friend-tree-exponent/blob/56f2d807ba63d19e9cb0e56d7678ae50843d3f6a/paper/friend-tree-exponent.pdf) adds Theorem 12: the limiting degree shares are strictly ordered by birth label in first-order stochastic order, at every threshold, and the earlier of the next two labels already has the larger conditional tail before either is placed. It also adds a supplementary mean result for exact degrees that grow with the tree. [Round 3 checkpoint (scoped status by question)](round3/README.md) · [Provenance and digests](round3/PROVENANCE.md) · [Round 2 paper (archived PDF)](https://github.com/uzay-eth/friend-tree-exponent/blob/c250a1f2fdd53ced91b7b485e94ac8a16106b9c7/paper/friend-tree-exponent.pdf)
 
 ## Round 2, 24 November 2026
 
