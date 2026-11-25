@@ -23,6 +23,8 @@ Krapivsky and Redner predicted the scaling of the normalized mean counts. Addari
 - Is $`\mu`$ irrational?
 - Are the limiting shares stochastically ordered by birth label at every threshold?
 
+> **Round 3 progress checkpoint (Addario-Berry et al. §7):** [`round3/README.md`](round3/README.md) packages a self-contained proof and exact C++ verifier suite for birth-order stochastic dominance (§7(3)) alongside scoped progress summaries, errata, and cross-model reviews across all eight §7 questions (AI-assisted, cross-model checked; awaiting human refereeing). The paper and PDF on `main` remain unchanged at baseline `c250a1f`.
+
 ## Check it yourself
 
 From the repository root, run the suites on x86-64 Linux with GCC/G++, OpenMP, GMP and CPython 3.12 with `venv`. The Gold2 build also needs GNU `time`. Suite timings use one worker on a Ryzen 7 5800X, with peak RAM sampled across each process tree. [Round-one setup](verify/README.md) · [Round-two setup](round2/verify/README.md)
