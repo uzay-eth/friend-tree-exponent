@@ -17,8 +17,31 @@ NEW = [ROOT / 'paper' / 'friend-tree-exponent.tex', ROOT / 'paper' / 'friend-tre
 SUPPSEC = ['sec:exist', 'sec:core-details', 'app:hub-certificates', 'app:stoch-order', 'app:refined', 'app:replay']
 
 
+# Wording edits made when lines moved into the supplement, so that pointers read correctly there.
+SUPP_EDITS = [
+    ('For the first enclosure, the \\proofsrc{proofs/bracket-motifs.md}{three-vertex proof}',
+     'For the first enclosure, the \\proofsrc{proofs/bracket-motifs.md}{three-vertex proof} (Section~\\ref{sec:mot3})'),
+    ('Appendix~\\ref{sec:exist} proves both limits.', 'Subsections~EXP.a--EXP.d below prove both limits.'),
+    ('Appendix~\\ref{app:stoch-order} gives the steps, separates the analytic reduction from the finite checks, and pins the sources and reviews.',
+     'The rest of this section gives the guide (\\S\\ref{sec:ord-guide}), the review (\\S\\ref{sec:ord-review}), the complete proof (\\S\\ref{sec:ord-proof}) and the sources (\\S\\ref{sec:ord-sources}).'),
+    ('The last part of Appendix~\\ref{app:hub-certificates} gives the classifier, exact enumeration and signed enclosure.',
+     'The paragraphs below give the classifier, exact enumeration and signed enclosure.'),
+    ('This appendix proves the lower endpoint', 'This subsection proves the lower endpoint'),
+    ('For use here and in the appendix, a linear birth', 'For use here and in Section~\\ref{app:hub-certificates}, a linear birth'),
+    ('The stock tests in the appendix give', 'The stock tests in Section~\\ref{app:hub-certificates} give'),
+    ('(the physical recurrence is given in the appendix)', '(the physical recurrence is given in Section~\\ref{app:hub-certificates})'),
+    ('GitHub PDF, revision 090bbbe', 'GitHub PDF at commit 090bbbe'),
+    ('GitHub PDF, revision 7904917', 'GitHub PDF at commit 7904917'),
+    ('research repository, revision 5bd25a7, November 2026', 'research repository at commit 5bd25a7, November 2026'),
+    ('GitHub README, revision 5bd25a7', 'GitHub README at commit 5bd25a7'),
+    ('repository, revision 5bd25a7, November 2026.', 'repository at commit 5bd25a7, November 2026.'),
+]
+
+
 def renames(s):
     """The reference renames applied when lines moved into the supplement (see the assembly notes)."""
+    for a, b in SUPP_EDITS:
+        s = s.replace(a, b)
     s = re.sub(r'Appendices~\\ref\{(%s)\}(,? and~)\\ref\{(%s)\}' % ('|'.join(SUPPSEC), '|'.join(SUPPSEC)), r'Sections~\\ref{\1}\2\\ref{\3}', s)
     s = re.sub(r'Appendices~\\ref\{app:nonholonomic\} and~\\ref\{app:refined\}', r'Appendix~\\ref{M-app:nonholonomic} of the paper and Section~\\ref{app:refined}', s)
     s = re.sub(r'Appendix~\\ref\{(%s)\}' % '|'.join(SUPPSEC), r'Section~\\ref{\1}', s)

@@ -25,16 +25,18 @@ def md_parts(lines):
     i = 0
     while i < len(lines):
         line = lines[i]
-        if line.startswith('```math'):
+        if line.lstrip().startswith('```math'):  # fences may be indented inside list items
+            ind = len(line) - len(line.lstrip())
             j = i + 1
-            while not lines[j].startswith('```'):
+            while not lines[j].lstrip().startswith('```'):
                 j += 1
-            formulas.append('\n'.join(lines[i + 1:j]).strip())
+            body = [x[ind:] if not x[:ind].strip() else x for x in lines[i + 1:j]]
+            formulas.append('\n'.join(body).strip())
             i = j + 1
             continue
-        if line.startswith('```'):
+        if line.lstrip().startswith('```'):
             j = i + 1
-            while not lines[j].startswith('```'):
+            while not lines[j].lstrip().startswith('```'):
                 j += 1
             text.append('\n'.join(lines[i + 1:j]))
             i = j + 1
@@ -66,13 +68,43 @@ def brace_arg(s, k):
         j += 1
 
 
+def md_ordinals(lines):
+    """Numbers of ordered-list items, outside code fences (an escaped '1\\.' is not a list item)."""
+    out, fence = [], False
+    for line in lines:
+        if line.lstrip().startswith('```'):
+            fence = not fence
+            continue
+        m = None if fence else re.match(r'^\s*(\d+)\.\s', line)
+        if m:
+            out.append(int(m.group(1)))
+    return out
+
+
+def tex_ordinals(s):
+    """Numbers LaTeX prints for enumerate items in a transcribed region."""
+    out, stack = [], []
+    for m in re.finditer(r'\\begin\{(enumerate|itemize)\}(?:\\setcounter\{enumi\}\{(\d+)\})?|\\end\{(enumerate|itemize)\}|\\item\b', s):
+        if m.group(1):
+            stack.append([m.group(1), int(m.group(2) or 0)])
+        elif m.group(3):
+            stack.pop()
+        elif stack and stack[-1][0] == 'enumerate':
+            stack[-1][1] += 1
+            out.append(stack[-1][1])
+    return out
+
+
 def tex_parts(s):
     """Return (formulas, words) of a transcribed TeX region."""
     formulas, text, i = [], [], 0
     while i < len(s):
         if s.startswith('\\fitdisplay{', i):
             body, i = brace_arg(s, i + len('\\fitdisplay'))
-            if body.startswith('%\n'):
+            if body.startswith('\\begin{multlined}[\\linewidth]%\n') and body.endswith('\n\\end{multlined}'):
+                # layout-only line breaks in the widest displays
+                body = body[len('\\begin{multlined}[\\linewidth]%\n'):-len('\n\\end{multlined}')].replace('\\ftbreak ', '')
+            elif body.startswith('%\n'):
                 body = body[2:]
             elif body.startswith('\\begin{aligned}\n') and body.endswith('\n\\end{aligned}'):
                 body = body[len('\\begin{aligned}\n'):-len('\n\\end{aligned}')]
@@ -89,6 +121,10 @@ def tex_parts(s):
             continue
         if s.startswith('\\ensuremath{', i):
             _, i = brace_arg(s, i + len('\\ensuremath'))  # a glyph that replaced a Unicode symbol in prose
+            text.append(' ')
+            continue
+        if s.startswith('\\reviewnote{', i):
+            _, i = brace_arg(s, i + len('\\reviewnote'))  # framed review note: an addition, not part of the source
             text.append(' ')
             continue
         m = re.match(r'\\(href|proofsrc|ordersrc)\{', s[i:])
@@ -114,6 +150,7 @@ def tex_parts(s):
     plain = re.sub(r'\\(textbf|emph|texttt|trhead|section\*|subsection\*|subsubsection\*)', ' ', plain)
     plain = re.sub(r'\\(textbackslash|textasciitilde|textasciicircum|dots|S)\{\}', ' ', plain)
     plain = re.sub(r'\\(begin|end)\{(itemize|enumerate|quote|transcription|center|tabular)\}', ' ', plain)
+    plain = re.sub(r'\\setcounter\{enumi\}\{\d+\}', ' ', plain)
     plain = re.sub(r'\\(item|toprule|midrule|bottomrule|footnotesize)\b', ' ', plain)
     plain = re.sub(r"\\['\"`]", '', plain)
     return formulas, words(plain)
@@ -174,8 +211,15 @@ def main():
             print(f'FAIL {path}: prose differs (source {len(md_w)} words, TeX {len(tx_w)}); first difference at word {k + 1}')
             print('  source:', ' '.join(md_w[max(0, k - 8):k + 8]))
             print('  TeX:   ', ' '.join(tx_w[max(0, k - 8):k + 8]))
-        if md_f == tx_f and md_w == tx_w:
-            print(f'ok   {path} lines {a}-{b}: {len(md_f)} formulas and {len(md_w)} words match (commit {commit[:12]})')
+        notes = region.count('\\reviewnote{')
+        if notes:
+            print(f'note {path}: {notes} framed review note(s) added, excluded from the comparison')
+        md_o, tx_o = md_ordinals(data.decode('utf-8').split('\n')[a - 1:b]), tex_ordinals(region)
+        if md_o != tx_o:
+            failures += 1
+            print(f'FAIL {path}: list numbers differ (source {md_o[:20]}..., TeX {tx_o[:20]}...)')
+        if md_f == tx_f and md_w == tx_w and md_o == tx_o:
+            print(f'ok   {path} lines {a}-{b}: {len(md_f)} formulas, {len(md_w)} words and {len(md_o)} list numbers match (commit {commit[:12]})')
         i = j + 1
     if regions != 4:
         print(f'FAIL: expected 4 transcribed regions, found {regions}')

@@ -26,8 +26,10 @@
 \newcommand{\Prob}{\mathbb P}
 \newcommand{\ind}{\mathbf 1}
 \newcommand{\res}[1]{[#1]_p}
+\newcommand{\ftbreak}{\\}% a layout-only line break inside a transcribed display
+\newcommand{\reviewnote}[1]{\par\smallskip\noindent\fbox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{\small\textit{Review note.} #1}}\par\smallskip}
 \newsavebox{\ftfitbox}
-\newcommand{\fitdisplay}[1]{\[\sbox{\ftfitbox}{$\displaystyle #1$}\ifdim\wd\ftfitbox>\linewidth\resizebox{\linewidth}{!}{\usebox{\ftfitbox}}\else\usebox{\ftfitbox}\fi\]}
+\newcommand{\fitdisplay}[1]{\[\sbox{\ftfitbox}{$\displaystyle #1$}\ifdim\wd\ftfitbox>\linewidth\typeout{FITDISPLAY page \thepage\space width \the\wd\ftfitbox\space line \the\linewidth}\resizebox{\linewidth}{!}{\usebox{\ftfitbox}}\else\usebox{\ftfitbox}\fi\]}
 \newcommand{\trhead}[1]{\par\smallskip\noindent\textbf{#1}\par\nopagebreak\smallskip}
 \newenvironment{transcription}{\par\medskip\noindent\rule{\linewidth}{0.4pt}\par\nopagebreak}{\par\nopagebreak\noindent\rule{\linewidth}{0.4pt}\par\medskip}
 \makeatletter
@@ -42,7 +44,7 @@
 \begin{document}
 \maketitle
 \begin{abstract}
-This supplement accompanies the paper \emph{The non-leaf growth exponent of the random friend tree} \cite{Main}. Part~I proves the growth results of the paper: the common exponent and its finite-seed construction, the three- and five-vertex reductions behind the numerical enclosure, the marked kernel, the random amplitude, the degree law, its density and unit hub mass. Part~II is a self-contained module on birth order. It proves that the two founders' limiting degree shares agree in law, that from label two onward the shares decrease strictly in first-order stochastic order, and quantitative forms for hub probabilities and positive moments. Part~III records results with narrower scope or conditional hypotheses, the provenance of every proof, and the verification packages. The theorem that the mean core size is not P-recursive is proved in Appendix~\ref{M-app:nonholonomic} of the paper.
+This supplement accompanies the paper \emph{The non-leaf growth exponent of the random friend tree} \cite{Main}. Part~I proves the growth results of the paper: the common exponent and its finite-seed construction, the three- and five-vertex reductions behind the numerical enclosure, the marked kernel, the random amplitude and its density, the degree law, and unit hub mass. Part~II is a self-contained module on birth order. It proves that the two founders' limiting degree shares agree in law, that from label two onward the shares decrease strictly in first-order stochastic order, and quantitative forms for hub probabilities and positive moments. Part~III records results with narrower scope or conditional hypotheses, the provenance of every proof, and the verification packages. The theorem that the mean core size is not P-recursive is proved in Appendix~\ref{M-app:nonholonomic} of the paper.
 \end{abstract}
 
 \section*{How to use this supplement}\addcontentsline{toc}{section}{How to use this supplement}
@@ -50,7 +52,7 @@ This supplement accompanies the paper \emph{The non-leaf growth exponent of the 
 
 \paragraph{Transcribed proofs.} Four parts of the argument were written as Markdown notes in the repository and reviewed in that form: the three-vertex reduction (Section~\ref{sec:mot3}), the five-vertex reduction (Section~\ref{sec:enc-reduction}) and the two halves of the complete proof of Theorem~\ref{th:stoch-order} (Section~\ref{sec:ord-proof}). They are reproduced here between horizontal rules. Each one is introduced by its source path, commit and SHA-256. The text has been converted mechanically to \LaTeX{}. Every formula is copied byte for byte, and a wide display is only scaled to the line width. The repository's transcription check compares every formula with the source. Inside a transcription, numbers such as ``Lemma~3.3'' or ``\S5.2'' refer to the transcription's own headings, which are printed with their original numbers. Verification records, binary formats and replay logs of the notes are not reproduced; the verification packages are described in Section~\ref{app:replay}.
 
-\paragraph{Computation.} Where a proof reduces every finite tree to finitely many inequalities, the reduction is proved here, and exact programs in the repository check the inequalities. A passing run checks those inequalities, not the reduction. No program has been independently reimplemented in full, and none of the proofs has had a human referee.
+\paragraph{Computation.} Where a proof reduces every finite tree to finitely many inequalities, the reduction is proved here, and exact programs in the repository check the inequalities. A passing run checks those inequalities, not the reduction. The audits of the five-vertex row verifier and of the two stochastic-order certificates replayed the authored programs and checked selected components independently; neither has been reimplemented in full. None of the proofs has had a human referee.
 
 \tableofcontents
 
@@ -67,7 +69,7 @@ From one edge,
  \qquad 113/200\le\mu\le1133/2000<17/30 .
 \]
 \end{theorem}
-A branch separated by one edge almost grows freely if the two endpoints seldom send across the cut. Planting a fixed branch at many core sites makes its mean growth repeatable. Disjoint sites let one repeat the lower bound on sample paths. Section~\ref{sec:exist} proves both limits. For the first enclosure, the \proofsrc{proofs/bracket-motifs.md}{three-vertex proof} constructs two potentials with the one-sided comparisons $\Phi_+\ge c_0 C_n$ and $\Phi_-\le C_0 C_n$ for fixed $c_0,C_0>0$. Both witnesses have positive value at $T_3$; the lower witness need not be nonnegative on every tree. The \proofsrc{verify/motif-bracket/cert_verify_gmp.c}{integer verifier} checks vertex, edge and triple weight rows and bounds the unbounded degree tail. For every tree at size $n\ge3$, it certifies $n\E[\Delta\Phi_-\mid T_n]\ge(113/200)\Phi_-$ and $n\E[\Delta\Phi_+\mid T_n]\le(1133/2000)\Phi_+$. Taking expectations and iterating from $T_3$ gives
+A branch separated by one edge almost grows freely if the two endpoints seldom send across the cut. Planting a fixed branch at many core sites makes its mean growth repeatable. Disjoint sites let one repeat the lower bound on sample paths. Subsections~EXP.a--EXP.d below prove both limits. For the first enclosure, the \proofsrc{proofs/bracket-motifs.md}{three-vertex proof} (Section~\ref{sec:mot3}) constructs two potentials with the one-sided comparisons $\Phi_+\ge c_0 C_n$ and $\Phi_-\le C_0 C_n$ for fixed $c_0,C_0>0$. Both witnesses have positive value at $T_3$; the lower witness need not be nonnegative on every tree. The \proofsrc{verify/motif-bracket/cert_verify_gmp.c}{integer verifier} checks vertex, edge and triple weight rows and bounds the unbounded degree tail. For every tree at size $n\ge3$, it certifies $n\E[\Delta\Phi_-\mid T_n]\ge(113/200)\Phi_-$ and $n\E[\Delta\Phi_+\mid T_n]\le(1133/2000)\Phi_+$. Taking expectations and iterating from $T_3$ gives
 \[
  \frac{\Phi_-(T_3)}{C_0}\prod_{j=3}^{n-1}\left(1+\frac{113}{200j}\right)
  \le \E C_n \le
@@ -336,9 +338,9 @@ The verifier tests only some of these conditions on the header. The shipped head
 \item \textbf{Tail endpoints:} $\mathrm{INF}$ (standing for $D = \infty$) and $T_1(\kappa, h)$ for $\kappa \in \{0, \dots, K_T+1\}$, $h \in \{0, 1\}$ (standing for $D = D_0$ with clamped child count $\kappa$).
 \item $\mathcal{G} := \mathcal{I} \cup \{\mathrm{INF}\} \cup \{T_1(\kappa, h)\}$. The \textbf{parent states} $\mathcal{P} \subset \mathcal{G}$ are $\mathrm{INF}$ and the inner or $T_1$ states with $k \ge 1$ (resp. $\kappa \ge 1$). The \textbf{child states} $\mathcal{W} \subset \mathcal{G}$ are $\mathrm{INF}$ and the inner or $T_1$ states with $h = 1$.
 \item \textbf{Middle and apex domains:}
-  ```math
-  H\_u := \textbackslash{}\{(L, k, 1) : 1 \textbackslash{}le k \textbackslash{}le K\_\{hu\},\textbackslash{} L + k + 1 < D\_\{hu\}\textbackslash{}\}, \textbackslash{}qquad C\_u := \textbackslash{}\{(L, k, h) : 2 \textbackslash{}le k \textbackslash{}le K\_\{cu\},\textbackslash{} L + k + h < D\_\{cu\}\textbackslash{}\}.
-  ```
+\fitdisplay{%
+H_u := \{(L, k, 1) : 1 \le k \le K_{hu},\ L + k + 1 < D_{hu}\}, \qquad C_u := \{(L, k, h) : 2 \le k \le K_{cu},\ L + k + h < D_{cu}\}.
+}
   Both are subsets of $\mathcal{I}$, because $D_{hu}, D_{cu} \le D_0$.
 \item \textbf{Vertex projection:} $\pi_f(L, k, h) := \mathrm{VSTAR}_h$ if $k > K_F$, and $(\min(L, L_F), k, h)$ otherwise.
 \item For $v \in \mathcal{G}$ put $\mathrm{inv}(v) := 1/D_v$ if $v \in \mathcal{I}$, $\mathrm{inv}(\mathrm{INF}) := 0$ and $\mathrm{inv}(T_1(\kappa, h)) := 1/D_0$.
@@ -349,9 +351,9 @@ For a core vertex $v$ define a probability vector $\mu_v$ on $\mathcal{G}$:
 \begin{itemize}
 \item if $D_v < D_0$, then $\mu_v := \delta_{s_v}$;
 \item if $D_v \ge D_0$, then with $t_v := D_0/D_v \in (0, 1]$ and $\kappa_v := \min(k_v, K_T+1)$,
-  ```math
-  \textbackslash{}mu\_v := (1 - t\_v)\textbackslash{},\textbackslash{}delta\_\{\textbackslash{}mathrm\{INF\}\} + t\_v\textbackslash{},\textbackslash{}delta\_\{T\_1(\textbackslash{}kappa\_v, h\_v)\} .
-  ```
+\fitdisplay{%
+\mu_v := (1 - t_v)\,\delta_{\mathrm{INF}} + t_v\,\delta_{T_1(\kappa_v, h_v)} .
+}
 \end{itemize}
 
 For a tail vertex, $\iota_v = t_v/D_0$. That is exactly the $\mu_v$-average of $\mathrm{inv}$. For an inner vertex, $\iota_v = \mathrm{inv}(s_v)$. So in all cases
@@ -529,9 +531,9 @@ Each line below gives a case of the local expression, the bound used, and the re
 \textbf{Vertex family $V(u) \lessgtr \lambda f$.} Cases by $\pi_f(s_u)$:
 \begin{itemize}
 \item (A) \textbf{Inner} ($D < D_0$, so $L < L_F$). $V(u)$ is a fixed rational:
-  ```math
-  (L + h r\_\{\textbackslash{}mathrm\{par\}\} + k r\_\{\textbackslash{}mathrm\{ch\}\})\textbackslash{}Delta\textasciicircum{}L f + B(s) \textbackslash{}lessgtr \textbackslash{}lambda f(s), \textbackslash{}qquad B(s) := [L \textbackslash{}ge 1]\textbackslash{}tfrac\{L\}\{D\}\textbackslash{}big(f(s\textasciicircum{}\{\textbackslash{}mathrm\{bud\}\}) - f(s) + f(\textbackslash{}mathrm\{nb\}) + g(s\textasciicircum{}\{\textbackslash{}mathrm\{bud\}\} \textbackslash{}to \textbackslash{}mathrm\{nb\})\textbackslash{}big).
-  ```
+\fitdisplay{%
+(L + h r_{\mathrm{par}} + k r_{\mathrm{ch}})\Delta^L f + B(s) \lessgtr \lambda f(s), \qquad B(s) := [L \ge 1]\tfrac{L}{D}\big(f(s^{\mathrm{bud}}) - f(s) + f(\mathrm{nb}) + g(s^{\mathrm{bud}} \to \mathrm{nb})\big).
+}
   When $s^{\mathrm{bud}}$ is inner, $g(s^{\mathrm{bud}} \to \mathrm{nb})$ is a table entry, since $s^{\mathrm{bud}}$ has $D$ unchanged.
 \item (B) \textbf{Tail with $L < L_F$ and $k \le K_F$.} Here $\theta_u = \rho_u \in [0, (h+k)/2]$, and every other quantity is a fixed rational. $g(s^{\mathrm{bud}} \to \mathrm{nb})$ is evaluated exactly at $t = D_0/D$, by the verifier's \texttt{eval\_g\_q}. The two inequalities are those with $r \in \{L, L + (h+k)/2\}$ in place of $L + \theta_u$.
 \item (C) \textbf{$L = L_F$ exactly, $k \le K_F$.} This is a tail state because $D \ge L_F \ge D_0$. $\Delta^L f = 0$, since $\pi_f$ clamps $L_F + 1 \mapsto L_F$. So $V = \frac{L_F}{D}(f(\pi_f(L_F - 1, k+1, h)) - f + f(\mathrm{nb}) + g(\cdot \to \mathrm{nb}))$, a single exact inequality.
@@ -671,7 +673,7 @@ At cutoff $d$ an endpoint of degree $D_v\ge d$ is represented by two table entri
 To replay the Gold2 enclosure, rebuild the lower and upper witnesses for the \texttt{gold2} preset, then run the \proofsrc{round2/verify/neon2/run.sh}{strict checker} with \texttt{gold2-check} and the directory containing the pair. Allow 20 GiB of RAM for the check with four workers. The small receipt check in the README recomputes the last step from the stored integers. It checks neither the drift rows nor the reduction from trees to rows.
 
 \subsection{The reduction from trees to rows}\label{sec:enc-reduction}
-This subsection proves the two-sided drift bounds and the comparability on every finite tree, given the finite inequalities that the verifier checks. It reproduces Sections~1--4 of the note below, which is all of the note except its header. The note's \texttt{gold1} and \texttt{gold2} are presets of the same table format: \texttt{gold2} gives the upper endpoint of Theorem~\ref{th:gold2}, and Section~\ref{app:refined} uses the same reduction for the larger lower table.
+This subsection proves the two-sided drift bounds and the comparability on every finite tree, given the finite inequalities that the verifier checks. It reproduces Sections~1--4 of the note below, which is all of the note except its header. The note's \texttt{gold1} and \texttt{gold2} are presets of the same table format: \texttt{gold2} gives the upper endpoint of Theorem~\ref{th:gold2}, and Section~\ref{app:refined} uses the same reduction for the larger lower table. Three conventions of the note help in reading it. Its nesting display uses supports such as $G_j^{\mathrm{ex}}$, $M_{4P}$, $M_{4v}$, $M_{5P}$ and $M_{5B}$ that it does not define separately: they are the exact (non-tail) corner states and the internal supports of the shapes listed just before, and their precise definition is the header validation \texttt{q5\_validate\_header} of the verifier. Its citation ``\texttt{proofs/existence.md} Theorem~1, Astra'' is Theorem~\ref{th:exist} of the paper; model names such as Astra identify who wrote a cited proof (Section~\ref{sec:prov}). Its \texttt{UPPER} and \texttt{LOWER} are the two signs of a table.
 \begin{center}\footnotesize\begin{tabular}{@{}ll@{}}\toprule
 Source & \proofsrc{round2/proofs/neon2/quintet-cert/PROOF.md}{five-vertex reduction note}, lines 14--152\\
 Commit & \texttt{a0972085ad72ad5685ae7b424988648d1965e73c}\\
@@ -746,7 +748,7 @@ M_3 \subseteq G_2^{\mathrm{ex}}, \quad M_{4P} \subseteq (M_3 \cap G_3^{\mathrm{e
 
 Let $\sigma = +1$ (UPPER) or $\sigma = -1$ (LOWER). Every local inequality bounds $\sigma S (\text{row drift} - \lambda \cdot \text{row weight})$ from above in integer ticks.
 
-1\textbackslash{}. \textbf{Paired inter-level transfers (exact cancellation):}
+1. \textbf{Paired inter-level transfers (exact cancellation):}
 \begin{itemize}
 \item $f \to g$: At any exact $G_2$ vertex $u$ ($D_u < d_2, 1 \le c_u \le K_2$), replace $u$'s neighbor gain rate $\sum_{v \sim u} \iota_v$ in the $f$-row by $c_u r_1(u)$, transferring $(\iota_v - r_1(u))\Delta_u^L f$ to the incident edge $g(u, v)$.
 \end{itemize}
@@ -768,7 +770,7 @@ because each segment $[\xi_k, \xi_{k+1}]$ is affine in $\iota_w$, and $z \mapsto
 All transfers occur in exact cancelling pairs, so summing over all embeddings on any tree $T$ preserves $(\mathcal L \Phi)(T)$ identically.
 \end{itemize}
 
-2\textbackslash{}. \textbf{Exact 1D, 2D, and 3D projection envelopes:}
+2. \textbf{Exact 1D, 2D, and 3D projection envelopes:}
 Each cross-level source change $d_{\mathrm{fine}}$ on $G_j^k$ ($k \in \{1, 2, 3\}$) is enclosed by stored integer arrays $(m, r)$ on $G_{j+1}^k$ with $r \ge 0$ verified over \textbf{every} fine state/pair/triple in exact \texttt{\_\_int128} arithmetic (clearing integer denominators):
 
 \fitdisplay{%
@@ -781,7 +783,7 @@ By independence of the donor coordinate from the remaining coordinates and conve
 \sigma(\iota_w - r_1)\,\mathbb E[d_{\mathrm{fine}}] \;\le\; \mathbb E\big[\sigma(\mathrm{inv}_{j+1}(w) - r_1)\,m + |\mathrm{inv}_{j+1}(w) - r_1|\,r\big].
 }
 
-\begin{enumerate}
+\begin{enumerate}\setcounter{enumi}{2}
 \item \textbf{Exact-degree overflow inner endpoints (\texttt{kind = 3}), one-knot tail endpoints (\texttt{kind = 1}), and double-tail / \texttt{INF} edges:}
 \begin{itemize}
 \item For \texttt{kind = 3} ($K_j < D_u < d_j$, $c_u \ge K_j + 1$): $\mathrm{inv} = 1/D_u$ is exact; promotion leaves the state unchanged ($\Delta_u^B = 0$); its adjacent motif neighbor contributes exact rate $\iota_{\mathrm{nbr}}$ (when inner) or tail quadratic credit (charged once at the tail when the adjacent vertex is a tail); and its remaining gain rate $L_u + \sum_{z \ne \mathrm{nbr}} \iota_z \le (D_u - c_u) + \frac{c_u - 1}{2} = D_u - \frac{c_u + 1}{2} \le D_u - \frac{K_j + 2}{2}$ lies in $[0, (2 D_u - K_j - 2)/2]$.
@@ -837,7 +839,7 @@ so the upper bound multiplies by $2/(2 + \lambda_{\mathrm{up}}^*)$ and restricti
 % END TRANSCRIPTION round2/proofs/neon2/quintet-cert/PROOF.md
 
 \subsection{The refined lower certificate}\label{app:refined}
-This appendix proves the lower endpoint $a_-$ of Theorem~\ref{th:gold2}. It reuses the five-vertex reduction of Section~\ref{sec:enc} and its verifier unchanged. The one new step is Lemma~\ref{lem:classwise}, which combines the same verified per-vertex bounds class by class instead of through one global ratio.
+This subsection proves the lower endpoint $a_-$ of Theorem~\ref{th:gold2}. It reuses the five-vertex reduction of Section~\ref{sec:enc} and its verifier unchanged. The one new step is Lemma~\ref{lem:classwise}, which combines the same verified per-vertex bounds class by class instead of through one global ratio.
 
 \paragraph{The imported framework.}
 A lower table of the five-vertex format fixes a nominal rate $\lambda=P/Q$, a scale $S=2^{40}$, a comparability shift $\alpha\in[0,1]$ stored in its header, and a degree cutoff $D_F$. For a finite tree $T$ with $C(T)\ge1$ core vertices, choose any core vertex as an accounting root. The potential is $\Phi(T)=S^{-1}\sum_uW(u)$, summed over core vertices, where $W(u)$ is the table value allocated to $u$: its singleton term; the term of the edge to its parent (none at the root); and its share of the supported higher motifs on three to five core vertices. A three-vertex path is allocated to its middle, three- and four-vertex stars and the five-vertex broom to their centres, and a five-vertex path to its middle. A four-vertex path is split, one half of its value and of its residual to each internal vertex. Vertices of degree at least $D_F$ host no higher motif. For a lower table accepted by the unmodified finite verifier, tail checker and combiner, the five-vertex reduction behind Theorem~\ref{th:gold2} \proofsrc{round2/proofs/neon2/quintet-cert/PROOF.md}{(full reduction, Sections 1--4)} gives the following on every finite tree.
@@ -1264,7 +1266,7 @@ In continuous time every vertex has a rate-one clock with a uniform neighbour ma
 \begin{proof}[Proof of Theorem~\ref{th:hub-order}]
 The exact sign certificate for \eqref{eq:hub-signed} at hubhood is detailed in Section~\ref{app:hub-certificates}: it gives $\mathcal N\ge b+2a=371/12500$ on every multi-core tree and at least the same floor on the edge and all stars. Averaging this inequality starts the marginal strict comparisons at $(3,4)$.
 
-For the separate founder seam, at size three label 2 is the centre with probability $1/2$; otherwise it is an exchangeable leaf with label 3. The centre's two tracked leaf families dominate a linear birth--death process with per-particle rates $1,1/2$ (track only living leaves and thin deaths), so its hub probability is at least $3/4$. For use here and in the appendix, a linear birth--death process from one with rates $1,\lambda<1$ has extinction probability $\lambda$: the embedded walk hits zero with that probability, by solving the finite gambler's ruin recursion and sending its upper barrier to infinity. Survival of the tracked population implies hubhood even though this comparison has a slower growth exponent. In fact from $k$ physical leaves compare below by a chain with births $j$, total death rate one for $j>0$, absorption at zero. Its scaled stock is a nonnegative supermartingale, bounded in $L^2$ by the Yule comparison from $k$; its limit has mean at least $k-1$ by integrating the death drift, and second moment at most $k(k+1)$. Thus the conditional hub probability at a hit of $k$ leaves is at least $(k-1)^2/[k(k+1)]$ by Cauchy--Schwarz. On survival the slower linear process hits every $k$ (it exits each finite positive band almost surely), and the probability of a nonhub whose stock hits $k$ tends to zero by this bound and the strong Markov property.
+For the separate founder seam, at size three label 2 is the centre with probability $1/2$; otherwise it is an exchangeable leaf with label 3. The centre's two tracked leaf families dominate a linear birth--death process with per-particle rates $1,1/2$ (track only living leaves and thin deaths), so its hub probability is at least $3/4$. For use here and in Section~\ref{app:hub-certificates}, a linear birth--death process from one with rates $1,\lambda<1$ has extinction probability $\lambda$: the embedded walk hits zero with that probability, by solving the finite gambler's ruin recursion and sending its upper barrier to infinity. Survival of the tracked population implies hubhood even though this comparison has a slower growth exponent. In fact from $k$ physical leaves compare below by a chain with births $j$, total death rate one for $j>0$, absorption at zero. Its scaled stock is a nonnegative supermartingale, bounded in $L^2$ by the Yule comparison from $k$; its limit has mean at least $k-1$ by integrating the death drift, and second moment at most $k(k+1)$. Thus the conditional hub probability at a hit of $k$ leaves is at least $(k-1)^2/[k(k+1)]$ by Cauchy--Schwarz. On survival the slower linear process hits every $k$ (it exits each finite positive band almost surely), and the probability of a nonhub whose stock hits $k$ tends to zero by this bound and the strong Markov property.
 
 For the exchangeable leaf, at its centre track its other sibling and subsequent gains from the tracked leaves and the marked leaf. Before the first send to the marked leaf, at stock $j$ the gain rate is at least $j+1$, losses at most $j/\max(2,j+1)$ and the send rate at most $1/\max(2,j+1)$. The test $f(j)=\min(1,2/(j+1))$ with payoff one at the send bounds the chance of ever sending. Indeed it has nonpositive drift at $j=0,1$ and at $j\ge2$ the upper drift is $-(j-2)/[(j+1)(j+2)]$. To sharpen the no-send bound from $j=1$, stop at stock four with payoff $1-f(4)=3/5$, or on sending with payoff zero. Set $g_i=i+1$, $b_i=i/\max(2,i+1)$, $k_i=1/\max(2,i+1)$. For the comparison rates, the probability of advancing from $i$ to $i+1$ before sending is $q_i=g_i/(g_i+b_i+k_i-b_iq_{i-1})$ (omit the last term at zero), by the first-step equation and the strong Markov property after a downward jump. The resulting test $(3/5)\prod_{i=j}^3q_i$ is increasing in $j$, so larger gains and smaller losses or killing in the actual process give a subsolution. The stopped process exits almost surely: inside the bounded stock range there is uniformly positive probability to reach four by successive gains in a unit interval, since the gain is bounded below and the competing rates are bounded above. Bounded stopping gives no-send probability at least $(3/5)q_1q_2q_3=108/305$. A leaf cannot be a hub without a send. Taking half the centre--leaf gap gives $127/2440$; exchanging the initial edge gives the founder tie in law.
 \end{proof}
@@ -1272,7 +1274,7 @@ For the exchangeable leaf, at its centre track its other sibling and subsequent 
 \begin{proof}[Proof of Theorem~\ref{th:hub-moment-order}]
 Section~\ref{app:hub-certificates} gives the exact bounds for normalized moments in \eqref{eq:hub-signed}, uniformly in $p>0$, including the seed and stars. Multiplication by the common factor gives the stated gamma ratio since $n(n+1)\Gamma(n)=\Gamma(n+2)$.
 
-For the founder seam, from size three the centre starts with two tracked leaves. The stock tests in the appendix give $\E W_{\rm centre}^p/\Gamma(1+p)\ge(2+p)/e$ for $0<p\le1$, and at least one for $p\ge1$. For $0<p\le1$ use the hub cap $a_0=197/305$ just proved and the exact mean cap $b_0=387/1000$ from the \proofsrc{round2/proofs/astra-late/source/round2/open/age-order/hub-ranking/tip-moments/check.py}{tip-moment checker} (the physical recurrence is given in the appendix). H\"older gives $\E W_{\rm leaf}^p\le a_0^{1-p}b_0^p$. If $E$ is mean-one exponential then $\E\log E\ge-\int_0^1(-\log x)\,dx=-1$, hence $\Gamma(1+p)\ge e^{-p}$ by Jensen. The log ratio of the raw centre lower $(2+p)e^{-1-p}$ to the leaf upper is concave in $p$. Both endpoint ratios exceed $51/50$, even with $e<11/4$. The raw gap is therefore at least $b_0/50$ since $a_0>b_0$. Using $\Gamma(1+p)\le1$ by log convexity on $[0,1]$, division by $2(3)_p$ yields a gap of at least $(b_0/50)/[(p+1)(p+2)]$.
+For the founder seam, from size three the centre starts with two tracked leaves. The stock tests in Section~\ref{app:hub-certificates} give $\E W_{\rm centre}^p/\Gamma(1+p)\ge(2+p)/e$ for $0<p\le1$, and at least one for $p\ge1$. For $0<p\le1$ use the hub cap $a_0=197/305$ just proved and the exact mean cap $b_0=387/1000$ from the \proofsrc{round2/proofs/astra-late/source/round2/open/age-order/hub-ranking/tip-moments/check.py}{tip-moment checker} (the physical recurrence is given in Section~\ref{app:hub-certificates}). H\"older gives $\E W_{\rm leaf}^p\le a_0^{1-p}b_0^p$. If $E$ is mean-one exponential then $\E\log E\ge-\int_0^1(-\log x)\,dx=-1$, hence $\Gamma(1+p)\ge e^{-p}$ by Jensen. The log ratio of the raw centre lower $(2+p)e^{-1-p}$ to the leaf upper is concave in $p$. Both endpoint ratios exceed $51/50$, even with $e<11/4$. The raw gap is therefore at least $b_0/50$ since $a_0>b_0$. Using $\Gamma(1+p)\le1$ by log convexity on $[0,1]$, division by $2(3)_p$ yields a gap of at least $(b_0/50)/[(p+1)(p+2)]$.
 
 For $p\ge1$ the leaf gain rate at degree $D$ is at most $D-1+1/2$ because its original parent keeps degree at least two. The affine pure-birth comparison from degree one gives normalized moment at most $(1/2)_p/\Gamma(1+p)$, the $p$-th moment of $\mathrm{Beta}(1/2,1/2)$, at most $1/2$. Thus the half-difference after common size-three normalization is at least $1/[2(p+1)(p+2)]$. Both ranges imply the claimed founder bound. Symmetry and averaging finish the proof.
 \end{proof}
@@ -1414,7 +1416,7 @@ For $x\ge1$ both tails vanish and for $x<0$ both equal one, so the strict inequa
 \subsection{Structure of the proof}\label{sec:ord-guide}
 The complete proof is reproduced in Section~\ref{sec:ord-proof}. This subsection summarizes it, separates the analytic reduction from the finite checks, and records the review. The proof uses only the existence of the limits $Z_v$ from Section~\ref{sec:conservation} and none of the other numbered theorems of the paper or this supplement.
 \begin{proof}[Proof outline]
-Taking expectations in the conditional inequality gives $\Prob(Z_b>x)>\Prob(Z_{b+1}>x)$ for every $b\ge3$; the founder inequality covers $b=2$, transitivity covers every pair $2\le u<v$, and exchanging the two initial labels gives the founder tie. The conditional inequality starts from \eqref{eq:hub-signed} with the tail $\Prob(Z>x\mid\cdot)$ of the marked vertex as the continuation score. Its positive serial terms are bounded below, and its adverse parallel and tip terms above, by three physical comparison laws: a Poisson mixture of Beta tails for a vertex with tracked leaves, a Beta tail locked at the current attachment weight, and a first-promotion bound for a pending leaf. Piecewise-linear price tables, run on two logarithmic clocks in the tree size, extend these laws to every future size, and a tree ledger of the same kind as in Section~\ref{app:hub-certificates} reduces every finite tree to local inequalities. Two exact integer certificates check those inequalities on a finite cover of the thresholds, an analytic bound handles the remaining high thresholds, and a separate size-four decomposition proves the founder inequality. Section~\ref{app:stoch-order} gives the steps, separates the analytic reduction from the finite checks, and pins the sources and reviews.
+Taking expectations in the conditional inequality gives $\Prob(Z_b>x)>\Prob(Z_{b+1}>x)$ for every $b\ge3$; the founder inequality covers $b=2$, transitivity covers every pair $2\le u<v$, and exchanging the two initial labels gives the founder tie. The conditional inequality starts from \eqref{eq:hub-signed} with the tail $\Prob(Z>x\mid\cdot)$ of the marked vertex as the continuation score. Its positive serial terms are bounded below, and its adverse parallel and tip terms above, by three physical comparison laws: a Poisson mixture of Beta tails for a vertex with tracked leaves, a Beta tail locked at the current attachment weight, and a first-promotion bound for a pending leaf. Piecewise-linear price tables, run on two logarithmic clocks in the tree size, extend these laws to every future size, and a tree ledger of the same kind as in Section~\ref{app:hub-certificates} reduces every finite tree to local inequalities. Two exact integer certificates check those inequalities on a finite cover of the thresholds, an analytic bound handles the remaining high thresholds, and a separate size-four decomposition proves the founder inequality. The rest of this section gives the guide (\S\ref{sec:ord-guide}), the review (\S\ref{sec:ord-review}), the complete proof (\S\ref{sec:ord-proof}) and the sources (\S\ref{sec:ord-sources}).
 \end{proof}
 \paragraph{Signed identity.}
 Fix $n\ge2$ and a tree $T_n$, write $b=n+1$ and $m=n+2$, and use the old-tree quantities $d_u$, $r_u$, $w_u=r_u/(d_u+1)=d_us_u$ of \eqref{eq:hub-signed}. With the tail $\Prob(Z>x\mid\cdot)$ of the marked vertex as the continuation score, \eqref{eq:hub-signed} takes the form (Lemma~2.1 of the proof)
@@ -1444,7 +1446,7 @@ The signed identity, the three comparison laws, the passage from nodal inequalit
 GPT audited the \ordersrc{round3/q3-birth-order/REVIEW-Q3.md}{full argument} and the \ordersrc{round3/q3-birth-order/REVIEW-IMPLEMENTATION.md}{implementation} on these exact bytes, and returned \texttt{HOLDS} for the conditional and the marginal statements. It recorded four local points, which the outline above already respects. The strict parameter monotonicities of $B_{N,r}$ stated before Lemma~3.1 of the proof fail at $x=0$; non-strict monotonicity on $[0,1)$ and strict monotonicity on $(0,1)$ suffice, and strictness at $x=0$ comes from the ledger. In Lemma~3.3 the first-jump mixture is fractional-linear, not affine, in the host growth rate; clearing its positive denominator gives the same two endpoint tests. For hosts beyond the finite table, the caps $1/(j+1)$ on the branch $j\le k-2$ and $\min(1,2/(j+1))$ otherwise are the intended extension. The 12{,}105 printed checks include the 798 attempts on subdivided boxes. The implementation audit also showed that the positive-overshoot test at a frozen lower row is needed, by an actual crossing at which the zero-overshoot test alone passes with equality. No model family other than the author's and the reviewer's, and no human, has checked this proof.
 
 \subsection{The complete proof}\label{sec:ord-proof}
-This subsection reproduces the complete proof as one text. The repository keeps it as a single frozen file, split for layout only into two Markdown files. Sections~1--9 are reproduced. Section~10, the replay commands and observed output, stays in the repository; the replay is described in Section~\ref{sec:ord-sources}. The four points of Section~\ref{sec:ord-review} apply to this text: the remark on monotonicity of $B_{N,r}$ before Lemma~3.1, the first-jump mixture in Lemma~3.3, the caps for hosts beyond the finite table, and the count of 12{,}105 printed checks.
+This subsection reproduces the complete proof as one text. The repository keeps it as a single frozen file, split for layout only into two Markdown files. Sections~1--9 are reproduced. Section~10, the replay commands and observed output, stays in the repository; the replay is described in Section~\ref{sec:ord-sources}. The four points of Section~\ref{sec:ord-review} apply to this text. The first three are also printed as framed review notes where they apply: the remark on monotonicity of $B_{N,r}$ before Lemma~3.1, the first-jump mixture in the proof of Lemma~3.3, and the caps for hosts beyond the finite table. The fourth, the count of 12{,}105 printed checks, concerns the program output in Section~\ref{sec:ord-sources}. A further framed note marks an informal parenthetical in the proof of Lemma~4.1. The notes are the only additions to the source text.
 \begin{center}\footnotesize\begin{tabular}{@{}ll@{}}\toprule
 Frozen proof (SHA-256) & \texttt{e85e9cebfbde5439fad9246da2fec2c6eb7f014b09248e960c20d016411ce191}\\
 Sections 1--3 & \ordersrc{round3/q3-birth-order/PROOF.md}{stochastic-order proof, first file}, lines 12--166\\
@@ -1509,9 +1511,9 @@ Let $T_m(b \sim u, m \sim v)$ be the tree formed from $T_n$ by attaching leaf $b
 \textbf{Lemma 2.1 (Exact Pre-Placement Decomposition).}\\
 \emph{For every finite tree $T_n$ ($n \ge 2$) and every $x \in [0, 1)$,}
 
-\fitdisplay{%
-n(n+1)\Big(\mathbb{P}(Z_b > x \mid T_n) - \mathbb{P}(Z_m > x \mid T_n)\Big) = \sum_{u \in V(T_n)} d(u)s(u)\, \Delta_{\mathrm{ser}}(u) - \sum_{\{u, v\} \in E(T_n)} \Big[(s(u) - s(v))_+ \Delta_{\mathrm{par}}(v, u) + (s(v) - s(u))_+ \Delta_{\mathrm{par}}(u, v)\Big],
-}
+\fitdisplay{\begin{multlined}[\linewidth]%
+n(n+1)\Big(\mathbb{P}(Z_b > x \mid T_n) - \mathbb{P}(Z_m > x \mid T_n)\Big) = \ftbreak \sum_{u \in V(T_n)} d(u)s(u)\, \Delta_{\mathrm{ser}}(u) \ftbreak - \sum_{\{u, v\} \in E(T_n)} \Big[(s(u) - s(v))_+ \Delta_{\mathrm{par}}(v, u) + (s(v) - s(u))_+ \Delta_{\mathrm{par}}(u, v)\Big],
+\end{multlined}}
 
 \emph{where:}
 \begin{enumerate}
@@ -1552,6 +1554,7 @@ B_{N, r}(x) := \mathbb{P}\big(\mathrm{Beta}(r, N-r) > x\big) = \frac{\Gamma(N)}{
 }
 
 with $B_{N, r}(x) := 0$ for $r \le 0$ and $B_{N, N}(x) := 1$. For integer $r \in \{1, \dots, N-1\}$, $B_{N, r}(x) = \mathbb{P}(\mathrm{Bin}(N-1, x) \le r-1) = (1-x)^{N-1}\sum_{i=0}^{r-1}\binom{N-1}{i}\left(\frac{x}{1-x}\right)^i$. Note that $B_{N, r}(x)$ is strictly decreasing in $x \in [0, 1)$, strictly decreasing in real $N > r$, and strictly increasing in $r \in (0, N)$.
+\reviewnote{At $x=0$ the strict monotonicities in $N$ and $r$ stated here fail. Non-strict monotonicity on $[0,1)$ and strict monotonicity on $(0,1)$ suffice, and strictness at $x=0$ comes from the ledger (Section~\ref{sec:ord-review}).}
 
 \textbf{Lemma 3.1 (Poisson-Beta Submartingale Lower Bound).}\\
 \emph{At any size $N \ge 2$, for any vertex $v \in V(T_N)$ with at least $j \in \{1, \dots, N-1\}$ leaf neighbors and any $x \in [0, 1)$,}
@@ -1607,17 +1610,18 @@ g\left(\frac{1}{j+2} - \frac{1}{j+1}\right) + \frac{j}{k}\left(\frac{1}{j} - \fr
 \end{enumerate}
 
 because $g \ge j + 1$ and $k \ge j + 2$. By optional stopping (the marked leaf $v$ itself triggers an event at rate $1/k > 0$, or host $w$ grows at rate $\ge 1$, so the chain exits every bounded region a.s.), $\mathbb{P}(v \text{ ever promoted}) \le \frac{1}{j+1}$.
-\begin{enumerate}
+\begin{enumerate}\setcounter{enumi}{1}
 \item \textbf{General case including $j = k - 1$ (no non-leaf neighbor):} Test $f_2(j) := \min\left(1, \frac{2}{j+1}\right)$. For $j \in \{0, 1\}$, $f_2(j) = 1$. For $j \ge 2$, using $g \ge j + 1$ and $k \ge j + 1$, the drift is
 
-\fitdisplay{%
-g\left(\frac{2}{j+2} - \frac{2}{j+1}\right) + \frac{j}{k}\left(\frac{2}{j} - \frac{2}{j+1}\right) + \frac{1}{k}\left(1 - \frac{2}{j+1}\right) \le -\frac{2}{j+2} + \frac{j + 1}{k(j+1)} = -\frac{2}{j+2} + \frac{1}{k} \le -\frac{2}{j+2} + \frac{1}{j+1} = -\frac{j}{(j+1)(j+2)} < 0.
-}
+\fitdisplay{\begin{multlined}[\linewidth]%
+g\left(\frac{2}{j+2} - \frac{2}{j+1}\right) + \frac{j}{k}\left(\frac{2}{j} - \frac{2}{j+1}\right) + \frac{1}{k}\left(1 - \frac{2}{j+1}\right) \ftbreak \le -\frac{2}{j+2} + \frac{j + 1}{k(j+1)} = -\frac{2}{j+2} + \frac{1}{k} \ftbreak \le -\frac{2}{j+2} + \frac{1}{j+1} = -\frac{j}{(j+1)(j+2)} < 0.
+\end{multlined}}
 \end{enumerate}
 
 Hence $\mathbb{P}(v \text{ ever promoted}) \le \min(1, \frac{2}{j+1})$ unconditionally for all $(k, j)$.
 
 Now backward induction on $(K_{\max}+1 - k, j)$ proves $\mathbb{P}(v \text{ ever promoted} \mid k, j) \le U_{\mathrm{hub}}(k, j)$: the base $k = K_{\max}+1$ is $c(K_{\max}+1, j)$, and for $k \le K_{\max}$, conditioning on the first jump of $\{v, \text{other } j \text{ leaves}, w\}$ gives an affine-in-$g$ mixture whose maximum over $g \in [j+1, (k+j+1)/2]$ is achieved at the two endpoints, and taking the minimum with the independently valid bound $c(k, j)$ preserves validity. Note that states with $j \le k - 2$ never transition to $j' = k' - 1$. $\square$
+\reviewnote{The first-jump mixture is fractional-linear, not affine, in $g$; clearing its positive denominator gives the same two endpoint tests. For hosts beyond the finite table the intended caps are $1/(j+1)$ on the branch $j\le k-2$ and $\min(1,2/(j+1))$ otherwise (Section~\ref{sec:ord-review}).}
 \end{transcription}
 % END TRANSCRIPTION round3/q3-birth-order/PROOF.md
 % BEGIN TRANSCRIPTION round3/q3-birth-order/PROOF-PART-2.md lines 9-236 sha256 9a3a43c2534ea087fb23a735c1cde4975147bf87387b8bda2d16fbc00d8a2653 commit 62081cad01112c42c2011ac3eed11aa3aa665e09
@@ -1648,6 +1652,7 @@ H_{N, j}(x) \ge e^{-1} e^{-\tau_{\mathrm{hi}}(a_+ + 1/(m_0 - 1))} \sum_{k=0}^{j-
 }
 
 Evaluating the exact binomial tail $B_{N, r}(x) = q^{N-1}\sum_{i=0}^{r-1}\binom{N-1}{i}(x/q)^i$ at the single upper envelope $N_* := 1 + (m-1)a_+ \ge N$ (or noting $B_{N, r}(x)$ is decreasing in $N$, and for $N = \lfloor m e^{t_{\mathrm{hi}}} \rfloor \le 1 + (m-1)a_+$, we have $N \le 1 + (m-1)a_+$ while $N + 1 > m e^{t_{\mathrm{hi}}}$? More directly: $B_{N, r}(x)$ is decreasing in real $N$, so evaluate at real $N_1 := \lceil 1 + (m-1)a_+ \rceil \ge N$, which satisfies $(N_1 - 1)/(m-1) \in [a_+, a_+ + \frac{1}{m-1}] \subset [a_+, a_+ + \frac{1}{m_0-1}]$!). At this integer $N_1 \ge N$:
+\reviewnote{The parenthetical remark in this paragraph is reproduced as written; its operative step is the sentence beginning ``More directly.}
 \begin{enumerate}
 \item $q^{N_1 - 1} = \exp\big(-\tau_{\mathrm{hi}}\frac{N_1 - 1}{m - 1}\big) \ge \exp\big(-\tau_{\mathrm{hi}}(a_+ + \frac{1}{m_0 - 1})\big)$;
 \item $\frac{x}{q} = e^{\tau_{\mathrm{hi}}/(m-1)} - 1 \ge \frac{\tau_{\mathrm{hi}}}{m - 1}$;
@@ -1658,9 +1663,9 @@ Multiplying these inequalities yields the stated bound (\texttt{H\_raw\_lower\_i
 \textbf{Lemma 4.2 (Uniform Upper Enclosure of $B_{N, r}(x)$).}\\
 \emph{Let $t_{\mathrm{up}}(N) := \log\frac{N-1}{m-1}$. For any $m \ge m_0$, any $\tau \ge \tau_{\mathrm{lo}} > 0$ with $u_0 := \frac{\tau_{\mathrm{lo}}}{m_0 - 1} \le \frac{1}{2}$, any $r \in (0, 3)$, and any integer $N \ge m$ with $t_{\mathrm{up}}(N) \ge t_{\mathrm{lo}}$, set $L_{\mathrm{lo}} := \tau_{\mathrm{lo}} e^{t_{\mathrm{lo}}}$ and $B_0 := (m_0 - 1)e^{t_{\mathrm{lo}}} + 1 - r$. Then substituting $1 - u = q e^{-v/B}$ ($B := N_{\mathrm{lo}} - r$ at real $N_{\mathrm{lo}} := 1 + (m-1)e^{t_{\mathrm{lo}}} \le N$) gives the exact identity}
 
-\fitdisplay{%
-B_{N, r}(x) \le B_{N_{\mathrm{lo}}, r}(x_{\mathrm{lo}}) = e^{-L_{\mathrm{lo}}} \cdot \frac{\Gamma(B+r)}{\Gamma(B)B^r} \cdot \frac{1}{\Gamma(r)} \int_0^\infty \big(w + B(1 - e^{-v/B})\big)^{r-1} e^{-v}\,dv, \qquad w := B\frac{x_{\mathrm{lo}}}{1 - x_{\mathrm{lo}}},
-}
+\fitdisplay{\begin{multlined}[\linewidth]%
+B_{N, r}(x) \le B_{N_{\mathrm{lo}}, r}(x_{\mathrm{lo}}) \ftbreak = e^{-L_{\mathrm{lo}}} \cdot \frac{\Gamma(B+r)}{\Gamma(B)B^r} \cdot \frac{1}{\Gamma(r)} \int_0^\infty \big(w + B(1 - e^{-v/B})\big)^{r-1} e^{-v}\,dv, \ftbreak \qquad w := B\frac{x_{\mathrm{lo}}}{1 - x_{\mathrm{lo}}},
+\end{multlined}}
 
 \emph{which is bounded above uniformly in $m \ge m_0$ by:}
 \begin{enumerate}
@@ -1705,7 +1710,7 @@ while both step sizes satisfy $\Delta t(N) < \frac{1}{m_0 - 1} = \frac{1}{199} <
 \text{(L-KNOT)}\quad -\sigma_{i+1}(s) + \sum_{s' \neq s} r_{s \to s'}\Big[f_{i+1}(s') - f_{i+1}(s) - \big(\sigma_{i+1}(s') - \sigma_{i+1}(s)\big)\delta_2\Big] \ge 0 \qquad (\delta_2 \in \{0, \Delta t_{\max}^{\mathrm{cor}}\}).
 }
 
-\begin{enumerate}
+\begin{enumerate}\setcounter{enumi}{1}
 \item \textbf{\emph{(Upper supermartingale, $N\Delta t > 1$):}} \emph{Suppose slab $i$ satisfies}
 
 \fitdisplay{%
@@ -1781,13 +1786,13 @@ Choose nonnegative tariffs $(a, b_{\mathrm{base}}, \mathrm{fee}_{\mathrm{lo}}, \
 \begin{enumerate}
 \item \textbf{Site credit (after paying all incident leaf edges):}
 
-\fitdisplay{%
-C_{\mathrm{lo}}(d, c, r) := d s(\widetilde{H}(d+1) - \widetilde{U}(2,0)) + \frac{l}{2d}(\widetilde{H}(2) - \widetilde{U}(2,0)) - l(t - s)_+(\widetilde{U}(2,0) - \widetilde{L}(d+1))_+ - l(s - t)_+(\widetilde{U}(d+1, l-1) - \widetilde{L}(2))_+,
-}
+\fitdisplay{\begin{multlined}[\linewidth]%
+C_{\mathrm{lo}}(d, c, r) := d s(\widetilde{H}(d+1) - \widetilde{U}(2,0)) + \frac{l}{2d}(\widetilde{H}(2) - \widetilde{U}(2,0)) \ftbreak - l(t - s)_+(\widetilde{U}(2,0) - \widetilde{L}(d+1))_+ - l(s - t)_+(\widetilde{U}(d+1, l-1) - \widetilde{L}(2))_+,
+\end{multlined}}
 \end{enumerate}
 
 where $s = \frac{l+r}{d(d+1)}$ and $t = \frac{1}{2d}$.
-\begin{enumerate}
+\begin{enumerate}\setcounter{enumi}{1}
 \item \textbf{Direct site-site edges $\{u, v\}$:} At most one of $s(u) - s(v)$ and $s(v) - s(u)$ is positive, so the edge debit is bounded by $b_{\mathrm{base}} + (J_{u \to v} - b_{\mathrm{base}})_+ + (J_{v \to u} - b_{\mathrm{base}})_+$. Each direct edge between a high site ($d \ge D_{\mathrm{hi}}$) and a low site ($e \le 4$) transfers $\mathrm{xfer}$ from the high site to the low site (net sum $0$).
 \item \textbf{Contracted chains:} Each chain port at site $u$ pays fee $F_{\mathrm{ch}}(u)$ ($\mathrm{fee}_t$ if $d=2$, $\mathrm{fee}_{\mathrm{lo}}$ if $3 \le d < D_{\mathrm{hi}}$, $\mathrm{fee}_{\mathrm{hi}}$ if $d \ge D_{\mathrm{hi}}$) from $u$ to the chain (net sum $0$). For every bare degree-$2$ chain $v_1 - \dots - v_L$ ($L \ge 1$) between sites $x, y$, its net debt (sum of internal edge debits + port debits minus internal serial credits minus $F_{\mathrm{ch}}(x) + F_{\mathrm{ch}}(y)$) is verified to be strictly $< b_{\mathrm{base}}$ for $L \in \{1, 2, 3\}$. For $L \ge 4$, every extra interior vertex $v_i$ ($3 \le i \le L-2$) has $s(v_i) = 1/6$ equal to both neighbors (zero extra edge debit) and positive serial credit $\frac{1}{3}(\widetilde{H}(3) - \widetilde{U}(2, 0)) > 0$, so $\mathrm{debt}(L) \le \mathrm{debt}(3) < b_{\mathrm{base}}$.
 \item \textbf{Site balance:} Every site $u \in S$ satisfies $R(u) := C_{\mathrm{lo}}(u) + a(c(u) - 2) - b_{\mathrm{base}} - \sum_{\text{chains}} F_{\mathrm{ch}}(u) \pm \mathrm{xfer} \ge \mathrm{exc}(u) := \sum_{\text{direct } v} (J_{u \to v} - b_{\mathrm{base}})_+$.
@@ -1795,9 +1800,9 @@ where $s = \frac{l+r}{d(d+1)}$ and $t = \frac{1}{2d}$.
 
 Summing over all sites $u \in S$ and all edges of $\mathcal{T}_S$ (using $\sum_{u \in S} (a(c(u) - 2) - b_{\mathrm{base}}) = -2a - (|S|-1)b_{\mathrm{base}} - b_{\mathrm{base}}$) yields:
 
-\fitdisplay{%
-\frac{n(n+1)}{M_{\mathrm{lo}}}\Big(\mathbb{P}(Z_b > x \mid T_n) - \mathbb{P}(Z_m > x \mid T_n)\Big) \ge \sum_{u \in S}\big(R(u) - \mathrm{exc}(u)\big) + \sum_{\text{chains } P}\big(b_{\mathrm{base}} - \mathrm{debt}(P)\big) + (2a + b_{\mathrm{base}}) \ge 2a + b_{\mathrm{base}} > 0.
-}
+\fitdisplay{\begin{multlined}[\linewidth]%
+\frac{n(n+1)}{M_{\mathrm{lo}}}\Big(\mathbb{P}(Z_b > x \mid T_n) - \mathbb{P}(Z_m > x \mid T_n)\Big) \ftbreak \ge \sum_{u \in S}\big(R(u) - \mathrm{exc}(u)\big) + \sum_{\text{chains } P}\big(b_{\mathrm{base}} - \mathrm{debt}(P)\big) \ftbreak + (2a + b_{\mathrm{base}}) \ge 2a + b_{\mathrm{base}} > 0.
+\end{multlined}}
 
 \trhead{6.2 Completeness of Finite Checks \& Convexity/Concavity Reductions}
 \begin{itemize}
@@ -1908,7 +1913,7 @@ From the repository root, \texttt{bash verify/compact\_replay.sh} checks both di
 The inequalities $h_1=h_2>h_3>\cdots>h_8$ also follow from a finite size-nine calculation with rigorous continuation bounds, independently of the all-tree certificates.
 \end{theorem}
 \begin{proof}
-The last part of Section~\ref{app:hub-certificates} gives the classifier, exact enumeration and signed enclosure. The founder tie there is exact by exchange of the two initial labels.
+The paragraphs below give the classifier, exact enumeration and signed enclosure. The founder tie there is exact by exchange of the two initial labels.
 \end{proof}
 The \proofsrc{round2/proofs/fable/newground/q3-hub-probability/REPORT.md}{early-label proof} used a signed rooted-history calculation. Here is the edge-theorem-free variant of the \proofsrc{round2/proofs/fable/newground/q3-hub-probability/lead-hub_order_exact.py}{independent rational checker}, with \texttt{NOEDGE=1} and argument \texttt{9}. For a core root with $l$ leaves and $c$ core neighbours, compare its stock below by rates $j,j/(j+c)$ until zero: at equality the true stock births are at least $j$ and its losses at most $j/(j+c)$ since the true core degree never decreases. The finite exit recursion has consecutive increments in ratio $1/(c+j)$, giving probability $\sum_{i=0}^{l-1}a_i/\sum_{i=0}^{H-1}a_i$ of reaching $H$ before zero, where $a_0=1$, $a_i=a_{i-1}/(c+i)$. The comparison and the leaf-hit estimate in the founder proof allow $H\to\infty$ to give the same ratio with infinite denominator as a hub lower. Enclose the denominator by keeping $i=0,\ldots,39$ and adding at most $a_{40}(c+41)/(c+40)$ by the geometric bound on later ratios. Other roots may use lower zero, without the edge theorem.
 
@@ -2051,10 +2056,10 @@ C.~Kerriou and G.~Lugosi, Random friend trees, \emph{Random Structures \& Algori
 Anomalous scaling in redirection networks, \emph{Physical Review E}
 \textbf{114} (2026), 034314.
 \href{https://doi.org/10.1103/9lmp-pydp}{doi:10.1103/9lmp-pydp}. \href{https://arxiv.org/abs/2604.01540}{arXiv:2604.01540}.
-\bibitem{LongKernel} C.~D.~Long, \emph{Effective computation and boundary robustness of the random friend-tree exponent}, 23 November 2026. \href{https://github.com/long-mathematics/friend-tree-growth/blob/090bbbe5faec83ec4124bd427eb5fda32c79bef1/friend_tree_growth.pdf}{GitHub PDF, revision 090bbbe}.
-\bibitem{LongMean} C.~D.~Long, \emph{Transcendence targets for the friend-tree exponent: exact first-promotion reduction and arithmetic obstructions}, 24 November 2026. \href{https://github.com/long-mathematics/friend-tree-growth/blob/790491725d9cf445789e14c24c277532f5d2e5c7/friend_tree_transcendence_progress.pdf}{GitHub PDF, revision 7904917}. \href{https://github.com/long-mathematics/friend-tree-growth}{Long's research repository}.
-\bibitem{LongRepo} C.~D.~Long, \emph{Friend-tree growth}, research repository, revision 5bd25a7, November 2026, section ``Arithmetic and exact root representations''. \href{https://github.com/long-mathematics/friend-tree-growth/blob/5bd25a7d506cb64a8444b86334ab531d295f6c78/README.md#arithmetic-and-exact-root-representations}{GitHub README, revision 5bd25a7}.
-\bibitem{LongProduct} C.~D.~Long, \href{https://github.com/long-mathematics/friend-tree-growth/blob/5bd25a7d506cb64a8444b86334ab531d295f6c78/README.md#signed-hypergeometric-products-for-the-original-tree}{\emph{Signed hypergeometric products for the original tree}}, in the \emph{Friend-tree growth} repository, revision 5bd25a7, November 2026.
+\bibitem{LongKernel} C.~D.~Long, \emph{Effective computation and boundary robustness of the random friend-tree exponent}, 23 November 2026. \href{https://github.com/long-mathematics/friend-tree-growth/blob/090bbbe5faec83ec4124bd427eb5fda32c79bef1/friend_tree_growth.pdf}{GitHub PDF at commit 090bbbe}.
+\bibitem{LongMean} C.~D.~Long, \emph{Transcendence targets for the friend-tree exponent: exact first-promotion reduction and arithmetic obstructions}, 24 November 2026. \href{https://github.com/long-mathematics/friend-tree-growth/blob/790491725d9cf445789e14c24c277532f5d2e5c7/friend_tree_transcendence_progress.pdf}{GitHub PDF at commit 7904917}. \href{https://github.com/long-mathematics/friend-tree-growth}{Long's research repository}.
+\bibitem{LongRepo} C.~D.~Long, \emph{Friend-tree growth}, research repository at commit 5bd25a7, November 2026, section ``Arithmetic and exact root representations''. \href{https://github.com/long-mathematics/friend-tree-growth/blob/5bd25a7d506cb64a8444b86334ab531d295f6c78/README.md#arithmetic-and-exact-root-representations}{GitHub README at commit 5bd25a7}.
+\bibitem{LongProduct} C.~D.~Long, \href{https://github.com/long-mathematics/friend-tree-growth/blob/5bd25a7d506cb64a8444b86334ab531d295f6c78/README.md#signed-hypergeometric-products-for-the-original-tree}{\emph{Signed hypergeometric products for the original tree}}, in the \emph{Friend-tree growth} repository at commit 5bd25a7, November 2026.
 \bibitem{Stanley} R.~P.~Stanley, Differentiably finite power series, \emph{European Journal of Combinatorics} \textbf{1} (1980), 175--188. \href{https://doi.org/10.1016/S0195-6698(80)80051-5}{doi:10.1016/S0195-6698(80)80051-5}.
 \bibitem{EC2} R.~P.~Stanley, \emph{Enumerative Combinatorics}, Volume~2, Cambridge Studies in Advanced Mathematics~62, Cambridge University Press, 1999.
 \bibitem{Main} C.~Uzay, \emph{The non-leaf growth exponent of the random friend tree}, 25 November 2026. Main paper \href{friend-tree-exponent.pdf}{\texttt{friend-tree-exponent.pdf}}, distributed with this supplement.

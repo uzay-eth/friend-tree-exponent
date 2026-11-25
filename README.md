@@ -13,19 +13,19 @@ A leaf becomes a non-leaf only when its one neighbour is chosen and passes it th
 - The exact value of $`\mu`$, and whether it is rational, are open.
 - No human referee has checked the proofs, which were developed and cross-checked with substantial help from AI models.
 
-The paper states each result with the argument behind it and points to a complete proof in the supplement. Every result has a persistent tag, which the paper, the supplement and this repository all use.
+The paper states each result with the argument behind it. It proves PREC in its own appendix and points to the complete proof of every other result in the supplement. Every result has a persistent tag, which the paper, the supplement and this repository all use.
 
 | Tag | Result | Proof |
 |---|---|---|
 | EXP | common exponent in mean and almost surely; $`113/200\le\mu\le1133/2000`$ | supplement §EXP, §MOT3 |
 | ENC | $`0.565714341933\le\mu\le0.565736986679`$; any rational $`\mu`$ has denominator $`\ge426`$ | supplement §ENC |
 | AMP, DEN | $`C_n/n^\mu\to X`$ a.s., $`0<X<\infty`$, with a density | supplement §CORE, §DEN |
-| DEG | fixed-degree fractions of the core converge a.s. to $`p_k\sim\mu Ak^{-1-\mu}`$ (size limit first) | supplement §CORE |
+| AMP, DEG | fixed-degree fractions of the core converge a.s. to $`p_k\sim\mu Ak^{-1-\mu}`$ (size limit first) | supplement §CORE |
 | MASS | limiting degree shares sum to one a.s. | supplement §MASS |
 | ORD | founders' shares agree in law; strict stochastic order from label two onward | supplement Part II (birth-order module), §ORD |
 | PREC | $`\mathbb E C_n`$ is not P-recursive; says nothing about whether $`\mu`$ is rational | paper, Appendix PREC |
 
-These answer Questions 1–4 of [Addario-Berry et al., *Random friend trees*, §7](https://arxiv.org/html/2403.20185v1#S7). The fixed-degree law takes the size limit before the degree limit; exact-degree laws when the degree grows with $`n`$ are proved only for means (supplement §NOTES) and are otherwise open.
+These answer Questions 1–4 of [Addario-Berry et al., *Random friend trees*, §7](https://arxiv.org/html/2403.20185v1#S7). The fixed-degree law takes the size limit before the degree limit; across the full range $`k\to\infty`$, $`k/n\to0`$, the exact-degree law is proved only for means and the almost-sure law only for cumulative counts (supplement §NOTES, narrower review). An almost-sure exact-degree law across that full range is open.
 
 ## What is new here, and what came before
 
@@ -37,7 +37,7 @@ These answer Questions 1–4 of [Addario-Berry et al., *Random friend trees*, §
 - **Hartle, Krapivsky, Redner and Zhang** reported a finite-size fit of 0.569 ([Fig. 6](https://arxiv.org/html/2604.01540v1#S3.F6)), outside the certified interval.
 
 **New here:**
-- the enclosure to width about $`2.3\times10^{-5}$ and the denominator bound;
+- the enclosure to width about $`2.3\times10^{-5}`$ and the denominator bound;
 - the almost-sure limit $`X`$ and its density;
 - the fixed-degree law;
 - unit hub mass;

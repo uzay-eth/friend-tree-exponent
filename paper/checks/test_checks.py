@@ -119,7 +119,11 @@ class TranscriptionTests(unittest.TestCase):
         start = original.index('% BEGIN TRANSCRIPTION round3/q3-birth-order/PROOF.md')
         formula = original.index('\\frac{1}{d(u)', start)
         word = original.index('symmetric leaves', start)
-        for mutated, message in ((original[:formula] + '\\frac{2}{d(u)' + original[formula + len('\\frac{1}{d(u)'):], 'formulas differ'),
+        nested = original.index('L + k + 1 < D_{hu}')  # a display nested in a list item of the three-vertex note
+        numbered = original.index('\\setcounter{enumi}{1}', start)
+        for mutated, message in ((original[:nested] + 'L + k + 1 > D_{hu}' + original[nested + len('L + k + 1 < D_{hu}'):], 'formulas differ'),
+                                 (original[:numbered] + original[numbered + len('\\setcounter{enumi}{1}'):], 'list numbers differ'),
+                                 (original[:formula] + '\\frac{2}{d(u)' + original[formula + len('\\frac{1}{d(u)'):], 'formulas differ'),
                                  (original[:word] + 'symmetrical leaves' + original[word + len('symmetric leaves'):], 'prose differs')):
             with TemporaryDirectory() as work:
                 tex = Path(work) / 'supplement.tex'

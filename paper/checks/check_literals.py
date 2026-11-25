@@ -117,10 +117,11 @@ IGNORE = re.compile(
 def premask(text):
     """Blank, keeping line numbers, what is checked elsewhere or is not claim text: the proofs
     transcribed into the supplement (checked formula by formula by check_transcriptions.py), the
-    coordinates of picture environments, and tabular column widths."""
+    preamble, the coordinates of picture environments, and tabular column widths."""
     def blank(m):
         return re.sub(r'[^\n]', ' ', m[0])
     text = re.sub(r'(?ms)^% BEGIN TRANSCRIPTION .*?^% END TRANSCRIPTION[^\n]*$', blank, text)
+    text = re.sub(r'(?s)\A.*?(?=\\begin\{document\})', blank, text)  # preamble: layout and metadata
     text = re.sub(r'(?s)\\begin\{picture\}.*?\\end\{picture\}', blank, text)
     text = re.sub(r'(?<![A-Za-z])p\{[0-9.]+(?:cm|em|pt|in|\\linewidth)\}', blank, text)
     return text
