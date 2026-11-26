@@ -1,0 +1,20 @@
+--- a/build_quintet.cpp
++++ b/build_quintet.cpp
+@@ -465,7 +465,7 @@
+         const Q5Layout& L = *C;
+         const auto& h = L.h;
+         double sgn = (mode == 1) ? 1.0 : -1.0;
+-        int nt = (L.n_p4 < 500000) ? 1 : 10;
++        int nt = (L.n_p4 < 500000) ? 1 : (getenv("LANE_NT") ? atoi(getenv("LANE_NT")) : 10);
+         int NG = L.G2.N, N3 = L.G3.N, N4 = L.G4.N, N5 = L.G5.N;
+         int J_g = L.G2.idx[2][1], J_e3 = L.G3.idx[2][1], J_e4 = L.G4.idx[2][1], J_e5 = L.G5.idx[2][1];
+         lam = lm;
+@@ -1594,7 +1594,7 @@
+     vector<int64_t> q_b5    = quant_move(S.b5, hdr.S);
+     vector<int64_t> q_s4    = quant_move(S.s4, hdr.S);
+ 
+-    int nt = (L.n_p4 < 500000) ? 1 : 10;
++    int nt = (L.n_p4 < 500000) ? 1 : (getenv("LANE_NT") ? atoi(getenv("LANE_NT")) : 10);
+     const int64_t* g_i  = q_g.data();
+     const int64_t* h3_i = q_h3.data();
+     const int64_t* p4_i = q_p4.data();

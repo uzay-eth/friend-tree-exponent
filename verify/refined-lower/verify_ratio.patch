@@ -1,0 +1,27 @@
+--- a/verify_quintet.cpp
++++ b/verify_quintet.cpp
+@@ -1223,6 +1223,8 @@
+     int64_t alpha_ticks = h.alpha_lo_num * (h.S / h.S_r);
+     int64_t min_W_c0_fin = INT64_MAX, max_W_c0_fin = INT64_MIN;
+     int64_t min_W_fin = INT64_MAX, max_W_fin = INT64_MIN;
++    std::vector<int64_t> AUX_minlo((size_t)h.DF + 2, INT64_MAX);
++    std::vector<int64_t> AUX_hmax((size_t)h.DF + 2, 0);
+ 
+     for (int D = 2; D < h.DF; ++D) {
+         // c == 0 (single core tree C = 1)
+@@ -1338,6 +1340,7 @@
+             if (hcap_i64 > higher_per_core) higher_per_core = hcap_i64;
+             int64_t lo_shifted_i64 = q5_to_i64(lo_w + (q5_i128)alpha_ticks * (c - 2), "min_W_fin");
+             if (lo_shifted_i64 < min_W_fin) min_W_fin = lo_shifted_i64;
++            { int64_t lw = q5_to_i64(lo_w, "aux"); if (lw < AUX_minlo[c]) AUX_minlo[c] = lw; int64_t hh = q5_to_i64(hcap, "aux_h"); if (hh > AUX_hmax[c]) AUX_hmax[c] = hh; }
+             int64_t hi_w_i64 = q5_to_i64(hi_w, "max_W_fin");
+             if (hi_w_i64 > max_W_fin) max_W_fin = hi_w_i64;
+         }
+@@ -1367,6 +1370,7 @@
+     printf("  \"caps\": {\"f_in\": %" PRId64 ", \"f_tab\": %" PRId64 ", \"g\": %" PRId64 ", \"h3\": %" PRId64 ", \"p4\": %" PRId64 ", \"s3\": %" PRId64 ", \"p5\": %" PRId64 ", \"b5\": %" PRId64 ", \"s4\": %" PRId64 "},\n",
+            cap_f_in, cap_f_tab, cap_g, max_h3, max_p4, max_s3, max_p5, max_b5, max_s4);
+     printf("  \"higher_per_core\": %" PRId64 ",\n", higher_per_core);
++    { FILE* fa = fopen(getenv("AUX_OUT") ? getenv("AUX_OUT") : "/dev/null", "w"); if (fa) { for (int cc = 1; cc <= h.DF; ++cc) if (AUX_minlo[cc] != INT64_MAX) fprintf(fa, "%d %" PRId64 " %" PRId64 "\n", cc, AUX_minlo[cc], AUX_hmax[cc]); fclose(fa);} }
+     printf("  \"comp_fin\": {\"min_W_c0\": %" PRId64 ", \"max_W_c0\": %" PRId64 ", \"min_W\": %" PRId64 ", \"max_W\": %" PRId64 ", \"g_far_min\": %" PRId64 ", \"g_far_max\": %" PRId64 "}\n",
+            min_W_c0_fin, max_W_c0_fin, min_W_fin, max_W_fin, g_far_min, g_far_max);
+     printf("}\n");
